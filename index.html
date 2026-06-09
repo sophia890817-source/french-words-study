@@ -3,187 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>🌟 Mots Magiques</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
-:root{--sky:#e8f4fd;--coral:#FF6B6B;--mint:#6BCB77;--lavender:#a78bfa;--ocean:#4D96FF;--sun:#FFD93D;--shadow:rgba(0,0,0,0.10);--text-dark:#2d2d5e;--text-mid:#5a5a8a;}
+:root{
+  --coral:#FF6B6B;--mint:#6BCB77;--lavender:#a78bfa;--ocean:#4D96FF;
+  --sun:#FFD93D;--sky:#e8f4fd;--shadow:rgba(0,0,0,0.10);
+  --text-dark:#2d2d5e;--text-mid:#5a5a8a;
+}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#c9e8ff 0%,#e8d5ff 50%,#ffd6e7 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 0 40px;color:var(--text-dark);overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(2px 2px at 10% 15%,rgba(255,255,255,0.8) 0%,transparent 100%),radial-gradient(2px 2px at 60% 20%,rgba(255,255,255,0.7) 0%,transparent 100%),radial-gradient(3px 3px at 45% 12%,rgba(255,220,100,0.7) 0%,transparent 100%);pointer-events:none;z-index:0;}
-.deco{position:fixed;font-size:32px;opacity:0.15;pointer-events:none;z-index:1;animation:float 6s ease-in-out infinite;}
-.deco:nth-child(1){top:12%;left:5%;animation-delay:0s;}
-.deco:nth-child(2){top:22%;right:4%;animation-delay:1.5s;}
-.deco:nth-child(3){top:55%;left:3%;animation-delay:3s;}
-.deco:nth-child(4){top:70%;right:5%;animation-delay:2s;}
-@keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-14px) rotate(8deg);}}
-@keyframes popIn{from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
-@keyframes starPop{0%{transform:scale(0.5);opacity:0;}60%{transform:scale(1.3);opacity:1;}100%{transform:scale(1);opacity:1;}}
+html,body{height:100%;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:linear-gradient(160deg,#c9e8ff 0%,#e8d5ff 50%,#ffd6e7 100%);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  padding:0 0 48px;color:var(--text-dark);overflow-x:hidden;
+}
+body::before{content:'';position:fixed;inset:0;
+  background-image:radial-gradient(2px 2px at 10% 15%,rgba(255,255,255,0.7) 0%,transparent 100%),
+  radial-gradient(2px 2px at 65% 18%,rgba(255,255,255,0.6) 0%,transparent 100%),
+  radial-gradient(3px 3px at 42% 10%,rgba(255,220,100,0.6) 0%,transparent 100%);
+  pointer-events:none;z-index:0;}
+.deco{position:fixed;font-size:30px;opacity:0.13;pointer-events:none;z-index:1;animation:float 6s ease-in-out infinite;}
+.deco:nth-child(1){top:10%;left:4%;animation-delay:0s;}
+.deco:nth-child(2){top:20%;right:3%;animation-delay:1.5s;}
+.deco:nth-child(3){top:52%;left:2%;animation-delay:3s;}
+.deco:nth-child(4){top:68%;right:4%;animation-delay:2s;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-12px) rotate(7deg);}}
+@keyframes popIn{from{opacity:0;transform:scale(0.82);}to{opacity:1;transform:scale(1);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes slideUp{from{transform:translateY(60px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes slideUp{from{transform:translateY(56px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes starPop{0%{transform:scale(0.4);opacity:0;}60%{transform:scale(1.3);opacity:1;}100%{transform:scale(1);opacity:1;}}
 
-/* HEADER */
-.header{width:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:12px 16px 14px;position:relative;z-index:10;box-shadow:0 4px 20px rgba(102,126,234,0.4);}
-.header-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.header-title{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:#fff;flex:1;text-align:center;letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,0.2);}
-.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,255,0.45);border-radius:12px;color:#fff;font-size:12px;font-weight:700;padding:5px 10px;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;}
-.hbtn:active{background:rgba(255,255,255,0.4);}
-.stats-row{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap;}
-.stat-badge{background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.38);border-radius:20px;padding:4px 12px;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;}
-.mode-tag{text-align:center;margin-top:6px;font-size:11px;color:rgba(255,255,255,0.85);font-weight:600;}
-.student-tag{text-align:center;margin-top:3px;font-size:12px;color:rgba(255,255,255,0.95);font-weight:700;}
+/* ── HEADER ── */
+.header{width:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  padding:12px 14px 14px;position:relative;z-index:10;
+  box-shadow:0 4px 20px rgba(102,126,234,0.4);}
+.header-top{display:flex;align-items:center;justify-content:space-between;gap:6px;}
+.header-title{font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:#fff;
+  flex:1;text-align:center;letter-spacing:1px;text-shadow:0 2px 6px rgba(0,0,0,0.2);}
+.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,255,0.42);
+  border-radius:12px;color:#fff;font-size:12px;font-weight:700;padding:6px 11px;
+  cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;min-height:36px;}
+.hbtn:active{background:rgba(255,255,255,0.38);}
+.stats-row{display:flex;justify-content:center;gap:6px;margin-top:9px;flex-wrap:wrap;}
+.stat-badge{background:rgba(255,255,255,0.18);border:2px solid rgba(255,255,255,0.35);
+  border-radius:20px;padding:4px 11px;color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;gap:3px;}
+.mode-tag{text-align:center;margin-top:4px;font-size:11px;color:rgba(255,255,255,0.82);font-weight:600;}
+.student-tag{text-align:center;margin-top:2px;font-size:12px;color:#fff;font-weight:700;}
 
-/* MAIN */
-.main{position:relative;z-index:5;width:100%;max-width:440px;padding:16px 14px 0;display:flex;flex-direction:column;align-items:center;gap:14px;}
-.progress-bar-wrap{width:100%;background:rgba(255,255,255,0.5);border-radius:20px;height:10px;overflow:hidden;}
-.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--ocean));border-radius:20px;transition:width 0.5s cubic-bezier(0.34,1.56,0.64,1);min-width:6px;}
+/* ── MAIN ── */
+.main{position:relative;z-index:5;width:100%;max-width:440px;
+  padding:14px 13px 0;display:flex;flex-direction:column;align-items:center;gap:13px;}
+.progress-bar-wrap{width:100%;background:rgba(255,255,255,0.48);border-radius:20px;height:9px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--ocean));
+  border-radius:20px;transition:width 0.5s cubic-bezier(0.34,1.56,0.64,1);min-width:5px;}
 
-/* CARD */
-.card{background:#fff;border-radius:26px;padding:24px 20px 20px;width:100%;box-shadow:0 8px 32px var(--shadow);position:relative;overflow:hidden;}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--coral),var(--sun),var(--mint),var(--ocean));border-radius:26px 26px 0 0;}
-.word-area{text-align:center;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
-.phase-icon{font-size:32px;display:block;margin-bottom:2px;}
-.french-word{font-family:'Baloo 2',cursive;font-size:42px;font-weight:800;color:var(--ocean);line-height:1.1;transition:opacity 0.4s,transform 0.4s;}
-.french-word.hidden{opacity:0;transform:scale(0.85);pointer-events:none;}
-.chinese-meaning{font-size:19px;font-weight:700;color:var(--text-mid);margin-top:2px;}
-.english-meaning{font-size:14px;font-weight:600;color:#9b8ec4;margin-top:1px;font-style:italic;}
-.sentence-display{margin-top:8px;background:linear-gradient(135deg,#f0f4ff,#f7f0ff);border:1.5px solid #d8d0f0;border-radius:14px;padding:9px 13px;font-size:13px;font-weight:600;color:#5a4a8a;line-height:1.5;text-align:center;width:100%;}
-.sentence-display .sent-label{font-size:10px;font-weight:700;color:#a78bfa;letter-spacing:1px;margin-bottom:3px;}
-.sentence-display .sent-fr{font-family:'Baloo 2',cursive;font-size:14px;color:var(--ocean);font-weight:700;}
-.phase-area{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:10px;min-height:100px;}
-.status-msg{text-align:center;font-size:14px;font-weight:700;color:var(--lavender);min-height:22px;}
+/* ── CARD ── */
+.card{background:#fff;border-radius:24px;padding:22px 18px 18px;width:100%;
+  box-shadow:0 8px 30px var(--shadow);position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,var(--coral),var(--sun),var(--mint),var(--ocean));
+  border-radius:24px 24px 0 0;}
 
-/* COUNTDOWN */
-.countdown-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
-.countdown-ring{position:relative;width:68px;height:68px;}
+/* ── WORD DISPLAY ── */
+.word-area{text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.phase-icon{font-size:30px;display:block;margin-bottom:2px;}
+.french-word{font-family:'Baloo 2',cursive;font-size:40px;font-weight:800;color:var(--ocean);
+  line-height:1.1;transition:opacity 0.35s,transform 0.35s;}
+.french-word.hidden{opacity:0;transform:scale(0.86);pointer-events:none;}
+.word-gender{font-size:13px;font-weight:700;color:#a78bfa;font-style:italic;margin-top:1px;}
+.chinese-meaning{font-size:18px;font-weight:700;color:var(--text-mid);margin-top:2px;}
+.english-meaning{font-size:13px;font-weight:600;color:#9b8ec4;font-style:italic;}
+.sentence-display{margin-top:9px;background:linear-gradient(135deg,#f0f4ff,#f7f0ff);
+  border:1.5px solid #d8d0f0;border-radius:13px;padding:8px 12px;
+  font-size:13px;font-weight:600;color:#5a4a8a;line-height:1.5;text-align:center;width:100%;}
+.sent-label{font-size:10px;font-weight:700;color:#a78bfa;letter-spacing:1px;margin-bottom:2px;}
+.sent-fr{font-family:'Baloo 2',cursive;font-size:13px;color:var(--ocean);font-weight:700;}
+
+/* ── PHASE AREA ── */
+.phase-area{margin-top:13px;display:flex;flex-direction:column;align-items:center;gap:9px;min-height:96px;}
+.status-msg{text-align:center;font-size:13px;font-weight:700;color:var(--lavender);min-height:20px;}
+
+/* ── SPEAK BUTTON ── */
+.speak-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--ocean),#6d6aea);
+  color:#fff;font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;border:none;
+  border-radius:16px;cursor:pointer;box-shadow:0 4px 14px rgba(77,150,255,0.4);
+  transition:transform 0.15s;-webkit-appearance:none;min-height:54px;}
+.speak-btn:active{transform:scale(0.96);}
+
+/* ── COUNTDOWN ── */
+.countdown-wrap{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.countdown-ring{position:relative;width:66px;height:66px;}
 .countdown-ring svg{transform:rotate(-90deg);}
 .bg-circle{fill:none;stroke:#e8eaf0;stroke-width:6;}
-.prog-circle{fill:none;stroke:var(--coral);stroke-width:6;stroke-linecap:round;stroke-dasharray:188.5;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear;}
-.countdown-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--coral);}
-.countdown-label{font-size:12px;color:var(--text-mid);font-weight:600;}
+.prog-circle{fill:none;stroke:var(--coral);stroke-width:6;stroke-linecap:round;
+  stroke-dasharray:188.5;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear;}
+.countdown-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Baloo 2',cursive;font-size:23px;font-weight:800;color:var(--coral);}
+.countdown-label{font-size:11px;color:var(--text-mid);font-weight:600;}
 
-/* SPELL INPUT */
-.input-area{width:100%;display:flex;flex-direction:column;gap:10px;margin-top:2px;}
-.spell-input{width:100%;font-family:'Baloo 2',cursive;font-size:26px;font-weight:700;text-align:center;padding:12px 14px;border:3px solid #e0e4f0;border-radius:16px;outline:none;color:var(--text-dark);background:var(--sky);transition:border-color 0.2s,box-shadow 0.2s;letter-spacing:2px;-webkit-appearance:none;}
-.spell-input:focus{border-color:var(--ocean);box-shadow:0 0 0 4px rgba(77,150,255,0.15);background:#fff;}
-.submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--mint) 0%,#38b249 100%);color:#fff;font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;border:none;border-radius:16px;cursor:pointer;box-shadow:0 4px 14px rgba(107,203,119,0.4);transition:transform 0.15s;-webkit-appearance:none;}
+/* ── SPELL INPUT ── */
+.input-area{width:100%;display:flex;flex-direction:column;gap:9px;}
+.spell-input{width:100%;font-family:'Baloo 2',cursive;font-size:26px;font-weight:700;
+  text-align:center;padding:13px 13px;border:3px solid #e0e4f0;border-radius:15px;
+  outline:none;color:var(--text-dark);background:var(--sky);
+  transition:border-color 0.2s,box-shadow 0.2s;letter-spacing:2px;-webkit-appearance:none;}
+.spell-input:focus{border-color:var(--ocean);box-shadow:0 0 0 4px rgba(77,150,255,0.13);background:#fff;}
+.submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--mint),#38b249);
+  color:#fff;font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;border:none;
+  border-radius:15px;cursor:pointer;box-shadow:0 4px 13px rgba(107,203,119,0.4);
+  transition:transform 0.15s;-webkit-appearance:none;min-height:54px;}
 .submit-btn:active{transform:scale(0.96);}
 
-/* FEEDBACK */
-.feedback{text-align:center;padding:14px 18px;border-radius:18px;font-size:16px;font-weight:700;width:100%;animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
+/* ── FEEDBACK ── */
+.feedback{text-align:center;padding:13px 16px;border-radius:16px;font-size:15px;font-weight:700;
+  width:100%;animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
 .feedback.correct{background:linear-gradient(135deg,#d4f5dc,#b8f0c5);color:#1a7a2e;border:2px solid #6BCB77;}
 .feedback.wrong{background:linear-gradient(135deg,#fde8e8,#ffd0d0);color:#c0392b;border:2px solid var(--coral);}
-.stars-display{font-size:30px;letter-spacing:4px;animation:starPop 0.5s ease forwards;}
+.stars-display{font-size:28px;letter-spacing:4px;animation:starPop 0.5s ease forwards;}
 
-/* DONE */
-.done-card{background:#fff;border-radius:26px;padding:32px 22px;width:100%;text-align:center;box-shadow:0 8px 32px var(--shadow);display:flex;flex-direction:column;align-items:center;gap:14px;}
-.done-emoji{font-size:60px;}
-.done-title{font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:var(--text-dark);}
-.done-sub{font-size:15px;color:var(--text-mid);font-weight:600;line-height:1.7;white-space:pre-line;}
-.restart-btn{padding:13px 32px;background:linear-gradient(135deg,var(--ocean),#6d6aea);color:#fff;font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;border:none;border-radius:16px;cursor:pointer;box-shadow:0 4px 14px rgba(77,150,255,0.4);transition:transform 0.15s;}
+/* ── DONE ── */
+.done-card{background:#fff;border-radius:24px;padding:30px 20px;width:100%;text-align:center;
+  box-shadow:0 8px 30px var(--shadow);display:flex;flex-direction:column;align-items:center;gap:13px;}
+.done-emoji{font-size:56px;}
+.done-title{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--text-dark);}
+.done-sub{font-size:14px;color:var(--text-mid);font-weight:600;line-height:1.75;white-space:pre-line;}
+.restart-btn{padding:13px 30px;background:linear-gradient(135deg,var(--ocean),#6d6aea);color:#fff;
+  font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;border:none;border-radius:15px;
+  cursor:pointer;box-shadow:0 4px 13px rgba(77,150,255,0.4);min-height:50px;}
 .restart-btn:active{transform:scale(0.96);}
 
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(40,30,80,0.55);z-index:100;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);animation:fadeIn 0.2s;}
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(40,30,80,0.52);z-index:100;
+  display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);animation:fadeIn 0.2s;}
 .modal-overlay.hidden{display:none!important;}
-.modal{background:#fff;border-radius:26px 26px 0 0;width:100%;max-width:500px;max-height:92vh;display:flex;flex-direction:column;animation:slideUp 0.3s cubic-bezier(0.34,1.3,0.64,1);overflow:hidden;}
-.modal-header{background:linear-gradient(135deg,#667eea,#764ba2);padding:16px 18px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.modal-title{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:#fff;}
-.modal-close{background:rgba(255,255,255,0.25);border:none;border-radius:10px;color:#fff;font-size:18px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.modal-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch;}
-.modal-footer{padding:12px 14px;border-top:1px solid #f0f0f8;flex-shrink:0;display:flex;gap:8px;}
+.modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:500px;
+  max-height:92vh;display:flex;flex-direction:column;animation:slideUp 0.28s cubic-bezier(0.34,1.3,0.64,1);overflow:hidden;}
+.modal-header{background:linear-gradient(135deg,#667eea,#764ba2);padding:15px 16px 13px;
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.modal-title{font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;color:#fff;}
+.modal-close{background:rgba(255,255,255,0.23);border:none;border-radius:9px;color:#fff;
+  font-size:17px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.modal-body{flex:1;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:11px;
+  -webkit-overflow-scrolling:touch;}
+.modal-footer{padding:11px 13px;border-top:1px solid #f0f0f8;flex-shrink:0;display:flex;gap:7px;}
 
-/* FORM ELEMENTS */
-.field-group{display:flex;flex-direction:column;gap:6px;}
-.field-label{font-size:13px;font-weight:700;color:var(--text-mid);}
-.field-input{width:100%;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;padding:10px 13px;border:2px solid #e0e4f0;border-radius:13px;outline:none;color:var(--text-dark);background:#fff;-webkit-appearance:none;}
+/* ── FORM ── */
+.field-label{font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:3px;}
+.field-input{width:100%;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;
+  padding:9px 12px;border:2px solid #e0e4f0;border-radius:12px;outline:none;
+  color:var(--text-dark);background:#fff;-webkit-appearance:none;}
 .field-input:focus{border-color:var(--ocean);}
-.field-input.small{font-size:14px;padding:8px 12px;}
-.field-row{display:flex;gap:8px;align-items:flex-end;}
+.field-row{display:flex;gap:7px;align-items:flex-end;flex-wrap:wrap;}
+.field-group{display:flex;flex-direction:column;gap:0;}
 
-/* BUTTONS */
-.btn{padding:11px 18px;font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:pointer;-webkit-appearance:none;transition:transform 0.15s;}
+/* ── BUTTONS ── */
+.btn{padding:10px 16px;font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;
+  border:none;border-radius:13px;cursor:pointer;-webkit-appearance:none;
+  transition:transform 0.15s;min-height:42px;display:inline-flex;align-items:center;justify-content:center;}
 .btn:active{transform:scale(0.96);}
-.btn-primary{background:linear-gradient(135deg,var(--ocean),#6d6aea);color:#fff;box-shadow:0 3px 12px rgba(77,150,255,0.35);}
-.btn-green{background:linear-gradient(135deg,var(--mint),#38b249);color:#fff;box-shadow:0 3px 12px rgba(107,203,119,0.35);}
+.btn-primary{background:linear-gradient(135deg,var(--ocean),#6d6aea);color:#fff;box-shadow:0 3px 10px rgba(77,150,255,0.32);}
+.btn-green{background:linear-gradient(135deg,var(--mint),#38b249);color:#fff;box-shadow:0 3px 10px rgba(107,203,119,0.32);}
 .btn-red{background:linear-gradient(135deg,var(--coral),#e53935);color:#fff;}
 .btn-gray{background:#f0f0f8;color:var(--text-mid);border:2px solid #e0e0f0;}
-.btn-sm{padding:7px 12px;font-size:13px;border-radius:10px;}
+.btn-orange{background:linear-gradient(135deg,#FFB347,#e67e22);color:#fff;}
+.btn-sm{padding:7px 11px;font-size:12px;border-radius:10px;min-height:34px;}
 .btn-full{width:100%;}
 
-/* TABS */
-.tabs{display:flex;gap:6px;background:#f5f5fa;border-radius:14px;padding:4px;}
-.tab{flex:1;padding:8px 6px;font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;border:none;border-radius:10px;cursor:pointer;background:transparent;color:var(--text-mid);transition:background 0.2s,color 0.2s;}
-.tab.active{background:#fff;color:var(--ocean);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+/* ── TABS ── */
+.tabs{display:flex;gap:5px;background:#f5f5fa;border-radius:13px;padding:3px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tab{flex-shrink:0;padding:7px 10px;font-family:'Baloo 2',cursive;font-size:12px;font-weight:700;
+  border:none;border-radius:9px;cursor:pointer;background:transparent;color:var(--text-mid);
+  transition:background 0.2s,color 0.2s;white-space:nowrap;}
+.tab.active{background:#fff;color:var(--ocean);box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+/* ── EDITOR TABS BAR (fixed below modal header) ── */
+.editor-tabs-bar{padding:8px 13px 6px;background:#fff;border-bottom:2px solid #f0f0f8;flex-shrink:0;}
 
-/* LEVEL SELECTOR */
+/* ── LEVEL GRID ── */
 .level-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.level-card{background:#f7f8fc;border:2px solid #e8eaf0;border-radius:16px;padding:12px 10px;text-align:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;}
-.level-card.active{border-color:var(--ocean);background:#f0f6ff;}
-.level-card .lc-title{font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;color:var(--ocean);}
-.level-card .lc-sub{font-size:11px;color:var(--text-mid);font-weight:600;margin-top:2px;}
-.level-card .lc-count{font-size:11px;color:var(--mint);font-weight:700;margin-top:4px;}
+.level-card{background:#f7f8fc;border:2px solid #e8eaf0;border-radius:15px;padding:12px 9px;
+  text-align:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;min-height:80px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.level-card:active{background:#f0f6ff;}
+.lc-title{font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;}
+.lc-sub{font-size:10px;color:var(--text-mid);font-weight:600;margin-top:1px;}
+.lc-count{font-size:10px;color:var(--mint);font-weight:700;margin-top:4px;}
 
-/* WORD LIST IN EDITOR */
-.word-list-header{display:flex;align-items:center;justify-content:space-between;padding:0 2px;}
-.word-count-badge{background:var(--lavender);color:#fff;border-radius:12px;padding:3px 10px;font-size:12px;font-weight:700;}
-.word-item{display:flex;align-items:flex-start;gap:8px;background:#f7f8fc;border-radius:13px;padding:9px 12px;border:1px solid #e8eaf0;margin-bottom:6px;}
+/* ── WORD LIST ── */
+.word-list-header{display:flex;align-items:center;justify-content:space-between;}
+.word-count-badge{background:var(--lavender);color:#fff;border-radius:11px;padding:3px 9px;font-size:11px;font-weight:700;}
+.word-item{display:flex;align-items:flex-start;gap:7px;background:#f7f8fc;border-radius:12px;
+  padding:8px 10px;border:1px solid #e8eaf0;margin-bottom:5px;}
 .word-item.editing{background:#f0f6ff;border-color:var(--ocean);}
 .word-item-info{flex:1;min-width:0;}
-.word-item-fr{font-family:'Baloo 2',cursive;font-size:17px;font-weight:700;color:var(--ocean);}
+.word-item-fr{font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;color:var(--ocean);}
+.word-item-gender{font-size:11px;color:#a78bfa;font-weight:700;font-style:italic;margin-left:4px;}
 .word-item-meta{font-size:11px;color:var(--text-mid);font-weight:600;margin-top:1px;}
-.word-item-sent{font-size:11px;color:#a78bfa;font-style:italic;margin-top:2px;}
-.word-item-actions{display:flex;gap:5px;flex-shrink:0;margin-top:2px;}
-.icon-btn{background:none;border:none;font-size:16px;cursor:pointer;padding:3px 5px;border-radius:7px;color:#ccc;transition:color 0.15s,background 0.15s;line-height:1;}
+.word-item-sent{font-size:10px;color:#a78bfa;font-style:italic;margin-top:2px;}
+.word-item-actions{display:flex;gap:4px;flex-shrink:0;}
+.icon-btn{background:none;border:none;font-size:15px;cursor:pointer;padding:4px 5px;
+  border-radius:7px;color:#ccc;line-height:1;min-width:30px;min-height:30px;
+  display:flex;align-items:center;justify-content:center;}
 .icon-btn:active{color:var(--ocean);background:#e8f0ff;}
 .icon-btn.del:active{color:var(--coral);background:#fde8e8;}
 
-/* Inline edit inputs */
-.inline-edit{display:flex;flex-direction:column;gap:5px;width:100%;}
-.inline-input{width:100%;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;padding:6px 9px;border:2px solid #d0d8f0;border-radius:9px;outline:none;color:var(--text-dark);background:#fff;}
+/* ── INLINE EDIT ── */
+.inline-edit{display:flex;flex-direction:column;gap:4px;width:100%;}
+.inline-input{width:100%;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;
+  padding:6px 8px;border:2px solid #d0d8f0;border-radius:8px;outline:none;
+  color:var(--text-dark);background:#fff;-webkit-appearance:none;}
 .inline-input:focus{border-color:var(--ocean);}
-.inline-actions{display:flex;gap:6px;margin-top:3px;}
+.inline-actions{display:flex;gap:5px;margin-top:2px;}
 
-/* IMPORT AREA */
-.import-box{background:#f0faf2;border:2px dashed #6BCB77;border-radius:16px;padding:13px 14px;display:flex;flex-direction:column;gap:9px;}
-.import-box .ib-title{font-size:13px;font-weight:700;color:#2e7d32;}
-.import-box .ib-hint{font-size:11px;color:var(--text-mid);font-weight:600;line-height:1.6;}
-.import-box textarea{width:100%;font-family:'Nunito',sans-serif;font-size:12px;padding:9px;border:2px solid #c8e6c9;border-radius:11px;outline:none;resize:vertical;color:var(--text-dark);background:#fff;min-height:90px;}
-.import-btns{display:flex;gap:6px;}
+/* ── IMPORT ── */
+.import-box{background:#f0faf2;border:2px dashed #6BCB77;border-radius:15px;padding:12px 13px;
+  display:flex;flex-direction:column;gap:8px;}
+.ib-title{font-size:12px;font-weight:700;color:#2e7d32;}
+.ib-hint{font-size:11px;color:var(--text-mid);font-weight:600;line-height:1.6;}
+.import-box textarea{width:100%;font-family:'Nunito',sans-serif;font-size:12px;padding:8px;
+  border:2px solid #c8e6c9;border-radius:10px;outline:none;resize:vertical;
+  color:var(--text-dark);background:#fff;min-height:80px;}
+.import-btns{display:flex;gap:5px;flex-wrap:wrap;}
 
-/* PAGINATION */
-.pagination{display:flex;align-items:center;justify-content:center;gap:8px;padding:4px 0;}
-.page-btn{background:#f0f0f8;border:2px solid #e0e0f0;border-radius:10px;padding:6px 12px;font-family:'Baloo 2',cursive;font-size:14px;font-weight:700;cursor:pointer;color:var(--text-mid);}
+/* ── PAGINATION ── */
+.pagination{display:flex;align-items:center;justify-content:center;gap:7px;padding:3px 0;}
+.page-btn{background:#f0f0f8;border:2px solid #e0e0f0;border-radius:9px;padding:6px 11px;
+  font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-mid);min-height:36px;}
 .page-btn.active{background:var(--ocean);color:#fff;border-color:var(--ocean);}
-.page-info{font-size:13px;font-weight:600;color:var(--text-mid);}
+.page-info{font-size:12px;font-weight:600;color:var(--text-mid);}
 
-/* MASTERED BADGE */
-.mastered-badge{background:#e8f5e9;color:#2e7d32;border-radius:10px;padding:2px 8px;font-size:11px;font-weight:700;}
-.wrong-badge{background:#fde8e8;color:#c0392b;border-radius:10px;padding:2px 8px;font-size:11px;font-weight:700;}
-
-/* SETTINGS */
-.setting-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f8;}
+/* ── SETTINGS ── */
+.setting-row{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 0;border-bottom:1px solid #f0f0f8;gap:10px;}
 .setting-row:last-child{border-bottom:none;}
-.setting-label{font-size:14px;font-weight:700;color:var(--text-dark);}
-.setting-sub{font-size:11px;color:var(--text-mid);margin-top:2px;}
-.num-input{width:70px;font-family:'Baloo 2',cursive;font-size:18px;font-weight:700;text-align:center;padding:7px 10px;border:2px solid #e0e4f0;border-radius:12px;outline:none;color:var(--text-dark);background:var(--sky);-webkit-appearance:none;}
+.setting-label{font-size:13px;font-weight:700;color:var(--text-dark);}
+.setting-sub{font-size:10px;color:var(--text-mid);margin-top:1px;}
+.num-input{width:68px;font-family:'Baloo 2',cursive;font-size:17px;font-weight:700;
+  text-align:center;padding:6px 8px;border:2px solid #e0e4f0;border-radius:11px;
+  outline:none;color:var(--text-dark);background:var(--sky);-webkit-appearance:none;}
 .num-input:focus{border-color:var(--ocean);}
 
-/* TOAST */
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text-dark);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;padding:9px 20px;border-radius:18px;z-index:200;opacity:0;transition:opacity 0.3s,transform 0.3s;white-space:nowrap;pointer-events:none;}
+/* ── GENDER SELECT ── */
+.gender-select{font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;
+  padding:6px 8px;border:2px solid #d0d8f0;border-radius:9px;outline:none;
+  color:var(--text-dark);background:#fff;-webkit-appearance:none;cursor:pointer;}
+
+/* ── WELCOME ── */
+.welcome-card{background:#fff;border-radius:24px;padding:28px 20px;width:100%;text-align:center;
+  box-shadow:0 8px 30px var(--shadow);display:flex;flex-direction:column;align-items:center;gap:14px;}
+.welcome-title{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--text-dark);}
+.welcome-sub{font-size:13px;color:var(--text-mid);font-weight:600;}
+.name-input{width:100%;font-family:'Baloo 2',cursive;font-size:21px;font-weight:700;
+  text-align:center;padding:13px 14px;border:3px solid #e0e4f0;border-radius:15px;
+  outline:none;color:var(--text-dark);background:var(--sky);-webkit-appearance:none;}
+.name-input:focus{border-color:var(--ocean);background:#fff;}
+.student-list{width:100%;display:flex;flex-direction:column;gap:5px;}
+.student-item{display:flex;align-items:center;gap:7px;background:#f7f8fc;border:2px solid #e8eaf0;
+  border-radius:12px;padding:10px 13px;cursor:pointer;min-height:46px;}
+.student-item:active{border-color:var(--ocean);}
+.si-name{font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;color:var(--text-dark);flex:1;}
+.si-del{background:none;border:none;font-size:15px;cursor:pointer;color:#ccc;
+  padding:2px 5px;min-width:28px;min-height:28px;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);
+  background:var(--text-dark);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;
+  font-weight:700;padding:8px 18px;border-radius:16px;z-index:200;opacity:0;
+  transition:opacity 0.3s,transform 0.3s;white-space:nowrap;pointer-events:none;max-width:90vw;
+  text-align:center;white-space:normal;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* WELCOME */
-.welcome-card{background:#fff;border-radius:26px;padding:32px 22px;width:100%;text-align:center;box-shadow:0 8px 32px var(--shadow);display:flex;flex-direction:column;align-items:center;gap:16px;}
-.welcome-title{font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:var(--text-dark);}
-.welcome-sub{font-size:14px;color:var(--text-mid);font-weight:600;}
-.name-input{width:100%;font-family:'Baloo 2',cursive;font-size:22px;font-weight:700;text-align:center;padding:13px 16px;border:3px solid #e0e4f0;border-radius:16px;outline:none;color:var(--text-dark);background:var(--sky);-webkit-appearance:none;}
-.name-input:focus{border-color:var(--ocean);background:#fff;}
-.student-list{width:100%;display:flex;flex-direction:column;gap:6px;}
-.student-item{display:flex;align-items:center;gap:8px;background:#f7f8fc;border:2px solid #e8eaf0;border-radius:13px;padding:10px 14px;cursor:pointer;transition:border-color 0.2s;}
-.student-item:active{border-color:var(--ocean);}
-.student-item .si-name{font-family:'Baloo 2',cursive;font-size:17px;font-weight:700;color:var(--text-dark);flex:1;}
-.student-item .si-info{font-size:11px;color:var(--text-mid);font-weight:600;}
-.student-item .si-del{background:none;border:none;font-size:16px;cursor:pointer;color:#ccc;padding:2px 4px;}
+/* ── GENDER BADGE ── */
+.g-badge{display:inline-block;font-size:11px;font-weight:700;font-style:italic;
+  color:#a78bfa;background:#f3f0ff;border-radius:6px;padding:1px 6px;margin-left:4px;}
 
 .hidden{display:none!important;}
 </style>
@@ -197,15 +293,15 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 <!-- HEADER -->
 <div class="header" id="mainHeader" style="display:none">
   <div class="header-top">
-    <button class="hbtn" onclick="openSettings()">⚙️ 设置</button>
+    <button class="hbtn" onclick="openSettings()">⚙️</button>
     <div class="header-title">🌟 Mots Magiques</div>
-    <button class="hbtn" onclick="openEditor()">📝 词库</button>
+    <button class="hbtn" onclick="openEditor()">📝 Lexique</button>
   </div>
   <div class="stats-row">
     <div class="stat-badge">📚 <span id="statProgress">0/0</span></div>
-    <div class="stat-badge">❌ <span id="statWrong">0</span>错题</div>
-    <div class="stat-badge">✅ <span id="statMastered">0</span>已掌握</div>
-    <div class="stat-badge">📖 <span id="statTotal">0</span>词库</div>
+    <div class="stat-badge">❌ <span id="statWrong">0</span></div>
+    <div class="stat-badge">✅ <span id="statMastered">0</span></div>
+    <div class="stat-badge">📖 <span id="statTotal">0</span></div>
   </div>
   <div class="student-tag" id="studentTag"></div>
   <div class="mode-tag" id="modeTag"></div>
@@ -217,37 +313,40 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
   </div>
 
-  <!-- Welcome screen -->
+  <!-- WELCOME -->
   <div class="welcome-card" id="welcomeCard">
-    <div style="font-size:56px">🌟</div>
+    <div style="font-size:52px">🌟</div>
     <div class="welcome-title">Mots Magiques</div>
-    <div class="welcome-sub">请输入你的名字开始学习</div>
-    <input class="name-input" id="nameInput" type="text" placeholder="你叫什么名字？" autocomplete="off"
+    <div class="welcome-sub">Entrez votre prénom pour commencer</div>
+    <input class="name-input" id="nameInput" type="text" placeholder="Votre prénom..." autocomplete="off"
       onkeydown="if(event.key==='Enter')confirmName()"/>
-    <button class="btn btn-primary btn-full" onclick="confirmName()" style="font-size:18px;padding:14px;">开始学习 🚀</button>
-    <div id="existingStudents" class="student-list" style="display:none">
-      <div style="font-size:13px;font-weight:700;color:var(--text-mid);text-align:left;">或选择已有学生：</div>
-    </div>
+    <button class="btn btn-primary btn-full" onclick="confirmName()" style="font-size:18px;padding:15px;min-height:52px;">
+      Commencer 🚀
+    </button>
+    <div id="existingStudents" class="student-list" style="display:none"></div>
   </div>
 
-  <!-- Level select screen -->
+  <!-- LEVEL SELECT -->
   <div class="card hidden" id="levelCard">
-    <div style="text-align:center;margin-bottom:14px;">
-      <div style="font-size:28px">📚</div>
-      <div style="font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--text-dark);margin-top:4px;">选择学习级别</div>
-      <div style="font-size:13px;color:var(--text-mid);margin-top:4px;font-weight:600;" id="levelStudentHint"></div>
+    <div style="text-align:center;margin-bottom:13px;">
+      <div style="font-size:26px">📚</div>
+      <div style="font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:var(--text-dark);margin-top:3px;">
+        Choisir un niveau
+      </div>
+      <div style="font-size:12px;color:var(--text-mid);margin-top:3px;font-weight:600;" id="levelStudentHint"></div>
     </div>
     <div class="level-grid" id="levelGrid"></div>
-    <div style="margin-top:12px;text-align:center;">
-      <button class="btn btn-gray btn-sm" onclick="switchStudent()">换一个学生 👤</button>
+    <div style="margin-top:11px;text-align:center;">
+      <button class="btn btn-gray btn-sm" onclick="switchStudent()">👤 Changer d'élève</button>
     </div>
   </div>
 
-  <!-- Word card -->
+  <!-- WORD CARD -->
   <div class="card hidden" id="wordCard">
     <div class="word-area">
       <span class="phase-icon" id="phaseIcon">📖</span>
       <div class="french-word" id="frenchWord">—</div>
+      <div class="word-gender" id="wordGender"></div>
       <div class="chinese-meaning" id="chineseMeaning"></div>
       <div class="english-meaning" id="englishMeaning"></div>
       <div class="sentence-display hidden" id="sentenceDisplay">
@@ -256,106 +355,122 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
       </div>
     </div>
     <div class="phase-area" id="phaseArea">
-      <div class="status-msg" id="statusMsg">准备开始...</div>
+      <div class="status-msg">Prêt...</div>
     </div>
   </div>
 
-  <!-- Done card -->
+  <!-- DONE -->
   <div class="done-card hidden" id="doneCard">
     <div class="done-emoji">🎉</div>
-    <div class="done-title">今日完成！</div>
+    <div class="done-title">Bravo !</div>
     <div class="done-sub" id="doneSub"></div>
-    <button class="restart-btn" onclick="goToLevelSelect()">继续学习 📚</button>
+    <button class="restart-btn" onclick="goToLevelSelect()">Continuer 📚</button>
   </div>
 </div>
 
-<!-- ══════════════ SETTINGS MODAL ══════════════ -->
+<!-- ══ SETTINGS MODAL ══ -->
 <div class="modal-overlay hidden" id="settingsOverlay" onclick="if(event.target===this)closeSettings()">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">⚙️ 设置</div>
+      <div class="modal-title">⚙️ Paramètres</div>
       <button class="modal-close" onclick="closeSettings()">✕</button>
     </div>
     <div class="modal-body">
       <div class="setting-row">
         <div>
-          <div class="setting-label">每日学习单词数</div>
-          <div class="setting-sub">错题+新词总数，不足时用已掌握词补充</div>
+          <div class="setting-label">Mots par session</div>
+          <div class="setting-sub">Erreurs + nouveaux mots (complété par révision si besoin)</div>
         </div>
-        <input class="num-input" id="dailyCountInput" type="number" min="5" max="100" value="30"/>
+        <input class="num-input" id="dailyCountInput" type="number" min="5" max="200" value="30"/>
       </div>
       <div class="setting-row">
         <div>
-          <div class="setting-label">当前学生</div>
+          <div class="setting-label">Élève actuel</div>
           <div class="setting-sub" id="settingStudentName"></div>
         </div>
-        <button class="btn btn-gray btn-sm" onclick="closeSettings();switchStudent()">切换</button>
+        <button class="btn btn-gray btn-sm" onclick="closeSettings();switchStudent()">Changer</button>
       </div>
       <div class="setting-row">
         <div>
-          <div class="setting-label">重置当前级别进度</div>
-          <div class="setting-sub">清空已掌握记录，重新开始</div>
+          <div class="setting-label">Réinitialiser le niveau</div>
+          <div class="setting-sub">Efface les mots maîtrisés pour recommencer</div>
         </div>
-        <button class="btn btn-red btn-sm" onclick="resetProgress()">重置</button>
+        <button class="btn btn-red btn-sm" onclick="resetProgress()">Reset</button>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-gray" onclick="closeSettings()">取消</button>
-      <button class="btn btn-primary" style="flex:1" onclick="saveSettings()">✅ 保存</button>
+      <button class="btn btn-gray" onclick="closeSettings()">Annuler</button>
+      <button class="btn btn-primary" style="flex:1" onclick="saveSettings()">✅ Enregistrer</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ EDITOR MODAL ══════════════ -->
+<!-- ══ EDITOR MODAL ══ -->
 <div class="modal-overlay hidden" id="editorOverlay" onclick="if(event.target===this)closeEditor()">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">📝 词库编辑器</div>
+      <div class="modal-title">📝 Éditeur de lexique</div>
       <button class="modal-close" onclick="closeEditor()">✕</button>
     </div>
-    <div class="modal-body" id="editorBody">
-      <!-- Level tabs -->
+    <div class="editor-tabs-bar" id="editorTabsBar">
       <div class="tabs" id="editorTabs"></div>
+    </div>
+    <div class="modal-body" id="editorBody">
 
       <!-- Add word -->
       <div class="import-box" style="border-color:var(--ocean);background:#f0f6ff;">
-        <div class="ib-title" style="color:var(--ocean);">➕ 手动添加单词</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div class="field-row">
-            <input class="field-input small" id="newFr" placeholder="法语单词" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="flex:1"/>
-            <input class="field-input small" id="newZh" placeholder="中文" autocomplete="off" style="flex:1"/>
-            <input class="field-input small" id="newEn" placeholder="English" autocomplete="off" spellcheck="false" style="flex:1"/>
-          </div>
-          <div class="field-row">
-            <input class="field-input small" id="newSfr" placeholder="法语例句（可选）" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="flex:1"/>
-            <button class="btn btn-primary btn-sm" onclick="addWord()">添加</button>
-          </div>
+        <div class="ib-title" style="color:var(--ocean);">➕ Ajouter un mot</div>
+        <div class="field-row">
+          <input class="field-input" id="newFr" placeholder="Mot français" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="flex:2"/>
+          <select class="gender-select" id="newGender">
+            <option value="">—</option>
+            <option value="n.m.">n.m.</option>
+            <option value="n.f.">n.f.</option>
+            <option value="v.">v.</option>
+            <option value="adj.">adj.</option>
+            <option value="adv.">adv.</option>
+            <option value="prép.">prép.</option>
+            <option value="conj.">conj.</option>
+            <option value="pron.">pron.</option>
+            <option value="art.m.">art.m.</option>
+            <option value="art.f.">art.f.</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <input class="field-input" id="newZh" placeholder="中文" autocomplete="off" style="flex:1"/>
+          <input class="field-input" id="newEn" placeholder="English" autocomplete="off" spellcheck="false" style="flex:1"/>
+        </div>
+        <div class="field-row">
+          <input class="field-input" id="newSfr" placeholder="Exemple (optionnel)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="flex:1"/>
+          <button class="btn btn-primary btn-sm" onclick="addWord()">Ajouter</button>
         </div>
       </div>
 
       <!-- Import -->
       <div class="import-box">
-        <div class="ib-title">📂 批量导入（当前级别）</div>
-        <div class="ib-hint">格式：<code style="background:#e8f5e9;padding:1px 5px;border-radius:5px;">法语,中文,English,法语例句</code><br>后三列可省略 · 例句列可为空</div>
-        <textarea id="importText" placeholder="bonjour,你好,hello,Bonjour tout le monde !&#10;chat,猫,cat,Le chat dort.&#10;école,学校,school,"></textarea>
+        <div class="ib-title">📂 Importation par lots (niveau actuel)</div>
+        <div class="ib-hint">Format : <code style="background:#e8f5e9;padding:1px 5px;border-radius:4px;">français,genre,中文,English,exemple</code><br>
+          Genre : n.m. / n.f. / v. / adj. / adv. — colonnes 2-5 optionnelles</div>
+        <textarea id="importText" placeholder="chat,n.m.,猫,cat,Le chat dort.&#10;courir,v.,跑步,to run,J'aime courir.&#10;école,n.f.,学校,school,"></textarea>
         <div class="import-btns">
-          <button class="btn btn-green btn-sm" style="flex:1" onclick="importWords(false)">➕ 追加</button>
-          <button class="btn btn-red btn-sm" style="flex:1" onclick="importWords(true)">🔄 替换全部</button>
-          <button class="btn btn-gray btn-sm" onclick="downloadTemplate()">📥 模板</button>
+          <button class="btn btn-green btn-sm" style="flex:1" onclick="importWords(false)">➕ Ajouter</button>
+          <button class="btn btn-red btn-sm" style="flex:1" onclick="importWords(true)">🔄 Remplacer</button>
+          <button class="btn btn-gray btn-sm" onclick="downloadTemplate()">📥 Modèle</button>
+          <button class="btn btn-orange btn-sm" onclick="exportWords()">📤 Exporter</button>
         </div>
       </div>
 
       <!-- Word list -->
       <div class="word-list-header">
-        <div class="field-label" id="editorLevelLabel">单词列表</div>
-        <div class="word-count-badge" id="editorCountBadge">0个</div>
+        <div class="field-label" id="editorLevelLabel">Liste</div>
+        <div class="word-count-badge" id="editorCountBadge">0</div>
       </div>
       <div id="wordListContainer"></div>
       <div class="pagination" id="editorPagination"></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-gray" onclick="closeEditor()">关闭</button>
-      <button class="btn btn-green" style="flex:1" onclick="saveEditor()">✅ 保存词库</button>
+      <button class="btn btn-gray" onclick="closeEditor()">Fermer</button>
+      <button class="btn btn-green" style="flex:1" onclick="saveEditor()">✅ Enregistrer</button>
     </div>
   </div>
 </div>
@@ -364,264 +479,234 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 
 <script>
 'use strict';
-// ═══════════════════════════════════════════════════════
-// LEVELS DEFINITION
-// ═══════════════════════════════════════════════════════
-const LEVELS = [
-  { id:'cp_ce2',  label:'CP – CE2',  sub:'6-8岁',  color:'#4D96FF' },
-  { id:'cm1_cm2', label:'CM1 – CM2', sub:'9-10岁', color:'#6BCB77' },
-  { id:'s6_s5',   label:'6e – 5e',   sub:'11-12岁',color:'#a78bfa' },
-  { id:'s4_s3',   label:'4e – 3e',   sub:'13-14岁',color:'#FF6B6B' },
-  { id:'lycee',   label:'Lycée',     sub:'15岁+',  color:'#FFB347' },
+// ═══════════════════════════════════════════════════
+// LEVELS
+// ═══════════════════════════════════════════════════
+const LEVELS=[
+  {id:'cp_ce2',  label:'CP – CE2',  sub:'6-8 ans',   color:'#4D96FF'},
+  {id:'cm1_cm2', label:'CM1 – CM2', sub:'9-10 ans',  color:'#6BCB77'},
+  {id:'s6_s5',   label:'6e – 5e',   sub:'11-12 ans', color:'#a78bfa'},
+  {id:'s4_s3',   label:'4e – 3e',   sub:'13-14 ans', color:'#FF6B6B'},
+  {id:'lycee',   label:'Lycée',     sub:'15 ans +',  color:'#FFB347'},
 ];
 
-// ═══════════════════════════════════════════════════════
-// DEFAULT WORD BANKS (30 per level)
-// ═══════════════════════════════════════════════════════
-const DEFAULT_BANKS = {
-  cp_ce2: [
-    {fr:'chat',zh:'猫',en:'cat',sfr:'Le chat dort sur le canapé.'},
-    {fr:'chien',zh:'狗',en:'dog',sfr:'Mon chien aime jouer dehors.'},
-    {fr:'maison',zh:'房子',en:'house',sfr:'Notre maison est grande.'},
-    {fr:'école',zh:'学校',en:'school',sfr:'Je vais à l\'école le matin.'},
-    {fr:'livre',zh:'书',en:'book',sfr:'Je lis un livre chaque soir.'},
-    {fr:'ami',zh:'朋友',en:'friend',sfr:'Mon ami s\'appelle Lucas.'},
-    {fr:'rouge',zh:'红色',en:'red',sfr:'La pomme est rouge.'},
-    {fr:'bleu',zh:'蓝色',en:'blue',sfr:'Le ciel est bleu.'},
-    {fr:'grand',zh:'大的',en:'big',sfr:'L\'éléphant est très grand.'},
-    {fr:'petit',zh:'小的',en:'small',sfr:'La souris est petite.'},
-    {fr:'manger',zh:'吃',en:'to eat',sfr:'On mange ensemble en famille.'},
-    {fr:'dormir',zh:'睡觉',en:'to sleep',sfr:'Le bébé dort dans son lit.'},
-    {fr:'jouer',zh:'玩',en:'to play',sfr:'Les enfants jouent dans le jardin.'},
-    {fr:'courir',zh:'跑',en:'to run',sfr:'J\'aime courir dans le parc.'},
-    {fr:'eau',zh:'水',en:'water',sfr:'Je bois de l\'eau chaque matin.'},
-    {fr:'pain',zh:'面包',en:'bread',sfr:'Je mange du pain au petit-déjeuner.'},
-    {fr:'lait',zh:'牛奶',en:'milk',sfr:'Le lait est bon pour la santé.'},
-    {fr:'pomme',zh:'苹果',en:'apple',sfr:'Je mange une pomme chaque jour.'},
-    {fr:'arbre',zh:'树',en:'tree',sfr:'L\'arbre est très haut.'},
-    {fr:'fleur',zh:'花',en:'flower',sfr:'La fleur est belle et parfumée.'},
-    {fr:'soleil',zh:'太阳',en:'sun',sfr:'Le soleil brille aujourd\'hui.'},
-    {fr:'lune',zh:'月亮',en:'moon',sfr:'La lune brille dans la nuit.'},
-    {fr:'étoile',zh:'星星',en:'star',sfr:'Je vois une étoile briller.'},
-    {fr:'pluie',zh:'雨',en:'rain',sfr:'Il y a de la pluie aujourd\'hui.'},
-    {fr:'chaud',zh:'热的',en:'hot',sfr:'L\'été est chaud et ensoleillé.'},
-    {fr:'froid',zh:'冷的',en:'cold',sfr:'L\'hiver est froid et neigeux.'},
-    {fr:'mère',zh:'妈妈',en:'mother',sfr:'Ma mère prépare le repas.'},
-    {fr:'père',zh:'爸爸',en:'father',sfr:'Mon père travaille beaucoup.'},
-    {fr:'lapin',zh:'兔子',en:'rabbit',sfr:'Le lapin mange des carottes.'},
-    {fr:'canard',zh:'鸭子',en:'duck',sfr:'Le canard nage dans le lac.'},
-  ],
-  cm1_cm2: [
-    {fr:'cahier',zh:'笔记本',en:'notebook',sfr:'J\'écris dans mon cahier.'},
-    {fr:'crayon',zh:'铅笔',en:'pencil',sfr:'Elle dessine avec un crayon.'},
-    {fr:'gomme',zh:'橡皮擦',en:'eraser',sfr:'Il efface avec la gomme.'},
-    {fr:'règle',zh:'尺子',en:'ruler',sfr:'Je trace une ligne avec la règle.'},
-    {fr:'cartable',zh:'书包',en:'schoolbag',sfr:'Mon cartable est très lourd.'},
-    {fr:'tableau',zh:'黑板',en:'blackboard',sfr:'La maîtresse écrit au tableau.'},
-    {fr:'maître',zh:'男老师',en:'teacher',sfr:'Le maître explique la leçon.'},
-    {fr:'élève',zh:'学生',en:'student',sfr:'Chaque élève lit un livre.'},
-    {fr:'récréation',zh:'课间休息',en:'break time',sfr:'On joue pendant la récréation.'},
-    {fr:'bibliothèque',zh:'图书馆',en:'library',sfr:'Je vais à la bibliothèque le mercredi.'},
-    {fr:'papillon',zh:'蝴蝶',en:'butterfly',sfr:'Un papillon vole au-dessus des fleurs.'},
-    {fr:'grenouille',zh:'青蛙',en:'frog',sfr:'La grenouille saute dans l\'étang.'},
-    {fr:'écureuil',zh:'松鼠',en:'squirrel',sfr:'L\'écureuil grimpe dans l\'arbre.'},
-    {fr:'renard',zh:'狐狸',en:'fox',sfr:'Le renard est un animal rusé.'},
-    {fr:'montagne',zh:'山',en:'mountain',sfr:'Nous grimpons la montagne ensemble.'},
-    {fr:'rivière',zh:'河流',en:'river',sfr:'Les enfants pêchent dans la rivière.'},
-    {fr:'forêt',zh:'森林',en:'forest',sfr:'On entend les oiseaux dans la forêt.'},
-    {fr:'nuage',zh:'云',en:'cloud',sfr:'Un gros nuage cache le soleil.'},
-    {fr:'fenêtre',zh:'窗户',en:'window',sfr:'J\'ouvre la fenêtre pour aérer.'},
-    {fr:'cuisine',zh:'厨房',en:'kitchen',sfr:'Maman prépare le repas dans la cuisine.'},
-    {fr:'chanter',zh:'唱歌',en:'to sing',sfr:'Nous chantons une belle chanson.'},
-    {fr:'dessiner',zh:'画画',en:'to draw',sfr:'Elle aime dessiner des animaux.'},
-    {fr:'lire',zh:'阅读',en:'to read',sfr:'Je lis un livre chaque soir.'},
-    {fr:'écrire',zh:'书写',en:'to write',sfr:'Il apprend à écrire son nom.'},
-    {fr:'sauter',zh:'跳',en:'to jump',sfr:'Il peut sauter très haut.'},
-    {fr:'fromage',zh:'奶酪',en:'cheese',sfr:'Le fromage est délicieux avec du pain.'},
-    {fr:'gâteau',zh:'蛋糕',en:'cake',sfr:'On mange le gâteau pour l\'anniversaire.'},
-    {fr:'fraise',zh:'草莓',en:'strawberry',sfr:'Cette fraise est rouge et sucrée.'},
-    {fr:'carotte',zh:'胡萝卜',en:'carrot',sfr:'La carotte est bonne pour la vue.'},
-    {fr:'oignon',zh:'洋葱',en:'onion',sfr:'L\'oignon fait pleurer quand on le coupe.'},
-  ],
-  s6_s5: [
-    {fr:'vocabulaire',zh:'词汇',en:'vocabulary',sfr:'Il faut apprendre le vocabulaire chaque jour.'},
-    {fr:'grammaire',zh:'语法',en:'grammar',sfr:'La grammaire française est complexe.'},
-    {fr:'conjugaison',zh:'动词变位',en:'conjugation',sfr:'La conjugaison du verbe être est importante.'},
-    {fr:'paragraphe',zh:'段落',en:'paragraph',sfr:'Écris un paragraphe sur ce sujet.'},
-    {fr:'dictionnaire',zh:'字典',en:'dictionary',sfr:'Je cherche ce mot dans le dictionnaire.'},
-    {fr:'environnement',zh:'环境',en:'environment',sfr:'Il faut protéger l\'environnement.'},
-    {fr:'température',zh:'温度',en:'temperature',sfr:'La température est de vingt degrés.'},
-    {fr:'géographie',zh:'地理',en:'geography',sfr:'Nous étudions la géographie de la France.'},
-    {fr:'histoire',zh:'历史',en:'history',sfr:'L\'histoire de France est très riche.'},
-    {fr:'mathématiques',zh:'数学',en:'mathematics',sfr:'Les mathématiques sont ma matière préférée.'},
-    {fr:'expérience',zh:'经历/实验',en:'experience',sfr:'Cette expérience est très intéressante.'},
-    {fr:'découverte',zh:'发现',en:'discovery',sfr:'La découverte de l\'Amérique date de 1492.'},
-    {fr:'gouvernement',zh:'政府',en:'government',sfr:'Le gouvernement prend des décisions importantes.'},
-    {fr:'citoyenneté',zh:'公民身份',en:'citizenship',sfr:'La citoyenneté implique des droits et des devoirs.'},
-    {fr:'responsabilité',zh:'责任',en:'responsibility',sfr:'Chacun a une responsabilité envers la société.'},
-    {fr:'technologie',zh:'技术',en:'technology',sfr:'La technologie évolue très rapidement.'},
-    {fr:'économie',zh:'经济',en:'economy',sfr:'L\'économie française est la septième mondiale.'},
-    {fr:'pourcentage',zh:'百分比',en:'percentage',sfr:'Quel est le pourcentage de réussite?'},
-    {fr:'superficie',zh:'面积',en:'area',sfr:'La superficie de la France est de 551 000 km².'},
-    {fr:'population',zh:'人口',en:'population',sfr:'La population mondiale dépasse huit milliards.'},
-    {fr:'architecture',zh:'建筑',en:'architecture',sfr:'L\'architecture de cette cathédrale est magnifique.'},
-    {fr:'sculpture',zh:'雕塑',en:'sculpture',sfr:'Cette sculpture date du Moyen Âge.'},
-    {fr:'littérature',zh:'文学',en:'literature',sfr:'La littérature française est très connue.'},
-    {fr:'philosophie',zh:'哲学',en:'philosophy',sfr:'La philosophie nous apprend à réfléchir.'},
-    {fr:'biologie',zh:'生物',en:'biology',sfr:'La biologie étudie les êtres vivants.'},
-    {fr:'chimie',zh:'化学',en:'chemistry',sfr:'La chimie explique la composition des matières.'},
-    {fr:'physique',zh:'物理',en:'physics',sfr:'La physique explique les lois de la nature.'},
-    {fr:'électricité',zh:'电',en:'electricity',sfr:'L\'électricité est indispensable au quotidien.'},
-    {fr:'magnétisme',zh:'磁性',en:'magnetism',sfr:'Le magnétisme attire certains métaux.'},
-    {fr:'évolution',zh:'进化',en:'evolution',sfr:'L\'évolution des espèces est un fait scientifique.'},
-  ],
-  s4_s3: [
-    {fr:'abstrait',zh:'抽象的',en:'abstract',sfr:'Ce concept philosophique est très abstrait.'},
-    {fr:'argumentation',zh:'论证',en:'argumentation',sfr:'Son argumentation est très convaincante.'},
-    {fr:'contradiction',zh:'矛盾',en:'contradiction',sfr:'Il y a une contradiction dans ton raisonnement.'},
-    {fr:'hypothèse',zh:'假设',en:'hypothesis',sfr:'Cette hypothèse doit être vérifiée.'},
-    {fr:'démonstration',zh:'证明',en:'demonstration',sfr:'La démonstration mathématique est rigoureuse.'},
-    {fr:'raisonnement',zh:'推理',en:'reasoning',sfr:'Ton raisonnement est logique et clair.'},
-    {fr:'symbolique',zh:'象征性的',en:'symbolic',sfr:'Ce geste a une valeur symbolique.'},
-    {fr:'chronologie',zh:'年代顺序',en:'chronology',sfr:'Respecte la chronologie des événements.'},
-    {fr:'perspective',zh:'视角',en:'perspective',sfr:'Observe ce tableau en perspective.'},
-    {fr:'métaphore',zh:'比喻',en:'metaphor',sfr:'Cette phrase contient une belle métaphore.'},
-    {fr:'allégorie',zh:'寓言',en:'allegory',sfr:'Cette peinture est une allégorie de la liberté.'},
-    {fr:'nuance',zh:'细微差别',en:'nuance',sfr:'Il faut comprendre les nuances de la langue.'},
-    {fr:'référence',zh:'参考',en:'reference',sfr:'Cite tes références dans ta dissertation.'},
-    {fr:'conséquence',zh:'后果',en:'consequence',sfr:'Réfléchis aux conséquences de tes actes.'},
-    {fr:'démocratie',zh:'民主',en:'democracy',sfr:'La démocratie repose sur le vote des citoyens.'},
-    {fr:'mondialisation',zh:'全球化',en:'globalization',sfr:'La mondialisation connecte les économies du monde.'},
-    {fr:'développement',zh:'发展',en:'development',sfr:'Le développement durable protège notre planète.'},
-    {fr:'immigration',zh:'移民',en:'immigration',sfr:'L\'immigration enrichit la culture française.'},
-    {fr:'discrimination',zh:'歧视',en:'discrimination',sfr:'La discrimination est interdite par la loi.'},
-    {fr:'solidarité',zh:'团结',en:'solidarity',sfr:'La solidarité est une valeur républicaine.'},
-    {fr:'entreprise',zh:'企业',en:'company',sfr:'Cette entreprise emploie mille personnes.'},
-    {fr:'investissement',zh:'投资',en:'investment',sfr:'Cet investissement est très rentable.'},
-    {fr:'consommation',zh:'消费',en:'consumption',sfr:'La consommation d\'énergie augmente chaque année.'},
-    {fr:'production',zh:'生产',en:'production',sfr:'La production industrielle a diminué.'},
-    {fr:'révolution',zh:'革命',en:'revolution',sfr:'La Révolution française a changé l\'histoire.'},
-    {fr:'colonisation',zh:'殖民',en:'colonization',sfr:'La colonisation a eu des effets durables.'},
-    {fr:'indépendance',zh:'独立',en:'independence',sfr:'L\'indépendance du pays fut proclamée en 1960.'},
-    {fr:'constitution',zh:'宪法',en:'constitution',sfr:'La constitution garantit nos libertés fondamentales.'},
-    {fr:'jurisprudence',zh:'判例法',en:'jurisprudence',sfr:'La jurisprudence guide les décisions des juges.'},
-    {fr:'psychologie',zh:'心理学',en:'psychology',sfr:'La psychologie étudie le comportement humain.'},
-  ],
-  lycee: [
-    {fr:'épistémologie',zh:'认识论',en:'epistemology',sfr:'L\'épistémologie s\'interroge sur la nature du savoir.'},
-    {fr:'phénoménologie',zh:'现象学',en:'phenomenology',sfr:'La phénoménologie analyse l\'expérience vécue.'},
-    {fr:'dialectique',zh:'辩证法',en:'dialectic',sfr:'La dialectique hégélienne oppose thèse et antithèse.'},
-    {fr:'subjectivité',zh:'主观性',en:'subjectivity',sfr:'La subjectivité influence notre perception du monde.'},
-    {fr:'transcendance',zh:'超越性',en:'transcendence',sfr:'La transcendance dépasse les limites du monde sensible.'},
-    {fr:'immanence',zh:'内在性',en:'immanence',sfr:'L\'immanence situe le divin dans le monde réel.'},
-    {fr:'herméneutique',zh:'解释学',en:'hermeneutics',sfr:'L\'herméneutique interprète les textes anciens.'},
-    {fr:'ontologie',zh:'本体论',en:'ontology',sfr:'L\'ontologie questionne la nature de l\'être.'},
-    {fr:'déterminisme',zh:'决定论',en:'determinism',sfr:'Le déterminisme nie la liberté du hasard.'},
-    {fr:'relativisme',zh:'相对主义',en:'relativism',sfr:'Le relativisme remet en cause toute vérité absolue.'},
-    {fr:'pragmatisme',zh:'实用主义',en:'pragmatism',sfr:'Le pragmatisme juge les idées à leurs effets pratiques.'},
-    {fr:'rationalisme',zh:'理性主义',en:'rationalism',sfr:'Le rationalisme privilégie la raison sur l\'expérience.'},
-    {fr:'empirisme',zh:'经验主义',en:'empiricism',sfr:'L\'empirisme fonde la connaissance sur l\'expérience.'},
-    {fr:'idéalisme',zh:'唯心主义',en:'idealism',sfr:'L\'idéalisme place les idées au-dessus de la matière.'},
-    {fr:'matérialisme',zh:'唯物主义',en:'materialism',sfr:'Le matérialisme explique tout par la matière.'},
-    {fr:'existentialisme',zh:'存在主义',en:'existentialism',sfr:'L\'existentialisme affirme que l\'existence précède l\'essence.'},
-    {fr:'structuralisme',zh:'结构主义',en:'structuralism',sfr:'Le structuralisme analyse les structures profondes du langage.'},
-    {fr:'déconstruction',zh:'解构',en:'deconstruction',sfr:'La déconstruction remet en cause les fondements du texte.'},
-    {fr:'intertextualité',zh:'互文性',en:'intertextuality',sfr:'L\'intertextualité relie les œuvres entre elles.'},
-    {fr:'vraisemblance',zh:'可信度',en:'verisimilitude',sfr:'La vraisemblance est essentielle dans le roman réaliste.'},
-    {fr:'anachronisme',zh:'时代错误',en:'anachronism',sfr:'Cet anachronisme brise l\'illusion historique.'},
-    {fr:'syncrétisme',zh:'折中主义',en:'syncretism',sfr:'Le syncrétisme mélange différentes traditions religieuses.'},
-    {fr:'paradigme',zh:'范式',en:'paradigm',sfr:'Ce paradigme scientifique a révolutionné la biologie.'},
-    {fr:'heuristique',zh:'启发法',en:'heuristics',sfr:'Une approche heuristique favorise la découverte.'},
-    {fr:'ambivalence',zh:'矛盾心理',en:'ambivalence',sfr:'Son ambivalence rend sa décision difficile.'},
-    {fr:'résilience',zh:'韧性',en:'resilience',sfr:'La résilience permet de surmonter les épreuves.'},
-    {fr:'dissidence',zh:'异见',en:'dissidence',sfr:'La dissidence politique peut être dangereuse.'},
-    {fr:'obsolescence',zh:'过时',en:'obsolescence',sfr:'L\'obsolescence programmée nuit à l\'environnement.'},
-    {fr:'bienveillance',zh:'善意',en:'benevolence',sfr:'La bienveillance est une vertu essentielle.'},
-    {fr:'clairvoyance',zh:'洞察力',en:'clairvoyance',sfr:'Sa clairvoyance lui permet d\'anticiper les problèmes.'},
-  ]
+// ═══════════════════════════════════════════════════
+// DEFAULT BANKS  (fr, gender, zh, en, sfr)
+// ═══════════════════════════════════════════════════
+const DEFAULT_BANKS={
+cp_ce2:[
+  {fr:'chat',g:'n.m.',zh:'猫',en:'cat',sfr:'Le chat dort sur le canapé.'},
+  {fr:'chien',g:'n.m.',zh:'狗',en:'dog',sfr:'Mon chien aime jouer dehors.'},
+  {fr:'maison',g:'n.f.',zh:'房子',en:'house',sfr:'Notre maison est grande.'},
+  {fr:'école',g:'n.f.',zh:'学校',en:'school',sfr:'Je vais à l\'école le matin.'},
+  {fr:'livre',g:'n.m.',zh:'书',en:'book',sfr:'Je lis un livre chaque soir.'},
+  {fr:'ami',g:'n.m.',zh:'朋友',en:'friend',sfr:'Mon ami s\'appelle Lucas.'},
+  {fr:'rouge',g:'adj.',zh:'红色',en:'red',sfr:'La pomme est rouge.'},
+  {fr:'bleu',g:'adj.',zh:'蓝色',en:'blue',sfr:'Le ciel est bleu.'},
+  {fr:'grand',g:'adj.',zh:'大的',en:'big',sfr:'L\'éléphant est très grand.'},
+  {fr:'petit',g:'adj.',zh:'小的',en:'small',sfr:'La souris est petite.'},
+  {fr:'manger',g:'v.',zh:'吃',en:'to eat',sfr:'On mange ensemble en famille.'},
+  {fr:'dormir',g:'v.',zh:'睡觉',en:'to sleep',sfr:'Le bébé dort dans son lit.'},
+  {fr:'jouer',g:'v.',zh:'玩',en:'to play',sfr:'Les enfants jouent dans le jardin.'},
+  {fr:'courir',g:'v.',zh:'跑',en:'to run',sfr:'J\'aime courir dans le parc.'},
+  {fr:'eau',g:'n.f.',zh:'水',en:'water',sfr:'Je bois de l\'eau chaque matin.'},
+  {fr:'pain',g:'n.m.',zh:'面包',en:'bread',sfr:'Je mange du pain au petit-déjeuner.'},
+  {fr:'lait',g:'n.m.',zh:'牛奶',en:'milk',sfr:'Le lait est bon pour la santé.'},
+  {fr:'pomme',g:'n.f.',zh:'苹果',en:'apple',sfr:'Je mange une pomme chaque jour.'},
+  {fr:'arbre',g:'n.m.',zh:'树',en:'tree',sfr:'L\'arbre est très haut.'},
+  {fr:'fleur',g:'n.f.',zh:'花',en:'flower',sfr:'La fleur est belle et parfumée.'},
+  {fr:'soleil',g:'n.m.',zh:'太阳',en:'sun',sfr:'Le soleil brille aujourd\'hui.'},
+  {fr:'lune',g:'n.f.',zh:'月亮',en:'moon',sfr:'La lune brille dans la nuit.'},
+  {fr:'étoile',g:'n.f.',zh:'星星',en:'star',sfr:'Je vois une étoile briller.'},
+  {fr:'pluie',g:'n.f.',zh:'雨',en:'rain',sfr:'Il y a de la pluie aujourd\'hui.'},
+  {fr:'chaud',g:'adj.',zh:'热的',en:'hot',sfr:'L\'été est chaud et ensoleillé.'},
+  {fr:'froid',g:'adj.',zh:'冷的',en:'cold',sfr:'L\'hiver est froid et neigeux.'},
+  {fr:'mère',g:'n.f.',zh:'妈妈',en:'mother',sfr:'Ma mère prépare le repas.'},
+  {fr:'père',g:'n.m.',zh:'爸爸',en:'father',sfr:'Mon père travaille beaucoup.'},
+  {fr:'lapin',g:'n.m.',zh:'兔子',en:'rabbit',sfr:'Le lapin mange des carottes.'},
+  {fr:'canard',g:'n.m.',zh:'鸭子',en:'duck',sfr:'Le canard nage dans le lac.'},
+],
+cm1_cm2:[
+  {fr:'cahier',g:'n.m.',zh:'笔记本',en:'notebook',sfr:'J\'écris dans mon cahier.'},
+  {fr:'crayon',g:'n.m.',zh:'铅笔',en:'pencil',sfr:'Elle dessine avec un crayon.'},
+  {fr:'gomme',g:'n.f.',zh:'橡皮擦',en:'eraser',sfr:'Il efface avec la gomme.'},
+  {fr:'règle',g:'n.f.',zh:'尺子',en:'ruler',sfr:'Je trace une ligne avec la règle.'},
+  {fr:'cartable',g:'n.m.',zh:'书包',en:'schoolbag',sfr:'Mon cartable est très lourd.'},
+  {fr:'tableau',g:'n.m.',zh:'黑板',en:'blackboard',sfr:'La maîtresse écrit au tableau.'},
+  {fr:'maître',g:'n.m.',zh:'男老师',en:'teacher',sfr:'Le maître explique la leçon.'},
+  {fr:'élève',g:'n.m.',zh:'学生',en:'student',sfr:'Chaque élève lit un livre.'},
+  {fr:'récréation',g:'n.f.',zh:'课间休息',en:'break time',sfr:'On joue pendant la récréation.'},
+  {fr:'bibliothèque',g:'n.f.',zh:'图书馆',en:'library',sfr:'Je vais à la bibliothèque le mercredi.'},
+  {fr:'papillon',g:'n.m.',zh:'蝴蝶',en:'butterfly',sfr:'Un papillon vole au-dessus des fleurs.'},
+  {fr:'grenouille',g:'n.f.',zh:'青蛙',en:'frog',sfr:'La grenouille saute dans l\'étang.'},
+  {fr:'écureuil',g:'n.m.',zh:'松鼠',en:'squirrel',sfr:'L\'écureuil grimpe dans l\'arbre.'},
+  {fr:'renard',g:'n.m.',zh:'狐狸',en:'fox',sfr:'Le renard est un animal rusé.'},
+  {fr:'montagne',g:'n.f.',zh:'山',en:'mountain',sfr:'Nous grimpons la montagne ensemble.'},
+  {fr:'rivière',g:'n.f.',zh:'河流',en:'river',sfr:'Les enfants pêchent dans la rivière.'},
+  {fr:'forêt',g:'n.f.',zh:'森林',en:'forest',sfr:'On entend les oiseaux dans la forêt.'},
+  {fr:'nuage',g:'n.m.',zh:'云',en:'cloud',sfr:'Un gros nuage cache le soleil.'},
+  {fr:'fenêtre',g:'n.f.',zh:'窗户',en:'window',sfr:'J\'ouvre la fenêtre pour aérer.'},
+  {fr:'cuisine',g:'n.f.',zh:'厨房',en:'kitchen',sfr:'Maman prépare le repas dans la cuisine.'},
+  {fr:'chanter',g:'v.',zh:'唱歌',en:'to sing',sfr:'Nous chantons une belle chanson.'},
+  {fr:'dessiner',g:'v.',zh:'画画',en:'to draw',sfr:'Elle aime dessiner des animaux.'},
+  {fr:'lire',g:'v.',zh:'阅读',en:'to read',sfr:'Je lis un livre chaque soir.'},
+  {fr:'écrire',g:'v.',zh:'书写',en:'to write',sfr:'Il apprend à écrire son nom.'},
+  {fr:'sauter',g:'v.',zh:'跳',en:'to jump',sfr:'Il peut sauter très haut.'},
+  {fr:'fromage',g:'n.m.',zh:'奶酪',en:'cheese',sfr:'Le fromage est délicieux avec du pain.'},
+  {fr:'gâteau',g:'n.m.',zh:'蛋糕',en:'cake',sfr:'On mange le gâteau pour l\'anniversaire.'},
+  {fr:'fraise',g:'n.f.',zh:'草莓',en:'strawberry',sfr:'Cette fraise est rouge et sucrée.'},
+  {fr:'carotte',g:'n.f.',zh:'胡萝卜',en:'carrot',sfr:'La carotte est bonne pour la vue.'},
+  {fr:'oignon',g:'n.m.',zh:'洋葱',en:'onion',sfr:'L\'oignon fait pleurer quand on le coupe.'},
+],
+s6_s5:[
+  {fr:'vocabulaire',g:'n.m.',zh:'词汇',en:'vocabulary',sfr:'Il faut apprendre le vocabulaire chaque jour.'},
+  {fr:'grammaire',g:'n.f.',zh:'语法',en:'grammar',sfr:'La grammaire française est complexe.'},
+  {fr:'conjugaison',g:'n.f.',zh:'动词变位',en:'conjugation',sfr:'La conjugaison du verbe être est importante.'},
+  {fr:'paragraphe',g:'n.m.',zh:'段落',en:'paragraph',sfr:'Écris un paragraphe sur ce sujet.'},
+  {fr:'dictionnaire',g:'n.m.',zh:'字典',en:'dictionary',sfr:'Je cherche ce mot dans le dictionnaire.'},
+  {fr:'environnement',g:'n.m.',zh:'环境',en:'environment',sfr:'Il faut protéger l\'environnement.'},
+  {fr:'température',g:'n.f.',zh:'温度',en:'temperature',sfr:'La température est de vingt degrés.'},
+  {fr:'géographie',g:'n.f.',zh:'地理',en:'geography',sfr:'Nous étudions la géographie de la France.'},
+  {fr:'histoire',g:'n.f.',zh:'历史',en:'history',sfr:'L\'histoire de France est très riche.'},
+  {fr:'mathématiques',g:'n.f.',zh:'数学',en:'mathematics',sfr:'Les mathématiques sont ma matière préférée.'},
+  {fr:'expérience',g:'n.f.',zh:'经历/实验',en:'experience',sfr:'Cette expérience est très intéressante.'},
+  {fr:'découverte',g:'n.f.',zh:'发现',en:'discovery',sfr:'La découverte de l\'Amérique date de 1492.'},
+  {fr:'gouvernement',g:'n.m.',zh:'政府',en:'government',sfr:'Le gouvernement prend des décisions importantes.'},
+  {fr:'responsabilité',g:'n.f.',zh:'责任',en:'responsibility',sfr:'Chacun a une responsabilité envers la société.'},
+  {fr:'technologie',g:'n.f.',zh:'技术',en:'technology',sfr:'La technologie évolue très rapidement.'},
+  {fr:'économie',g:'n.f.',zh:'经济',en:'economy',sfr:'L\'économie française est la septième mondiale.'},
+  {fr:'pourcentage',g:'n.m.',zh:'百分比',en:'percentage',sfr:'Quel est le pourcentage de réussite?'},
+  {fr:'population',g:'n.f.',zh:'人口',en:'population',sfr:'La population mondiale dépasse huit milliards.'},
+  {fr:'architecture',g:'n.f.',zh:'建筑',en:'architecture',sfr:'L\'architecture de cette cathédrale est magnifique.'},
+  {fr:'littérature',g:'n.f.',zh:'文学',en:'literature',sfr:'La littérature française est très connue.'},
+  {fr:'philosophie',g:'n.f.',zh:'哲学',en:'philosophy',sfr:'La philosophie nous apprend à réfléchir.'},
+  {fr:'biologie',g:'n.f.',zh:'生物',en:'biology',sfr:'La biologie étudie les êtres vivants.'},
+  {fr:'chimie',g:'n.f.',zh:'化学',en:'chemistry',sfr:'La chimie explique la composition des matières.'},
+  {fr:'physique',g:'n.f.',zh:'物理',en:'physics',sfr:'La physique explique les lois de la nature.'},
+  {fr:'électricité',g:'n.f.',zh:'电',en:'electricity',sfr:'L\'électricité est indispensable au quotidien.'},
+  {fr:'évolution',g:'n.f.',zh:'进化',en:'evolution',sfr:'L\'évolution des espèces est un fait scientifique.'},
+  {fr:'citoyenneté',g:'n.f.',zh:'公民身份',en:'citizenship',sfr:'La citoyenneté implique des droits et des devoirs.'},
+  {fr:'superficie',g:'n.f.',zh:'面积',en:'area',sfr:'La superficie de la France est de 551 000 km².'},
+  {fr:'sculpture',g:'n.f.',zh:'雕塑',en:'sculpture',sfr:'Cette sculpture date du Moyen Âge.'},
+  {fr:'magnétisme',g:'n.m.',zh:'磁性',en:'magnetism',sfr:'Le magnétisme attire certains métaux.'},
+],
+s4_s3:[
+  {fr:'abstrait',g:'adj.',zh:'抽象的',en:'abstract',sfr:'Ce concept philosophique est très abstrait.'},
+  {fr:'argumentation',g:'n.f.',zh:'论证',en:'argumentation',sfr:'Son argumentation est très convaincante.'},
+  {fr:'contradiction',g:'n.f.',zh:'矛盾',en:'contradiction',sfr:'Il y a une contradiction dans ton raisonnement.'},
+  {fr:'hypothèse',g:'n.f.',zh:'假设',en:'hypothesis',sfr:'Cette hypothèse doit être vérifiée.'},
+  {fr:'démonstration',g:'n.f.',zh:'证明',en:'demonstration',sfr:'La démonstration mathématique est rigoureuse.'},
+  {fr:'raisonnement',g:'n.m.',zh:'推理',en:'reasoning',sfr:'Ton raisonnement est logique et clair.'},
+  {fr:'chronologie',g:'n.f.',zh:'年代顺序',en:'chronology',sfr:'Respecte la chronologie des événements.'},
+  {fr:'perspective',g:'n.f.',zh:'视角',en:'perspective',sfr:'Observe ce tableau en perspective.'},
+  {fr:'métaphore',g:'n.f.',zh:'比喻',en:'metaphor',sfr:'Cette phrase contient une belle métaphore.'},
+  {fr:'nuance',g:'n.f.',zh:'细微差别',en:'nuance',sfr:'Il faut comprendre les nuances de la langue.'},
+  {fr:'référence',g:'n.f.',zh:'参考',en:'reference',sfr:'Cite tes références dans ta dissertation.'},
+  {fr:'conséquence',g:'n.f.',zh:'后果',en:'consequence',sfr:'Réfléchis aux conséquences de tes actes.'},
+  {fr:'démocratie',g:'n.f.',zh:'民主',en:'democracy',sfr:'La démocratie repose sur le vote des citoyens.'},
+  {fr:'mondialisation',g:'n.f.',zh:'全球化',en:'globalization',sfr:'La mondialisation connecte les économies du monde.'},
+  {fr:'développement',g:'n.m.',zh:'发展',en:'development',sfr:'Le développement durable protège notre planète.'},
+  {fr:'immigration',g:'n.f.',zh:'移民',en:'immigration',sfr:'L\'immigration enrichit la culture française.'},
+  {fr:'discrimination',g:'n.f.',zh:'歧视',en:'discrimination',sfr:'La discrimination est interdite par la loi.'},
+  {fr:'solidarité',g:'n.f.',zh:'团结',en:'solidarity',sfr:'La solidarité est une valeur républicaine.'},
+  {fr:'entreprise',g:'n.f.',zh:'企业',en:'company',sfr:'Cette entreprise emploie mille personnes.'},
+  {fr:'investissement',g:'n.m.',zh:'投资',en:'investment',sfr:'Cet investissement est très rentable.'},
+  {fr:'consommation',g:'n.f.',zh:'消费',en:'consumption',sfr:'La consommation d\'énergie augmente chaque année.'},
+  {fr:'révolution',g:'n.f.',zh:'革命',en:'revolution',sfr:'La Révolution française a changé l\'histoire.'},
+  {fr:'indépendance',g:'n.f.',zh:'独立',en:'independence',sfr:'L\'indépendance du pays fut proclamée en 1960.'},
+  {fr:'constitution',g:'n.f.',zh:'宪法',en:'constitution',sfr:'La constitution garantit nos libertés fondamentales.'},
+  {fr:'psychologie',g:'n.f.',zh:'心理学',en:'psychology',sfr:'La psychologie étudie le comportement humain.'},
+  {fr:'symbolique',g:'adj.',zh:'象征性的',en:'symbolic',sfr:'Ce geste a une valeur symbolique.'},
+  {fr:'allégorie',g:'n.f.',zh:'寓言',en:'allegory',sfr:'Cette peinture est une allégorie de la liberté.'},
+  {fr:'colonisation',g:'n.f.',zh:'殖民',en:'colonization',sfr:'La colonisation a eu des effets durables.'},
+  {fr:'jurisprudence',g:'n.f.',zh:'判例法',en:'jurisprudence',sfr:'La jurisprudence guide les décisions des juges.'},
+  {fr:'production',g:'n.f.',zh:'生产',en:'production',sfr:'La production industrielle a diminué.'},
+],
+lycee:[
+  {fr:'épistémologie',g:'n.f.',zh:'认识论',en:'epistemology',sfr:'L\'épistémologie s\'interroge sur la nature du savoir.'},
+  {fr:'phénoménologie',g:'n.f.',zh:'现象学',en:'phenomenology',sfr:'La phénoménologie analyse l\'expérience vécue.'},
+  {fr:'dialectique',g:'n.f.',zh:'辩证法',en:'dialectic',sfr:'La dialectique hégélienne oppose thèse et antithèse.'},
+  {fr:'subjectivité',g:'n.f.',zh:'主观性',en:'subjectivity',sfr:'La subjectivité influence notre perception du monde.'},
+  {fr:'transcendance',g:'n.f.',zh:'超越性',en:'transcendence',sfr:'La transcendance dépasse les limites du monde sensible.'},
+  {fr:'herméneutique',g:'n.f.',zh:'解释学',en:'hermeneutics',sfr:'L\'herméneutique interprète les textes anciens.'},
+  {fr:'ontologie',g:'n.f.',zh:'本体论',en:'ontology',sfr:'L\'ontologie questionne la nature de l\'être.'},
+  {fr:'déterminisme',g:'n.m.',zh:'决定论',en:'determinism',sfr:'Le déterminisme nie la liberté du hasard.'},
+  {fr:'relativisme',g:'n.m.',zh:'相对主义',en:'relativism',sfr:'Le relativisme remet en cause toute vérité absolue.'},
+  {fr:'pragmatisme',g:'n.m.',zh:'实用主义',en:'pragmatism',sfr:'Le pragmatisme juge les idées à leurs effets pratiques.'},
+  {fr:'rationalisme',g:'n.m.',zh:'理性主义',en:'rationalism',sfr:'Le rationalisme privilégie la raison sur l\'expérience.'},
+  {fr:'empirisme',g:'n.m.',zh:'经验主义',en:'empiricism',sfr:'L\'empirisme fonde la connaissance sur l\'expérience.'},
+  {fr:'idéalisme',g:'n.m.',zh:'唯心主义',en:'idealism',sfr:'L\'idéalisme place les idées au-dessus de la matière.'},
+  {fr:'matérialisme',g:'n.m.',zh:'唯物主义',en:'materialism',sfr:'Le matérialisme explique tout par la matière.'},
+  {fr:'existentialisme',g:'n.m.',zh:'存在主义',en:'existentialism',sfr:'L\'existentialisme affirme que l\'existence précède l\'essence.'},
+  {fr:'structuralisme',g:'n.m.',zh:'结构主义',en:'structuralism',sfr:'Le structuralisme analyse les structures profondes du langage.'},
+  {fr:'déconstruction',g:'n.f.',zh:'解构',en:'deconstruction',sfr:'La déconstruction remet en cause les fondements du texte.'},
+  {fr:'intertextualité',g:'n.f.',zh:'互文性',en:'intertextuality',sfr:'L\'intertextualité relie les œuvres entre elles.'},
+  {fr:'vraisemblance',g:'n.f.',zh:'可信度',en:'verisimilitude',sfr:'La vraisemblance est essentielle dans le roman réaliste.'},
+  {fr:'paradigme',g:'n.m.',zh:'范式',en:'paradigm',sfr:'Ce paradigme scientifique a révolutionné la biologie.'},
+  {fr:'heuristique',g:'adj.',zh:'启发性的',en:'heuristic',sfr:'Une approche heuristique favorise la découverte.'},
+  {fr:'ambivalence',g:'n.f.',zh:'矛盾心理',en:'ambivalence',sfr:'Son ambivalence rend sa décision difficile.'},
+  {fr:'résilience',g:'n.f.',zh:'韧性',en:'resilience',sfr:'La résilience permet de surmonter les épreuves.'},
+  {fr:'dissidence',g:'n.f.',zh:'异见',en:'dissidence',sfr:'La dissidence politique peut être dangereuse.'},
+  {fr:'obsolescence',g:'n.f.',zh:'过时',en:'obsolescence',sfr:'L\'obsolescence programmée nuit à l\'environnement.'},
+  {fr:'bienveillance',g:'n.f.',zh:'善意',en:'benevolence',sfr:'La bienveillance est une vertu essentielle.'},
+  {fr:'clairvoyance',g:'n.f.',zh:'洞察力',en:'clairvoyance',sfr:'Sa clairvoyance lui permet d\'anticiper les problèmes.'},
+  {fr:'immanence',g:'n.f.',zh:'内在性',en:'immanence',sfr:'L\'immanence situe le divin dans le monde réel.'},
+  {fr:'syncrétisme',g:'n.m.',zh:'折中主义',en:'syncretism',sfr:'Le syncrétisme mélange différentes traditions religieuses.'},
+  {fr:'anachronisme',g:'n.m.',zh:'时代错误',en:'anachronism',sfr:'Cet anachronisme brise l\'illusion historique.'},
+],
 };
 
-// ═══════════════════════════════════════════════════════
-// STORAGE HELPERS
-// ═══════════════════════════════════════════════════════
-const SK = {
-  banks: () => 'mm_banks',
-  students: () => 'mm_students',
-  dailyCount: () => 'mm_dailyCount',
-  mastered: (s,l) => `mm_${s}_${l}_mastered`,
-  wrong: (s,l) => `mm_${s}_${l}_wrong`,
+// ═══════════════════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════════════════
+const SK={
+  banks:()=>'mm_banks',
+  students:()=>'mm_students',
+  dailyCount:()=>'mm_dailyCount',
+  mastered:(s,l)=>`mm_${s}_${l}_mastered`,
+  wrong:(s,l)=>`mm_${s}_${l}_wrong`,
 };
+function lsGet(k,d=null){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 
-function lsGet(key, def=null){
-  try{ const v=localStorage.getItem(key); return v===null?def:JSON.parse(v); }catch(e){return def;}
-}
-function lsSet(key,val){ try{ localStorage.setItem(key,JSON.stringify(val)); }catch(e){} }
-
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════════════════════
-let currentStudent = null;
-let currentLevel = null;
-let dailyCount = 30;
-let banks = {};          // {levelId: [{fr,zh,en,sfr},...]}
-let mastered = new Set();// indices mastered in current level
-let wrongSet = [];       // indices wrong in current level
-let sessionQueue = [];   // [{idx, isReview}]
-let sessionPos = 0;
-let sessionCorrect = 0;
-let phase = 'idle';
+// ═══════════════════════════════════════════════════
+let currentStudent=null,currentLevel=null,dailyCount=30;
+let banks={};
+let mastered=new Set(),wrongSet=[],sessionQueue=[],sessionPos=0,sessionCorrect=0,phase='idle';
+let voices=[],synth=window.speechSynthesis,cdInterval=null,showTimer=null;
+let editorLevel=null,editorWords=[],editorPage=0;
+const PAGE_SIZE=50;
 
-let voices = [];
-let synth = window.speechSynthesis;
-let cdInterval = null;
-let showTimer = null;
-
-// Editor state
-let editorLevel = null;
-let editorWords = [];
-let editorPage = 0;
-const PAGE_SIZE = 50;
-
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function init(){
   loadVoices();
-  if(speechSynthesis.onvoiceschanged!==undefined)
-    speechSynthesis.onvoiceschanged=loadVoices;
-
-  // Load banks (custom or default)
-  const savedBanks = lsGet(SK.banks());
-  if(savedBanks){
-    banks = savedBanks;
-  } else {
-    banks = {};
-    for(const lvl of LEVELS){
-      banks[lvl.id] = DEFAULT_BANKS[lvl.id].map(w=>({...w}));
-    }
-    lsSet(SK.banks(), banks);
+  if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;
+  const saved=lsGet(SK.banks());
+  if(saved){banks=saved;}
+  else{
+    banks={};
+    for(const l of LEVELS)banks[l.id]=DEFAULT_BANKS[l.id].map(w=>({...w}));
+    lsSet(SK.banks(),banks);
   }
-
-  dailyCount = lsGet(SK.dailyCount(), 30);
-  document.getElementById('dailyCountInput').value = dailyCount;
-
-  showMainArea();
+  dailyCount=lsGet(SK.dailyCount(),30);
+  document.getElementById('dailyCountInput').value=dailyCount;
+  document.getElementById('mainArea').style.display='flex';
+  document.getElementById('mainHeader').style.display='block';
   showWelcome();
 }
 
 function loadVoices(){
-  voices = synth.getVoices().filter(v=>v.lang.startsWith('fr'));
-  if(!voices.length) setTimeout(loadVoices,300);
+  voices=synth.getVoices().filter(v=>v.lang.startsWith('fr'));
+  if(!voices.length)setTimeout(loadVoices,300);
 }
 
-function showMainArea(){
-  document.getElementById('mainArea').style.display='flex';
-  document.getElementById('mainHeader').style.display='block';
-}
-
-// ═══════════════════════════════════════════════════════
-// WELCOME / STUDENT MANAGEMENT
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
+// WELCOME
+// ═══════════════════════════════════════════════════
 function showWelcome(){
   hideAllCards();
   document.getElementById('welcomeCard').classList.remove('hidden');
@@ -629,274 +714,242 @@ function showWelcome(){
 }
 
 function renderStudentList(){
-  const students = lsGet(SK.students(), []);
-  const cont = document.getElementById('existingStudents');
-  if(!students.length){ cont.style.display='none'; return; }
+  const students=lsGet(SK.students(),[]);
+  const cont=document.getElementById('existingStudents');
+  if(!students.length){cont.style.display='none';return;}
   cont.style.display='flex';
-  cont.innerHTML='<div style="font-size:13px;font-weight:700;color:var(--text-mid);text-align:left;">或选择已有学生：</div>';
+  cont.innerHTML='<div style="font-size:12px;font-weight:700;color:var(--text-mid);text-align:left;">Ou choisir un élève existant :</div>';
   students.forEach(name=>{
-    const div=document.createElement('div');
-    div.className='student-item';
-    div.innerHTML=`<span class="si-name">👤 ${escH(name)}</span>
-      <button class="si-del" onclick="deleteStudent('${escH(name)}',event)" title="删除">🗑</button>`;
-    div.onclick=(e)=>{ if(e.target.classList.contains('si-del'))return; selectStudent(name); };
-    cont.appendChild(div);
+    const d=document.createElement('div');
+    d.className='student-item';
+    d.innerHTML=`<span class="si-name">👤 ${escH(name)}</span>
+      <button class="si-del" onclick="deleteStudent('${escH(name)}',event)">🗑</button>`;
+    d.onclick=e=>{if(e.target.classList.contains('si-del'))return;selectStudent(name);};
+    cont.appendChild(d);
   });
 }
 
 function confirmName(){
-  const name = document.getElementById('nameInput').value.trim();
-  if(!name){ showToast('请输入名字！'); return; }
-  // Save student
-  const students = lsGet(SK.students(), []);
-  if(!students.includes(name)){ students.push(name); lsSet(SK.students(),students); }
+  const name=document.getElementById('nameInput').value.trim();
+  if(!name){showToast('Entrez votre prénom !');return;}
+  const students=lsGet(SK.students(),[]);
+  if(!students.includes(name)){students.push(name);lsSet(SK.students(),students);}
   selectStudent(name);
 }
 
 function selectStudent(name){
-  currentStudent = name;
+  currentStudent=name;
   document.getElementById('nameInput').value='';
   showLevelSelect();
 }
 
-function deleteStudent(name, e){
+function deleteStudent(name,e){
   e.stopPropagation();
-  if(!confirm(`删除学生 "${name}" 的所有数据？`)) return;
-  const students = lsGet(SK.students(),[]).filter(s=>s!==name);
-  lsSet(SK.students(), students);
-  // Clean up their data
-  LEVELS.forEach(l=>{
-    localStorage.removeItem(SK.mastered(name,l.id));
-    localStorage.removeItem(SK.wrong(name,l.id));
-  });
+  if(!confirm(`Supprimer toutes les données de "${name}" ?`))return;
+  const students=lsGet(SK.students(),[]).filter(s=>s!==name);
+  lsSet(SK.students(),students);
+  LEVELS.forEach(l=>{localStorage.removeItem(SK.mastered(name,l.id));localStorage.removeItem(SK.wrong(name,l.id));});
   renderStudentList();
-  showToast(`已删除 ${name} 的数据`);
+  showToast(`Données de ${name} supprimées`);
 }
 
-function switchStudent(){
-  clearAll();
-  currentStudent=null; currentLevel=null;
-  showWelcome();
-}
+function switchStudent(){clearAll();currentStudent=null;currentLevel=null;showWelcome();}
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // LEVEL SELECT
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function showLevelSelect(){
   hideAllCards();
   document.getElementById('levelCard').classList.remove('hidden');
-  document.getElementById('levelStudentHint').textContent=`👤 ${currentStudent}，选择你要学习的级别`;
+  document.getElementById('levelStudentHint').textContent=`👤 ${currentStudent} — choisis ton niveau`;
   document.getElementById('studentTag').textContent=`👤 ${currentStudent}`;
   renderLevelGrid();
 }
 
 function renderLevelGrid(){
-  const grid = document.getElementById('levelGrid');
-  grid.innerHTML='';
+  const grid=document.getElementById('levelGrid');grid.innerHTML='';
   LEVELS.forEach(lvl=>{
-    const bank = banks[lvl.id]||[];
-    const m = new Set(lsGet(SK.mastered(currentStudent,lvl.id),[]));
-    const w = lsGet(SK.wrong(currentStudent,lvl.id),[]);
-    const remaining = bank.length - m.size;
-    const div=document.createElement('div');
-    div.className='level-card'+(currentLevel===lvl.id?' active':'');
-    div.style.borderColor = currentLevel===lvl.id ? lvl.color : '';
-    div.innerHTML=`
-      <div class="lc-title" style="color:${lvl.color}">${lvl.label}</div>
+    const bank=banks[lvl.id]||[];
+    const m=new Set(lsGet(SK.mastered(currentStudent,lvl.id),[]));
+    const w=lsGet(SK.wrong(currentStudent,lvl.id),[]);
+    const d=document.createElement('div');
+    d.className='level-card';
+    d.style.borderColor=currentLevel===lvl.id?lvl.color:'';
+    d.innerHTML=`<div class="lc-title" style="color:${lvl.color}">${lvl.label}</div>
       <div class="lc-sub">${lvl.sub}</div>
-      <div class="lc-count">📚${bank.length}词 · ✅${m.size}已掌握 · ❌${w.length}错题</div>
-    `;
-    div.onclick=()=>startLevel(lvl.id);
-    grid.appendChild(div);
+      <div class="lc-count">📚${bank.length} · ✅${m.size} · ❌${w.length}</div>`;
+    d.onclick=()=>startLevel(lvl.id);
+    grid.appendChild(d);
   });
 }
 
 function startLevel(levelId){
-  currentLevel = levelId;
-  loadStudentProgress();
-  buildSession();
-  if(sessionQueue.length===0){ showDone(); return; }
-  showWordCard();
-  updateHeader();
-  startWord(0);
+  currentLevel=levelId;
+  loadProgress();buildSession();
+  if(!sessionQueue.length){showDoneEmpty();return;}
+  showWordCard();updateHeader();
+  showWordDisplay(0);
 }
 
-// ═══════════════════════════════════════════════════════
-// PROGRESS MANAGEMENT (memory system)
-// ═══════════════════════════════════════════════════════
-function loadStudentProgress(){
-  mastered = new Set(lsGet(SK.mastered(currentStudent,currentLevel),[]));
-  wrongSet = lsGet(SK.wrong(currentStudent,currentLevel),[]);
+function showDoneEmpty(){
+  hideAllCards();
+  document.getElementById('doneCard').classList.remove('hidden');
+  document.getElementById('doneSub').textContent='Niveau vide. Ajoutez des mots dans le lexique !';
 }
 
-function saveStudentProgress(){
+// ═══════════════════════════════════════════════════
+// PROGRESS (memory system)
+// ═══════════════════════════════════════════════════
+function loadProgress(){
+  mastered=new Set(lsGet(SK.mastered(currentStudent,currentLevel),[]));
+  wrongSet=lsGet(SK.wrong(currentStudent,currentLevel),[]);
+}
+function saveProgress(){
   lsSet(SK.mastered(currentStudent,currentLevel),[...mastered]);
   lsSet(SK.wrong(currentStudent,currentLevel),wrongSet);
 }
+function markMastered(idx){mastered.add(idx);wrongSet=wrongSet.filter(i=>i!==idx);saveProgress();}
+function markWrong(idx){mastered.delete(idx);if(!wrongSet.includes(idx))wrongSet.push(idx);saveProgress();}
 
-function markMastered(idx){
-  mastered.add(idx);
-  wrongSet = wrongSet.filter(i=>i!==idx);
-  saveStudentProgress();
-}
-
-function markWrong(idx){
-  mastered.delete(idx);
-  if(!wrongSet.includes(idx)) wrongSet.push(idx);
-  saveStudentProgress();
-}
-
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // SESSION BUILDER
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function buildSession(){
-  const bank = banks[currentLevel]||[];
-  const total = bank.length;
-  sessionQueue = [];
-  sessionPos = 0;
-  sessionCorrect = 0;
-
-  // 1. All wrong words first
-  const wrongValid = wrongSet.filter(i=>i<total);
+  const bank=banks[currentLevel]||[];
+  sessionQueue=[];sessionPos=0;sessionCorrect=0;
+  const wrongValid=wrongSet.filter(i=>i<bank.length);
   wrongValid.forEach(i=>sessionQueue.push({idx:i,isReview:true}));
-
-  // 2. New (not mastered, not already in wrong queue)
-  const wrongSet_ = new Set(wrongValid);
-  const newPool = [];
-  for(let i=0;i<total;i++){
-    if(!mastered.has(i) && !wrongSet_.has(i)) newPool.push(i);
-  }
+  const wrongSet_=new Set(wrongValid);
+  const newPool=[];
+  for(let i=0;i<bank.length;i++){if(!mastered.has(i)&&!wrongSet_.has(i))newPool.push(i);}
   shuffle(newPool);
-
-  const needed = Math.max(0, dailyCount - wrongValid.length);
-  newPool.slice(0, needed).forEach(i=>sessionQueue.push({idx:i,isReview:false}));
-
-  // 3. If still under dailyCount, pad from mastered (review)
-  if(sessionQueue.length < dailyCount && mastered.size > 0){
-    const masteredArr = [...mastered];
-    shuffle(masteredArr);
-    const pad = dailyCount - sessionQueue.length;
-    masteredArr.slice(0, pad).forEach(i=>sessionQueue.push({idx:i,isReview:false,isRepeat:true}));
+  const needed=Math.max(0,dailyCount-wrongValid.length);
+  newPool.slice(0,needed).forEach(i=>sessionQueue.push({idx:i,isReview:false}));
+  if(sessionQueue.length<dailyCount&&mastered.size>0){
+    const mArr=[...mastered];shuffle(mArr);
+    mArr.slice(0,dailyCount-sessionQueue.length).forEach(i=>sessionQueue.push({idx:i,isReview:false,isRepeat:true}));
   }
 }
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
 
-function shuffle(arr){
-  for(let i=arr.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [arr[i],arr[j]]=[arr[j],arr[i]];
-  }
-}
-
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // WORD PHASES
-// ═══════════════════════════════════════════════════════
-function showWordCard(){
-  hideAllCards();
-  document.getElementById('wordCard').classList.remove('hidden');
-}
+// ═══════════════════════════════════════════════════
+function showWordCard(){hideAllCards();document.getElementById('wordCard').classList.remove('hidden');}
 
-function startWord(pos){
-  if(pos>=sessionQueue.length){ endSession(); return; }
-  sessionPos = pos;
-  const {idx} = sessionQueue[pos];
-  const bank = banks[currentLevel]||[];
-  const word = bank[idx];
-  if(!word){ sessionPos++; startWord(sessionPos); return; }
+function showWordDisplay(pos){
+  // Phase 1: Show word + meanings, wait for user to tap "Écouter"
+  if(pos>=sessionQueue.length){endSession();return;}
+  sessionPos=pos;
+  const {idx}=sessionQueue[pos];
+  const bank=banks[currentLevel]||[];
+  const word=bank[idx];
+  if(!word){sessionPos++;showWordDisplay(sessionPos);return;}
+  clearAll();phase='show';
 
-  clearAll();
-  phase='show';
-
-  // Reset UI
   const fw=document.getElementById('frenchWord');
-  fw.textContent=word.fr;
-  fw.classList.remove('hidden');
+  fw.textContent=word.fr;fw.classList.remove('hidden');
+  document.getElementById('wordGender').textContent=word.g||'';
   document.getElementById('chineseMeaning').textContent=word.zh||'';
   document.getElementById('englishMeaning').textContent=word.en||'';
   const sbox=document.getElementById('sentenceDisplay');
   const sfr=document.getElementById('sentenceFr');
-  if(word.sfr){ sfr.textContent=word.sfr; sbox.classList.add('hidden'); }
-  else { sbox.classList.add('hidden'); }
-  document.getElementById('phaseIcon').textContent='👀';
-  setPhaseArea(`<div class="status-msg">认真看，记住这个单词！</div>`);
+  if(word.sfr){sfr.textContent=word.sfr;sbox.classList.add('hidden');}
+  else{sbox.classList.add('hidden');}
+  document.getElementById('phaseIcon').textContent='📖';
+  document.getElementById('phaseArea').innerHTML=`
+    <div class="status-msg">Observe bien ce mot !</div>
+    <button class="speak-btn" onclick="startListening(${idx})">▶ Écouter</button>`;
   updateHeader();
-
-  showTimer=setTimeout(()=>speakWord(idx),2000);
 }
 
-function speakWord(idx){
+function startListening(idx){
+  // User tapped → begin full audio chain
   phase='speak';
-  const word=banks[currentLevel][idx];
   document.getElementById('phaseIcon').textContent='🔊';
-  setPhaseArea(`<div class="status-msg">正在播放法语发音...</div>`);
-  const u=new SpeechSynthesisUtterance(word.fr);
-  u.lang='fr-FR'; u.rate=0.85; u.pitch=1.1;
-  if(voices.length)u.voice=voices[0];
-  u.onend=()=>setTimeout(()=>speakChinese(idx),1000);
-  u.onerror=()=>startRepeat(idx);
-  synth.cancel(); synth.speak(u);
+  document.getElementById('phaseArea').innerHTML=`<div class="status-msg">Lecture en cours...</div>`;
+  speakChain(idx);
 }
 
-function speakChinese(idx){
+function speakChain(idx){
   const word=banks[currentLevel][idx];
-  document.getElementById('phaseIcon').textContent='🇨🇳';
-  setPhaseArea(`<div class="status-msg" style="font-size:18px;color:#764ba2;">🇨🇳 ${word.zh}</div>`);
-  const u=new SpeechSynthesisUtterance(word.zh||'');
-  u.lang='zh-CN'; u.rate=0.85;
-  u.onend=()=>{
-    if(word.en) setTimeout(()=>speakEnglish(idx),600);
-    else if(word.sfr) setTimeout(()=>speakSentence(idx),600);
-    else startRepeat(idx);
-  };
-  u.onerror=()=>startRepeat(idx);
-  synth.speak(u);
+  const steps=[];
+
+  // 1. French word
+  steps.push(()=>{
+    document.getElementById('phaseIcon').textContent='🔊';
+    setStatus('🇫🇷 '+word.fr);
+    return makeSpeech(word.fr,'fr-FR',0.85,1.1,voices[0]||null);
+  });
+
+  // 2. Chinese
+  if(word.zh){
+    steps.push(()=>{
+      document.getElementById('phaseIcon').textContent='🇨🇳';
+      setStatus('🇨🇳 '+word.zh);
+      return makeSpeech(word.zh,'zh-CN',0.85,1.0,null);
+    });
+  }
+
+  // 3. English
+  if(word.en){
+    steps.push(()=>{
+      document.getElementById('phaseIcon').textContent='🇬🇧';
+      setStatus('🇬🇧 '+word.en);
+      return makeSpeech(word.en,'en-GB',0.85,1.0,null);
+    });
+  }
+
+  // 4. Sentence
+  if(word.sfr){
+    steps.push(()=>{
+      document.getElementById('phaseIcon').textContent='💬';
+      setStatus('Exemple...');
+      document.getElementById('sentenceDisplay').classList.remove('hidden');
+      return makeSpeech(word.sfr,'fr-FR',0.78,1.0,voices[0]||null);
+    });
+  }
+
+  runSteps(steps,0,()=>startRepeat(idx),600);
 }
 
-function speakEnglish(idx){
-  const word=banks[currentLevel][idx];
-  document.getElementById('phaseIcon').textContent='🇬🇧';
-  setPhaseArea(`<div class="status-msg" style="font-size:18px;color:#2e7d32;font-style:italic;">🇬🇧 ${word.en}</div>`);
-  const u=new SpeechSynthesisUtterance(word.en||'');
-  u.lang='en-GB'; u.rate=0.85;
-  u.onend=()=>{
-    if(word.sfr) setTimeout(()=>speakSentence(idx),700);
-    else startRepeat(idx);
-  };
-  u.onerror=()=>startRepeat(idx);
-  synth.speak(u);
+function makeSpeech(text,lang,rate,pitch,voice){
+  return new Promise(resolve=>{
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;u.pitch=pitch;
+    if(voice)u.voice=voice;
+    u.onend=resolve;u.onerror=resolve;
+    synth.speak(u);
+  });
 }
 
-function speakSentence(idx){
-  const word=banks[currentLevel][idx];
-  const sbox=document.getElementById('sentenceDisplay');
-  sbox.classList.remove('hidden');
-  document.getElementById('phaseIcon').textContent='💬';
-  setPhaseArea(`<div class="status-msg" style="color:#a78bfa;">正在朗读例句...</div>`);
-  const u=new SpeechSynthesisUtterance(word.sfr||'');
-  u.lang='fr-FR'; u.rate=0.8;
-  if(voices.length)u.voice=voices[0];
-  u.onend=()=>startRepeat(idx);
-  u.onerror=()=>startRepeat(idx);
-  synth.speak(u);
+function runSteps(steps,i,done,gap){
+  if(i>=steps.length){done();return;}
+  const p=steps[i]();
+  p.then(()=>setTimeout(()=>runSteps(steps,i+1,done,gap),gap));
+}
+
+function setStatus(msg){
+  const el=document.getElementById('phaseArea');
+  if(el)el.innerHTML=`<div class="status-msg" style="font-size:16px;">${escH(msg)}</div>`;
 }
 
 function startRepeat(idx){
   phase='repeat';
   document.getElementById('phaseIcon').textContent='🎤';
-  let secs=5;
-  const circ=188.5;
-  setPhaseArea(`
+  let secs=5;const circ=188.5;
+  document.getElementById('phaseArea').innerHTML=`
     <div class="countdown-wrap">
-      <div class="countdown-label">跟读时间</div>
+      <div class="countdown-label">Répétez à voix haute !</div>
       <div class="countdown-ring">
-        <svg width="68" height="68" viewBox="0 0 68 68">
-          <circle class="bg-circle" cx="34" cy="34" r="30"/>
-          <circle class="prog-circle" id="progC" cx="34" cy="34" r="30"
+        <svg width="66" height="66" viewBox="0 0 66 66">
+          <circle class="bg-circle" cx="33" cy="33" r="30"/>
+          <circle class="prog-circle" id="progC" cx="33" cy="33" r="30"
             style="stroke-dasharray:${circ};stroke-dashoffset:0"/>
         </svg>
         <div class="countdown-num" id="cdNum">${secs}</div>
       </div>
-      <div class="status-msg">大声跟读！</div>
-    </div>`);
+    </div>`;
   cdInterval=setInterval(()=>{
     secs--;
     const el=document.getElementById('cdNum');
@@ -912,15 +965,15 @@ function startSpell(idx){
   document.getElementById('frenchWord').classList.add('hidden');
   document.getElementById('sentenceDisplay').classList.add('hidden');
   document.getElementById('phaseIcon').textContent='✏️';
-  setPhaseArea(`
-    <div class="status-msg">凭记忆拼写这个法语单词！</div>
+  document.getElementById('phaseArea').innerHTML=`
+    <div class="status-msg">Écrivez ce mot de mémoire !</div>
     <div class="input-area">
       <input class="spell-input" id="spellInput" type="text"
         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-        placeholder="输入法语单词..."
+        placeholder="Tapez le mot français..."
         onkeydown="if(event.key==='Enter')checkSpell(${idx})"/>
-      <button class="submit-btn" onclick="checkSpell(${idx})">✅ 确认答案</button>
-    </div>`);
+      <button class="submit-btn" onclick="checkSpell(${idx})">✅ Valider</button>
+    </div>`;
   setTimeout(()=>{const el=document.getElementById('spellInput');if(el)el.focus();},100);
 }
 
@@ -931,88 +984,67 @@ function checkSpell(idx){
   const ans=inp.value.trim().toLowerCase();
   const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   const ok=ans===word.fr.toLowerCase()||norm(ans)===norm(word.fr);
-
-  clearInterval(cdInterval);
-  phase='feedback';
+  clearInterval(cdInterval);phase='feedback';
   document.getElementById('frenchWord').classList.remove('hidden');
-
   if(ok){
-    markMastered(idx);
-    sessionCorrect++;
+    markMastered(idx);sessionCorrect++;
     document.getElementById('phaseIcon').textContent='🌟';
-    setPhaseArea(`
+    document.getElementById('phaseArea').innerHTML=`
       <div class="feedback correct">
         <div class="stars-display">⭐⭐⭐</div>
-        <div style="margin-top:6px;">太棒了！拼写正确！</div>
-      </div>`);
+        <div style="margin-top:5px;">Parfait ! Bonne orthographe !</div>
+      </div>`;
     const u=new SpeechSynthesisUtterance(word.fr);
-    u.lang='fr-FR';u.rate=0.9;
-    if(voices.length)u.voice=voices[0];
-    synth.speak(u);
+    u.lang='fr-FR';u.rate=0.9;if(voices.length)u.voice=voices[0];synth.speak(u);
   } else {
     markWrong(idx);
     document.getElementById('phaseIcon').textContent='💪';
-    setPhaseArea(`
+    document.getElementById('phaseArea').innerHTML=`
       <div class="feedback wrong">
-        <div>❌ 再努力！正确答案：</div>
-        <div style="margin-top:6px;font-size:22px;color:#e74c3c;font-family:'Baloo 2',cursive;letter-spacing:2px;">${word.fr}</div>
-        <div style="margin-top:3px;font-size:13px;color:#c0392b;">已加入错题库，下次优先复习</div>
-      </div>`);
+        <div>❌ La bonne réponse :</div>
+        <div style="margin-top:5px;font-size:22px;color:#e74c3c;font-family:'Baloo 2',cursive;letter-spacing:2px;">${escH(word.fr)}</div>
+        <div style="margin-top:3px;font-size:12px;color:#c0392b;">Ajouté aux erreurs — priorité demain !</div>
+      </div>`;
   }
-
   updateHeader();
-  setTimeout(()=>{
-    sessionPos++;
-    startWord(sessionPos);
-  },2200);
+  setTimeout(()=>{sessionPos++;showWordDisplay(sessionPos);},2200);
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // END SESSION
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function endSession(){
-  clearAll();
-  hideAllCards();
+  clearAll();hideAllCards();
   document.getElementById('doneCard').classList.remove('hidden');
   const bank=banks[currentLevel]||[];
-  const lvlLabel=LEVELS.find(l=>l.id===currentLevel)?.label||'';
-  const allMastered=mastered.size>=bank.length;
-  let msg=`级别：${lvlLabel}\n`;
-  msg+=`本次答对：${sessionCorrect} 个\n`;
-  msg+=`已掌握：${mastered.size} / ${bank.length} 个\n`;
-  msg+=`错题库：${wrongSet.length} 个\n`;
-  if(allMastered){
-    msg+=`\n🎊 恭喜！整个级别词库已全部掌握！\n进度已重置，可以重新挑战！`;
-    // Reset mastered so they can redo
-    mastered.clear();
-    wrongSet=[];
-    saveStudentProgress();
+  const lvl=LEVELS.find(l=>l.id===currentLevel);
+  const allDone=mastered.size>=bank.length;
+  let msg=`Niveau : ${lvl?lvl.label:''}\n`;
+  msg+=`Bonne réponse : ${sessionCorrect}\n`;
+  msg+=`Maîtrisés : ${mastered.size} / ${bank.length}\n`;
+  msg+=`Erreurs : ${wrongSet.length}\n`;
+  if(allDone){
+    msg+=`\n🎊 Tout le niveau est maîtrisé !\nProgression remise à zéro pour recommencer.`;
+    mastered.clear();wrongSet=[];saveProgress();
   } else {
-    msg+=`\n剩余未掌握：${bank.length-mastered.size} 个`;
-    if(wrongSet.length>0) msg+=`\n下次将优先复习错题 ❌`;
+    msg+=`\nRestants : ${bank.length-mastered.size}`;
+    if(wrongSet.length)msg+=`\n❌ Les erreurs apparaîtront en premier demain.`;
   }
   document.getElementById('doneSub').textContent=msg;
   updateHeader();
 }
 
-function goToLevelSelect(){
-  clearAll();
-  showLevelSelect();
-}
+function goToLevelSelect(){clearAll();showLevelSelect();}
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // UI HELPERS
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function hideAllCards(){
-  ['welcomeCard','levelCard','wordCard','doneCard'].forEach(id=>{
-    document.getElementById(id).classList.add('hidden');
-  });
+  ['welcomeCard','levelCard','wordCard','doneCard'].forEach(id=>document.getElementById(id).classList.add('hidden'));
 }
-
-function setPhaseArea(html){ document.getElementById('phaseArea').innerHTML=html; }
 
 function updateHeader(){
-  if(!currentLevel){ return; }
+  if(!currentLevel)return;
   const bank=banks[currentLevel]||[];
   const lvl=LEVELS.find(l=>l.id===currentLevel);
   document.getElementById('statProgress').textContent=`${sessionPos}/${sessionQueue.length}`;
@@ -1025,119 +1057,94 @@ function updateHeader(){
   document.getElementById('progressFill').style.width=pct+'%';
 }
 
-function clearAll(){
-  clearTimeout(showTimer);
-  clearInterval(cdInterval);
-  synth.cancel();
-}
+function clearAll(){clearTimeout(showTimer);clearInterval(cdInterval);synth.cancel();}
+function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-function escH(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // SETTINGS
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function openSettings(){
   document.getElementById('dailyCountInput').value=dailyCount;
-  document.getElementById('settingStudentName').textContent=currentStudent||'未选择';
+  document.getElementById('settingStudentName').textContent=currentStudent||'—';
   document.getElementById('settingsOverlay').classList.remove('hidden');
 }
-function closeSettings(){ document.getElementById('settingsOverlay').classList.add('hidden'); }
+function closeSettings(){document.getElementById('settingsOverlay').classList.add('hidden');}
 function saveSettings(){
   const v=parseInt(document.getElementById('dailyCountInput').value)||30;
   dailyCount=Math.max(5,Math.min(200,v));
   lsSet(SK.dailyCount(),dailyCount);
-  closeSettings();
-  showToast(`✅ 每日单词数已设为 ${dailyCount} 个`);
+  closeSettings();showToast(`✅ ${dailyCount} mots par session`);
 }
 function resetProgress(){
-  if(!currentStudent||!currentLevel){showToast('请先选择学生和级别');return;}
-  if(!confirm('确定重置当前级别的所有进度？'))return;
-  mastered.clear(); wrongSet=[];
-  saveStudentProgress();
-  closeSettings();
-  showToast('✅ 进度已重置');
+  if(!currentStudent||!currentLevel){showToast('Choisissez d\'abord un élève et un niveau');return;}
+  if(!confirm('Réinitialiser la progression de ce niveau ?'))return;
+  mastered.clear();wrongSet=[];saveProgress();
+  closeSettings();showToast('✅ Progression réinitialisée');
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // EDITOR
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function openEditor(){
   clearAll();
-  editorLevel = currentLevel||LEVELS[0].id;
-  editorWords = (banks[editorLevel]||[]).map(w=>({...w}));
+  editorLevel=currentLevel||LEVELS[0].id;
+  editorWords=(banks[editorLevel]||[]).map(w=>({...w}));
   editorPage=0;
-  renderEditorTabs();
-  renderEditorList();
+  renderEditorTabs();renderEditorList();
   document.getElementById('editorOverlay').classList.remove('hidden');
 }
-function closeEditor(){ document.getElementById('editorOverlay').classList.add('hidden'); }
+function closeEditor(){document.getElementById('editorOverlay').classList.add('hidden');}
 
 function renderEditorTabs(){
-  const tabs=document.getElementById('editorTabs');
-  tabs.innerHTML='';
+  const tabs=document.getElementById('editorTabs');tabs.innerHTML='';
   LEVELS.forEach(lvl=>{
     const btn=document.createElement('button');
     btn.className='tab'+(editorLevel===lvl.id?' active':'');
     btn.textContent=lvl.label;
     btn.onclick=()=>{
-      if(editorLevel!==lvl.id){ saveEditorWords(); } // auto-save before switching
+      saveEditorWords();
       editorLevel=lvl.id;
       editorWords=(banks[lvl.id]||[]).map(w=>({...w}));
-      editorPage=0;
-      renderEditorTabs();
-      renderEditorList();
+      editorPage=0;renderEditorTabs();renderEditorList();
     };
     tabs.appendChild(btn);
   });
 }
 
 function renderEditorList(){
-  const lvlLabel=LEVELS.find(l=>l.id===editorLevel)?.label||'';
-  document.getElementById('editorLevelLabel').textContent=`${lvlLabel} 单词列表`;
-  document.getElementById('editorCountBadge').textContent=`${editorWords.length}个`;
-
-  const totalPages=Math.ceil(editorWords.length/PAGE_SIZE)||1;
+  const lvl=LEVELS.find(l=>l.id===editorLevel);
+  document.getElementById('editorLevelLabel').textContent=`${lvl?lvl.label:''} — Liste`;
+  document.getElementById('editorCountBadge').textContent=`${editorWords.length} mots`;
+  const totalPages=Math.max(1,Math.ceil(editorWords.length/PAGE_SIZE));
   if(editorPage>=totalPages)editorPage=totalPages-1;
   const start=editorPage*PAGE_SIZE;
   const pageWords=editorWords.slice(start,start+PAGE_SIZE);
-
-  const cont=document.getElementById('wordListContainer');
-  cont.innerHTML='';
+  const cont=document.getElementById('wordListContainer');cont.innerHTML='';
   pageWords.forEach((w,pi)=>{
-    const gi=start+pi; // global index
+    const gi=start+pi;
     const item=document.createElement('div');
-    item.className='word-item';
-    item.id=`wi_${gi}`;
+    item.className='word-item';item.id=`wi_${gi}`;
     item.innerHTML=`
       <div class="word-item-info">
-        <div class="word-item-fr">${escH(w.fr)}</div>
+        <div class="word-item-fr">${escH(w.fr)}<span class="word-item-gender">${escH(w.g||'')}</span></div>
         <div class="word-item-meta">${escH(w.zh||'')}${w.en?' · <i>'+escH(w.en)+'</i>':''}</div>
         ${w.sfr?`<div class="word-item-sent">💬 ${escH(w.sfr)}</div>`:''}
       </div>
       <div class="word-item-actions">
-        <button class="icon-btn" onclick="startInlineEdit(${gi})" title="编辑">✏️</button>
-        <button class="icon-btn del" onclick="deleteWord(${gi})" title="删除">🗑</button>
+        <button class="icon-btn" onclick="startInlineEdit(${gi})">✏️</button>
+        <button class="icon-btn del" onclick="deleteWord(${gi})">🗑</button>
       </div>`;
     cont.appendChild(item);
   });
-
   // Pagination
-  const pg=document.getElementById('editorPagination');
-  pg.innerHTML='';
+  const pg=document.getElementById('editorPagination');pg.innerHTML='';
   if(totalPages>1){
-    const prev=document.createElement('button');
-    prev.className='page-btn';prev.textContent='◀';
-    prev.disabled=editorPage===0;
-    prev.onclick=()=>{editorPage--;renderEditorList();};
-    pg.appendChild(prev);
-    const info=document.createElement('span');
-    info.className='page-info';info.textContent=`${editorPage+1} / ${totalPages}`;
-    pg.appendChild(info);
-    const next=document.createElement('button');
-    next.className='page-btn';next.textContent='▶';
-    next.disabled=editorPage>=totalPages-1;
-    next.onclick=()=>{editorPage++;renderEditorList();};
-    pg.appendChild(next);
+    const prev=document.createElement('button');prev.className='page-btn';prev.textContent='◀';
+    prev.disabled=editorPage===0;prev.onclick=()=>{editorPage--;renderEditorList();};pg.appendChild(prev);
+    const info=document.createElement('span');info.className='page-info';
+    info.textContent=`${editorPage+1} / ${totalPages}`;pg.appendChild(info);
+    const next=document.createElement('button');next.className='page-btn';next.textContent='▶';
+    next.disabled=editorPage>=totalPages-1;next.onclick=()=>{editorPage++;renderEditorList();};pg.appendChild(next);
   }
 }
 
@@ -1146,146 +1153,166 @@ function startInlineEdit(gi){
   const item=document.getElementById(`wi_${gi}`);
   if(!item)return;
   item.classList.add('editing');
-  item.innerHTML=`
-    <div class="inline-edit" style="width:100%">
-      <input class="inline-input" id="ie_fr_${gi}" value="${escH(w.fr)}" placeholder="法语单词" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input class="inline-input" id="ie_zh_${gi}" value="${escH(w.zh||'')}" placeholder="中文"/>
-      <input class="inline-input" id="ie_en_${gi}" value="${escH(w.en||'')}" placeholder="English" spellcheck="false"/>
-      <input class="inline-input" id="ie_sfr_${gi}" value="${escH(w.sfr||'')}" placeholder="法语例句（可选）" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <div class="inline-actions">
-        <button class="btn btn-green btn-sm" onclick="saveInlineEdit(${gi})">✅ 保存</button>
-        <button class="btn btn-gray btn-sm" onclick="renderEditorList()">取消</button>
-      </div>
-    </div>`;
+  const genderOptions=['','n.m.','n.f.','v.','adj.','adv.','prép.','conj.','pron.','art.m.','art.f.']
+    .map(o=>`<option value="${o}"${w.g===o?' selected':''}>${o||'—'}</option>`).join('');
+  item.innerHTML=`<div class="inline-edit">
+    <div style="display:flex;gap:5px;">
+      <input class="inline-input" id="ie_fr_${gi}" value="${escH(w.fr)}" placeholder="Mot" autocorrect="off" autocapitalize="off" spellcheck="false" style="flex:2"/>
+      <select class="gender-select" id="ie_g_${gi}" style="flex:1">${genderOptions}</select>
+    </div>
+    <div style="display:flex;gap:5px;">
+      <input class="inline-input" id="ie_zh_${gi}" value="${escH(w.zh||'')}" placeholder="中文" style="flex:1"/>
+      <input class="inline-input" id="ie_en_${gi}" value="${escH(w.en||'')}" placeholder="English" spellcheck="false" style="flex:1"/>
+    </div>
+    <input class="inline-input" id="ie_sfr_${gi}" value="${escH(w.sfr||'')}" placeholder="Exemple (optionnel)" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+    <div class="inline-actions">
+      <button class="btn btn-green btn-sm" onclick="saveInlineEdit(${gi})">✅ OK</button>
+      <button class="btn btn-gray btn-sm" onclick="renderEditorList()">Annuler</button>
+    </div>
+  </div>`;
 }
 
 function saveInlineEdit(gi){
   const fr=document.getElementById(`ie_fr_${gi}`)?.value.trim();
+  const g=document.getElementById(`ie_g_${gi}`)?.value||'';
   const zh=document.getElementById(`ie_zh_${gi}`)?.value.trim();
   const en=document.getElementById(`ie_en_${gi}`)?.value.trim();
   const sfr=document.getElementById(`ie_sfr_${gi}`)?.value.trim();
-  if(!fr||!zh){showToast('法语和中文不能为空');return;}
-  editorWords[gi]={fr,zh,en:en||'',sfr:sfr||''};
-  renderEditorList();
-  showToast('✅ 已保存');
+  if(!fr||!zh){showToast('Le mot français et le chinois sont requis');return;}
+  editorWords[gi]={fr,g:g||'',zh,en:en||'',sfr:sfr||''};
+  renderEditorList();showToast('✅ Enregistré');
 }
 
 function addWord(){
   const fr=document.getElementById('newFr').value.trim();
+  const g=document.getElementById('newGender').value||'';
   const zh=document.getElementById('newZh').value.trim();
   const en=document.getElementById('newEn').value.trim();
   const sfr=document.getElementById('newSfr').value.trim();
-  if(!fr||!zh){showToast('请填写法语和中文');return;}
-  if(editorWords.some(w=>w.fr.toLowerCase()===fr.toLowerCase())){showToast('该单词已存在！');return;}
-  editorWords.push({fr,zh,en:en||'',sfr:sfr||''});
-  ['newFr','newZh','newEn','newSfr'].forEach(id=>{document.getElementById(id).value='';});
+  if(!fr||!zh){showToast('Mot français et chinois requis');return;}
+  if(editorWords.some(w=>w.fr.toLowerCase()===fr.toLowerCase())){showToast('Ce mot existe déjà !');return;}
+  editorWords.push({fr,g:g||'',zh,en:en||'',sfr:sfr||''});
+  ['newFr','newZh','newEn','newSfr'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('newGender').value='';
   document.getElementById('newFr').focus();
-  // Go to last page
   editorPage=Math.max(0,Math.ceil(editorWords.length/PAGE_SIZE)-1);
-  renderEditorList();
-  showToast(`✅ 已添加：${fr}`);
+  renderEditorList();showToast(`✅ Ajouté : ${fr}`);
 }
 
 function deleteWord(gi){
-  const w=editorWords[gi];
-  editorWords.splice(gi,1);
-  renderEditorList();
-  showToast(`🗑 已删除：${w.fr}`);
+  const w=editorWords[gi];editorWords.splice(gi,1);renderEditorList();showToast(`🗑 Supprimé : ${w.fr}`);
 }
 
-function saveEditorWords(){
-  banks[editorLevel]=editorWords.map(w=>({...w}));
-}
+function saveEditorWords(){banks[editorLevel]=editorWords.map(w=>({...w}));}
 
 function saveEditor(){
-  saveEditorWords();
-  lsSet(SK.banks(),banks);
-  // Clean up stale mastered/wrong indices for all students
+  saveEditorWords();lsSet(SK.banks(),banks);
+  // Clean stale indices for all students
   const students=lsGet(SK.students(),[]);
   LEVELS.forEach(lvl=>{
-    const maxIdx=(banks[lvl.id]||[]).length-1;
+    const maxIdx=(banks[lvl.id]||[]).length;
     students.forEach(s=>{
-      const m=lsGet(SK.mastered(s,lvl.id),[]).filter(i=>i<=maxIdx);
-      const ww=lsGet(SK.wrong(s,lvl.id),[]).filter(i=>i<=maxIdx);
-      lsSet(SK.mastered(s,lvl.id),m);
-      lsSet(SK.wrong(s,lvl.id),ww);
+      lsSet(SK.mastered(s,lvl.id),lsGet(SK.mastered(s,lvl.id),[]).filter(i=>i<maxIdx));
+      lsSet(SK.wrong(s,lvl.id),lsGet(SK.wrong(s,lvl.id),[]).filter(i=>i<maxIdx));
     });
   });
-  closeEditor();
-  showToast('✅ 词库已保存！');
+  closeEditor();showToast('✅ Lexique enregistré !');
 }
 
+// ═══════════════════════════════════════════════════
+// IMPORT / EXPORT
+// ═══════════════════════════════════════════════════
 function importWords(replace){
   const raw=document.getElementById('importText').value.trim();
-  if(!raw){showToast('请粘贴词库内容');return;}
+  if(!raw){showToast('Collez le contenu du lexique');return;}
   const lines=raw.split(/\r?\n/).map(l=>l.trim()).filter(l=>l&&!l.startsWith('#'));
   const parsed=[];const errors=[];
   lines.forEach((line,i)=>{
     const sep=line.includes('\t')?'\t':',';
     const parts=line.split(sep);
     if(parts.length<2){errors.push(i+1);return;}
-    const fr=parts[0].trim(),zh=parts[1].trim();
-    const en=parts[2]?.trim()||'',sfr=parts[3]?.trim()||'';
+    const fr=parts[0].trim();
+    // Support both 4-col (old) and 5-col (new with gender)
+    let g='',zh='',en='',sfr='';
+    if(parts.length>=5){
+      g=parts[1].trim();zh=parts[2].trim();en=parts[3].trim();sfr=parts[4].trim();
+    } else {
+      zh=parts[1].trim();en=parts[2]?.trim()||'';sfr=parts[3]?.trim()||'';
+    }
     if(!fr||!zh){errors.push(i+1);return;}
-    parsed.push({fr,zh,en,sfr});
+    parsed.push({fr,g:g||'',zh,en:en||'',sfr:sfr||''});
   });
-  if(!parsed.length){showToast('未找到有效单词，请检查格式');return;}
+  if(!parsed.length){showToast('Aucun mot valide trouvé');return;}
   if(replace){
     editorWords=parsed;
+    showToast(`✅ ${parsed.length} mots importés${errors.length?' ('+errors.length+' erreurs)':''}`);
   } else {
     const ex=new Set(editorWords.map(w=>w.fr.toLowerCase()));
     let added=0;
     parsed.forEach(w=>{if(!ex.has(w.fr.toLowerCase())){editorWords.push(w);ex.add(w.fr.toLowerCase());added++;}});
-    showToast(`✅ 追加 ${added} 个（${parsed.length-added} 重复跳过）${errors.length?'，'+errors.length+'行错误':''}`);
-    editorPage=0;renderEditorList();
-    document.getElementById('importText').value='';return;
+    showToast(`✅ ${added} ajoutés${parsed.length-added?' ('+( parsed.length-added)+' doublons)':''}${errors.length?' '+errors.length+' erreurs':''}`);
   }
-  showToast(`✅ 导入 ${parsed.length} 个${errors.length?'，'+errors.length+'行错误':''}`);
-  editorPage=0;renderEditorList();
-  document.getElementById('importText').value='';
+  editorPage=0;renderEditorList();document.getElementById('importText').value='';
 }
 
-function downloadTemplate(){
+function exportWords(){
+  const words=editorWords;
+  if(!words.length){showToast('Aucun mot à exporter');return;}
+  const lvl=LEVELS.find(l=>l.id===editorLevel);
   const lines=[
-    '# Mots Magiques 词库模板',
-    '# 格式：法语,中文,English,法语例句（后三列可省略）',
-    '# 每行一个单词，# 开头为注释行',
+    `# Mots Magiques — ${lvl?lvl.label:'Lexique'}`,
+    '# Format : français,genre,中文,English,exemple',
     '#',
-    '# 法语,中文,English,法语例句',
-    'bonjour,你好,hello,Bonjour tout le monde !',
-    'merci,谢谢,thank you,Merci beaucoup pour ton aide.',
-    'chat,猫,cat,Le chat dort sur le canapé.',
-    'chien,狗,dog,Mon chien aime jouer dehors.',
-    'école,学校,school,Je vais à l\'école chaque matin.',
-    'maison,房子,house,Notre maison a un grand jardin.',
-    'ami,朋友,friend,',
-    'grand,大的,big,',
-    '#',
-    '# 在下方填写你的单词：',
+    ...words.map(w=>[w.fr,w.g||'',w.zh||'',w.en||'',w.sfr||''].join(','))
   ];
   const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;a.download='mots_magiques_词库模板.csv';
-  document.body.appendChild(a);a.click();
-  document.body.removeChild(a);URL.revokeObjectURL(url);
-  showToast('📥 模板已下载');
+  a.href=url;
+  a.download=`mots_magiques_${editorLevel}_${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+  showToast(`📤 ${words.length} mots exportés`);
 }
 
-// ═══════════════════════════════════════════════════════
+function downloadTemplate(){
+  const lines=[
+    '# Mots Magiques — Modèle de lexique',
+    '# Format : français,genre,中文,English,exemple_français',
+    '# Genre : n.m. / n.f. / v. / adj. / adv. / prép. / conj. / pron.',
+    '# Les colonnes 2 à 5 sont optionnelles',
+    '#',
+    '# français,genre,中文,English,exemple',
+    'bonjour,interj.,你好,hello,Bonjour tout le monde !',
+    'chat,n.m.,猫,cat,Le chat dort sur le canapé.',
+    'courir,v.,跑步,to run,J\'aime courir dans le parc.',
+    'école,n.f.,学校,school,Je vais à l\'école chaque matin.',
+    'grand,adj.,大的,big,L\'éléphant est très grand.',
+    'ami,n.m.,朋友,friend,',
+    'eau,n.f.,水,water,',
+    '#',
+    '# Ajoutez vos mots ici :',
+  ];
+  const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='mots_magiques_modele.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+  showToast('📥 Modèle téléchargé');
+}
+
+// ═══════════════════════════════════════════════════
 // TOAST
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 let toastTimer=null;
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2400);
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // START
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 init();
 </script>
 </body>
