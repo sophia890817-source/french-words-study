@@ -528,7 +528,7 @@ body::before{content:'';position:fixed;inset:0;
 const SUPABASE_URL  = "https://zmjdwdpslcumajabmney.supabase.co"; // ← 填写 Project URL
 // ⚠️ 必须填写 Supabase 项目的 anon/public JWT（三段式 xxx.yyy.zzz，在 Project Settings → API 下复制）
 // 不能使用 sb_publishable_xxx 格式的 key，否则所有请求都会返回 401
-const SUPABASE_ANON_KEY = "sb_secret_UsuaiRspBEDO0r-0r5dJfg_-1Zdv6zY"; // ← 从 Supabase 控制台 Project Settings → API → anon public 复制
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptamR3ZHBzbGN1bWFqYWJtbmV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwOTMsImV4cCI6MjA5NjY3NTA5M30.HB7umpS9haOuU2UH2MgqkpjZUUZar5iEI4llYVIWGhc"; // ← 从 Supabase 控制台 Project Settings → API → anon public 复制
 
 let _supabase = null;
 try {
