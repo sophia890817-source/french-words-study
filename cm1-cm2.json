@@ -1,582 +1,802 @@
-absolument,绝对地,absolutely,C’est absolument nécessaire.
-accent,口音,accent,Il a un accent français.
-accident,事故,accident,Il y a eu un accident.
-activité,活动,activity,L’activité est intéressante.
-actualité,新闻/时事,current news,Les actualités sont importantes.
-admettre,承认,to admit,Il admet son erreur.
-adolescent,青少年,teenager,L’adolescent est content.
-adulte,成人,adult,L’adulte travaille.
-affaire,事情/生意,matter/business,C’est une affaire importante.
-agir,行动,to act,Il faut agir vite.
-aider,帮助,to help,J’aide mes amis.
-améliorer,改善,to improve,Il veut améliorer son français.
-analyse,分析,analysis,L’analyse est difficile.
-annonce,公告,announcement,L’annonce est affichée.
-apparence,外表,appearance,L’apparence compte parfois.
-approfondir,深入,to deepen,Il faut approfondir la leçon.
-argument,论点,argument,Son argument est logique.
-arrangement,安排,arrangement,L’arrangement est prêt.
-aspect,方面,aspect,Cet aspect est important.
-attitude,态度,attitude,Son attitude est positive.
-aucun,没有任何,no/none,Il n’y a aucun problème.
-augmenter,增加,to increase,Les prix augmentent.
-avantage,优势,advantage,C’est un avantage important.
-avenir,未来,future,L’avenir est incertain.
-avertir,警告,to warn,Je t’avertis du danger.
-baisser,降低,to lower,Les prix baissent.
-besoin,需要,need,J’ai besoin d’aide.
-blesser,受伤,to injure,Il s’est blessé.
-bruit,噪音,noise,Il y a du bruit.
-cacher,隐藏,to hide,Il cache le secret.
-campagne,乡村/campaign,countryside,C’est calme à la campagne.
-capable,有能力的,capable,Elle est capable de réussir.
-cause,原因,cause,La cause est inconnue.
-certain,某些/sure,certain,Il est certain de venir.
-changer,改变,to change,Les choses changent.
-choix,选择,choice,Le choix est difficile.
-clairement,清楚地,clearly,Il explique clairement.
-client,顾客,customer,Le client est satisfait.
-collecter,收集,to collect,Elle collecte des données.
-combattre,战斗,to fight,Ils combattent ensemble.
-communiquer,交流,to communicate,Nous communiquons bien.
-complet,完整的,complete,Le dossier est complet.
-comprendre,理解,to understand,Je comprends la situation.
-conseil,建议,advice,Merci pour ton conseil.
-conséquence,后果,consequence,La conséquence est grave.
-construire,建造,to build,Ils construisent une maison.
-contact,联系,contact,Je reste en contact.
-continuer,继续,to continue,Il continue son travail.
-contrôler,控制,to control,Le professeur contrôle le test.
-copie,抄写/副本,copy,La copie est correcte.
-correction,修改,correction,La correction est difficile.
-danger,危险,danger,Il y a du danger.
-décision,决定,decision,La décision est prise.
-décrire,描述,to describe,Décris la scène.
-développement,发展,development,Le développement est rapide.
-différence,差异,difference,Quelle est la différence ?
-discussion,讨论,discussion,La discussion est utile.
-durer,持续,to last,L’examen dure une heure.
-échec,失败,failure,L’échec fait partie de la vie.
-effort,努力,effort,Il fait beaucoup d’efforts.
-égalité,平等,equality,L’égalité est importante.
-éducation,教育,education,L’éducation est essentielle.
-efficacité,效率,efficiency,Son efficacité est remarquable.
-éliminer,消除,to eliminate,Il faut éliminer les erreurs.
-émotion,情绪,emotion,Elle cache ses émotions.
-emploi,工作,job,Chercher un emploi.
-encourager,鼓励,to encourage,Il encourage ses amis.
-énergie,能量,energy,J’ai beaucoup d’énergie.
-engagement,承诺,commitment,Son engagement est fort.
-ennemi,敌人,enemy,L’ennemi est proche.
-enquête,调查,investigation,L’enquête continue.
-entrer,进入,to enter,Il entre dans la salle.
-environnement,环境,environment,L’environnement est fragile.
-erreur,错误,error,Il y a une erreur.
-essayer,尝试,to try,J’essaie encore.
-étape,步骤,step,L’étape est importante.
-état,状态,state,L’état du système.
-évident,明显的,obvious,C’est évident.
-éviter,避免,to avoid,Il faut éviter les risques.
-évolution,发展/evolution,evolution,L’évolution est rapide.
-exemple,例子,example,Donne un exemple.
-expérience,经验/实验,experience,L’expérience est utile.
-explique,解释,explain,Explique la règle.
-expression,表达,expression,Une expression française.
-extraordinaire,非凡的,extraordinary,C’est extraordinaire.
-fabriquer,制作,to make/produce,Ils fabriquent des jouets.
-facilement,容易地,easily,Il apprend facilement.
-faim,饥饿,hunger,J’ai très faim.
-faute,错误/fault,fault,Il a fait une faute.
-féliciter,祝贺,to congratulate,Je te félicite.
-ferme,农场,farm,La ferme est grande.
-fiable,可靠的,reliable,C’est une source fiable.
-fier,自豪的,proud,Elle est fière de lui.
-force,力量,strength,Il a beaucoup de force.
-former,形成/培训,to form/train,Ils forment une équipe.
-fournir,提供,to provide,L’école fournit des livres.
-fréquent,频繁的,frequent,C’est un problème fréquent.
-garder,保留/to keep,to keep,Je garde ce secret.
-général,一般的/general,C’est une idée générale.
-gérer,管理,to manage,Il gère une entreprise.
-grâce,由于/感谢,thanks to,Grâce à toi, j’ai réussi.
-habituel,习惯的,usual,C’est son horaire habituel.
-hésiter,犹豫,to hesitate,N’hésite pas à demander.
-historique,历史的,historical,C’est un site historique.
-important,重要的,important,C’est très important.
-impossible,不可能的,impossible,C’est impossible à faire.
-inquiéter,担心,to worry,Je m’inquiète pour toi.
-installer,安装,to install,Il installe l’application.
-instant,瞬间,instant,Un instant magique.
-intelligent,聪明的,intelligent,L’enfant est intelligent.
-intérêt,兴趣,interest,J’ai un intérêt pour la science.
-inviter,邀请,to invite,J’invite mes amis.
-journal,报纸/newspaper,newspaper,Je lis le journal.
-justice,正义,justice,La justice est importante.
-laisser,让/to leave,to leave,Je laisse la porte ouverte.
-libre,自由的,free,Je suis libre aujourd’hui.
-limiter,限制,to limit,Il faut limiter le bruit.
-lire,阅读,to read,Je lis tous les jours.
-local,当地的,local,Le marché local est ouvert.
-logique,逻辑的,logical,C’est logique.
-longtemps,长时间,long time,Il attend longtemps.
-lumière,光,light,La lumière est forte.
-maintenant,现在,now,Je travaille maintenant.
-malgré,尽管,despite,Malgré la pluie, il sort.
-manière,方式,way,Il parle de cette manière.
-marché,市场,market,Je vais au marché.
-mémoire,记忆,memory,Sa mémoire est bonne.
-message,信息,message,J’ai reçu un message.
-métier,职业,job/profession,Quel est ton métier ?
-milieu,中间,middle,Au milieu de la rue.
-mince,瘦的/thin,thin,Il est mince.
-moment,时刻,moment,Un bon moment.
-montrer,展示,to show,Je montre mon dessin.
-motif,原因/pattern,motive,C’est le motif du problème.
-nature,自然,nature,La nature est belle.
-nécessaire,必要的,necessary,C’est nécessaire.
-nouveau,新的,new,Un nouveau livre.
-objectif,目标,goal/objective,Mon objectif est clair.
-occasion,机会,occasion,C’est une bonne occasion.
-occuper,占据/to occupy,to occupy,Il occupe la place.
-offrir,提供/赠送,to offer,J’offre un cadeau.
-opinion,意见,opinion,Quelle est ton opinion ?
-organiser,组织,to organize,Nous organisons une fête.
-outil,工具,tool,Un outil utile.
-ouvert,开放的,open,Le magasin est ouvert.
-parfois,有时,sometimes,Je vais parfois au parc.
-partager,分享,to share,Je partage mon goûter.
-participer,参加,to participate,Je participe au jeu.
-passage,通过/段落,passage,Le passage est étroit.
-penser,思考,to think,Je pense souvent à toi.
-permettre,允许,to allow,Le professeur permet cela.
-personnage,人物,character,Un personnage important.
-peur,害怕,fear,Il a peur du noir.
-phrase,句子,sentence,Écris une phrase.
-plaisir,快乐,pleasure,C’est un plaisir.
-plutôt,相当/rather,rather,Il est plutôt grand.
-possible,可能的,possible,C’est possible.
-pouvoir,权力/能够,power/can,Je peux t’aider.
-pratique,实用的,practical,C’est très pratique.
-préparer,准备,to prepare,Je prépare mon examen.
-présent,现在的/present,present,Je suis présent.
-problème,问题,problem,Il y a un problème.
-produire,生产,to produce,La ferme produit du lait.
-projet,项目,project,Un grand projet.
-protéger,保护,to protect,Il protège la nature.
-question,问题,question,Pose une question.
-réalité,现实,reality,C’est la réalité.
-récent,最近的,recent,Un événement récent.
-réfléchir,思考,to reflect,Je réfléchis beaucoup.
-refuser,拒绝,to refuse,Il refuse l’offre.
-regretter,后悔,to regret,Je regrette mon choix.
-relation,关系,relation,Une bonne relation.
-remplacer,替换,to replace,Remplace le mot.
-réparer,修理,to repair,Il répare la voiture.
-représenter,代表,to represent,Il représente la classe.
-résultat,结果,result,Le résultat est bon.
-risque,风险,risk,Il y a un risque.
-rôle,角色,role,Quel est son rôle ?
-santé,健康,health,La santé est importante.
-sécurité,安全,safety,La sécurité est prioritaire.
-signifier,意味着,to mean,Que signifie ce mot ?
-solution,解决方案,solution,La solution est simple.
-souvent,经常,often,Je viens souvent ici.
-succès,成功,success,Son succès est grand.
-suffisant,足够的,sufficient,C’est suffisant.
-sujet,主题,subject,Le sujet est intéressant.
-supporter,支持/to bear,to support,Je supporte mon équipe.
-système,系统,system,Un système complexe.
-tâche,任务,task,Une tâche difficile.
-temps,时间,time,Le temps passe vite.
-travail,工作,work,Le travail est fini.
-aborder,接近/讨论,to approach,Nous abordons le sujet.
-accompagner,陪伴,to accompany,J’accompagne mon ami.
-accomplir,完成,to accomplish,Il accomplit sa tâche.
-accord,同意/协议,agreement,Nous sommes d’accord.
-accuser,指控,to accuse,Il accuse son voisin.
-adapter,适应,to adapt,Il s’adapte rapidement.
-admettre,承认,to admit,Il admet la vérité.
-adopter,收养/采用,to adopt,Ils adoptent un chien.
-affirmer,断言,to affirm,Il affirme son opinion.
-agir,行动,to act,Il faut agir vite.
-aide,帮助,help,L’aide est importante.
-amélioration,改善,improvement,Il y a une amélioration.
-analyser,分析,to analyze,Analyse le texte.
-annoncer,宣布,to announce,Il annonce la nouvelle.
-apparaître,出现,to appear,Le soleil apparaît.
-appartenir,属于,to belong,Ce livre m’appartient.
-appliquer,应用/to apply,to apply,Applique la règle.
-apporter,带来,to bring,J’apporte un cadeau.
-apprécier,欣赏/to appreciate,to appreciate,J’apprécie ton aide.
-apprendre,学习,to learn,J’apprends vite.
-approcher,接近,to approach,Il approche la porte.
-après-midi,下午,afternoon,L’après-midi est calme.
-arrêter,停止/to stop,to stop,Il arrête le bus.
-assez,足够,enough,C’est assez difficile.
-assister,参加/to attend,to attend,J’assiste au cours.
-assurer,确保,to ensure,Il assure la sécurité.
-atteindre,达到,to reach,Nous atteignons le sommet.
-attirer,吸引,to attract,Cela attire les touristes.
-augmenter,增加,to increase,Les prix augmentent.
-avancer,前进,to move forward,Nous avançons lentement.
-avertissement,警告,warning,Un avertissement important.
-avoir lieu,发生,to take place,L’événement a lieu ici.
-bénéficier,受益,to benefit,Nous bénéficions de l’aide.
-besoin,需要,need,J’ai besoin de repos.
-blessure,伤害,injury,La blessure est légère.
-boîte,盒子,box,Une boîte en carton.
-brillant,明亮/优秀的,bright,Un élève brillant.
-capacité,能力,capacity,Sa capacité est grande.
-cause,原因,cause,La cause est inconnue.
-célébrer,庆祝,to celebrate,Nous célébrons Noël.
-changer,改变,to change,Les choses changent.
-charger,装载/to load,to load,Il charge la voiture.
-choisir,选择,to choose,Je choisis une option.
-clairement,清楚地,clearly,Il parle clairement.
-collaborer,合作,to collaborate,Nous collaborons ensemble.
-combinaison,组合,combination,Une bonne combinaison.
-commencer,开始,to begin,Le cours commence.
-comparer,比较,to compare,Compare les deux.
-compléter,完成,to complete,Complète la phrase.
-comportement,行为,behavior,Son comportement est bon.
-compter,数/to count,to count,Je compte les objets.
-conclure,总结/to conclude,to conclude,On conclut la réunion.
-confirmer,确认,to confirm,Je confirme la réservation.
-connaissance,知识/认识,knowledge,Sa connaissance est vaste.
-conseiller,建议/to advise,to advise,Je te conseille ceci.
-considérer,考虑/to consider,to consider,Je considère cette option.
-construire,建造,to build,Ils construisent une maison.
-contacter,联系,to contact,Je contacte le professeur.
-continuer,继续,to continue,Continue ton travail.
-contrôler,控制/to control,to control,Le professeur contrôle la classe.
-convaincre,说服,to convince,Il me convainc.
-corriger,纠正,to correct,Corrige les erreurs.
-couper,切,to cut,Je coupe le pain.
-créer,创造,to create,Il crée un projet.
-croire,相信,to believe,Je crois en toi.
-décider,决定,to decide,Je décide maintenant.
-défendre,保护/to defend,to defend,Il défend son ami.
-demander,询问/to ask,to ask,Je demande une question.
-dépendre,依赖,to depend,Cela dépend du temps.
-développer,发展,to develop,La ville se développe.
-diffuser,传播,to broadcast,La chaîne diffuse le film.
-disparaître,消失,to disappear,Le chat disparaît.
-discuter,讨论,to discuss,Nous discutons du problème.
-donner,给,to give,Je donne un exemple.
-durée,持续时间,duration,La durée est courte.
-éclairer,照亮,to light up,La lampe éclaire la pièce.
-écouter,听,to listen,J’écoute attentivement.
-effet,效果,effect,L’effet est positif.
-élever,提高/养,to raise,Il élève des animaux.
-éliminer,消除,to eliminate,Il faut éliminer le bruit.
-émotion,情绪,emotion,L’émotion est forte.
-encore,还/再,again/still,Il est encore là.
-endroit,地方,place,Cet endroit est calme.
-enlever,去掉,to remove,Enlève le mot.
-ensemble,一起,together,Nous travaillons ensemble.
-entendre,听见,to hear,J’entends un bruit.
-entièrement,完全地,completely,Je suis entièrement d’accord.
-environnement,环境,environment,Protéger l’environnement.
-espace,空间,space,L’espace est grand.
-espérer,希望,to hope,J’espère réussir.
-essentiel,重要的,essential,C’est essentiel.
-établir,建立,to establish,Il établit une règle.
-éteindre,关闭,to turn off,Éteins la lumière.
-événement,事件,event,Un grand événement.
-examiner,检查,to examine,Le médecin examine le patient.
-expliquer,解释,to explain,Explique la règle.
-explorer,探索,to explore,Nous explorons la ville.
-exprimer,表达,to express,Exprime ton opinion.
-extraire,提取,to extract,On extrait l’information.
-faciliter,促进,to facilitate,Cela facilite le travail.
-fonctionner,运作,to function,Le système fonctionne.
-forcer,强迫,to force,Il force la porte.
-former,形成/to form,to form,Il forme une équipe.
-fournir,提供,to provide,L’école fournit des livres.
-franchir,跨越,to cross,Il franchit la ligne.
-gagner,赢/to win,to win,Nous gagnons le match.
-gérer,管理,to manage,Elle gère l’entreprise.
-harmonie,和谐,harmony,L’harmonie est importante.
-identifier,识别,to identify,Identifie le mot.
-imposer,强加,to impose,Il impose sa règle.
-inclure,包括,to include,Le prix inclut tout.
-indiquer,指出,to indicate,Indique la réponse.
-influencer,影响,to influence,Cela influence les gens.
-informer,通知,to inform,Je vous informe.
-inquiéter,担心,to worry,Cela m’inquiète.
-insister,坚持,to insist,Il insiste toujours.
-installer,安装,to install,Installe l’application.
-interdire,禁止,to forbid,Il est interdit de fumer.
-intéresser,感兴趣,to interest,Cela m’intéresse.
-introduire,介绍/to introduce,to introduce,Il introduit le sujet.
-inventer,发明,to invent,Il invente une machine.
-investir,投资,to invest,Ils investissent beaucoup.
-joindre,加入/联系,to join,Je joins le groupe.
-juger,判断/to judge,to judge,Ne juge pas trop vite.
-justifier,证明/to justify,Il justifie sa réponse.
-lancer,投掷/启动,to launch,Il lance la balle.
-libérer,释放,to free,On libère les animaux.
-limite,限制/边界,limit,La limite est claire.
-liquide,液体,liquid,Le liquide est chaud.
-localiser,定位,to locate,On localise la ville.
-logement,住房,housing,Le logement est cher.
-longueur,长度,length,La longueur est importante.
-lutter,斗争,to fight,Ils luttent pour la liberté.
-maîtriser,掌握,to master,Il maîtrise la langue.
-manquer,缺少/to miss,to miss,J’ai manqué le bus.
-mélanger,混合,to mix,Mélange les ingrédients.
-menacer,威胁,to threaten,Il menace son voisin.
-mériter,值得/to deserve,Tu mérites la récompense.
-mesurer,测量,to measure,Mesure la table.
-montrer,展示,to show,Montre ton travail.
-motiver,激励,to motivate,Il motive les élèves.
-mouvement,运动/movement,movement,Le mouvement est rapide.
-multiplier,乘/增加,to multiply,Multiplie les nombres.
-naissance,出生,birth,Sa naissance est en mai.
-nécessité,必要性,necessity,C’est une nécessité.
-obliger,强迫,to oblige,Il oblige à venir.
-observer,观察,to observe,Observe le ciel.
-obtenir,获得,to obtain,Il obtient un bon résultat.
-occuper,占据/to occupy,to occupy,Il occupe la salle.
-officiel,官方的,official,C’est une annonce officielle.
-opération,操作/手术,operation,L’opération est réussie.
-organiser,组织,to organize,Nous organisons un événement.
-oublier,忘记,to forget,N’oublie pas tes clés.
-ouvrir,打开,to open,Ouvre la fenêtre.
-participation,参与,participation,La participation est importante.
-particulier,特别的,particular,C’est un cas particulier.
-passer,通过/to pass,to pass,Il passe l’examen.
-perception,感知,perception,Sa perception est fine.
-permettre,允许,to allow,Cela permet de réussir.
-personnel,个人的/staff,personal/staff,Le personnel est gentil.
-photographier,拍照,to photograph,Il photographie la ville.
-placer,放置,to place,Place le livre ici.
-planifier,计划,to plan,Nous planifions le voyage.
-plonger,潜水/to dive,to dive,Il plonge dans l’eau.
-population,人口,population,La population augmente.
-position,位置,position,Sa position est claire.
-possibilité,可能性,possibility,Il y a une possibilité.
-poursuivre,追求/继续,to pursue,Il poursuit ses études.
-pousser,推/to push,to push,Il pousse la porte.
-préciser,明确/to specify,to specify,Précise ta réponse.
-préférer,更喜欢,to prefer,Je préfère le chocolat.
-préparer,准备,to prepare,Je prépare le dîner.
-présenter,介绍/to present,to present,Il présente son projet.
-pression,压力,pressure,La pression est forte.
-prévenir,预防/通知,to warn/prevent,Je te préviens.
-principal,主要的,main,Le problème principal.
-principe,原则,principle,Un bon principe.
-produit,产品/product,product,Ce produit est cher.
-profond,深的,deep,Le lac est profond.
-programme,计划/节目,program,Le programme commence.
-progression,进步,progress,Sa progression est rapide.
-promettre,承诺,to promise,Je te promets.
-proposer,提议/to propose,to propose,Il propose une idée.
-protéger,保护,to protect,Il protège la nature.
-public,公众的/public,public,Le public écoute.
-publier,发布,to publish,Il publie un livre.
-punir,惩罚,to punish,Le professeur punit.
-qualité,质量,quality,La qualité est bonne.
-quantité,数量,quantity,La quantité est grande.
-questionner,提问,to question,Il questionne l’élève.
-réagir,反应,to react,Il réagit vite.
-réaliser,实现/to realize,to realize,Il réalise son rêve.
-rechercher,研究/to research,to search,Je recherche des infos.
-réfléchir,思考,to reflect,Il réfléchit longtemps.
-refuser,拒绝,to refuse,Elle refuse l’offre.
-regarder,看,to watch,Je regarde le film.
-régler,解决/to fix,to solve,On règle le problème.
-remarquer,注意到,to notice,Je remarque un détail.
-remplacer,替换,to replace,Remplace le mot.
-répondre,回答,to answer,Réponds à la question.
-représenter,代表,to represent,Il représente l’école.
-résoudre,解决,to solve,Il résout le problème.
-respecter,尊重,to respect,Respecte les règles.
-responsable,负责的,responsible,Il est responsable.
-résultat,结果,result,Le résultat est clair.
-réussite,成功,success,Sa réussite est grande.
-revoir,再见/重看,to see again,Au revoir.
-risquer,冒险,to risk,Il risque tout.
-rôle,角色,role,Son rôle est important.
-sélectionner,选择,to select,Sélectionne une option.
-sens,意义/感觉,meaning/sense,Le sens du mot.
-séparer,分开,to separate,Sépare les objets.
-service,服务,service,Un bon service.
-situation,情况,situation,La situation est difficile.
-souhaiter,希望/to wish,to wish,Je souhaite bonne chance.
-soumettre,提交,to submit,Je soumets mon travail.
-supporter,支持/to tolerate,to support,Je supporte l’équipe.
-supposer,假设,to suppose,Je suppose que oui.
-surveiller,监视/to supervise,to monitor,Le professeur surveille.
-système,系统,system,Un système complexe.
-tenter,尝试,to attempt,Il tente sa chance.
-terminer,结束,to finish,Je termine le devoir.
-tirer,拉/to pull,to pull,Il tire la porte.
-traduire,翻译,to translate,Je traduis le texte.
-utilisation,使用,usage,L’utilisation est simple.
-valeur,价值,value,La valeur est élevée.
-vérifier,检查,to verify,Vérifie la réponse.
-victoire,胜利,victory,La victoire est totale.
-viser,瞄准/to aim,to aim,Il vise la cible.
-acquisition,获得,acquisition,L’acquisition des connaissances est importante.
-affichage,显示/公告,display,L’affichage est clair.
-agriculture,农业,agriculture,L’agriculture est essentielle.
-améliorer,改善,to improve,Il veut améliorer son niveau.
-analyse,分析,analysis,L’analyse du texte est difficile.
-annuler,取消,to cancel,On annule la réunion.
-appliquer,应用,to apply,Applique la règle correctement.
-approuver,批准,to approve,Le professeur approuve.
-associé,合作的/伙伴,associate,Il est associé au projet.
-atmosphère,气氛/大气,atmosphere,L’atmosphère est calme.
-autorité,权威,authority,L’autorité décide.
-avantageux,有利的,advantageous,C’est une situation avantageuse.
-besogne,任务/工作,task,La besogne est difficile.
-bilan,总结/balance sheet,summary,Le bilan est positif.
-capitale,首都,capital,Paris est la capitale.
-caractéristique,特征,characteristic,C’est une caractéristique importante.
-catégorie,类别,category,Choisis une catégorie.
-circonstance,情况,circumstance,Selon la circonstance.
-citoyen,公民,citizen,Le citoyen vote.
-cohérence,连贯性,coherence,Le texte manque de cohérence.
-collège,初中,middle school,Il entre au collège.
-communauté,社区,community,La communauté est unie.
-complexe,复杂的,complex,C’est un problème complexe.
-comportemental,行为的,behavioral,Analyse comportementale.
-concerné,有关的,concerned,Les personnes concernées.
-conclusion,结论,conclusion,La conclusion est claire.
-condition,条件,condition,À condition que tu viennes.
-confiance,信任,trust,J’ai confiance en toi.
-conflit,冲突,conflict,Il y a un conflit.
-conscience,意识,conscience,Il a conscience du danger.
-conséquent,重要的/相当的,considerable,Un effort conséquent.
-constitution,宪法,constitution,La constitution du pays.
-consulter,咨询,to consult,Je consulte le médecin.
-contenu,内容,content,Le contenu est intéressant.
-contradiction,矛盾,contradiction,C’est une contradiction.
-conviction,信念,conviction,Il parle avec conviction.
-coopération,合作,cooperation,La coopération est utile.
-corriger,纠正,to correct,Corrige les fautes.
-courage,勇气,courage,Il a du courage.
-crise,危机,crisis,Une crise économique.
-critique,批评/评论,criticism,Une critique constructive.
-culture,文化,culture,La culture française.
-débat,辩论,debate,Un débat important.
-découverte,发现,discovery,Une grande découverte.
-défaut,缺点,fault,Un petit défaut.
-définitif,最终的,definitive,Une décision définitive.
-démarche,步骤/方法,approach,Une démarche logique.
-densité,密度,density,La densité est élevée.
-dépendance,依赖,dependence,La dépendance est forte.
-désaccord,分歧,disagreement,Un désaccord important.
-développement durable,可持续发展,sustainable development,Le développement durable est crucial.
-diagnostic,诊断,diagnosis,Un diagnostic médical.
-dimension,维度,dimension,Une nouvelle dimension.
-directive,指令,directive,Une directive claire.
-discours,演讲,speech,Un discours important.
-disponible,可用的,available,Le document est disponible.
-diversité,多样性,diversity,La diversité culturelle.
-document,文件,document,Un document officiel.
-doute,怀疑,doubt,Un doute persiste.
-échantillon,样本,sample,Un échantillon gratuit.
-efficacité,效率,efficiency,L’efficacité du système.
-élaboration,制定,elaboration,L’élaboration du projet.
-électeur,选民,voter,L’électeur vote.
-élément,元素,element,Un élément clé.
-émergence,出现/emergence,emergence,L’émergence d’une idée.
-émission,节目/broadcast,program,Une émission télévisée.
-employé,雇员,employee,L’employé travaille.
-enjeu,赌注/关键问题,stake,Un enjeu important.
-enrichir,丰富,to enrich,Il enrichit son vocabulaire.
-ensemble,整体,together/as a whole,L’ensemble du projet.
-entité,实体,entity,Une entité juridique.
-entraînement,训练,training,Un entraînement intensif.
-entreprise,企业,company,Une grande entreprise.
-équilibre,平衡,balance,L’équilibre est fragile.
-essai,尝试/论文,essay/test,Un essai scientifique.
-établissement,机构,institution,L’établissement scolaire.
-état,状态/state,state,L’état du pays.
-éthique,伦理,ethics,L’éthique est importante.
-évaluation,评估,evaluation,Une évaluation finale.
-éventuel,可能的,potential,Un problème éventuel.
-évolution,演变,evolution,L’évolution du système.
-exclusion,排除,exclusion,L’exclusion sociale.
-exécution,执行,execution,L’exécution du plan.
-expansion,扩展,expansion,L’expansion économique.
-expertise,专业知识,expertise,Son expertise est reconnue.
-exploitation,开发/利用,exploitation,L’exploitation des ressources.
-facteur,因素,factor,Un facteur important.
-finalité,目的,purpose,La finalité du projet.
-flexibilité,灵活性,flexibility,La flexibilité est utile.
-fonction,功能,function,La fonction est simple.
-fondamental,基础的,fundamental,Un principe fondamental.
-formation,培训/training,training,Une formation professionnelle.
-fragilité,脆弱性,fragility,La fragilité du système.
-garantie,保证,guarantee,Une garantie officielle.
-gestion,管理,management,La gestion est efficace.
-hypothèse,假设,hypothesis,Une hypothèse scientifique.
-identité,身份,identity,Son identité est connue.
-immédiat,立即的,immediate,Une réponse immédiate.
-impact,影响,impact,Un impact fort.
-implication,参与/含义,involvement,Son implication est forte.
-importance,重要性,importance,L’importance du sujet.
-indicateur,指标,indicator,Un indicateur clé.
-individu,个体,individual,Chaque individu compte.
-influence,影响,influence,Son influence est grande.
-information,信息,information,L’information est claire.
-innovation,创新,innovation,L’innovation technologique.
-installation,安装/设施,installation,Une installation moderne.
-interaction,互动,interaction,L’interaction sociale.
-intervention,干预,intervention,Une intervention rapide.
-interprétation,解释/诠释,interpretation,Une bonne interprétation.
-investigation,调查,investigation,L’investigation continue.
-journaliste,记者,journalist,Le journaliste écrit.
-justification,理由/证明,justification,Une justification claire.
-laboratoire,实验室,laboratory,Le laboratoire est équipé.
-légalité,合法性,legality,La légalité est vérifiée.
-liberté,自由,freedom,La liberté est essentielle.
-limitation,限制,limitation,Une limitation importante.
-logique,逻辑,logic,La logique du raisonnement.
-méthode,方法,method,Une méthode efficace.
-modification,修改,modification,Une modification mineure.
-moral,道德的,moral,Un principe moral.
-niveau,水平,level,Un niveau élevé.
-objectif,目标,objective,Un objectif clair.
-opposition,反对,opposition,L’opposition est forte.
-organisation,组织,organization,Une grande organisation.
-partage,分享,sharing,Le partage des idées.
-performance,表现,performance,Une bonne performance.
-phénomène,现象,phenomenon,Un phénomène naturel.
-politique,政治的,political,Une décision politique.
-possibilité,可能性,possibility,Une possibilité réelle.
-pratique,实践/practical,practical,Une solution pratique.
-processus,过程,process,Un processus long.
-production,生产,production,La production augmente.
-progrès,进步,progress,Des progrès rapides.
-protection,保护,protection,La protection de la nature.
-questionnaire,问卷,questionnaire,Un questionnaire simple.
-réaction,反应,reaction,Une réaction rapide.
-réalité,现实,reality,La réalité est différente.
-recherche,研究,research,Une recherche scientifique.
-relation,关系,relation,Une bonne relation.
-responsabilité,责任,responsibility,Sa responsabilité est grande.
-résolution,解决/决心,resolution,Une résolution forte.
-ressource,资源,resource,Des ressources naturelles.
-résultat,结果,result,Le résultat final.
-révolution,革命,revolution,La révolution française.
-scénario,情景/剧本,scenario,Un scénario possible.
-sélection,选择/筛选,selection,Une sélection rigoureuse.
-service public,公共服务,public service,Le service public est important.
-solution,解决方案,solution,Une solution simple.
-structure,结构,structure,La structure du texte.
-système éducatif,教育系统,education system,Le système éducatif français.
-technologie,技术,technology,La technologie moderne.
-tendance,趋势,trend,Une tendance actuelle.
-théorie,理论,theory,Une théorie scientifique.
-transformation,转变,transformation,Une transformation rapide.
-utilité,用途,utility,L’utilité du système.
-validation,验证,validation,Une validation nécessaire.
-valeur,价值,value,Une valeur importante.
-variable,变量,variable,Une variable importante.
-vérité,真相,truth,La vérité est claire.
-vision,视野/观点,vision,Une vision globale.
-volonté,意志,will,Une forte volonté.
+[
+{"fr":"livre","g":"n.m.","zh":"书","en":"book","sfr":"Je lis un livre dans ma chambre tous les soirs."},
+{"fr":"cahier","g":"n.m.","zh":"练习本","en":"notebook","sfr":"J'écris mes leçons dans mon cahier."},
+{"fr":"stylo","g":"n.m.","zh":"钢笔/圆珠笔","en":"pen","sfr":"Mon stylo est rouge et noir."},
+{"fr":"crayon","g":"n.m.","zh":"铅笔","en":"pencil","sfr":"Je dessine avec un crayon gris."},
+{"fr":"école","g":"n.f.","zh":"学校","en":"school","sfr":"Je vais à l'école chaque matin."},
+{"fr":"classe","g":"n.f.","zh":"班级/教室","en":"classroom","sfr":"Notre classe a vingt-cinq élèves."},
+{"fr":"maître","g":"n.m.","zh":"男教师","en":"teacher","sfr":"Le maître explique la leçon au tableau."},
+{"fr":"maîtresse","g":"n.f.","zh":"女教师","en":"teacher","sfr":"La maîtresse nous lit une histoire."},
+{"fr":"élève","g":"n.m.","zh":"学生","en":"pupil","sfr":"Chaque élève a un cahier sur la table."},
+{"fr":"tableau","g":"n.m.","zh":"黑板","en":"blackboard","sfr":"Le maître écrit les mots au tableau."},
+{"fr":"règle","g":"n.f.","zh":"尺子","en":"ruler","sfr":"Je mesure la ligne avec ma règle."},
+{"fr":"gomme","g":"n.f.","zh":"橡皮","en":"eraser","sfr":"J'utilise la gomme pour effacer mon erreur."},
+{"fr":"cartable","g":"n.m.","zh":"书包","en":"schoolbag","sfr":"Mon cartable est très lourd aujourd'hui."},
+{"fr":"récréation","g":"n.f.","zh":"课间休息","en":"break","sfr":"Nous jouons dans la cour pendant la récréation."},
+{"fr":"cour","g":"n.f.","zh":"操场/院子","en":"playground","sfr":"Les enfants courent dans la cour de l'école."},
+{"fr":"maison","g":"n.f.","zh":"房子/家","en":"house","sfr":"Ma maison est proche de l'école."},
+{"fr":"famille","g":"n.f.","zh":"家庭","en":"family","sfr":"Toute la famille mange ensemble le dimanche."},
+{"fr":"père","g":"n.m.","zh":"父亲","en":"father","sfr":"Mon père travaille dans un bureau en ville."},
+{"fr":"mère","g":"n.f.","zh":"母亲","en":"mother","sfr":"Ma mère prépare le dîner chaque soir."},
+{"fr":"frère","g":"n.m.","zh":"兄弟","en":"brother","sfr":"Mon frère joue au football avec ses amis."},
+{"fr":"sœur","g":"n.f.","zh":"姐妹","en":"sister","sfr":"Ma sœur aime lire des livres illustrés."},
+{"fr":"ami","g":"n.m.","zh":"朋友","en":"friend","sfr":"Mon ami habite dans la rue voisine."},
+{"fr":"chat","g":"n.m.","zh":"猫","en":"cat","sfr":"Le chat dort sur le canapé toute la journée."},
+{"fr":"chien","g":"n.m.","zh":"狗","en":"dog","sfr":"Le chien court après la balle dans le jardin."},
+{"fr":"oiseau","g":"n.m.","zh":"鸟","en":"bird","sfr":"Un oiseau chante dans l'arbre devant la fenêtre."},
+{"fr":"poisson","g":"n.m.","zh":"鱼","en":"fish","sfr":"Il y a un poisson rouge dans mon aquarium."},
+{"fr":"arbre","g":"n.m.","zh":"树","en":"tree","sfr":"Un grand arbre pousse au milieu du jardin."},
+{"fr":"fleur","g":"n.f.","zh":"花","en":"flower","sfr":"Les fleurs poussent bien au printemps."},
+{"fr":"jardin","g":"n.m.","zh":"花园","en":"garden","sfr":"Nous plantons des tomates dans le jardin."},
+{"fr":"soleil","g":"n.m.","zh":"太阳","en":"sun","sfr":"Le soleil brille fort en été."},
+{"fr":"pluie","g":"n.f.","zh":"雨","en":"rain","sfr":"La pluie tombe doucement sur les toits."},
+{"fr":"neige","g":"n.f.","zh":"雪","en":"snow","sfr":"La neige couvre la montagne en hiver."},
+{"fr":"vent","g":"n.m.","zh":"风","en":"wind","sfr":"Le vent souffle fort aujourd'hui."},
+{"fr":"nuage","g":"n.m.","zh":"云","en":"cloud","sfr":"De gros nuages arrivent depuis l'ouest."},
+{"fr":"ciel","g":"n.m.","zh":"天空","en":"sky","sfr":"Le ciel est bleu et sans nuages ce matin."},
+{"fr":"eau","g":"n.f.","zh":"水","en":"water","sfr":"Je bois un grand verre d'eau après le sport."},
+{"fr":"feu","g":"n.m.","zh":"火","en":"fire","sfr":"Le feu brûle dans la cheminée en hiver."},
+{"fr":"pain","g":"n.m.","zh":"面包","en":"bread","sfr":"Je mange du pain avec du beurre le matin."},
+{"fr":"lait","g":"n.m.","zh":"牛奶","en":"milk","sfr":"Je bois un bol de lait chaud au petit-déjeuner."},
+{"fr":"pomme","g":"n.f.","zh":"苹果","en":"apple","sfr":"Je mange une pomme rouge après l'école."},
+{"fr":"rouge","g":"adj.","zh":"红色的","en":"red","sfr":"La voiture rouge est garée devant la maison."},
+{"fr":"bleu","g":"adj.","zh":"蓝色的","en":"blue","sfr":"Le ciel est bleu et il fait beau."},
+{"fr":"vert","g":"adj.","zh":"绿色的","en":"green","sfr":"L'herbe est verte au printemps."},
+{"fr":"jaune","g":"adj.","zh":"黄色的","en":"yellow","sfr":"Le citron est jaune et acide."},
+{"fr":"grand","g":"adj.","zh":"大的/高的","en":"big","sfr":"Il y a un grand arbre dans la cour."},
+{"fr":"petit","g":"adj.","zh":"小的","en":"small","sfr":"Mon chat est petit et très doux."},
+{"fr":"beau","g":"adj.","zh":"美丽的","en":"beautiful","sfr":"Quel beau paysage de montagne !"},
+{"fr":"chaud","g":"adj.","zh":"热的","en":"hot","sfr":"Le chocolat chaud est délicieux en hiver."},
+{"fr":"froid","g":"adj.","zh":"冷的","en":"cold","sfr":"L'eau froide de la rivière surprend en été."},
+{"fr":"manger","g":"v.","zh":"吃","en":"eat","sfr":"Nous mangeons des fruits frais chaque jour."},
+{"fr":"boire","g":"v.","zh":"喝","en":"drink","sfr":"Je bois de l'eau après le sport."},
+{"fr":"dormir","g":"v.","zh":"睡觉","en":"sleep","sfr":"Je dors huit heures chaque nuit."},
+{"fr":"jouer","g":"v.","zh":"玩/演奏","en":"play","sfr":"Les enfants jouent dans la cour après l'école."},
+{"fr":"courir","g":"v.","zh":"跑","en":"run","sfr":"Je cours dans le parc avec mon chien."},
+{"fr":"marcher","g":"v.","zh":"走路","en":"walk","sfr":"Nous marchons jusqu'à l'école chaque matin."},
+{"fr":"lire","g":"v.","zh":"读","en":"read","sfr":"J'aime lire des histoires le soir."},
+{"fr":"écrire","g":"v.","zh":"写","en":"write","sfr":"J'écris une lettre à ma grand-mère."},
+{"fr":"dessiner","g":"v.","zh":"画画","en":"draw","sfr":"Léa dessine un château fort dans son cahier."},
+{"fr":"chanter","g":"v.","zh":"唱歌","en":"sing","sfr":"Nous chantons une chanson en classe de musique."},
+{"fr":"aimer","g":"v.","zh":"喜欢/爱","en":"love","sfr":"J'aime beaucoup les fraises en été."},
+{"fr":"regarder","g":"v.","zh":"看","en":"watch","sfr":"Je regarde les étoiles avec mon père la nuit."},
+{"fr":"écouter","g":"v.","zh":"听","en":"listen","sfr":"J'écoute de la musique dans ma chambre."},
+{"fr":"parler","g":"v.","zh":"说话","en":"speak","sfr":"Je parle français et un peu d'anglais."},
+{"fr":"demander","g":"v.","zh":"问/请求","en":"ask","sfr":"Je demande de l'aide à la maîtresse."},
+{"fr":"répondre","g":"v.","zh":"回答","en":"answer","sfr":"L'élève répond à la question du maître."},
+{"fr":"table","g":"n.f.","zh":"桌子","en":"table","sfr":"Les livres sont posés sur la table."},
+{"fr":"chaise","g":"n.f.","zh":"椅子","en":"chair","sfr":"Chaque élève s'assoit sur sa chaise."},
+{"fr":"porte","g":"n.f.","zh":"门","en":"door","sfr":"La porte de la classe est ouverte."},
+{"fr":"fenêtre","g":"n.f.","zh":"窗户","en":"window","sfr":"La lumière entre par la fenêtre."},
+{"fr":"rue","g":"n.f.","zh":"街道","en":"street","sfr":"Il y a beaucoup de voitures dans cette rue."},
+{"fr":"ville","g":"n.f.","zh":"城市","en":"city","sfr":"Nous habitons dans une grande ville."},
+{"fr":"village","g":"n.m.","zh":"村庄","en":"village","sfr":"Mon grand-père vit dans un petit village à la campagne."},
+{"fr":"route","g":"n.f.","zh":"道路","en":"road","sfr":"La route traverse la forêt."},
+{"fr":"voiture","g":"n.f.","zh":"汽车","en":"car","sfr":"La voiture roule sur l'autoroute."},
+{"fr":"vélo","g":"n.m.","zh":"自行车","en":"bicycle","sfr":"Je fais du vélo le week-end avec mon père."},
+{"fr":"bus","g":"n.m.","zh":"公共汽车","en":"bus","sfr":"Je prends le bus pour aller à l'école."},
+{"fr":"train","g":"n.m.","zh":"火车","en":"train","sfr":"Le train part à huit heures du matin."},
+{"fr":"avion","g":"n.m.","zh":"飞机","en":"airplane","sfr":"L'avion décolle depuis l'aéroport de Paris."},
+{"fr":"magasin","g":"n.m.","zh":"商店","en":"shop","sfr":"Ma mère achète des légumes au magasin."},
+{"fr":"marché","g":"n.m.","zh":"市场","en":"market","sfr":"Nous allons au marché le samedi matin."},
+{"fr":"boulangerie","g":"n.f.","zh":"面包店","en":"bakery","sfr":"L'odeur de la boulangerie est délicieuse le matin."},
+{"fr":"hôpital","g":"n.m.","zh":"医院","en":"hospital","sfr":"Le médecin travaille à l'hôpital."},
+{"fr":"pharmacie","g":"n.f.","zh":"药店","en":"pharmacy","sfr":"Je vais à la pharmacie chercher du sirop."},
+{"fr":"bibliothèque","g":"n.f.","zh":"图书馆","en":"library","sfr":"Je rends mes livres à la bibliothèque du quartier."},
+{"fr":"parc","g":"n.m.","zh":"公园","en":"park","sfr":"Nous pique-niquons dans le parc en été."},
+{"fr":"piscine","g":"n.f.","zh":"游泳池","en":"swimming pool","sfr":"Je vais à la piscine le jeudi après-midi."},
+{"fr":"montagne","g":"n.f.","zh":"山","en":"mountain","sfr":"Nous faisons du ski à la montagne en hiver."},
+{"fr":"mer","g":"n.f.","zh":"大海","en":"sea","sfr":"Nous passons nos vacances au bord de la mer."},
+{"fr":"rivière","g":"n.f.","zh":"河流","en":"river","sfr":"Les enfants jouent près de la rivière."},
+{"fr":"forêt","g":"n.f.","zh":"森林","en":"forest","sfr":"Nous nous promenons dans la forêt en automne."},
+{"fr":"campagne","g":"n.f.","zh":"乡村","en":"countryside","sfr":"Mes grands-parents habitent à la campagne."},
+{"fr":"printemps","g":"n.m.","zh":"春天","en":"spring","sfr":"Les fleurs s'épanouissent au printemps."},
+{"fr":"été","g":"n.m.","zh":"夏天","en":"summer","sfr":"Il fait très chaud en été."},
+{"fr":"automne","g":"n.m.","zh":"秋天","en":"autumn","sfr":"Les feuilles tombent en automne."},
+{"fr":"hiver","g":"n.m.","zh":"冬天","en":"winter","sfr":"Il neige souvent en hiver dans les Alpes."},
+{"fr":"matin","g":"n.m.","zh":"早晨","en":"morning","sfr":"Je me lève tôt le matin pour aller à l'école."},
+{"fr":"midi","g":"n.m.","zh":"中午","en":"noon","sfr":"Nous mangeons à la cantine à midi."},
+{"fr":"soir","g":"n.m.","zh":"晚上","en":"evening","sfr":"Je fais mes devoirs le soir."},
+{"fr":"nuit","g":"n.f.","zh":"夜晚","en":"night","sfr":"Les étoiles brillent dans le ciel la nuit."},
+{"fr":"semaine","g":"n.f.","zh":"周","en":"week","sfr":"Il y a cinq jours d'école par semaine."},
+{"fr":"vacances","g":"n.f.","zh":"假期","en":"holidays","sfr":"Nous partons en vacances au mois de juillet."},
+{"fr":"fête","g":"n.f.","zh":"节日/庆典","en":"celebration","sfr":"La fête de Noël est très joyeuse."},
+{"fr":"cadeau","g":"n.m.","zh":"礼物","en":"gift","sfr":"J'offre un cadeau à ma mère pour son anniversaire."},
+{"fr":"anniversaire","g":"n.m.","zh":"生日/周年纪念","en":"birthday","sfr":"Mon anniversaire est le quinze mars."},
+{"fr":"content","g":"adj.","zh":"高兴的","en":"happy","sfr":"Je suis content d'avoir une bonne note."},
+{"fr":"triste","g":"adj.","zh":"悲伤的","en":"sad","sfr":"Elle est triste parce qu'elle a perdu son chat."},
+{"fr":"fatigué","g":"adj.","zh":"疲倦的","en":"tired","sfr":"Je suis fatigué après la longue promenade."},
+{"fr":"malade","g":"adj.","zh":"生病的","en":"sick","sfr":"Je suis malade et je reste à la maison."},
+{"fr":"propre","g":"adj.","zh":"干净的","en":"clean","sfr":"La cuisine est propre après le nettoyage."},
+{"fr":"sale","g":"adj.","zh":"脏的","en":"dirty","sfr":"Mes chaussures sont sales après la promenade."},
+{"fr":"rapide","g":"adj.","zh":"快的","en":"fast","sfr":"Le guépard est l'animal le plus rapide du monde."},
+{"fr":"lent","g":"adj.","zh":"慢的","en":"slow","sfr":"La tortue est un animal très lent."},
+{"fr":"fort","g":"adj.","zh":"强壮的/响亮的","en":"strong","sfr":"Mon grand frère est fort en mathématiques."},
+{"fr":"doux","g":"adj.","zh":"温柔的/柔软的","en":"gentle","sfr":"La fourrure du lapin est très douce."},
+{"fr":"nouveau","g":"adj.","zh":"新的","en":"new","sfr":"J'ai un nouveau stylo pour la rentrée."},
+{"fr":"vieux","g":"adj.","zh":"旧的/老的","en":"old","sfr":"Ce vieux pont traverse la rivière depuis cent ans."},
+{"fr":"trouver","g":"v.","zh":"找到","en":"find","sfr":"Je cherche et je trouve mon cahier sous le lit."},
+{"fr":"chercher","g":"v.","zh":"寻找","en":"look for","sfr":"Je cherche mes clés partout dans la maison."},
+{"fr":"donner","g":"v.","zh":"给","en":"give","sfr":"Je donne mon dessin à la maîtresse."},
+{"fr":"prendre","g":"v.","zh":"拿/乘坐","en":"take","sfr":"Je prends mon cartable avant de partir à l'école."},
+{"fr":"mettre","g":"v.","zh":"放/穿","en":"put","sfr":"Je mets mon manteau parce qu'il fait froid."},
+{"fr":"faire","g":"v.","zh":"做","en":"do","sfr":"Je fais mes devoirs après le dîner."},
+{"fr":"aller","g":"v.","zh":"去","en":"go","sfr":"Je vais à l'école à pied chaque matin."},
+{"fr":"venir","g":"v.","zh":"来","en":"come","sfr":"Mon ami vient chez moi le samedi après-midi."},
+{"fr":"partir","g":"v.","zh":"出发/离开","en":"leave","sfr":"Je pars à l'école à huit heures."},
+{"fr":"arriver","g":"v.","zh":"到达","en":"arrive","sfr":"J'arrive à l'école avant la cloche."},
+{"fr":"penser","g":"v.","zh":"思考","en":"think","sfr":"Je pense que cette réponse est correcte."},
+{"fr":"savoir","g":"v.","zh":"知道","en":"know","sfr":"Je sais déjà lire et écrire mon nom."},
+{"fr":"aider","g":"v.","zh":"帮助","en":"help","sfr":"J'aide ma mère à ranger la cuisine."},
+{"fr":"acheter","g":"v.","zh":"购买","en":"buy","sfr":"Nous achetons des fruits au marché."},
+{"fr":"nager","g":"v.","zh":"游泳","en":"swim","sfr":"Je nage dans la piscine le mercredi."},
+{"fr":"sauter","g":"v.","zh":"跳","en":"jump","sfr":"Les enfants sautent à la corde dans la cour."},
+{"fr":"tomber","g":"v.","zh":"摔倒/落下","en":"fall","sfr":"Les feuilles tombent des arbres en automne."},
+{"fr":"casser","g":"v.","zh":"打破","en":"break","sfr":"J'ai cassé mon crayon en appuyant trop fort."},
+{"fr":"ouvrir","g":"v.","zh":"打开","en":"open","sfr":"J'ouvre mon cartable pour prendre mon livre."},
+{"fr":"fermer","g":"v.","zh":"关闭","en":"close","sfr":"Je ferme la porte de ma chambre le soir."},
+{"fr":"montrer","g":"v.","zh":"展示","en":"show","sfr":"La maîtresse montre une carte du monde à la classe."},
+{"fr":"apporter","g":"v.","zh":"带来","en":"bring","sfr":"J'apporte mon goûter à la récréation."},
+{"fr":"fleur","g":"n.f.","zh":"花","en":"flower","sfr":"Je cueille une fleur dans le jardin pour ma mère."},
+{"fr":"herbe","g":"n.f.","zh":"草","en":"grass","sfr":"L'herbe est humide après la pluie."},
+{"fr":"feuille","g":"n.f.","zh":"叶子/纸张","en":"leaf","sfr":"Les feuilles rouges et jaunes tombent en automne."},
+{"fr":"graine","g":"n.f.","zh":"种子","en":"seed","sfr":"Je plante une graine dans le pot en classe."},
+{"fr":"fruit","g":"n.m.","zh":"水果","en":"fruit","sfr":"Je mange un fruit à chaque repas."},
+{"fr":"légume","g":"n.m.","zh":"蔬菜","en":"vegetable","sfr":"Ma mère cuisine des légumes frais chaque jour."},
+{"fr":"lapin","g":"n.m.","zh":"兔子","en":"rabbit","sfr":"Le lapin mange des carottes dans le jardin."},
+{"fr":"cheval","g":"n.m.","zh":"马","en":"horse","sfr":"Le cheval court dans le champ."},
+{"fr":"vache","g":"n.f.","zh":"奶牛","en":"cow","sfr":"La vache broute l'herbe dans le pré."},
+{"fr":"mouton","g":"n.m.","zh":"羊","en":"sheep","sfr":"Le berger garde ses moutons dans la colline."},
+{"fr":"poule","g":"n.f.","zh":"母鸡","en":"hen","sfr":"La poule pond un œuf chaque matin."},
+{"fr":"cochon","g":"n.m.","zh":"猪","en":"pig","sfr":"Le cochon se roule dans la boue."},
+{"fr":"lion","g":"n.m.","zh":"狮子","en":"lion","sfr":"Le lion rugit dans la savane africaine."},
+{"fr":"éléphant","g":"n.m.","zh":"大象","en":"elephant","sfr":"L'éléphant boit de l'eau dans la rivière."},
+{"fr":"singe","g":"n.m.","zh":"猴子","en":"monkey","sfr":"Le singe grimpe dans l'arbre très vite."},
+{"fr":"serpent","g":"n.m.","zh":"蛇","en":"snake","sfr":"Le serpent glisse silencieusement dans les herbes."},
+{"fr":"grenouille","g":"n.f.","zh":"青蛙","en":"frog","sfr":"La grenouille saute dans l'étang."},
+{"fr":"papillon","g":"n.m.","zh":"蝴蝶","en":"butterfly","sfr":"Un beau papillon se pose sur la fleur."},
+{"fr":"miel","g":"n.m.","zh":"蜂蜜","en":"honey","sfr":"Les abeilles produisent du miel dans la ruche."},
+{"fr":"abeille","g":"n.f.","zh":"蜜蜂","en":"bee","sfr":"L'abeille butine les fleurs du jardin."},
+{"fr":"chambre","g":"n.f.","zh":"卧室","en":"bedroom","sfr":"Je range ma chambre chaque samedi matin."},
+{"fr":"cuisine","g":"n.f.","zh":"厨房","en":"kitchen","sfr":"Ma mère prépare le repas dans la cuisine."},
+{"fr":"salon","g":"n.m.","zh":"客厅","en":"living room","sfr":"Toute la famille se réunit dans le salon le soir."},
+{"fr":"salle de bains","g":"n.f.","zh":"浴室","en":"bathroom","sfr":"Je me brosse les dents dans la salle de bains."},
+{"fr":"lit","g":"n.m.","zh":"床","en":"bed","sfr":"Je fais mon lit chaque matin avant l'école."},
+{"fr":"armoire","g":"n.f.","zh":"衣柜","en":"wardrobe","sfr":"Mes vêtements sont dans l'armoire."},
+{"fr":"lampe","g":"n.f.","zh":"台灯","en":"lamp","sfr":"J'allume la lampe pour lire le soir."},
+{"fr":"téléphone","g":"n.m.","zh":"电话","en":"phone","sfr":"Ma mère répond au téléphone dans le couloir."},
+{"fr":"ordinateur","g":"n.m.","zh":"电脑","en":"computer","sfr":"Je fais des recherches sur l'ordinateur."},
+{"fr":"manteau","g":"n.m.","zh":"大衣","en":"coat","sfr":"Je mets mon manteau parce qu'il fait froid."},
+{"fr":"chapeau","g":"n.m.","zh":"帽子","en":"hat","sfr":"Il porte un chapeau pour se protéger du soleil."},
+{"fr":"chaussure","g":"n.f.","zh":"鞋","en":"shoe","sfr":"Je mets mes chaussures avant de sortir."},
+{"fr":"robe","g":"n.f.","zh":"裙子","en":"dress","sfr":"Elle porte une belle robe bleue pour la fête."},
+{"fr":"pantalon","g":"n.m.","zh":"裤子","en":"trousers","sfr":"Il met son pantalon gris pour aller à l'école."},
+{"fr":"couleur","g":"n.f.","zh":"颜色","en":"colour","sfr":"Quelle est ta couleur préférée ?"},
+{"fr":"nombre","g":"n.m.","zh":"数字","en":"number","sfr":"Nous apprenons les nombres jusqu'à mille en CM1."},
+{"fr":"lettre","g":"n.f.","zh":"字母/信件","en":"letter","sfr":"J'apprends toutes les lettres de l'alphabet."},
+{"fr":"mot","g":"n.m.","zh":"单词","en":"word","sfr":"Je cherche le sens d'un mot dans le dictionnaire."},
+{"fr":"phrase","g":"n.f.","zh":"句子","en":"sentence","sfr":"J'écris une phrase correcte avec un verbe."},
+{"fr":"histoire","g":"n.f.","zh":"故事/历史","en":"story","sfr":"La maîtresse raconte une belle histoire à la classe."},
+{"fr":"leçon","g":"n.f.","zh":"课文/课","en":"lesson","sfr":"Je révise ma leçon de géographie ce soir."},
+{"fr":"exercice","g":"n.m.","zh":"练习","en":"exercise","sfr":"Je corrige mon exercice de mathématiques."},
+{"fr":"devoir","g":"n.m.","zh":"作业","en":"homework","sfr":"Je fais mes devoirs après le goûter."},
+{"fr":"note","g":"n.f.","zh":"分数/笔记","en":"mark","sfr":"J'ai eu une bonne note à la dictée."},
+{"fr":"dictée","g":"n.f.","zh":"听写","en":"dictation","sfr":"La maîtresse lit lentement pendant la dictée."},
+{"fr":"calcul","g":"n.m.","zh":"计算","en":"calculation","sfr":"Je fais un calcul mental très vite."},
+{"fr":"problème","g":"n.m.","zh":"问题/难题","en":"problem","sfr":"Je résous le problème de mathématiques en deux étapes."},
+{"fr":"résultat","g":"n.m.","zh":"结果","en":"result","sfr":"Le résultat de l'addition est correct."},
+{"fr":"question","g":"n.f.","zh":"问题","en":"question","sfr":"Je lève la main pour poser une question."},
+{"fr":"réponse","g":"n.f.","zh":"回答","en":"answer","sfr":"La réponse est écrite au bas de la page."},
+{"fr":"goûter","g":"n.m.","zh":"下午茶点","en":"snack","sfr":"Je mange mon goûter à seize heures trente."},
+{"fr":"déjeuner","g":"n.m.","zh":"午饭","en":"lunch","sfr":"Je mange à la cantine pour le déjeuner."},
+{"fr":"dîner","g":"n.m.","zh":"晚饭","en":"dinner","sfr":"Toute la famille dîne ensemble chaque soir."},
+{"fr":"petit-déjeuner","g":"n.m.","zh":"早餐","en":"breakfast","sfr":"Je prends mon petit-déjeuner avant de partir."},
+{"fr":"gâteau","g":"n.m.","zh":"蛋糕","en":"cake","sfr":"Maman prépare un gâteau pour mon anniversaire."},
+{"fr":"chocolat","g":"n.m.","zh":"巧克力","en":"chocolate","sfr":"Je mange un carré de chocolat après le déjeuner."},
+{"fr":"fromage","g":"n.m.","zh":"奶酪","en":"cheese","sfr":"Nous mangeons du fromage après le repas en France."},
+{"fr":"soupe","g":"n.f.","zh":"汤","en":"soup","sfr":"Ma mère fait de la soupe de légumes en hiver."},
+{"fr":"salade","g":"n.f.","zh":"沙拉","en":"salad","sfr":"Je mange une salade verte avec du citron."},
+{"fr":"propre","g":"adj.","zh":"干净的","en":"clean","sfr":"Mes mains sont propres avant le repas."},
+{"fr":"joli","g":"adj.","zh":"漂亮的","en":"pretty","sfr":"Elle porte un joli chapeau de paille."},
+{"fr":"sympa","g":"adj.","zh":"友好的","en":"nice","sfr":"Mon voisin est très sympa et toujours souriant."},
+{"fr":"difficile","g":"adj.","zh":"困难的","en":"difficult","sfr":"Cet exercice est un peu difficile pour moi."},
+{"fr":"facile","g":"adj.","zh":"容易的","en":"easy","sfr":"Ce calcul est facile, je le fais en une minute."},
+{"fr":"important","g":"adj.","zh":"重要的","en":"important","sfr":"Il est important de bien dormir pour être en forme."},
+{"fr":"différent","g":"adj.","zh":"不同的","en":"different","sfr":"Chaque fleur est différente par sa couleur et sa forme."},
+{"fr":"même","g":"adj.","zh":"相同的","en":"same","sfr":"Nous avons le même livre en classe."},
+{"fr":"prochain","g":"adj.","zh":"下一个","en":"next","sfr":"La prochaine semaine, nous partons en voyage scolaire."},
+{"fr":"dernier","g":"adj.","zh":"最后的/上一个","en":"last","sfr":"La dernière page du livre est la plus belle."},
+{"fr":"premier","g":"adj.","zh":"第一的","en":"first","sfr":"Je suis le premier à arriver en classe ce matin."},
+{"fr":"apprendre","g":"v.","zh":"学习","en":"learn","sfr":"J'apprends une nouvelle chanson en classe."},
+{"fr":"comprendre","g":"v.","zh":"理解","en":"understand","sfr":"Je comprends maintenant la règle de grammaire."},
+{"fr":"expliquer","g":"v.","zh":"解释","en":"explain","sfr":"La maîtresse explique le problème au tableau."},
+{"fr":"corriger","g":"v.","zh":"改正","en":"correct","sfr":"Je corrige mes erreurs dans mon cahier."},
+{"fr":"préparer","g":"v.","zh":"准备","en":"prepare","sfr":"Je prépare mon cartable la veille au soir."},
+{"fr":"ranger","g":"v.","zh":"整理","en":"tidy up","sfr":"Je range mes affaires avant de quitter la classe."},
+{"fr":"partager","g":"v.","zh":"分享","en":"share","sfr":"Je partage mes crayons avec mon voisin de table."},
+{"fr":"protéger","g":"v.","zh":"保护","en":"protect","sfr":"Nous protégeons l'environnement en triant les déchets."},
+{"fr":"observer","g":"v.","zh":"观察","en":"observe","sfr":"Nous observons les fourmis dans le jardin de l'école."},
+{"fr":"utiliser","g":"v.","zh":"使用","en":"use","sfr":"J'utilise un dictionnaire pour chercher les mots difficiles."},
+{"fr":"choisir","g":"v.","zh":"选择","en":"choose","sfr":"Je choisis un livre à la bibliothèque."},
+{"fr":"construire","g":"v.","zh":"建造","en":"build","sfr":"Nous construisons une cabane dans le jardin."},
+{"fr":"inventer","g":"v.","zh":"发明/想象","en":"invent","sfr":"J'invente une histoire avant de dormir."},
+{"fr":"rêver","g":"v.","zh":"做梦","en":"dream","sfr":"Je rêve de voyager dans des pays lointains."},
+{"fr":"espérer","g":"v.","zh":"希望","en":"hope","sfr":"J'espère avoir une bonne note à mon contrôle."},
+{"fr":"féliciter","g":"v.","zh":"祝贺","en":"congratulate","sfr":"La maîtresse félicite l'élève qui a bien travaillé."},
+{"fr":"punir","g":"v.","zh":"惩罚","en":"punish","sfr":"Le maître punit l'élève qui ne respecte pas les règles."},
+{"fr":"obéir","g":"v.","zh":"服从","en":"obey","sfr":"Je dois obéir aux règles de l'école."},
+{"fr":"respecter","g":"v.","zh":"尊重","en":"respect","sfr":"Nous respectons nos camarades en classe."},
+{"fr":"planète","g":"n.f.","zh":"行星","en":"planet","sfr":"La Terre est la troisième planète du système solaire."},
+{"fr":"étoile","g":"n.f.","zh":"星星","en":"star","sfr":"On voit des milliers d'étoiles dans le ciel la nuit."},
+{"fr":"lune","g":"n.f.","zh":"月亮","en":"moon","sfr":"La lune brille dans le ciel la nuit."},
+{"fr":"continent","g":"n.m.","zh":"大陆","en":"continent","sfr":"L'Afrique est le deuxième plus grand continent du monde."},
+{"fr":"océan","g":"n.m.","zh":"海洋","en":"ocean","sfr":"L'océan Atlantique sépare l'Europe de l'Amérique."},
+{"fr":"île","g":"n.f.","zh":"岛","en":"island","sfr":"La Corse est une belle île en mer Méditerranée."},
+{"fr":"désert","g":"n.m.","zh":"沙漠","en":"desert","sfr":"Le désert du Sahara est très chaud et très sec."},
+{"fr":"volcan","g":"n.m.","zh":"火山","en":"volcano","sfr":"Le volcan entre en éruption et projette de la lave."},
+{"fr":"tremblement","g":"n.m.","zh":"震动","en":"trembling","sfr":"Un tremblement de terre a secoué la région hier."},
+{"fr":"tempête","g":"n.f.","zh":"暴风雨","en":"storm","sfr":"Une grande tempête a renversé des arbres dans le parc."},
+{"fr":"arc-en-ciel","g":"n.m.","zh":"彩虹","en":"rainbow","sfr":"Après la pluie, un arc-en-ciel apparaît dans le ciel."},
+{"fr":"ombre","g":"n.f.","zh":"影子/阴影","en":"shadow","sfr":"Mon ombre est longue quand le soleil est bas."},
+{"fr":"lumière","g":"n.f.","zh":"光","en":"light","sfr":"La lumière du soleil réchauffe la terre."},
+{"fr":"son","g":"n.m.","zh":"声音","en":"sound","sfr":"J'entends le son de la cloche de l'école."},
+{"fr":"odeur","g":"n.f.","zh":"气味","en":"smell","sfr":"L'odeur des fleurs parfume le jardin au printemps."},
+{"fr":"couleur","g":"n.f.","zh":"颜色","en":"colour","sfr":"La couleur du ciel change au coucher du soleil."},
+{"fr":"forme","g":"n.f.","zh":"形状","en":"shape","sfr":"Je trace une forme géométrique dans mon cahier."},
+{"fr":"taille","g":"n.f.","zh":"大小/身高","en":"size","sfr":"La taille de cette boîte est parfaite pour ranger mes crayons."},
+{"fr":"poids","g":"n.m.","zh":"重量","en":"weight","sfr":"Le poids de mon cartable est trop lourd aujourd'hui."},
+{"fr":"distance","g":"n.f.","zh":"距离","en":"distance","sfr":"La distance entre l'école et ma maison est de cinq cents mètres."},
+{"fr":"durée","g":"n.f.","zh":"持续时间","en":"duration","sfr":"La durée de la récréation est de vingt minutes."},
+{"fr":"vitesse","g":"n.f.","zh":"速度","en":"speed","sfr":"La vitesse du train est très impressionnante."},
+{"fr":"énergie","g":"n.f.","zh":"能量","en":"energy","sfr":"Le soleil nous donne de l'énergie sous forme de lumière et de chaleur."},
+{"fr":"matière","g":"n.f.","zh":"物质/材料","en":"matter","sfr":"L'eau peut exister sous trois états de matière différents."},
+{"fr":"expérience","g":"n.f.","zh":"实验/经历","en":"experiment","sfr":"Nous faisons une expérience avec de l'eau et du sel en classe."},
+{"fr":"résultat","g":"n.m.","zh":"结果","en":"result","sfr":"Le résultat de l'expérience montre que le sucre se dissout dans l'eau."},
+{"fr":"nature","g":"n.f.","zh":"自然","en":"nature","sfr":"Nous apprenons à respecter la nature lors des sorties scolaires."},
+{"fr":"environnement","g":"n.m.","zh":"环境","en":"environment","sfr":"Nous devons protéger l'environnement pour les générations futures."},
+{"fr":"animal","g":"n.m.","zh":"动物","en":"animal","sfr":"Chaque animal a un mode de vie adapté à son habitat."},
+{"fr":"plante","g":"n.f.","zh":"植物","en":"plant","sfr":"La plante a besoin de soleil et d'eau pour grandir."},
+{"fr":"racine","g":"n.f.","zh":"根","en":"root","sfr":"Les racines de l'arbre s'enfoncent profondément dans la terre."},
+{"fr":"tige","g":"n.f.","zh":"茎","en":"stem","sfr":"La tige de la rose est couverte d'épines."},
+{"fr":"pétale","g":"n.m.","zh":"花瓣","en":"petal","sfr":"Les pétales de la fleur tombent un à un dans le vent."},
+{"fr":"photosynthèse","g":"n.f.","zh":"光合作用","en":"photosynthesis","sfr":"La maîtresse explique que les plantes fabriquent leur nourriture grâce à la photosynthèse."},
+{"fr":"oxygène","g":"n.m.","zh":"氧气","en":"oxygen","sfr":"Les plantes libèrent de l'oxygène pendant la photosynthèse."},
+{"fr":"dioxyde","g":"n.m.","zh":"二氧化物","en":"dioxide","sfr":"Les plantes absorbent le dioxyde de carbone de l'air."},
+{"fr":"cycle","g":"n.m.","zh":"循环","en":"cycle","sfr":"Nous étudions le cycle de l'eau en sciences naturelles."},
+{"fr":"évaporation","g":"n.f.","zh":"蒸发","en":"evaporation","sfr":"L'évaporation de l'eau forme des nuages dans l'atmosphère."},
+{"fr":"condensation","g":"n.f.","zh":"凝结","en":"condensation","sfr":"La condensation de la vapeur d'eau forme la pluie."},
+{"fr":"glacier","g":"n.m.","zh":"冰川","en":"glacier","sfr":"Les glaciers de montagne fondent à cause du réchauffement climatique."},
+{"fr":"réchauffement","g":"n.m.","zh":"变暖","en":"warming","sfr":"Le réchauffement climatique est un problème mondial important."},
+{"fr":"pollution","g":"n.f.","zh":"污染","en":"pollution","sfr":"La pollution de l'air est mauvaise pour la santé."},
+{"fr":"déchet","g":"n.m.","zh":"垃圾","en":"waste","sfr":"Nous trions les déchets pour recycler les matériaux."},
+{"fr":"recyclage","g":"n.m.","zh":"回收","en":"recycling","sfr":"Le recyclage permet de réduire les déchets dans la nature."},
+{"fr":"énergie solaire","g":"n.f.","zh":"太阳能","en":"solar energy","sfr":"Les panneaux solaires captent l'énergie solaire pour produire de l'électricité."},
+{"fr":"château","g":"n.m.","zh":"城堡","en":"castle","sfr":"Nous visitons un château médiéval pendant la sortie scolaire."},
+{"fr":"musée","g":"n.m.","zh":"博物馆","en":"museum","sfr":"Nous allons au musée voir des dinosaures reconstitués."},
+{"fr":"monument","g":"n.m.","zh":"纪念碑/建筑","en":"monument","sfr":"La tour Eiffel est le monument le plus célèbre de France."},
+{"fr":"tableau","g":"n.m.","zh":"画作","en":"painting","sfr":"Nous regardons un beau tableau de Monet au musée."},
+{"fr":"sculpture","g":"n.f.","zh":"雕塑","en":"sculpture","sfr":"Les élèves admirent une sculpture en marbre blanc."},
+{"fr":"poème","g":"n.m.","zh":"诗歌","en":"poem","sfr":"J'apprends un poème de Victor Hugo par cœur."},
+{"fr":"théâtre","g":"n.m.","zh":"剧院/戏剧","en":"theatre","sfr":"La classe joue une pièce de théâtre pour la fête de l'école."},
+{"fr":"spectacle","g":"n.m.","zh":"演出","en":"show","sfr":"Nous assistons à un spectacle de marionnettes."},
+{"fr":"instrument","g":"n.m.","zh":"乐器","en":"instrument","sfr":"Je joue de la flûte, mon instrument préféré."},
+{"fr":"musique","g":"n.f.","zh":"音乐","en":"music","sfr":"La musique classique me calme quand je travaille."},
+{"fr":"chanson","g":"n.f.","zh":"歌曲","en":"song","sfr":"Nous apprenons une nouvelle chanson en chorale."},
+{"fr":"sport","g":"n.m.","zh":"运动","en":"sport","sfr":"Le sport est important pour rester en bonne santé."},
+{"fr":"équipe","g":"n.f.","zh":"队伍","en":"team","sfr":"Notre équipe de football a gagné le match."},
+{"fr":"règle","g":"n.f.","zh":"规则","en":"rule","sfr":"Nous respectons les règles du jeu pendant le match."},
+{"fr":"compétition","g":"n.f.","zh":"比赛","en":"competition","sfr":"La compétition sportive se déroule dans la salle de sport."},
+{"fr":"victoire","g":"n.f.","zh":"胜利","en":"victory","sfr":"Nous fêtons notre victoire avec toute l'équipe."},
+{"fr":"défaite","g":"n.f.","zh":"失败","en":"defeat","sfr":"Après la défaite, l'équipe s'entraîne encore plus dur."},
+{"fr":"effort","g":"n.m.","zh":"努力","en":"effort","sfr":"Avec des efforts, je progresse en mathématiques."},
+{"fr":"progrès","g":"n.m.","zh":"进步","en":"progress","sfr":"La maîtresse remarque mes progrès en lecture."},
+{"fr":"confiance","g":"n.f.","zh":"信心","en":"confidence","sfr":"J'ai confiance en moi pour réussir ce contrôle."},
+{"fr":"courage","g":"n.m.","zh":"勇气","en":"courage","sfr":"Il faut du courage pour parler devant toute la classe."},
+{"fr":"patience","g":"n.f.","zh":"耐心","en":"patience","sfr":"La patience est une qualité importante pour apprendre."},
+{"fr":"curiosité","g":"n.f.","zh":"好奇心","en":"curiosity","sfr":"Ma curiosité me pousse à poser beaucoup de questions."},
+{"fr":"imagination","g":"n.f.","zh":"想象力","en":"imagination","sfr":"Mon imagination m'aide à inventer des histoires originales."},
+{"fr":"créativité","g":"n.f.","zh":"创造力","en":"creativity","sfr":"La créativité est importante dans les cours d'art."},
+{"fr":"intelligence","g":"n.f.","zh":"智慧","en":"intelligence","sfr":"L'intelligence ne se mesure pas seulement aux notes."},
+{"fr":"mémoire","g":"n.f.","zh":"记忆","en":"memory","sfr":"J'entraîne ma mémoire en apprenant des poèmes."},
+{"fr":"attention","g":"n.f.","zh":"注意力","en":"attention","sfr":"Je dois faire attention pendant les explications de la maîtresse."},
+{"fr":"concentration","g":"n.f.","zh":"专注力","en":"concentration","sfr":"La concentration est nécessaire pour réussir les exercices."},
+{"fr":"organisation","g":"n.f.","zh":"组织","en":"organisation","sfr":"Une bonne organisation m'aide à ne pas oublier mes devoirs."},
+{"fr":"responsabilité","g":"n.f.","zh":"责任","en":"responsibility","sfr":"J'apprends à prendre des responsabilités à l'école."},
+{"fr":"liberté","g":"n.f.","zh":"自由","en":"freedom","sfr":"Pendant les vacances, j'ai plus de liberté pour jouer."},
+{"fr":"solidarité","g":"n.f.","zh":"团结","en":"solidarity","sfr":"La solidarité entre camarades rend la classe plus agréable."},
+{"fr":"respect","g":"n.m.","zh":"尊重","en":"respect","sfr":"Le respect des autres est une valeur fondamentale à l'école."},
+{"fr":"équité","g":"n.f.","zh":"公平","en":"fairness","sfr":"L'équité dans le jeu permet à chacun de participer."},
+{"fr":"tolérance","g":"n.f.","zh":"宽容","en":"tolerance","sfr":"La tolérance permet d'accepter les différences entre les personnes."},
+{"fr":"honnêteté","g":"n.f.","zh":"诚实","en":"honesty","sfr":"L'honnêteté est une qualité que mes parents m'ont apprise."},
+{"fr":"territoire","g":"n.m.","zh":"领土","en":"territory","sfr":"La France métropolitaine est le territoire principal du pays."},
+{"fr":"région","g":"n.f.","zh":"地区","en":"region","sfr":"La Bretagne est une région connue pour ses crêpes et ses côtes."},
+{"fr":"département","g":"n.m.","zh":"省","en":"department","sfr":"Le département du Rhône a pour préfecture la ville de Lyon."},
+{"fr":"capitale","g":"n.f.","zh":"首都","en":"capital","sfr":"Paris est la capitale de la France."},
+{"fr":"frontière","g":"n.f.","zh":"边界","en":"border","sfr":"La France partage une frontière avec l'Espagne au sud."},
+{"fr":"altitude","g":"n.f.","zh":"海拔","en":"altitude","sfr":"Le mont Blanc culmine à une altitude de quatre mille huit cents mètres."},
+{"fr":"plaine","g":"n.f.","zh":"平原","en":"plain","sfr":"Les agriculteurs cultivent le blé dans la grande plaine."},
+{"fr":"colline","g":"n.f.","zh":"小山","en":"hill","sfr":"Le moulin est perché au sommet de la colline."},
+{"fr":"plateau","g":"n.m.","zh":"高原","en":"plateau","sfr":"Le plateau du Massif central est une région agricole importante."},
+{"fr":"vallée","g":"n.f.","zh":"山谷","en":"valley","sfr":"La rivière coule doucement au fond de la vallée."},
+{"fr":"côte","g":"n.f.","zh":"海岸","en":"coast","sfr":"La côte normande est connue pour ses falaises blanches."},
+{"fr":"port","g":"n.m.","zh":"港口","en":"port","sfr":"De nombreux bateaux arrivent chaque jour dans ce grand port."},
+{"fr":"agriculture","g":"n.f.","zh":"农业","en":"agriculture","sfr":"L'agriculture française produit du blé, du vin et des fromages."},
+{"fr":"industrie","g":"n.f.","zh":"工业","en":"industry","sfr":"L'industrie automobile est présente dans plusieurs régions françaises."},
+{"fr":"population","g":"n.f.","zh":"人口","en":"population","sfr":"La population de Paris dépasse deux millions d'habitants."},
+{"fr":"habitant","g":"n.m.","zh":"居民","en":"inhabitant","sfr":"Les habitants de ce village fêtent ensemble le 14 juillet."},
+{"fr":"citoyen","g":"n.m.","zh":"公民","en":"citizen","sfr":"Un citoyen a des droits mais aussi des devoirs."},
+{"fr":"élection","g":"n.f.","zh":"选举","en":"election","sfr":"Les élections permettent aux citoyens de choisir leurs représentants."},
+{"fr":"gouvernement","g":"n.m.","zh":"政府","en":"government","sfr":"Le gouvernement prend des décisions pour l'ensemble du pays."},
+{"fr":"loi","g":"n.f.","zh":"法律","en":"law","sfr":"Tout le monde doit respecter la loi dans un État démocratique."},
+{"fr":"droit","g":"n.m.","zh":"权利","en":"right","sfr":"Chaque enfant a le droit d'aller à l'école."},
+{"fr":"devoir","g":"n.m.","zh":"责任/义务","en":"duty","sfr":"Il est de notre devoir de respecter l'environnement."},
+{"fr":"siècle","g":"n.m.","zh":"世纪","en":"century","sfr":"Nous sommes au début du vingt et unième siècle."},
+{"fr":"époque","g":"n.f.","zh":"时代","en":"era","sfr":"À l'époque médiévale, les châteaux forts protégeaient les seigneurs."},
+{"fr":"civilisation","g":"n.f.","zh":"文明","en":"civilisation","sfr":"Nous étudions la civilisation égyptienne en cours d'histoire."},
+{"fr":"patrimoine","g":"n.m.","zh":"遗产","en":"heritage","sfr":"La cathédrale gothique fait partie du patrimoine de la ville."},
+{"fr":"symbole","g":"n.m.","zh":"象征","en":"symbol","sfr":"Le coq gaulois est l'un des symboles de la France."},
+{"fr":"drapeau","g":"n.m.","zh":"国旗","en":"flag","sfr":"Le drapeau français est bleu blanc rouge."},
+{"fr":"hymne","g":"n.m.","zh":"国歌","en":"anthem","sfr":"La Marseillaise est l'hymne national de la France."},
+{"fr":"devise","g":"n.f.","zh":"格言/国号","en":"motto","sfr":"La devise de la République française est Liberté Égalité Fraternité."},
+{"fr":"démocratie","g":"n.f.","zh":"民主","en":"democracy","sfr":"Dans une démocratie, le pouvoir appartient au peuple."},
+{"fr":"république","g":"n.f.","zh":"共和国","en":"republic","sfr":"La France est une république démocratique et laïque."},
+{"fr":"solidaire","g":"adj.","zh":"团结的","en":"supportive","sfr":"Nous devons être solidaires avec les personnes dans le besoin."},
+{"fr":"sincère","g":"adj.","zh":"真诚的","en":"sincere","sfr":"Il est sincère quand il dit qu'il regrette son erreur."},
+{"fr":"courageux","g":"adj.","zh":"勇敢的","en":"brave","sfr":"Le pompier est courageux car il entre dans les bâtiments en feu."},
+{"fr":"patient","g":"adj.","zh":"耐心的","en":"patient","sfr":"Le médecin est patient avec les personnes âgées."},
+{"fr":"curieux","g":"adj.","zh":"好奇的","en":"curious","sfr":"Elle est très curieuse et pose des questions sur tout."},
+{"fr":"ambitieux","g":"adj.","zh":"有抱负的","en":"ambitious","sfr":"Il est ambitieux et veut devenir médecin plus tard."},
+{"fr":"généreux","g":"adj.","zh":"慷慨的","en":"generous","sfr":"Elle est généreuse et partage toujours son goûter avec ses amis."},
+{"fr":"timide","g":"adj.","zh":"害羞的","en":"shy","sfr":"Elle est timide mais très gentille avec les autres."},
+{"fr":"bavard","g":"adj.","zh":"话多的","en":"talkative","sfr":"Il est bavard en classe mais très créatif dans ses idées."},
+{"fr":"poli","g":"adj.","zh":"礼貌的","en":"polite","sfr":"Il est toujours poli et dit bonjour à tout le monde."},
+{"fr":"impoli","g":"adj.","zh":"无礼的","en":"rude","sfr":"Il est parfois impoli quand il est fatigué."},
+{"fr":"prudent","g":"adj.","zh":"谨慎的","en":"careful","sfr":"Il est prudent avant de traverser la rue."},
+{"fr":"attentif","g":"adj.","zh":"专心的","en":"attentive","sfr":"Elle est attentive pendant toute la leçon de sciences."},
+{"fr":"indépendant","g":"adj.","zh":"独立的","en":"independent","sfr":"Il est de plus en plus indépendant dans son travail scolaire."},
+{"fr":"original","g":"adj.","zh":"有创意的/独特的","en":"original","sfr":"Son dessin est très original et plein de couleurs vives."},
+{"fr":"développer","g":"v.","zh":"发展","en":"develop","sfr":"Je développe mes compétences en lecture chaque jour."},
+{"fr":"améliorer","g":"v.","zh":"改善","en":"improve","sfr":"Je cherche à améliorer mes résultats en mathématiques."},
+{"fr":"participer","g":"v.","zh":"参与","en":"participate","sfr":"Je participe activement aux discussions en classe."},
+{"fr":"collaborer","g":"v.","zh":"合作","en":"collaborate","sfr":"Nous collaborons en groupe pour faire le projet de sciences."},
+{"fr":"découvrir","g":"v.","zh":"发现","en":"discover","sfr":"Les explorateurs ont découvert de nouveaux continents au quinzième siècle."},
+{"fr":"analyser","g":"v.","zh":"分析","en":"analyse","sfr":"J'analyse les causes de la pollution de l'eau en sciences."},
+{"fr":"comparer","g":"v.","zh":"比较","en":"compare","sfr":"Nous comparons deux textes différents en cours de français."},
+{"fr":"résumer","g":"v.","zh":"总结","en":"summarise","sfr":"Je résume le chapitre en quelques phrases clés."},
+{"fr":"argumenter","g":"v.","zh":"论证","en":"argue","sfr":"Nous apprenons à argumenter nos opinions en cours de français."},
+{"fr":"débattre","g":"v.","zh":"辩论","en":"debate","sfr":"Nous débattons de la protection de l'environnement en classe."},
+{"fr":"évaluer","g":"v.","zh":"评估","en":"evaluate","sfr":"La maîtresse évalue notre travail à la fin du trimestre."},
+{"fr":"identifier","g":"v.","zh":"识别","en":"identify","sfr":"J'identifie les différentes parties d'une plante sur le schéma."},
+{"fr":"classer","g":"v.","zh":"分类","en":"classify","sfr":"Nous classons les animaux par familles en sciences naturelles."},
+{"fr":"mesurer","g":"v.","zh":"测量","en":"measure","sfr":"Je mesure la longueur de la table avec ma règle."},
+{"fr":"calculer","g":"v.","zh":"计算","en":"calculate","sfr":"Je calcule le périmètre du rectangle en multipliant les côtés."},
+{"fr":"tracer","g":"v.","zh":"画（线）","en":"draw","sfr":"Je trace un triangle équilatéral avec ma règle et mon compas."},
+{"fr":"démontrer","g":"v.","zh":"证明","en":"demonstrate","sfr":"Je démontre que deux plus deux font quatre."},
+{"fr":"enregistrer","g":"v.","zh":"记录","en":"record","sfr":"J'enregistre les résultats de l'expérience dans mon cahier."},
+{"fr":"recycler","g":"v.","zh":"回收","en":"recycle","sfr":"Nous recyclons le papier et le plastique à l'école."},
+{"fr":"économiser","g":"v.","zh":"节约","en":"save","sfr":"Nous économisons l'eau en fermant le robinet pendant le brossage."},
+{"fr":"préserver","g":"v.","zh":"保护","en":"preserve","sfr":"Nous devons préserver les forêts pour les générations futures."},
+{"fr":"atmosphère","g":"n.f.","zh":"大气层","en":"atmosphere","sfr":"L'atmosphère terrestre protège la vie des rayons ultraviolets."},
+{"fr":"gravité","g":"n.f.","zh":"重力","en":"gravity","sfr":"La gravité est la force qui attire les objets vers la Terre."},
+{"fr":"électricité","g":"n.f.","zh":"电","en":"electricity","sfr":"L'électricité est indispensable pour les appareils de la maison."},
+{"fr":"aimant","g":"n.m.","zh":"磁铁","en":"magnet","sfr":"L'aimant attire les objets en fer et en acier."},
+{"fr":"microscope","g":"n.m.","zh":"显微镜","en":"microscope","sfr":"Nous observons les cellules d'une feuille avec le microscope."},
+{"fr":"hypothèse","g":"n.f.","zh":"假设","en":"hypothesis","sfr":"Nous formulons une hypothèse avant de réaliser l'expérience."},
+{"fr":"conclusion","g":"n.f.","zh":"结论","en":"conclusion","sfr":"Nous rédigeons une conclusion à la fin de notre expérience."},
+{"fr":"observation","g":"n.f.","zh":"观察","en":"observation","sfr":"Mes observations sur les plantes sont notées dans mon cahier."},
+{"fr":"fossile","g":"n.m.","zh":"化石","en":"fossil","sfr":"Nous étudions les fossiles pour comprendre les animaux préhistoriques."},
+{"fr":"évolution","g":"n.f.","zh":"进化","en":"evolution","sfr":"L'évolution des espèces est un sujet fascinant en sciences naturelles."},
+{"fr":"espèce","g":"n.f.","zh":"物种","en":"species","sfr":"Certaines espèces d'animaux sont en danger d'extinction."},
+{"fr":"mammifère","g":"n.m.","zh":"哺乳动物","en":"mammal","sfr":"Le dauphin est un mammifère marin très intelligent."},
+{"fr":"reptile","g":"n.m.","zh":"爬行动物","en":"reptile","sfr":"Le crocodile est un reptile qui vit près des fleuves africains."},
+{"fr":"insecte","g":"n.m.","zh":"昆虫","en":"insect","sfr":"Les insectes jouent un rôle important dans la pollinisation des fleurs."},
+{"fr":"pollinisation","g":"n.f.","zh":"授粉","en":"pollination","sfr":"La pollinisation par les abeilles est essentielle à la reproduction des plantes."},
+{"fr":"biodiversité","g":"n.f.","zh":"生物多样性","en":"biodiversity","sfr":"La biodiversité de la forêt tropicale est extraordinaire."},
+{"fr":"chaîne alimentaire","g":"n.f.","zh":"食物链","en":"food chain","sfr":"Nous dessinons une chaîne alimentaire avec herbe lapin et renard."},
+{"fr":"prédateur","g":"n.m.","zh":"捕食者","en":"predator","sfr":"Le loup est un prédateur qui chasse en meute."},
+{"fr":"proie","g":"n.f.","zh":"猎物","en":"prey","sfr":"Le lapin est souvent la proie du renard dans la campagne."},
+{"fr":"alimentation","g":"n.f.","zh":"饮食","en":"diet","sfr":"Une bonne alimentation équilibrée est essentielle pour la santé."},
+{"fr":"protéine","g":"n.f.","zh":"蛋白质","en":"protein","sfr":"Les lentilles et les œufs sont de bonnes sources de protéines."},
+{"fr":"vitamine","g":"n.f.","zh":"维生素","en":"vitamin","sfr":"Les fruits et légumes frais contiennent beaucoup de vitamines."},
+{"fr":"digestion","g":"n.f.","zh":"消化","en":"digestion","sfr":"La digestion transforme les aliments en nutriments utilisables par le corps."},
+{"fr":"respiration","g":"n.f.","zh":"呼吸","en":"respiration","sfr":"La respiration permet aux cellules d'obtenir l'oxygène dont elles ont besoin."},
+{"fr":"circulation","g":"n.f.","zh":"循环","en":"circulation","sfr":"Le cœur assure la circulation du sang dans tout le corps."},
+{"fr":"squelette","g":"n.m.","zh":"骨骼","en":"skeleton","sfr":"Le squelette humain est composé de deux cent six os."},
+{"fr":"muscle","g":"n.m.","zh":"肌肉","en":"muscle","sfr":"Le sport renforce les muscles et améliore l'endurance."},
+{"fr":"cerveau","g":"n.m.","zh":"大脑","en":"brain","sfr":"Le cerveau contrôle toutes les fonctions du corps humain."},
+{"fr":"organe","g":"n.m.","zh":"器官","en":"organ","sfr":"Le cœur est un organe vital pour le corps humain."},
+{"fr":"hygième","g":"n.f.","zh":"卫生","en":"hygiene","sfr":"Une bonne hygiène personnelle prévient de nombreuses maladies."},
+{"fr":"vaccin","g":"n.m.","zh":"疫苗","en":"vaccine","sfr":"Le vaccin protège le corps contre certaines maladies graves."},
+{"fr":"microbe","g":"n.m.","zh":"微生物","en":"microbe","sfr":"Les microbes peuvent provoquer des maladies comme la grippe."},
+{"fr":"infection","g":"n.f.","zh":"感染","en":"infection","sfr":"Une infection se traite souvent avec des médicaments appropriés."},
+{"fr":"guérir","g":"v.","zh":"康复","en":"heal","sfr":"Avec du repos et des médicaments, je guéris vite de mon rhume."},
+{"fr":"prévenir","g":"v.","zh":"预防","en":"prevent","sfr":"Il vaut mieux prévenir les maladies que les soigner."},
+{"fr":"abri","g":"n.m.","zh":"避难所/住所","en":"shelter","sfr":"Les animaux cherchent un abri contre le vent et la pluie."},
+{"fr":"construction","g":"n.f.","zh":"建筑","en":"construction","sfr":"La construction de la nouvelle école dure plusieurs mois."},
+{"fr":"matériau","g":"n.m.","zh":"材料","en":"material","sfr":"Le béton et le bois sont des matériaux de construction courants."},
+{"fr":"architecture","g":"n.f.","zh":"建筑学","en":"architecture","sfr":"L'architecture des cathédrales gothiques est très impressionnante."},
+{"fr":"ingénieur","g":"n.m.","zh":"工程师","en":"engineer","sfr":"L'ingénieur conçoit les ponts et les tunnels modernes."},
+{"fr":"technologie","g":"n.f.","zh":"技术","en":"technology","sfr":"La technologie évolue très rapidement depuis quelques décennies."},
+{"fr":"numérique","g":"adj.","zh":"数字的","en":"digital","sfr":"Nous utilisons des outils numériques pour apprendre en classe."},
+{"fr":"programme","g":"n.m.","zh":"程序","en":"programme","sfr":"Nous suivons le programme scolaire tout au long de l'année."},
+{"fr":"algorithme","g":"n.m.","zh":"算法","en":"algorithm","sfr":"Un algorithme est une suite d'instructions pour résoudre un problème."},
+{"fr":"données","g":"n.f.","zh":"数据","en":"data","sfr":"Les données collectées permettent de réaliser des graphiques."},
+{"fr":"graphique","g":"n.m.","zh":"图表","en":"graph","sfr":"Je trace un graphique pour représenter les températures du mois."},
+{"fr":"statistique","g":"n.f.","zh":"统计","en":"statistics","sfr":"Les statistiques montrent que les températures augmentent chaque année."},
+{"fr":"pourcentage","g":"n.m.","zh":"百分比","en":"percentage","sfr":"Cinquante pour cent des élèves préfèrent les mathématiques."},
+{"fr":"proportion","g":"n.f.","zh":"比例","en":"proportion","sfr":"La proportion de garçons et de filles dans la classe est égale."},
+{"fr":"fraction","g":"n.f.","zh":"分数","en":"fraction","sfr":"Je calcule un tiers de douze grâce aux fractions."},
+{"fr":"décimal","g":"adj.","zh":"十进制的","en":"decimal","sfr":"Le système décimal est utilisé dans le monde entier."},
+{"fr":"géométrie","g":"n.f.","zh":"几何","en":"geometry","sfr":"Nous apprenons les bases de la géométrie plane en CM2."},
+{"fr":"périmètre","g":"n.m.","zh":"周长","en":"perimeter","sfr":"Je calcule le périmètre du rectangle en ajoutant tous ses côtés."},
+{"fr":"aire","g":"n.f.","zh":"面积","en":"area","sfr":"L'aire du rectangle est obtenue en multipliant sa longueur par sa largeur."},
+{"fr":"symétrie","g":"n.f.","zh":"对称","en":"symmetry","sfr":"Je trace l'axe de symétrie d'un papillon dans mon cahier."},
+{"fr":"angle","g":"n.m.","zh":"角","en":"angle","sfr":"Un angle droit mesure exactement quatre-vingt-dix degrés."},
+{"fr":"triangle","g":"n.m.","zh":"三角形","en":"triangle","sfr":"Un triangle équilatéral a trois côtés de même longueur."},
+{"fr":"rectangle","g":"n.m.","zh":"长方形","en":"rectangle","sfr":"Le rectangle a quatre angles droits et deux paires de côtés égaux."},
+{"fr":"cercle","g":"n.m.","zh":"圆","en":"circle","sfr":"Le cercle est une figure géométrique parfaitement ronde."},
+{"fr":"volume","g":"n.m.","zh":"体积","en":"volume","sfr":"Je calcule le volume d'un cube en élevant son côté au cube."},
+{"fr":"axe","g":"n.m.","zh":"轴","en":"axis","sfr":"Je trace l'axe vertical sur mon graphique."},
+{"fr":"coordonnée","g":"n.f.","zh":"坐标","en":"coordinate","sfr":"Je lis les coordonnées d'un point sur la carte géographique."},
+{"fr":"parallèle","g":"adj.","zh":"平行的","en":"parallel","sfr":"Les rails du train sont parallèles et ne se croisent jamais."},
+{"fr":"perpendiculaire","g":"adj.","zh":"垂直的","en":"perpendicular","sfr":"Deux droites perpendiculaires forment un angle droit entre elles."},
+{"fr":"auteur","g":"n.m.","zh":"作者","en":"author","sfr":"Victor Hugo est un grand auteur de la littérature française."},
+{"fr":"roman","g":"n.m.","zh":"小说","en":"novel","sfr":"Je lis un roman d'aventure pendant les grandes vacances."},
+{"fr":"conte","g":"n.m.","zh":"童话/故事","en":"tale","sfr":"Charles Perrault a écrit des contes célèbres comme le Petit Chaperon Rouge."},
+{"fr":"personnage","g":"n.m.","zh":"人物/角色","en":"character","sfr":"Le personnage principal de ce roman est un enfant courageux."},
+{"fr":"héros","g":"n.m.","zh":"英雄","en":"hero","sfr":"Le héros de l'histoire surmonte tous les obstacles."},
+{"fr":"narrateur","g":"n.m.","zh":"叙述者","en":"narrator","sfr":"Le narrateur raconte l'histoire à la première personne."},
+{"fr":"résumé","g":"n.m.","zh":"摘要","en":"summary","sfr":"J'écris un résumé du chapitre en cinq phrases clés."},
+{"fr":"chapitre","g":"n.m.","zh":"章节","en":"chapter","sfr":"Nous lisons un chapitre par semaine dans notre livre de lecture."},
+{"fr":"paragraphe","g":"n.m.","zh":"段落","en":"paragraph","sfr":"Chaque paragraphe développe une idée principale."},
+{"fr":"titre","g":"n.m.","zh":"标题","en":"title","sfr":"Le titre du livre donne une première idée de l'histoire."},
+{"fr":"introduction","g":"n.f.","zh":"引言","en":"introduction","sfr":"L'introduction présente le sujet principal du texte."},
+{"fr":"développement","g":"n.m.","zh":"发展","en":"development","sfr":"Le développement du texte expose les arguments de l'auteur."},
+{"fr":"argumentation","g":"n.f.","zh":"论证","en":"argumentation","sfr":"L'argumentation d'un texte doit être logique et bien organisée."},
+{"fr":"synonyme","g":"n.m.","zh":"同义词","en":"synonym","sfr":"Je cherche un synonyme de joyeux dans le dictionnaire."},
+{"fr":"antonyme","g":"n.m.","zh":"反义词","en":"antonym","sfr":"Le mot froid est l'antonyme du mot chaud."},
+{"fr":"conjugaison","g":"n.f.","zh":"动词变位","en":"conjugation","sfr":"J'apprends la conjugaison du verbe aller à tous les temps."},
+{"fr":"verbe","g":"n.m.","zh":"动词","en":"verb","sfr":"Le verbe est le mot qui exprime l'action dans la phrase."},
+{"fr":"sujet","g":"n.m.","zh":"主语","en":"subject","sfr":"Le sujet de la phrase accomplit l'action exprimée par le verbe."},
+{"fr":"complément","g":"n.m.","zh":"补语","en":"complement","sfr":"Le complément d'objet direct précise l'action du verbe."},
+{"fr":"adjectif","g":"n.m.","zh":"形容词","en":"adjective","sfr":"L'adjectif qualificatif s'accorde en genre et en nombre avec le nom."},
+{"fr":"adverbe","g":"n.m.","zh":"副词","en":"adverb","sfr":"L'adverbe modifie le sens du verbe ou de l'adjectif."},
+{"fr":"préposition","g":"n.f.","zh":"介词","en":"preposition","sfr":"La préposition dans indique un lieu intérieur."},
+{"fr":"ponctuation","g":"n.f.","zh":"标点","en":"punctuation","sfr":"La ponctuation aide à structurer et à comprendre le texte."},
+{"fr":"orthographe","g":"n.f.","zh":"拼写","en":"spelling","sfr":"Une bonne orthographe rend le texte plus facile à lire."},
+{"fr":"grammaire","g":"n.f.","zh":"语法","en":"grammar","sfr":"La grammaire française contient des règles importantes pour bien écrire."},
+{"fr":"vocabulaire","g":"n.m.","zh":"词汇","en":"vocabulary","sfr":"J'enrichis mon vocabulaire en lisant des textes variés."},
+{"fr":"définition","g":"n.f.","zh":"定义","en":"definition","sfr":"Je cherche la définition d'un mot difficile dans le dictionnaire."},
+{"fr":"dictionnaire","g":"n.m.","zh":"词典","en":"dictionary","sfr":"Le dictionnaire est un outil indispensable pour les élèves."},
+{"fr":"encyclopédie","g":"n.f.","zh":"百科全书","en":"encyclopaedia","sfr":"Je consulte l'encyclopédie pour en savoir plus sur les dinosaures."},
+{"fr":"compte rendu","g":"n.m.","zh":"报告","en":"report","sfr":"Je rédige un compte rendu de notre sortie au musée."},
+{"fr":"rédaction","g":"n.f.","zh":"作文","en":"essay","sfr":"J'écris une rédaction sur mes vacances d'été."},
+{"fr":"description","g":"n.f.","zh":"描述","en":"description","sfr":"Je fais la description du paysage observé pendant la sortie."},
+{"fr":"récit","g":"n.m.","zh":"叙述/故事","en":"narrative","sfr":"J'écris un récit imaginaire avec un début une péripétie et une fin."},
+{"fr":"dialogue","g":"n.m.","zh":"对话","en":"dialogue","sfr":"Le dialogue entre les personnages rend l'histoire vivante."},
+{"fr":"communication","g":"n.f.","zh":"交流","en":"communication","sfr":"La communication est essentielle pour vivre ensemble en société."},
+{"fr":"langue","g":"n.f.","zh":"语言","en":"language","sfr":"Le français est la langue officielle de nombreux pays dans le monde."},
+{"fr":"traduction","g":"n.f.","zh":"翻译","en":"translation","sfr":"La traduction d'un texte demande une bonne connaissance des deux langues."},
+{"fr":"étymologie","g":"n.f.","zh":"词源","en":"etymology","sfr":"L'étymologie nous apprend l'origine des mots."},
+{"fr":"racine","g":"n.f.","zh":"词根","en":"root","sfr":"Connaître la racine latine d'un mot aide à comprendre son sens."},
+{"fr":"préfixe","g":"n.m.","zh":"前缀","en":"prefix","sfr":"Le préfixe in placé devant correct donne incorrect."},
+{"fr":"suffixe","g":"n.m.","zh":"后缀","en":"suffix","sfr":"Le suffixe tion transforme souvent un verbe en nom."},
+{"fr":"abonnement","g":"n.m.","zh":"订阅","en":"subscription","sfr":"La bibliothèque propose un abonnement gratuit pour les enfants."},
+{"fr":"journal","g":"n.m.","zh":"报纸/日记","en":"newspaper","sfr":"Mon père lit le journal chaque matin avec son café."},
+{"fr":"article","g":"n.m.","zh":"文章","en":"article","sfr":"J'écris un article sur la sortie scolaire pour le journal de l'école."},
+{"fr":"information","g":"n.f.","zh":"信息","en":"information","sfr":"Il faut vérifier une information avant de la partager."},
+{"fr":"source","g":"n.f.","zh":"来源","en":"source","sfr":"On doit toujours citer la source d'une information."},
+{"fr":"médias","g":"n.m.","zh":"媒体","en":"media","sfr":"Les médias jouent un rôle important dans la diffusion des informations."},
+{"fr":"opinion","g":"n.f.","zh":"意见","en":"opinion","sfr":"Chacun a le droit d'exprimer son opinion dans une démocratie."},
+{"fr":"point de vue","g":"n.m.","zh":"观点","en":"point of view","sfr":"Nous comparons les différents points de vue sur ce sujet."},
+{"fr":"accord","g":"n.m.","zh":"协议/同意","en":"agreement","sfr":"Nous trouvons un accord pour partager les tâches du projet."},
+{"fr":"désaccord","g":"n.m.","zh":"分歧","en":"disagreement","sfr":"Le désaccord entre les élèves est résolu par le dialogue."},
+{"fr":"conflit","g":"n.m.","zh":"冲突","en":"conflict","sfr":"Un conflit peut être résolu par la discussion et la médiation."},
+{"fr":"médiation","g":"n.f.","zh":"调解","en":"mediation","sfr":"La médiation aide à résoudre les conflits de façon pacifique."},
+{"fr":"coopération","g":"n.f.","zh":"合作","en":"cooperation","sfr":"La coopération entre pays est nécessaire pour protéger la planète."},
+{"fr":"paix","g":"n.f.","zh":"和平","en":"peace","sfr":"La paix est indispensable au développement des sociétés."},
+{"fr":"guerre","g":"n.f.","zh":"战争","en":"war","sfr":"La guerre détruit les villes et fait souffrir les populations."},
+{"fr":"violence","g":"n.f.","zh":"暴力","en":"violence","sfr":"La violence ne résout aucun problème et bless les personnes."},
+{"fr":"injustice","g":"n.f.","zh":"不公正","en":"injustice","sfr":"L'injustice sociale est un problème que les citoyens doivent combattre."},
+{"fr":"inégalité","g":"n.f.","zh":"不平等","en":"inequality","sfr":"Les inégalités entre riches et pauvres sont un enjeu mondial important."},
+{"fr":"pauvreté","g":"n.f.","zh":"贫困","en":"poverty","sfr":"La lutte contre la pauvreté est un objectif des gouvernements du monde entier."},
+{"fr":"solidarité","g":"n.f.","zh":"团结互助","en":"solidarity","sfr":"La solidarité internationale aide les pays touchés par les catastrophes."},
+{"fr":"humanité","g":"n.f.","zh":"人类","en":"humanity","sfr":"L'humanité doit travailler ensemble pour préserver la planète."},
+{"fr":"mondialisation","g":"n.f.","zh":"全球化","en":"globalisation","sfr":"La mondialisation a rapproché les pays mais a aussi créé des inégalités."},
+{"fr":"immigration","g":"n.f.","zh":"移民","en":"immigration","sfr":"L'immigration apporte de la diversité culturelle aux pays d'accueil."},
+{"fr":"réfugié","g":"n.m.","zh":"难民","en":"refugee","sfr":"Les réfugiés fuient leur pays à cause des guerres et des catastrophes."},
+{"fr":"diversité","g":"n.f.","zh":"多样性","en":"diversity","sfr":"La diversité culturelle enrichit notre société."},
+{"fr":"culture","g":"n.f.","zh":"文化","en":"culture","sfr":"Chaque pays a une culture unique avec ses traditions et ses arts."},
+{"fr":"tradition","g":"n.f.","zh":"传统","en":"tradition","sfr":"Nous perpétuons les traditions familiales lors des fêtes de fin d'année."},
+{"fr":"coutume","g":"n.f.","zh":"风俗","en":"custom","sfr":"La coutume locale veut qu'on danse lors des fêtes du village."},
+{"fr":"religion","g":"n.f.","zh":"宗教","en":"religion","sfr":"La France reconnaît la liberté de religion pour tous ses citoyens."},
+{"fr":"laïcité","g":"n.f.","zh":"世俗性","en":"secularism","sfr":"La laïcité garantit la séparation de l'Église et de l'État en France."},
+{"fr":"philosophie","g":"n.f.","zh":"哲学","en":"philosophy","sfr":"La philosophie nous invite à réfléchir sur le sens de notre vie."},
+{"fr":"éthique","g":"n.f.","zh":"伦理","en":"ethics","sfr":"L'éthique guide nos choix pour agir de façon juste et responsable."},
+{"fr":"valeur","g":"n.f.","zh":"价值观","en":"value","sfr":"Les valeurs républicaines guident la vie collective en France."},
+{"fr":"idéal","g":"n.m.","zh":"理想","en":"ideal","sfr":"L'idéal républicain repose sur la liberté l'égalité et la fraternité."},
+{"fr":"aspiration","g":"n.f.","zh":"理想/渴望","en":"aspiration","sfr":"Mes aspirations pour l'avenir sont de devenir médecin ou enseignant."},
+{"fr":"avenir","g":"n.m.","zh":"未来","en":"future","sfr":"L'avenir appartient à ceux qui apprennent et qui travaillent dur."},
+{"fr":"génération","g":"n.f.","zh":"一代人","en":"generation","sfr":"Chaque génération transmet ses connaissances à la suivante."},
+{"fr":"héritage","g":"n.m.","zh":"遗产","en":"heritage","sfr":"Nous devons transmettre un héritage naturel préservé aux générations futures."},
+{"fr":"évolution","g":"n.f.","zh":"演变","en":"evolution","sfr":"L'évolution des sociétés humaines est étudiée par les historiens."},
+{"fr":"révolution","g":"n.f.","zh":"革命","en":"revolution","sfr":"La Révolution française de 1789 a transformé profondément la société."},
+{"fr":"réforme","g":"n.f.","zh":"改革","en":"reform","sfr":"Les réformes éducatives cherchent à améliorer la qualité des apprentissages."},
+{"fr":"progrès","g":"n.m.","zh":"进步","en":"progress","sfr":"Le progrès scientifique a permis de vaincre de nombreuses maladies."},
+{"fr":"innovation","g":"n.f.","zh":"创新","en":"innovation","sfr":"L'innovation technologique transforme notre façon de communiquer."},
+{"fr":"recherche","g":"n.f.","zh":"研究","en":"research","sfr":"La recherche scientifique cherche à comprendre les lois de la nature."},
+{"fr":"découverte","g":"n.f.","zh":"发现","en":"discovery","sfr":"La découverte de la pénicilline a sauvé des millions de vies."},
+{"fr":"invention","g":"n.f.","zh":"发明","en":"invention","sfr":"L'invention de l'imprimerie a révolutionné la diffusion du savoir."},
+{"fr":"explorer","g":"v.","zh":"探索","en":"explore","sfr":"Les astronautes explorent l'espace pour comprendre l'univers."},
+{"fr":"approfondir","g":"v.","zh":"深入研究","en":"deepen","sfr":"J'approfondis mes connaissances en lisant des livres documentaires."},
+{"fr":"synthétiser","g":"v.","zh":"综合","en":"synthesise","sfr":"Je synthétise les informations du texte en un court paragraphe."},
+{"fr":"interpréter","g":"v.","zh":"解释/诠释","en":"interpret","sfr":"J'interprète les données du graphique pour rédiger ma conclusion."},
+{"fr":"formuler","g":"v.","zh":"表达/提出","en":"formulate","sfr":"Je formule une hypothèse avant de commencer l'expérience."},
+{"fr":"justifier","g":"v.","zh":"论证","en":"justify","sfr":"Je justifie ma réponse en citant les informations du texte."},
+{"fr":"vérifier","g":"v.","zh":"验证","en":"verify","sfr":"Je vérifie mon calcul en effectuant l'opération inverse."},
+{"fr":"généraliser","g":"v.","zh":"归纳","en":"generalise","sfr":"Je générali mes observations pour formuler une règle."},
+{"fr":"distinguer","g":"v.","zh":"区分","en":"distinguish","sfr":"Je distingue les causes et les conséquences d'un événement historique."},
+{"fr":"relier","g":"v.","zh":"联系","en":"link","sfr":"Je relie les idées du texte pour mieux comprendre le message de l'auteur."},
+{"fr":"structurer","g":"v.","zh":"构建","en":"structure","sfr":"Je structure mon texte avec une introduction un développement et une conclusion."},
+{"fr":"réviser","g":"v.","zh":"复习","en":"revise","sfr":"Je révise mes leçons chaque soir pour bien mémoriser les notions."},
+{"fr":"anticiper","g":"v.","zh":"预期","en":"anticipate","sfr":"J'anticipe les difficultés du problème avant de commencer à le résoudre."},
+{"fr":"réfléchir","g":"v.","zh":"思考","en":"reflect","sfr":"Je réfléchis longuement avant de donner ma réponse."},
+{"fr":"mémoriser","g":"v.","zh":"记忆","en":"memorise","sfr":"Je mémorise les règles de conjugaison grâce à des exercices répétés."},
+{"fr":"modéliser","g":"v.","zh":"建模","en":"model","sfr":"Je modélise le cycle de l'eau sous forme de schéma annoté."},
+{"fr":"planifier","g":"v.","zh":"计划","en":"plan","sfr":"Je planifie mon temps pour finir tous mes devoirs avant le dîner."},
+{"fr":"critiquer","g":"v.","zh":"批评/分析","en":"critique","sfr":"J'apprends à critiquer un texte en cherchant ses arguments principaux."},
+{"fr":"nuancer","g":"v.","zh":"区分/辩证","en":"nuance","sfr":"Je dois nuancer mon opinion en tenant compte des différents points de vue."},
+{"fr":"s'interroger","g":"v.","zh":"自问","en":"question oneself","sfr":"Je m'interroge sur les conséquences du changement climatique."},
+{"fr":"controversé","g":"adj.","zh":"有争议的","en":"controversial","sfr":"Ce sujet est controversé car les scientifiques ne sont pas tous d'accord."},
+{"fr":"complexe","g":"adj.","zh":"复杂的","en":"complex","sfr":"La situation géopolitique mondiale est très complexe."},
+{"fr":"abstrait","g":"adj.","zh":"抽象的","en":"abstract","sfr":"La notion de liberté est un concept abstrait difficile à définir."},
+{"fr":"concret","g":"adj.","zh":"具体的","en":"concrete","sfr":"Un exemple concret aide à mieux comprendre une notion abstraite."},
+{"fr":"progressif","g":"adj.","zh":"渐进的","en":"progressive","sfr":"L'apprentissage progressif permet de consolider les connaissances étape par étape."},
+{"fr":"systématique","g":"adj.","zh":"系统的","en":"systematic","sfr":"Une approche systématique aide à résoudre les problèmes méthodiquement."},
+{"fr":"rigoureux","g":"adj.","zh":"严谨的","en":"rigorous","sfr":"Une démarche rigoureuse est nécessaire en sciences pour obtenir des résultats fiables."},
+{"fr":"objectif","g":"adj.","zh":"客观的","en":"objective","sfr":"Il faut être objectif pour analyser les faits sans préjugés."},
+{"fr":"subjectif","g":"adj.","zh":"主观的","en":"subjective","sfr":"Une opinion est subjective car elle dépend du point de vue de chacun."},
+{"fr":"universel","g":"adj.","zh":"普遍的","en":"universal","sfr":"Les droits de l'homme sont des droits universels pour tous les êtres humains."},
+{"fr":"fondamental","g":"adj.","zh":"基础的","en":"fundamental","sfr":"L'accès à l'éducation est un droit fondamental pour tous les enfants."},
+{"fr":"essentiel","g":"adj.","zh":"必要的","en":"essential","sfr":"Il est essentiel de boire suffisamment d'eau chaque jour."},
+{"fr":"inévitable","g":"adj.","zh":"不可避免的","en":"inevitable","sfr":"Le changement est inévitable dans une société qui évolue."},
+{"fr":"durable","g":"adj.","zh":"可持续的","en":"sustainable","sfr":"Le développement durable respecte les besoins des générations futures."},
+{"fr":"renouvelable","g":"adj.","zh":"可再生的","en":"renewable","sfr":"L'énergie solaire est une énergie renouvelable et propre."},
+{"fr":"fragile","g":"adj.","zh":"脆弱的","en":"fragile","sfr":"L'écosystème de la forêt est fragile et doit être protégé."},
+{"fr":"vulnérable","g":"adj.","zh":"易受伤的","en":"vulnerable","sfr":"Les espèces vulnérables ont besoin d'une protection internationale."},
+{"fr":"menacé","g":"adj.","zh":"受威胁的","en":"threatened","sfr":"Le tigre est une espèce menacée d'extinction dans la nature."},
+{"fr":"protégé","g":"adj.","zh":"受保护的","en":"protected","sfr":"Le loup est une espèce protégée depuis plusieurs années en France."},
+{"fr":"abondant","g":"adj.","zh":"丰富的","en":"abundant","sfr":"Les ressources en eau douce ne sont pas abondantes dans les déserts."},
+{"fr":"rare","g":"adj.","zh":"稀少的","en":"rare","sfr":"Certaines plantes médicinales deviennent de plus en plus rares."},
+{"fr":"épuisé","g":"adj.","zh":"耗尽的","en":"exhausted","sfr":"Les ressources naturelles sont épuisées si on les utilise trop vite."},
+{"fr":"inexorable","g":"adj.","zh":"不可阻挡的","en":"inexorable","sfr":"La montée inexorable des eaux menace les côtes basses du monde."},
+{"fr":"profond","g":"adj.","zh":"深的","en":"deep","sfr":"L'océan Pacifique est le plus profond des océans de la planète."},
+{"fr":"étendu","g":"adj.","zh":"广阔的","en":"extensive","sfr":"La forêt amazonienne est la forêt tropicale la plus étendue du monde."},
+{"fr":"concentré","g":"adj.","zh":"集中的","en":"concentrated","sfr":"La population est très concentrée dans les grandes villes."},
+{"fr":"dispersé","g":"adj.","zh":"分散的","en":"dispersed","sfr":"Les habitations sont dispersées dans les régions rurales."},
+{"fr":"interconnecté","g":"adj.","zh":"相互关联的","en":"interconnected","sfr":"Les économies mondiales sont aujourd'hui fortement interconnectées."},
+{"fr":"interdépendant","g":"adj.","zh":"相互依存的","en":"interdependent","sfr":"Les pays sont interdépendants sur le plan économique et environnemental."},
+{"fr":"flux","g":"n.m.","zh":"流","en":"flow","sfr":"Les flux migratoires ont augmenté au cours des dernières décennies."},
+{"fr":"réseau","g":"n.m.","zh":"网络","en":"network","sfr":"Le réseau ferroviaire français relie les grandes villes entre elles."},
+{"fr":"infrastructure","g":"n.f.","zh":"基础设施","en":"infrastructure","sfr":"Les infrastructures routières et ferroviaires facilitent les échanges."},
+{"fr":"métropole","g":"n.f.","zh":"大都市","en":"metropolis","sfr":"Paris est la principale métropole économique et culturelle de France."},
+{"fr":"périphérie","g":"n.f.","zh":"郊区/外围","en":"periphery","sfr":"De nombreuses familles s'installent en périphérie des grandes villes."},
+{"fr":"aménagement","g":"n.m.","zh":"规划","en":"planning","sfr":"L'aménagement du territoire vise à réduire les inégalités entre régions."},
+{"fr":"urbanisation","g":"n.f.","zh":"城市化","en":"urbanisation","sfr":"L'urbanisation croissante transforme les paysages ruraux en zones urbaines."},
+{"fr":"développement","g":"n.m.","zh":"发展","en":"development","sfr":"Le développement économique d'un pays dépend de son éducation."},
+{"fr":"ressource","g":"n.f.","zh":"资源","en":"resource","sfr":"L'eau est une ressource naturelle précieuse qu'il faut préserver."},
+{"fr":"exploitation","g":"n.f.","zh":"开采/利用","en":"exploitation","sfr":"L'exploitation des forêts doit être contrôlée pour éviter la déforestation."},
+{"fr":"déforestation","g":"n.f.","zh":"砍伐森林","en":"deforestation","sfr":"La déforestation de l'Amazonie menace la biodiversité mondiale."},
+{"fr":"reforestation","g":"n.f.","zh":"重新植树","en":"reforestation","sfr":"La reforestation permet de lutter contre le réchauffement climatique."},
+{"fr":"empreinte","g":"n.f.","zh":"足迹","en":"footprint","sfr":"Chaque activité humaine laisse une empreinte sur l'environnement."},
+{"fr":"émission","g":"n.f.","zh":"排放","en":"emission","sfr":"Les émissions de gaz à effet de serre augmentent la température mondiale."},
+{"fr":"effet de serre","g":"n.m.","zh":"温室效应","en":"greenhouse effect","sfr":"L'effet de serre est renforcé par les activités humaines depuis deux siècles."},
+{"fr":"transition","g":"n.f.","zh":"转型","en":"transition","sfr":"La transition énergétique vise à remplacer les énergies fossiles par des énergies propres."},
+{"fr":"fossile","g":"adj.","zh":"化石的","en":"fossil","sfr":"Les énergies fossiles comme le pétrole polluent l'atmosphère."},
+{"fr":"pétrole","g":"n.m.","zh":"石油","en":"oil","sfr":"Le pétrole est une ressource énergétique non renouvelable."},
+{"fr":"charbon","g":"n.m.","zh":"煤","en":"coal","sfr":"Le charbon est une énergie fossile très polluante."},
+{"fr":"nucléaire","g":"adj.","zh":"核能的","en":"nuclear","sfr":"La France produit une grande partie de son électricité dans des centrales nucléaires."},
+{"fr":"hydraulique","g":"adj.","zh":"水力的","en":"hydraulic","sfr":"Les barrages hydrauliques transforment la force de l'eau en électricité."},
+{"fr":"éolien","g":"adj.","zh":"风能的","en":"wind","sfr":"Les éoliennes produisent de l'énergie éolienne sans polluer l'air."},
+{"fr":"panneaux solaires","g":"n.m.","zh":"太阳能电池板","en":"solar panels","sfr":"Les panneaux solaires sur le toit produisent de l'électricité pour la maison."},
+{"fr":"gaspillage","g":"n.m.","zh":"浪费","en":"waste","sfr":"Le gaspillage alimentaire est un problème grave dans les pays développés."},
+{"fr":"consommation","g":"n.f.","zh":"消费","en":"consumption","sfr":"La consommation d'énergie mondiale augmente chaque année."},
+{"fr":"production","g":"n.f.","zh":"生产","en":"production","sfr":"La production industrielle doit respecter des normes environnementales strictes."},
+{"fr":"commerce","g":"n.m.","zh":"贸易","en":"trade","sfr":"Le commerce international favorise les échanges entre les pays."},
+{"fr":"échange","g":"n.m.","zh":"交换","en":"exchange","sfr":"Les échanges culturels enrichissent la compréhension entre les peuples."},
+{"fr":"exportation","g":"n.f.","zh":"出口","en":"export","sfr":"La France est connue pour ses exportations de vins et fromages."},
+{"fr":"importation","g":"n.f.","zh":"进口","en":"import","sfr":"La France importe du pétrole et de nombreux produits électroniques."},
+{"fr":"économie","g":"n.f.","zh":"经济","en":"economy","sfr":"L'économie française est l'une des plus importantes d'Europe."},
+{"fr":"investissement","g":"n.m.","zh":"投资","en":"investment","sfr":"L'investissement dans l'éducation est essentiel pour le développement d'un pays."},
+{"fr":"budget","g":"n.m.","zh":"预算","en":"budget","sfr":"Le gouvernement présente son budget au parlement chaque année."},
+{"fr":"impôt","g":"n.m.","zh":"税","en":"tax","sfr":"Les impôts financent les services publics comme l'éducation et la santé."},
+{"fr":"service public","g":"n.m.","zh":"公共服务","en":"public service","sfr":"Les services publics doivent être accessibles à tous les citoyens."},
+{"fr":"politique","g":"n.f.","zh":"政治/政策","en":"policy","sfr":"La politique environnementale du gouvernement vise à réduire les émissions de CO2."},
+{"fr":"parlement","g":"n.m.","zh":"议会","en":"parliament","sfr":"Le parlement vote les lois qui s'appliquent à tous les citoyens."},
+{"fr":"sénat","g":"n.m.","zh":"参议院","en":"senate","sfr":"Le Sénat est la chambre haute du Parlement français."},
+{"fr":"assemblée","g":"n.f.","zh":"议会/集会","en":"assembly","sfr":"L'Assemblée nationale est élue par les citoyens français tous les cinq ans."},
+{"fr":"président","g":"n.m.","zh":"总统/主席","en":"president","sfr":"Le président de la République est élu au suffrage universel direct."},
+{"fr":"ministre","g":"n.m.","zh":"部长","en":"minister","sfr":"Le ministre de l'Éducation supervise les programmes scolaires."},
+{"fr":"fonctionnaire","g":"n.m.","zh":"公务员","en":"civil servant","sfr":"Les enseignants sont des fonctionnaires au service de l'État."},
+{"fr":"institution","g":"n.f.","zh":"机构","en":"institution","sfr":"L'école est une institution fondamentale de la République française."},
+{"fr":"constitution","g":"n.f.","zh":"宪法","en":"constitution","sfr":"La Constitution définit les droits fondamentaux des citoyens."},
+{"fr":"suffrage","g":"n.m.","zh":"选举权","en":"suffrage","sfr":"Le suffrage universel permet à tous les adultes de voter."},
+{"fr":"vote","g":"n.m.","zh":"投票","en":"vote","sfr":"Le vote est un acte civique fondamental dans une démocratie."},
+{"fr":"candidat","g":"n.m.","zh":"候选人","en":"candidate","sfr":"Les candidats exposent leur programme avant les élections."},
+{"fr":"programme","g":"n.m.","zh":"纲领","en":"programme","sfr":"Chaque candidat présente son programme pour convaincre les électeurs."},
+{"fr":"campagne","g":"n.f.","zh":"选举活动","en":"campaign","sfr":"La campagne électorale mobilise de nombreux militants."},
+{"fr":"militant","g":"n.m.","zh":"活动人士","en":"activist","sfr":"Le militant écologiste défend la protection de l'environnement."},
+{"fr":"syndicat","g":"n.m.","zh":"工会","en":"trade union","sfr":"Le syndicat défend les droits des travailleurs."},
+{"fr":"association","g":"n.f.","zh":"协会","en":"association","sfr":"L'association aide les personnes sans abri dans le quartier."},
+{"fr":"bénévolat","g":"n.m.","zh":"志愿服务","en":"volunteering","sfr":"Le bénévolat consiste à travailler gratuitement pour aider les autres."},
+{"fr":"bénévole","g":"n.m.","zh":"志愿者","en":"volunteer","sfr":"Les bénévoles distribuent des repas chauds aux personnes dans le besoin."},
+{"fr":"engagement","g":"n.m.","zh":"承诺/参与","en":"commitment","sfr":"L'engagement citoyen est essentiel pour une démocratie vivante."},
+{"fr":"initiative","g":"n.f.","zh":"倡议","en":"initiative","sfr":"Cette initiative écologique réunit des élèves pour nettoyer le parc."},
+{"fr":"projet","g":"n.m.","zh":"项目","en":"project","sfr":"Nous réalisons un projet collectif sur la biodiversité en CM2."},
+{"fr":"démarche","g":"n.f.","zh":"方法/步骤","en":"approach","sfr":"La démarche scientifique repose sur l'observation et l'expérimentation."},
+{"fr":"méthode","g":"n.f.","zh":"方法","en":"method","sfr":"Une bonne méthode de travail permet de progresser rapidement."},
+{"fr":"stratégie","g":"n.f.","zh":"策略","en":"strategy","sfr":"Nous élaborons une stratégie pour gagner le concours scolaire."},
+{"fr":"objectif","g":"n.m.","zh":"目标","en":"objective","sfr":"Mon objectif cette année est d'améliorer mon niveau en orthographe."},
+{"fr":"critère","g":"n.m.","zh":"标准","en":"criterion","sfr":"Les critères d'évaluation sont précisés avant chaque devoir."},
+{"fr":"indicateur","g":"n.m.","zh":"指标","en":"indicator","sfr":"La température est un indicateur du changement climatique."},
+{"fr":"tendance","g":"n.f.","zh":"趋势","en":"trend","sfr":"La tendance mondiale est à la réduction des énergies fossiles."},
+{"fr":"phénomène","g":"n.m.","zh":"现象","en":"phenomenon","sfr":"La migration des oiseaux est un phénomène naturel fascinant."},
+{"fr":"processus","g":"n.m.","zh":"过程","en":"process","sfr":"La photosynthèse est un processus chimique réalisé par les plantes."},
+{"fr":"mécanisme","g":"n.m.","zh":"机制","en":"mechanism","sfr":"Nous étudions le mécanisme du cœur en sciences du vivant."},
+{"fr":"système","g":"n.m.","zh":"系统","en":"system","sfr":"Le système solaire comprend huit planètes autour du Soleil."},
+{"fr":"modèle","g":"n.m.","zh":"模型","en":"model","sfr":"Le schéma est un modèle simplifié pour représenter la réalité."},
+{"fr":"schéma","g":"n.m.","zh":"示意图","en":"diagram","sfr":"Je dessine un schéma annoté de la fleur pour ma leçon de botanique."},
+{"fr":"carte","g":"n.f.","zh":"地图","en":"map","sfr":"Je repère les fleuves de France sur la carte géographique."},
+{"fr":"légende","g":"n.f.","zh":"图例","en":"legend","sfr":"La légende de la carte explique les symboles utilisés."},
+{"fr":"échelle","g":"n.f.","zh":"比例尺","en":"scale","sfr":"Grâce à l'échelle de la carte je calcule la vraie distance entre deux villes."},
+{"fr":"relief","g":"n.m.","zh":"地势","en":"relief","sfr":"Le relief de la France est varié avec des plaines des collines et des montagnes."},
+{"fr":"cours d'eau","g":"n.m.","zh":"河流","en":"watercourse","sfr":"La Loire est le plus long cours d'eau de France."},
+{"fr":"bassin versant","g":"n.m.","zh":"流域","en":"watershed","sfr":"Le bassin versant de la Seine couvre une grande partie du nord de la France."},
+{"fr":"nappe phréatique","g":"n.f.","zh":"地下水","en":"groundwater","sfr":"La nappe phréatique fournit de l'eau potable à de nombreuses communes."},
+{"fr":"érosion","g":"n.f.","zh":"侵蚀","en":"erosion","sfr":"L'érosion des falaises est causée par les vagues et le vent."},
+{"fr":"sédimentation","g":"n.f.","zh":"沉积","en":"sedimentation","sfr":"La sédimentation forme des couches de roches au fond des océans."},
+{"fr":"roche","g":"n.f.","zh":"岩石","en":"rock","sfr":"Le granite est une roche dure et résistante à l'érosion."},
+{"fr":"minéral","g":"n.m.","zh":"矿物","en":"mineral","sfr":"Le quartz est un minéral très commun dans la croûte terrestre."},
+{"fr":"sol","g":"n.m.","zh":"土壤","en":"soil","sfr":"Un sol fertile est indispensable pour une bonne agriculture."},
+{"fr":"humus","g":"n.m.","zh":"腐殖质","en":"humus","sfr":"L'humus est la couche superficielle du sol riche en matière organique."},
+{"fr":"compost","g":"n.m.","zh":"堆肥","en":"compost","sfr":"Le compost est obtenu en transformant les déchets végétaux en engrais naturel."},
+{"fr":"engrais","g":"n.m.","zh":"化肥","en":"fertiliser","sfr":"Les engrais chimiques peuvent polluer les nappes phréatiques."},
+{"fr":"pesticide","g":"n.m.","zh":"杀虫剂","en":"pesticide","sfr":"Les pesticides sont controversés car ils tuent aussi les insectes utiles."},
+{"fr":"agriculture biologique","g":"n.f.","zh":"有机农业","en":"organic farming","sfr":"L'agriculture biologique interdit l'usage des pesticides chimiques."},
+{"fr":"semences","g":"n.f.","zh":"种子","en":"seeds","sfr":"Les agriculteurs sélectionnent les meilleures semences pour la prochaine récolte."},
+{"fr":"récolte","g":"n.f.","zh":"收成","en":"harvest","sfr":"La récolte du blé a lieu au mois de juillet dans les plaines du nord."},
+{"fr":"irrigation","g":"n.f.","zh":"灌溉","en":"irrigation","sfr":"L'irrigation artificielle permet de cultiver dans les régions arides."},
+{"fr":"sécheresse","g":"n.f.","zh":"干旱","en":"drought","sfr":"La sécheresse prolongée a détruit une grande partie des récoltes cet été."},
+{"fr":"inondation","g":"n.f.","zh":"洪水","en":"flood","sfr":"L'inondation a causé de nombreux dégâts dans les maisons riveraines."},
+{"fr":"tsunami","g":"n.m.","zh":"海啸","en":"tsunami","sfr":"Le tsunami a été déclenché par un puissant tremblement de terre sous-marin."},
+{"fr":"catastrophe","g":"n.f.","zh":"灾难","en":"disaster","sfr":"La catastrophe naturelle a mobilisé les secours du monde entier."},
+{"fr":"prévision","g":"n.f.","zh":"预测","en":"forecast","sfr":"Les prévisions météorologiques annoncent de la pluie pour demain."},
+{"fr":"satellite","g":"n.m.","zh":"卫星","en":"satellite","sfr":"Les satellites permettent de surveiller les changements climatiques depuis l'espace."},
+{"fr":"télécommunication","g":"n.f.","zh":"电信","en":"telecommunication","sfr":"Les télécommunications modernes permettent de communiquer instantanément dans le monde entier."},
+{"fr":"réseau social","g":"n.m.","zh":"社交网络","en":"social network","sfr":"Les réseaux sociaux modifient la façon dont les jeunes communiquent."},
+{"fr":"intelligence artificielle","g":"n.f.","zh":"人工智能","en":"artificial intelligence","sfr":"L'intelligence artificielle est utilisée pour améliorer les outils numériques."},
+{"fr":"robotique","g":"n.f.","zh":"机器人技术","en":"robotics","sfr":"La robotique transforme le monde industriel et médical."},
+{"fr":"cybersécurité","g":"n.f.","zh":"网络安全","en":"cybersecurity","sfr":"La cybersécurité protège les données personnelles des utilisateurs."},
+{"fr":"biotechnologie","g":"n.f.","zh":"生物技术","en":"biotechnology","sfr":"Les biotechnologies permettent de créer de nouveaux médicaments."},
+{"fr":"génétique","g":"n.f.","zh":"遗传学","en":"genetics","sfr":"La génétique étudie la transmission des caractères héréditaires."},
+{"fr":"ADN","g":"n.m.","zh":"DNA","en":"DNA","sfr":"L'ADN contient toutes les informations nécessaires à la vie d'un organisme."},
+{"fr":"cellule","g":"n.f.","zh":"细胞","en":"cell","sfr":"Tous les êtres vivants sont composés de cellules."},
+{"fr":"molécule","g":"n.f.","zh":"分子","en":"molecule","sfr":"L'eau est une molécule composée de deux atomes d'hydrogène et un d'oxygène."},
+{"fr":"atome","g":"n.m.","zh":"原子","en":"atom","sfr":"L'atome est la plus petite unité constitutive de la matière."},
+{"fr":"réaction chimique","g":"n.f.","zh":"化学反应","en":"chemical reaction","sfr":"Une réaction chimique transforme les substances de départ en nouveaux produits."},
+{"fr":"acide","g":"n.m.","zh":"酸","en":"acid","sfr":"Le vinaigre est un acide faible utilisé en cuisine."},
+{"fr":"base","g":"n.f.","zh":"碱","en":"base","sfr":"Le bicarbonate de soude est une base utilisée en pâtisserie."},
+{"fr":"température","g":"n.f.","zh":"温度","en":"temperature","sfr":"La température de fusion de la glace est de zéro degré Celsius."},
+{"fr":"pression","g":"n.f.","zh":"压力","en":"pressure","sfr":"La pression atmosphérique diminue quand on monte en altitude."},
+{"fr":"densité","g":"n.f.","zh":"密度","en":"density","sfr":"Le plomb a une densité beaucoup plus élevée que celle du bois."},
+{"fr":"magnétisme","g":"n.m.","zh":"磁性","en":"magnetism","sfr":"Le magnétisme est la propriété qu'ont certains matériaux d'attirer le fer."},
+{"fr":"onde","g":"n.f.","zh":"波","en":"wave","sfr":"La lumière se propage sous forme d'ondes électromagnétiques."},
+{"fr":"spectre","g":"n.m.","zh":"光谱","en":"spectrum","sfr":"L'arc-en-ciel montre le spectre visible de la lumière blanche."},
+{"fr":"réfraction","g":"n.f.","zh":"折射","en":"refraction","sfr":"La réfraction de la lumière dans l'eau fait paraître les objets déformés."},
+{"fr":"réflexion","g":"n.f.","zh":"反射","en":"reflection","sfr":"La réflexion de la lumière sur un miroir produit une image symétrique."},
+{"fr":"acoustique","g":"n.f.","zh":"声学","en":"acoustics","sfr":"L'acoustique d'une salle de concert est étudiée pour obtenir un bon son."},
+{"fr":"fréquence","g":"n.f.","zh":"频率","en":"frequency","sfr":"La fréquence d'un son détermine sa hauteur grave ou aiguë."},
+{"fr":"amplitude","g":"n.f.","zh":"振幅","en":"amplitude","sfr":"L'amplitude d'une onde sonore détermine son intensité."},
+{"fr":"spectre sonore","g":"n.m.","zh":"声谱","en":"sound spectrum","sfr":"L'oreille humaine perçoit les sons dont la fréquence se situe dans le spectre audible."},
+{"fr":"univers","g":"n.m.","zh":"宇宙","en":"universe","sfr":"L'univers est en expansion depuis le Big Bang il y a environ quatorze milliards d'années."},
+{"fr":"galaxie","g":"n.f.","zh":"星系","en":"galaxy","sfr":"La Voie lactée est la galaxie dans laquelle se trouve notre système solaire."},
+{"fr":"comète","g":"n.f.","zh":"彗星","en":"comet","sfr":"La comète de Halley passe près de la Terre tous les soixante-seize ans."},
+{"fr":"météorite","g":"n.f.","zh":"陨石","en":"meteorite","sfr":"Une météorite est tombée dans le désert et a créé un cratère."},
+{"fr":"télescopeee","g":"n.m.","zh":"望远镜","en":"telescope","sfr":"Avec un télescope on peut observer les cratères de la Lune."},
+{"fr":"astronome","g":"n.m.","zh":"天文学家","en":"astronomer","sfr":"L'astronome observe les étoiles depuis son observatoire."},
+{"fr":"astronaute","g":"n.m.","zh":"宇航员","en":"astronaut","sfr":"L'astronaute a passé six mois à bord de la Station spatiale internationale."},
+{"fr":"station spatiale","g":"n.f.","zh":"空间站","en":"space station","sfr":"La Station spatiale internationale tourne autour de la Terre toutes les quatre-vingt-dix minutes."},
+{"fr":"fusée","g":"n.f.","zh":"火箭","en":"rocket","sfr":"La fusée Ariane lance des satellites depuis la Guyane française."},
+{"fr":"gravitation","g":"n.f.","zh":"万有引力","en":"gravitation","sfr":"La gravitation universelle fut découverte par Newton au dix-septième siècle."},
+{"fr":"orbite","g":"n.f.","zh":"轨道","en":"orbit","sfr":"La Terre tourne autour du Soleil sur une orbite légèrement elliptique."},
+{"fr":"rotation","g":"n.f.","zh":"自转","en":"rotation","sfr":"La rotation de la Terre sur elle-même dure exactement vingt-quatre heures."},
+{"fr":"révolution","g":"n.f.","zh":"公转","en":"revolution","sfr":"La révolution de la Terre autour du Soleil dure trois cent soixante-cinq jours."},
+{"fr":"éclipse","g":"n.f.","zh":"日食/月食","en":"eclipse","sfr":"Lors d'une éclipse solaire la Lune cache le Soleil à notre vue."},
+{"fr":"marée","g":"n.f.","zh":"潮汐","en":"tide","sfr":"Les marées sont causées par l'attraction gravitationnelle de la Lune."},
+{"fr":"horizon","g":"n.m.","zh":"地平线","en":"horizon","sfr":"Le soleil se couche à l'horizon à l'ouest chaque soir."},
+{"fr":"boussole","g":"n.f.","zh":"指南针","en":"compass","sfr":"La boussole indique toujours le nord magnétique."},
+{"fr":"méridien","g":"n.m.","zh":"子午线","en":"meridian","sfr":"Le méridien de Greenwich est la référence pour l'heure mondiale."},
+{"fr":"latitude","g":"n.f.","zh":"纬度","en":"latitude","sfr":"La latitude d'un lieu indique sa position par rapport à l'équateur."},
+{"fr":"longitude","g":"n.f.","zh":"经度","en":"longitude","sfr":"La longitude d'un lieu indique sa position par rapport au méridien de référence."},
+{"fr":"projection","g":"n.f.","zh":"投影","en":"projection","sfr":"Les projections cartographiques représentent la sphère terrestre sur une surface plane."},
+{"fr":"équateur","g":"n.m.","zh":"赤道","en":"equator","sfr":"L'équateur divise la Terre en deux hémisphères nord et sud."},
+{"fr":"tropique","g":"n.m.","zh":"热带","en":"tropic","sfr":"Le tropique du Cancer est situé à vingt-trois degrés au nord de l'équateur."},
+{"fr":"pôle","g":"n.m.","zh":"极点","en":"pole","sfr":"Le pôle Nord est recouvert d'un immense banquise."},
+{"fr":"hémisphère","g":"n.m.","zh":"半球","en":"hemisphere","sfr":"Les saisons sont inversées entre l'hémisphère nord et l'hémisphère sud."},
+{"fr":"fuseau horaire","g":"n.m.","zh":"时区","en":"time zone","sfr":"Il existe vingt-quatre fuseaux horaires dans le monde correspondant aux vingt-quatre heures."},
+{"fr":"décalage horaire","g":"n.m.","zh":"时差","en":"time difference","sfr":"Le décalage horaire entre Paris et Tokyo est de huit heures en été."},
+{"fr":"migration","g":"n.f.","zh":"迁移","en":"migration","sfr":"Les oiseaux migrateurs traversent la Méditerranée deux fois par an."},
+{"fr":"hibernation","g":"n.f.","zh":"冬眠","en":"hibernation","sfr":"L'ours brun entre en hibernation au début de l'hiver pour économiser son énergie."},
+{"fr":"adaptation","g":"n.f.","zh":"适应","en":"adaptation","sfr":"L'adaptation des espèces à leur milieu est le résultat de millions d'années d'évolution."},
+{"fr":"camouflage","g":"n.m.","zh":"伪装","en":"camouflage","sfr":"Le caméléon utilise le camouflage pour se fondre dans son environnement."},
+{"fr":"symbiose","g":"n.f.","zh":"共生","en":"symbiosis","sfr":"La symbiose entre les abeilles et les fleurs est bénéfique pour les deux espèces."},
+{"fr":"parasitisme","g":"n.m.","zh":"寄生","en":"parasitism","sfr":"Le gui vit en parasitisme sur les branches des arbres fruitiers."},
+{"fr":"écosystème","g":"n.m.","zh":"生态系统","en":"ecosystem","sfr":"L'écosystème forestier comprend les arbres les animaux et les champignons."},
+{"fr":"biome","g":"n.m.","zh":"生物群落","en":"biome","sfr":"La toundra est un biome caractérisé par des températures très basses."},
+{"fr":"prairie","g":"n.f.","zh":"草原","en":"prairie","sfr":"Les lions et les zèbres vivent dans les prairies africaines."},
+{"fr":"savane","g":"n.f.","zh":"热带草原","en":"savanna","sfr":"La savane africaine est un écosystème riche en grands mammifères."},
+{"fr":"toundra","g":"n.f.","zh":"冻原","en":"tundra","sfr":"La toundra sibérienne est gelée pendant la majeure partie de l'année."},
+{"fr":"mangrove","g":"n.f.","zh":"红树林","en":"mangrove","sfr":"La mangrove protège les côtes tropicales contre l'érosion marine."},
+{"fr":"récif corallien","g":"n.m.","zh":"珊瑚礁","en":"coral reef","sfr":"Le récif corallien abrite une biodiversité marine exceptionnelle."},
+{"fr":"zoologie","g":"n.f.","zh":"动物学","en":"zoology","sfr":"La zoologie est la branche de la biologie qui étudie les animaux."},
+{"fr":"botanique","g":"n.f.","zh":"植物学","en":"botany","sfr":"La botanique s'intéresse à la classification et à la vie des plantes."},
+{"fr":"écologie","g":"n.f.","zh":"生态学","en":"ecology","sfr":"L'écologie étudie les relations entre les êtres vivants et leur milieu."},
+{"fr":"géologie","g":"n.f.","zh":"地质学","en":"geology","sfr":"La géologie nous apprend comment la Terre s'est formée et évolue."},
+{"fr":"climatologie","g":"n.f.","zh":"气候学","en":"climatology","sfr":"La climatologie étudie les variations du climat sur de longues périodes."},
+{"fr":"météorologie","g":"n.f.","zh":"气象学","en":"meteorology","sfr":"La météorologie permet de prévoir le temps qu'il fera demain."},
+{"fr":"océanographie","g":"n.f.","zh":"海洋学","en":"oceanography","sfr":"L'océanographie étudie les fonds marins et les courants océaniques."},
+{"fr":"archéologie","g":"n.f.","zh":"考古学","en":"archaeology","sfr":"L'archéologie découvre les traces des civilisations passées sous la terre."},
+{"fr":"anthropologie","g":"n.f.","zh":"人类学","en":"anthropology","sfr":"L'anthropologie étudie l'être humain et les sociétés humaines à travers le temps."},
+{"fr":"sociologie","g":"n.f.","zh":"社会学","en":"sociology","sfr":"La sociologie analyse les comportements humains au sein des groupes sociaux."},
+{"fr":"économique","g":"adj.","zh":"经济的","en":"economic","sfr":"La crise économique de 2008 a affecté de nombreux pays dans le monde."},
+{"fr":"géopolitique","g":"adj.","zh":"地缘政治的","en":"geopolitical","sfr":"Les tensions géopolitiques entre pays influencent les prix de l'énergie mondiale."},
+{"fr":"diplomatique","g":"adj.","zh":"外交的","en":"diplomatic","sfr":"Une solution diplomatique est préférable à un conflit armé."},
+{"fr":"stratégique","g":"adj.","zh":"战略性的","en":"strategic","sfr":"La position stratégique de ce détroit en fait un passage maritime important."},
+{"fr":"humanitaire","g":"adj.","zh":"人道的","en":"humanitarian","sfr":"L'aide humanitaire est acheminée vers les populations victimes de la catastrophe."},
+{"fr":"critique","g":"adj.","zh":"关键的/批评的","en":"critical","sfr":"La situation est critique et nécessite une intervention immédiate."},
+{"fr":"prioritaire","g":"adj.","zh":"优先的","en":"priority","sfr":"La réduction des inégalités est une question prioritaire pour les gouvernements."},
+{"fr":"global","g":"adj.","zh":"全球的","en":"global","sfr":"Le réchauffement climatique est un défi global qui concerne tous les pays."},
+{"fr":"local","g":"adj.","zh":"本地的","en":"local","sfr":"Les produits locaux contribuent à réduire les émissions de transport."},
+{"fr":"régional","g":"adj.","zh":"地区的","en":"regional","sfr":"Les spécialités régionales font partie du patrimoine gastronomique français."},
+{"fr":"national","g":"adj.","zh":"全国的","en":"national","sfr":"Le musée national conserve les œuvres les plus importantes du pays."},
+{"fr":"international","g":"adj.","zh":"国际的","en":"international","sfr":"La coopération internationale est indispensable pour lutter contre le changement climatique."},
+{"fr":"multilatéral","g":"adj.","zh":"多边的","en":"multilateral","sfr":"L'accord multilatéral réunit vingt pays autour d'un objectif commun."},
+{"fr":"bilatéral","g":"adj.","zh":"双边的","en":"bilateral","sfr":"Les deux pays ont signé un accord bilatéral sur le commerce."},
+{"fr":"contemporain","g":"adj.","zh":"当代的","en":"contemporary","sfr":"L'art contemporain questionne les certitudes de notre époque."},
+{"fr":"médiéval","g":"adj.","zh":"中世纪的","en":"medieval","sfr":"L'architecture médiévale est caractérisée par les châteaux forts et les cathédrales."},
+{"fr":"antique","g":"adj.","zh":"古代的","en":"ancient","sfr":"Les civilisations antiques de Grèce et de Rome ont influencé toute l'Europe."},
+{"fr":"préhistorique","g":"adj.","zh":"史前的","en":"prehistoric","sfr":"Les peintures préhistoriques de Lascaux datent d'environ dix-sept mille ans."},
+{"fr":"révolutionnaire","g":"adj.","zh":"革命性的","en":"revolutionary","sfr":"L'invention de l'imprimerie fut révolutionnaire pour la diffusion du savoir."},
+{"fr":"démocratique","g":"adj.","zh":"民主的","en":"democratic","sfr":"Dans un système démocratique les citoyens élisent leurs représentants."},
+{"fr":"autoritaire","g":"adj.","zh":"专制的","en":"authoritarian","sfr":"Dans un régime autoritaire la liberté de la presse est souvent limitée."},
+{"fr":"pacifique","g":"adj.","zh":"和平的","en":"peaceful","sfr":"La manifestation s'est déroulée de manière pacifique dans les rues de la ville."},
+{"fr":"ambigu","g":"adj.","zh":"模糊的","en":"ambiguous","sfr":"Cette phrase est ambiguë car elle peut avoir deux sens différents."},
+{"fr":"équivoque","g":"adj.","zh":"歧义的","en":"equivocal","sfr":"Ses paroles étaient équivoques et difficiles à interpréter clairement."},
+{"fr":"paradoxal","g":"adj.","zh":"矛盾的","en":"paradoxical","sfr":"Il est paradoxal de vouloir protéger l'environnement tout en prenant l'avion."},
+{"fr":"nuancé","g":"adj.","zh":"有细微差别的","en":"nuanced","sfr":"Sa réponse était très nuancée et tenait compte de tous les arguments."},
+{"fr":"pertinent","g":"adj.","zh":"相关的/有意义的","en":"relevant","sfr":"Sa question est pertinente car elle touche au cœur du sujet."},
+{"fr":"cohérent","g":"adj.","zh":"连贯的","en":"coherent","sfr":"Son texte est cohérent et bien structuré du début à la fin."},
+{"fr":"efficace","g":"adj.","zh":"有效的","en":"effective","sfr":"Cette méthode est très efficace pour apprendre les tables de multiplication."},
+{"fr":"efficient","g":"adj.","zh":"高效的","en":"efficient","sfr":"Une organisation efficiente permet d'atteindre ses objectifs avec le minimum d'effort."},
+{"fr":"innovant","g":"adj.","zh":"创新的","en":"innovative","sfr":"Ce projet éducatif innovant mêle sciences art et technologie."},
+{"fr":"ambitieux","g":"adj.","zh":"有抱负的","en":"ambitious","sfr":"Ce plan ambitieux vise à réduire de moitié les émissions de CO2 d'ici 2050."},
+{"fr":"réaliste","g":"adj.","zh":"现实的","en":"realistic","sfr":"Il faut être réaliste et fixer des objectifs atteignables."},
+{"fr":"idéaliste","g":"adj.","zh":"理想主义的","en":"idealistic","sfr":"Il est idéaliste de penser que la paix peut régner partout dans le monde."},
+{"fr":"pragmatique","g":"adj.","zh":"务实的","en":"pragmatic","sfr":"Une approche pragmatique consiste à trouver des solutions concrètes."},
+{"fr":"éthique","g":"adj.","zh":"符合道德的","en":"ethical","sfr":"Une décision éthique respecte les droits et la dignité de toutes les personnes."},
+{"fr":"transparent","g":"adj.","zh":"透明的","en":"transparent","sfr":"Un gouvernement transparent rend ses décisions accessibles aux citoyens."},
+{"fr":"responsable","g":"adj.","zh":"负责任的","en":"responsible","sfr":"Nous devons être responsables dans notre consommation de ressources naturelles."},
+{"fr":"durable","g":"adj.","zh":"持续的","en":"sustainable","sfr":"Un mode de vie durable respecte les limites de notre planète."},
+{"fr":"inclusif","g":"adj.","zh":"包容的","en":"inclusive","sfr":"Une école inclusive accueille tous les élèves quelles que soient leurs différences."},
+{"fr":"équitable","g":"adj.","zh":"公平的","en":"equitable","sfr":"Un partage équitable des ressources réduirait les inégalités mondiales."},
+{"fr":"accessible","g":"adj.","zh":"可及的","en":"accessible","sfr":"L'éducation doit être accessible à tous les enfants sans exception."},
+{"fr":"abordable","g":"adj.","zh":"可负担的","en":"affordable","sfr":"Les soins de santé doivent rester abordables pour les familles modestes."},
+{"fr":"viable","g":"adj.","zh":"可行的","en":"viable","sfr":"Ce plan économique est viable car il repose sur des données solides."},
+{"fr":"irréversible","g":"adj.","zh":"不可逆的","en":"irreversible","sfr":"Certains dommages causés à l'environnement sont malheureusement irréversibles."},
+{"fr":"chronologique","g":"adj.","zh":"按时间顺序的","en":"chronological","sfr":"Je classe les événements historiques dans un ordre chronologique."},
+{"fr":"simultané","g":"adj.","zh":"同时的","en":"simultaneous","sfr":"Les deux événements se sont produits de façon simultanée dans deux pays différents."},
+{"fr":"périodique","g":"adj.","zh":"周期性的","en":"periodic","sfr":"Les éclipses solaires totales sont des phénomènes périodiques."},
+{"fr":"cyclique","g":"adj.","zh":"循环的","en":"cyclical","sfr":"Les saisons forment un phénomène cyclique qui se répète chaque année."},
+{"fr":"linéaire","g":"adj.","zh":"线性的","en":"linear","sfr":"La progression linéaire d'un récit suit une chronologie simple."},
+{"fr":"exponentiel","g":"adj.","zh":"指数的","en":"exponential","sfr":"La croissance exponentielle de la population mondiale pose des défis importants."}
+]
