@@ -1,465 +1,314 @@
-école,学校,school,Je vais à l'école.
-classe,班级,class,Ma classe est grande.
-élève,学生,student,L'élève écoute le professeur.
-professeur,老师,teacher,Le professeur explique la leçon.
-cahier,练习本,notebook,J'écris dans mon cahier.
-livre,书,book,Je lis un livre.
-stylo,钢笔,pen,J'ai un stylo bleu.
-crayon,铅笔,pencil,Mon crayon est sur la table.
-gomme,橡皮,eraser,J'utilise ma gomme.
-règle,尺子,ruler,La règle mesure trente centimètres.
-cartable,书包,schoolbag,Mon cartable est lourd.
-table,桌子,table,Le livre est sur la table.
-chaise,椅子,chair,Je suis assis sur une chaise.
-tableau,黑板,board,Le professeur écrit au tableau.
-feuille,纸张,sheet,Prends une feuille blanche.
-exercice,练习,exercise,Je fais un exercice.
-leçon,课程,lesson,J'apprends ma leçon.
-devoir,作业,homework,J'ai beaucoup de devoirs.
-question,问题,question,Le professeur pose une question.
-réponse,答案,answer,J'ai la bonne réponse.
-bibliothèque,图书馆,library,Je vais à la bibliothèque.
-ordinateur,电脑,computer,L'ordinateur est allumé.
-père,爸爸,father,Mon père travaille.
-mère,妈妈,mother,Ma mère cuisine.
-frère,兄弟,brother,J'ai un frère.
-sœur,姐妹,sister,J'ai une sœur.
-grand-père,爷爷/外公,grandfather,Mon grand-père raconte une histoire.
-grand-mère,奶奶/外婆,grandmother,Ma grand-mère prépare un gâteau.
-cousin,堂/表兄弟,cousin,Je joue avec mon cousin.
-cousine,堂/表姐妹,cousin,Ma cousine habite à Paris.
-famille,家庭,family,J'aime ma famille.
-maison,房子,house,Ma maison est grande.
-chambre,房间,bedroom,J'aime ma chambre.
-lit,床,bed,Je fais mon lit.
-porte,门,door,Ouvre la porte.
-fenêtre,窗户,window,Ferme la fenêtre.
-jardin,花园,garden,Nous jouons dans le jardin.
-cuisine,厨房,kitchen,La cuisine est propre.
-salon,客厅,living room,Nous regardons la télévision dans le salon.
-voisin,邻居（男）,neighbor,Mon voisin est gentil.
-voisine,邻居（女）,neighbor,Ma voisine a un chat.
-ami,朋友（男）,friend,C'est mon ami.
-amie,朋友（女）,friend,C'est mon amie.
-garçon,男孩,boy,Le garçon court vite.
-fille,女孩,girl,La fille dessine bien.
-enfant,孩子,child,L'enfant joue dehors.
-homme,男人,man,Cet homme travaille ici.
-femme,女人,woman,Cette femme lit un journal.
-bébé,婴儿,baby,Le bébé dort.
-chat,猫,cat,Le chat dort sur le canapé.
-chien,狗,dog,Le chien aime courir.
-oiseau,鸟,bird,L'oiseau chante.
-poisson,鱼,fish,Le poisson nage.
-lapin,兔子,rabbit,Le lapin mange une carotte.
-cheval,马,horse,Le cheval est rapide.
-vache,奶牛,cow,La vache mange de l'herbe.
-poule,母鸡,hen,La poule pond un œuf.
-canard,鸭子,duck,Le canard nage dans l'eau.
-souris,老鼠,mouse,La souris est petite.
-manger,吃,to eat,Je mange une pomme.
-boire,喝,to drink,Je bois de l'eau.
-dormir,睡觉,to sleep,Je dors bien.
-jouer,玩,to play,Je joue au football.
-courir,跑,to run,Je cours vite.
-marcher,走路,to walk,Nous marchons à l'école.
-sauter,跳,to jump,L'enfant saute haut.
-nager,游泳,to swim,Je nage en été.
-lire,阅读,to read,Je lis chaque jour.
-écrire,书写,to write,J'écris une phrase.
-dessiner,画画,to draw,J'aime dessiner.
-chanter,唱歌,to sing,Nous chantons ensemble.
-danser,跳舞,to dance,Elle danse bien.
-écouter,听,to listen,J'écoute la musique.
-regarder,看,to watch,Je regarde un film.
-parler,说话,to speak,Je parle français.
-raconter,讲述,to tell,Je raconte une histoire.
-travailler,学习/工作,to work,Je travaille bien à l'école.
-chercher,寻找,to look for,Je cherche mon livre.
-trouver,找到,to find,J'ai trouvé mon stylo.
-ouvrir,打开,to open,Ouvre ton cahier.
-fermer,关闭,to close,Ferme la porte.
-laver,洗,to wash,Je lave mes mains.
-ranger,整理,to tidy up,Je range ma chambre.
-porter,穿/拿,to wear,Je porte un manteau.
-apporter,带来,to bring,Apporte ton cahier.
-montrer,展示,to show,Montre-moi ton dessin.
-aider,帮助,to help,J'aide mon ami.
-attendre,等待,to wait,Nous attendons le bus.
-aimer,喜欢,to like,J'aime lire.
-préférer,更喜欢,to prefer,Je préfère le chocolat.
-acheter,购买,to buy,Ma mère achète du pain.
-grand,大的,big,Le chien est grand.
-petit,小的,small,Le chat est petit.
-jeune,年轻的,young,Mon frère est jeune.
-vieux,年老的,old,Le vieux monsieur sourit.
-gentil,友善的,kind,Ma maîtresse est gentille.
-triste,伤心的,sad,L'enfant est triste.
-content,高兴的,happy,Je suis content aujourd'hui.
-tête,头,head,J'ai mal à la tête.
-visage,脸,face,Elle a un joli visage.
-œil,眼睛,eye,J'ai les yeux bleus.
-nez,鼻子,nose,Mon nez est froid.
-bouche,嘴,mouth,Ouvre la bouche.
-oreille,耳朵,ear,J'écoute avec mes oreilles.
-dent,牙齿,tooth,Je me brosse les dents.
-cheveu,头发,hair,Elle a les cheveux longs.
-cou,脖子,neck,Le cou de la girafe est long.
-épaule,肩膀,shoulder,Mon sac est sur mon épaule.
-bras,手臂,arm,Je lève le bras.
-main,手,hand,Lave tes mains.
-doigt,手指,finger,J'ai cinq doigts.
-jambe,腿,leg,Je bouge les jambes.
-genou,膝盖,knee,Mon genou me fait mal.
-pied,脚,foot,J'ai mal au pied.
-ventre,肚子,belly,J'ai mal au ventre.
-dos,背,back,Mon dos est fatigué.
-cœur,心脏,heart,Mon cœur bat vite.
-corps,身体,body,Le corps humain est incroyable.
-pain,面包,bread,Je mange du pain.
-beurre,黄油,butter,J'aime le pain avec du beurre.
-fromage,奶酪,cheese,Le fromage est délicieux.
-lait,牛奶,milk,Je bois du lait.
-eau,水,water,L'eau est importante.
-jus,果汁,juice,Je bois du jus d'orange.
-pomme,苹果,apple,La pomme est rouge.
-poire,梨,pear,Je mange une poire.
-banane,香蕉,banana,La banane est jaune.
-orange,橙子,orange,J'aime les oranges.
-fraise,草莓,strawberry,Les fraises sont sucrées.
-raisin,葡萄,grape,Le raisin est bon.
-cerise,樱桃,cherry,La cerise est rouge.
-carotte,胡萝卜,carrot,Le lapin mange une carotte.
-tomate,西红柿,tomato,La tomate est rouge.
-pomme de terre,土豆,potato,Je mange des pommes de terre.
-salade,生菜/沙拉,salad,La salade est fraîche.
-soupe,汤,soup,La soupe est chaude.
-gâteau,蛋糕,cake,Le gâteau est délicieux.
-chocolat,巧克力,chocolate,J'adore le chocolat.
-bonbon,糖果,candy,Les enfants aiment les bonbons.
-glace,冰淇淋,ice cream,Je mange une glace.
-œuf,鸡蛋,egg,Je mange un œuf au petit-déjeuner.
-viande,肉,meat,La viande est cuite.
-poisson,鱼肉,fish,Le poisson est frais.
-poulet,鸡肉,chicken,Le poulet est bon.
-petit-déjeuner,早餐,breakfast,Je prends mon petit-déjeuner.
-déjeuner,午餐,lunch,Nous déjeunons à midi.
-dîner,晚餐,dinner,Nous dînons en famille.
-jour,天,day,Aujourd'hui est un beau jour.
-nuit,夜晚,night,La nuit est calme.
-matin,早晨,morning,Je me lève le matin.
-midi,中午,noon,Nous mangeons à midi.
-soir,晚上,evening,Le soir je lis.
-heure,小时,hour,Il est trois heures.
-minute,分钟,minute,Attends une minute.
-seconde,秒,seconde,Une seconde seulement.
-jour de semaine,工作日,weekday,C'est un jour de semaine.
-lundi,星期一,Monday,Lundi nous avons école.
-mardi,星期二,Tuesday,Mardi est mon jour préféré.
-mercredi,星期三,Wednesday,Le mercredi je fais du sport.
-jeudi,星期四,Thursday,Jeudi il pleut.
-vendredi,星期五,Friday,Nous sommes vendredi.
-samedi,星期六,Saturday,Samedi je joue dehors.
-dimanche,星期日,Sunday,Dimanche nous nous reposons.
-semaine,星期,week,La semaine passe vite.
-mois,月,month,Le mois de juin est agréable.
-année,年,year,Cette année est intéressante.
-janvier,一月,January,Janvier est en hiver.
-février,二月,February,Février est court.
-mars,三月,March,Mars annonce le printemps.
-avril,四月,April,Avril apporte la pluie.
-mai,五月,May,Les fleurs poussent en mai.
-juin,六月,June,Juin est ensoleillé.
-juillet,七月,July,Nous partons en vacances en juillet.
-août,八月,August,Il fait chaud en août.
-septembre,九月,September,L'école recommence en septembre.
-octobre,十月,October,Les feuilles tombent en octobre.
-novembre,十一月,November,Novembre est souvent gris.
-décembre,十二月,December,Noël est en décembre.
-hier,昨天,yesterday,J'ai joué hier.
-aujourd'hui,今天,today,Aujourd'hui il fait beau.
-demain,明天,tomorrow,Demain nous voyagerons.
-printemps,春天,spring,J'aime le printemps.
-été,夏天,summer,Nous nageons en été.
-automne,秋天,autumn,Les feuilles tombent en automne.
-hiver,冬天,winter,Il neige en hiver.
-soleil,太阳,sun,Le soleil brille.
-nuage,云,cloud,Le nuage est blanc.
-pluie,雨,rain,La pluie tombe.
-neige,雪,snow,La neige est blanche.
-vent,风,wind,Le vent souffle fort.
-orage,雷雨,storm,L'orage approche.
-arc-en-ciel,彩虹,rainbow,Je vois un arc-en-ciel.
-chaud,热的,hot,L'eau est chaude.
-froid,冷的,cold,L'hiver est froid.
-beau temps,好天气,good weather,Nous avons du beau temps.
-vêtement,衣服,clothes,J'aime mes vêtements.
-tee-shirt,T恤衫,T-shirt,Je porte un tee-shirt bleu.
-chemise,衬衫,shirt,Mon père porte une chemise.
-pull,毛衣,sweater,Je mets un pull en hiver.
-veste,夹克,jacket,Ma veste est chaude.
-manteau,大衣,coat,J'ai un manteau rouge.
-pantalon,裤子,trousers,Mon pantalon est noir.
-jean,牛仔裤,jeans,Je porte un jean.
-short,短裤,shorts,Je mets un short en été.
-robe,连衣裙,dress,Ma sœur porte une robe.
-jupe,裙子,skirt,Cette jupe est jolie.
-chaussette,袜子,sock,J'ai deux chaussettes.
-chaussure,鞋,shoe,Mes chaussures sont neuves.
-basket,运动鞋,sneaker,Je porte des baskets.
-botte,靴子,boot,Les bottes sont utiles quand il pleut.
-chapeau,帽子,hat,Je mets un chapeau au soleil.
-casquette,鸭舌帽,cap,Ma casquette est bleue.
-écharpe,围巾,scarf,L'écharpe est chaude.
-gant,手套,glove,J'ai des gants en hiver.
-pyjama,睡衣,pajamas,Je mets mon pyjama le soir.
-immeuble,楼房,building,Cet immeuble est haut.
-appartement,公寓,apartment,Nous habitons dans un appartement.
-toit,屋顶,roof,Le chat est sur le toit.
-mur,墙,wall,Le mur est blanc.
-sol,地板,floor,Le sol est propre.
-plafond,天花板,ceiling,Le plafond est haut.
-escalier,楼梯,stairs,Je monte l'escalier.
-ascenseur,电梯,elevator,L'ascenseur est rapide.
-garage,车库,garage,La voiture est dans le garage.
-cour,院子,courtyard,Les enfants jouent dans la cour.
-ville,城市,city,Paris est une grande ville.
-village,村庄,village,Mon village est calme.
-rue,街道,street,Ma rue est tranquille.
-route,道路,road,La route est longue.
-place,广场,square,Nous nous retrouvons sur la place.
-parc,公园,park,Les enfants jouent au parc.
-magasin,商店,shop,Je vais au magasin.
-marché,市场,market,Nous achetons des fruits au marché.
-boulangerie,面包店,bakery,J'achète du pain à la boulangerie.
-pharmacie,药店,pharmacy,La pharmacie est ouverte.
-hôpital,医院,hospital,L'hôpital est près d'ici.
-poste,邮局,post office,Je vais à la poste.
-banque,银行,bank,La banque est en centre-ville.
-gare,火车站,train station,La gare est grande.
-musée,博物馆,museum,Nous visitons un musée.
-cinéma,电影院,cinema,Je vais au cinéma.
-piscine,游泳池,swimming pool,Nous nageons à la piscine.
-bibliothèque,图书馆,library,Je lis à la bibliothèque.
-voiture,汽车,car,La voiture est rouge.
-vélo,自行车,bicycle,Je vais à l'école à vélo.
-bus,公交车,bus,J'attends le bus.
-train,火车,train,Le train arrive.
-tramway,有轨电车,tram,Le tramway passe ici.
-métro,地铁,subway,Nous prenons le métro.
-avion,飞机,airplane,L'avion vole haut.
-bateau,船,boat,Le bateau traverse la rivière.
-camion,卡车,truck,Le camion transporte des marchandises.
-moto,摩托车,motorbike,La moto est rapide.
-voyage,旅行,trip,Le voyage est intéressant.
-ici,这里,here,Viens ici.
-là,那里,there,Le livre est là.
-dedans,里面,inside,Le chat est dedans.
-dehors,外面,outside,Les enfants jouent dehors.
-devant,前面,in front of,La voiture est devant la maison.
-derrière,后面,behind,Le chien est derrière la porte.
-près de,靠近,near,L'école est près de chez moi.
-loin de,远离,far from,Le village est loin de la ville.
-entre,在……之间,between,Le ballon est entre les chaises.
-sur,在……上,on,Le livre est sur la table.
-sous,在……下面,under,Le chat est sous la chaise.
-dans,在……里面,in,Le stylo est dans le sac.
-à côté de,在……旁边,next to,L'arbre est à côté de la maison.
-gauche,左,left,Tourne à gauche.
-droite,右,right,Tourne à droite.
-haut,上方,up,Regarde en haut.
-bas,下方,down,Le ballon tombe en bas.
-grand,大的,big,Le chien est grand.
-petit,小的,small,Le chat est petit.
-long,长的,long,La route est longue.
-court,短的,short,Le film est court.
-large,宽的,wide,La rue est large.
-étroit,窄的,narrow,Le passage est étroit.
-jeune,年轻的,young,Elle est jeune.
-vieux,年老的,old,Le grand-père est vieux.
-fort,强壮的,strong,Il est fort.
-faible,虚弱的,weak,Je me sens faible.
-gentil,友善的,kind,C'est un garçon gentil.
-méchant,坏的,mean,Le loup est méchant dans l'histoire.
-drôle,有趣的,funny,Cette histoire est drôle.
-sérieux,严肃的,serious,Il est sérieux en classe.
-propre,干净的,clean,La chambre est propre.
-sale,脏的,dirty,Les chaussures sont sales.
-facile,简单的,easy,Cet exercice est facile.
-difficile,困难的,difficult,Le problème est difficile.
-rapide,快速的,fast,Le train est rapide.
-lent,缓慢的,slow,La tortue est lente.
-zéro,零,zero,J'ai zéro faute.
-un,一,one,J'ai un livre.
-deux,二,two,J'ai deux frères.
-trois,三,three,Il y a trois pommes.
-quatre,四,four,Nous sommes quatre.
-cinq,五,five,J'ai cinq doigts.
-six,六,six,La classe a six fenêtres.
-sept,七,seven,J'ai sept ans.
-huit,八,eight,Nous avons huit crayons.
-neuf,九,nine,Il est neuf heures.
-dix,十,ten,J'ai dix euros.
-onze,十一,eleven,Il y a onze élèves.
-douze,十二,twelve,Nous sommes douze.
-treize,十三,thirteen,Le bus arrive à treize heures.
-quatorze,十四,fourteen,J'ai quatorze billes.
-quinze,十五,fifteen,Il y a quinze livres.
-seize,十六,sixteen,La bibliothèque ouvre à seize heures.
-dix-sept,十七,seventeen,Nous avons dix-sept cahiers.
-dix-huit,十八,eighteen,J'ai dix-huit cartes.
-dix-neuf,十九,nineteen,Le train part à dix-neuf heures.
-vingt,二十,twenty,Il y a vingt élèves.
-trente,三十,thirty,Le trajet dure trente minutes.
-quarante,四十,forty,Le livre coûte quarante euros.
-cinquante,五十,fifty,Nous avons cinquante pages.
-soixante,六十,sixty,Le musée accueille soixante visiteurs.
-cent,一百,one hundred,La collection compte cent objets.
-premier,第一,first,Je suis le premier.
-deuxième,第二,second,Il arrive deuxième.
-troisième,第三,third,Elle termine troisième.
-dernier,最后,last,Je suis le dernier de la file.
-rouge,红色,red,La pomme est rouge.
-bleu,蓝色,blue,Le ciel est bleu.
-vert,绿色,green,L'herbe est verte.
-jaune,黄色,yellow,Le soleil est jaune.
-orange,橙色,orange,L'orange est orange.
-rose,粉色,pink,Ma fleur est rose.
-violet,紫色,purple,Le cahier est violet.
-marron,棕色,brown,L'ours est marron.
-gris,灰色,grey,Le nuage est gris.
-blanc,白色,white,La neige est blanche.
-noir,黑色,black,Le chat est noir.
-clair,浅色的,light,Cette couleur est claire.
-foncé,深色的,dark,Le bleu est foncé.
-couleur,颜色,color,J'aime cette couleur.
-football,足球,football,Je joue au football.
-basket-ball,篮球,basketball,Nous jouons au basket-ball.
-tennis,网球,tennis,Elle joue au tennis.
-natation,游泳,swimming,J'aime la natation.
-course,跑步,running,La course est amusante.
-vélo,骑自行车,cycling,Je fais du vélo.
-danse,舞蹈,dance,Ma sœur fait de la danse.
-gymnastique,体操,gymnastics,La gymnastique développe l'équilibre.
-sport,运动,sport,Le sport est bon pour la santé.
-équipe,队伍,team,Notre équipe a gagné.
-match,比赛,match,Le match commence bientôt.
-joueur,运动员/player,player,Le joueur marque un but.
-but,进球,goal,Il marque un but.
-victoire,胜利,victory,Nous célébrons la victoire.
-défaite,失败,defeat,L'équipe accepte la défaite.
-arbitre,裁判,referee,L'arbitre siffle.
-ballon,球,ball,Balance-moi le ballon.
-terrain,场地,field,Le terrain est grand.
-médaille,奖牌,medal,Elle gagne une médaille.
-nature,自然,nature,J'aime la nature.
-arbre,树,tree,L'arbre est très haut.
-fleur,花,flower,La fleur sent bon.
-herbe,草,grass,L'herbe est verte.
-feuille,叶子,leaf,La feuille tombe.
-racine,根,root,La racine est sous la terre.
-branche,树枝,branch,L'oiseau est sur une branche.
-graine,种子,seed,Je plante une graine.
-fruit,水果,fruit,Le fruit est mûr.
-légume,蔬菜,vegetable,Je mange un légume.
-champ,田野,field,Le champ est vaste.
-forêt,森林,forest,La forêt est calme.
-rivière,河流,river,La rivière est propre.
-lac,湖,lake,Le lac est magnifique.
-mer,海,sea,Nous allons à la mer.
-océan,海洋,ocean,L'océan est immense.
-plage,海滩,beach,Les enfants jouent sur la plage.
-sable,沙子,sand,Le sable est chaud.
-rocher,岩石,rock,Le rocher est grand.
-île,岛,island,Cette île est belle.
-lion,狮子,lion,Le lion rugit.
-tigre,老虎,tiger,Le tigre est fort.
-éléphant,大象,elephant,L'éléphant est énorme.
-girafe,长颈鹿,giraffe,La girafe a un long cou.
-singe,猴子,monkey,Le singe grimpe à l'arbre.
-ours,熊,bear,L'ours dort en hiver.
-loup,狼,wolf,Le loup vit dans la forêt.
-renard,狐狸,fox,Le renard est malin.
-écureuil,松鼠,squirrel,L'écureuil mange une noisette.
-hérisson,刺猬,hedgehog,Le hérisson est petit.
-abeille,蜜蜂,bee,L'abeille produit du miel.
-papillon,蝴蝶,butterfly,Le papillon vole.
-fourmi,蚂蚁,ant,La fourmi travaille beaucoup.
-araignée,蜘蛛,spider,L'araignée tisse sa toile.
-dauphin,海豚,dolphin,Le dauphin nage vite.
-requin,鲨鱼,shark,Le requin vit dans l'océan.
-baleine,鲸鱼,whale,La baleine est très grande.
-tortue,乌龟,turtle,La tortue avance lentement.
-grenouille,青蛙,frog,La grenouille saute.
-serpent,蛇,snake,Le serpent rampe.
-pouvoir,能够,can/to be able to,Je peux finir mon travail.
-vouloir,想要,to want,Je veux un gâteau.
-devoir,必须,have to/must,Je dois faire mes devoirs.
-savoir,知道,to know,Je sais la réponse.
-connaître,认识,to know (a person/place),Je connais ce garçon.
-penser,思考,to think,Je pense à toi.
-croire,相信,to believe,Je crois en lui.
-trouver,找到,to find,Je trouve mes clés.
-chercher,寻找,to search,Je cherche mon livre.
-porter,穿/拿,to wear/carry,Je porte un manteau.
-mettre,放置,to put,Je mets le livre sur la table.
-prendre,拿/to take,to take,Je prends le bus.
-donner,给,to give,Je donne un cadeau.
-recevoir,收到,to receive,Je reçois une lettre.
-ouvrir,打开,to open,J’ouvre la porte.
-fermer,关闭,to close,Je ferme la fenêtre.
-entrer,进入,to enter,Nous entrons dans la classe.
-sortir,出去,to go out,Je sors avec mes amis.
-monter,上升/to go up,to go up,Je monte les escaliers.
-descendre,下降/to go down,Je descends l’escalier.
-marcher,走路,to walk,Je marche à l’école.
-courir,跑步,to run,L’enfant court vite.
-sauter,跳,to jump,Je saute sur le lit.
-jouer,玩,to play,Les enfants jouent dehors.
-regarder,看,to watch,Je regarde la télé.
-écouter,听,to listen,J’écoute la musique.
-parler,说,to speak,Je parle français.
-répondre,回答,to answer,Je réponds à la question.
-poser,提出/to ask,to ask,Je pose une question.
-expliquer,解释,to explain,Le professeur explique la leçon.
-comprendre,理解,to understand,Je comprends le texte.
-apprendre,学习,to learn,J’apprends une poésie.
-enseigner,教,to teach,Il enseigne les maths.
-lire,阅读,to read,Je lis un livre.
-écrire,写,to write,J’écris une lettre.
-dessiner,画,to draw,Je dessine un chat.
-colorier,涂色,to color,Je colorie le dessin.
-chanter,唱,to sing,Je chante une chanson.
-danser,跳舞,to dance,Nous dansons ensemble.
-aimer,喜欢,to like/love,J’aime le chocolat.
-détester,讨厌,to hate,Je déteste les devoirs.
-vivre,生活,to live,Nous vivons à Paris.
-habiter,居住,to live (reside),J’habite en ville.
-naître,出生,to be born,Je suis né en 2015.
-mourir,去世,to die,Le vieux chien est mort.
-grandir,长大,to grow up,L’enfant grandit vite.
-rester,停留,to stay,Je reste à la maison.
-venir,来,to come,Tu viens avec moi.
-aller,去,to go,Je vais à l’école.
-revenir,回来,to come back,Je reviens bientôt.
-commencer,开始,to start,Le cours commence à 8h.
-finir,结束,to finish,Je finis mon travail.
-continuer,继续,to continue,Nous continuons la lecture.
-attendre,等待,to wait,J’attends le bus.
-arriver,到达,to arrive,Le train arrive à midi.
-partir,离开,to leave,Nous partons demain.
-voyager,旅行,to travel,Nous voyageons en France.
-acheter,买,to buy,J’achète du pain.
-vendre,卖,to sell,Il vend des fruits.
-payer,支付,to pay,Je paie la note.
-coûter,花费,to cost,Ce livre coûte 10 euros.
-gagner,赢/to earn,to win/earn,Il gagne le match.
-perdre,失去/to lose,to lose,Je perds mes clés.
-aider,帮助,to help,J’aide mon ami.
-sauver,拯救,to save,Le pompier sauve le chat.
-travailler,工作,to work,Mon père travaille beaucoup.
-réussir,成功,to succeed,Je réussis mon examen.
-échouer,失败,to fail,Il échoue au test.
-utiliser,使用,to use,J’utilise mon stylo.
-envoyer,发送,to send,J’envoie un message.
-recevoir,接收,to receive,Je reçois un email.
+[
+  {"fr":"eau","g":"n.f.","zh":"水","en":"water","sfr":"L'eau coule dans la rivière."},
+  {"fr":"graines","g":"n.f.","zh":"种子","en":"seeds","sfr":"On plante des graines dans le jardin."},
+  {"fr":"racine","g":"n.f.","zh":"根","en":"root","sfr":"La racine de l'arbre est profonde."},
+  {"fr":"tige","g":"n.f.","zh":"茎","en":"stem","sfr":"La tige de la plante est verte."},
+  {"fr":"pétale","g":"n.m.","zh":"花瓣","en":"petal","sfr":"Les pétales de la rose sont rouges."},
+  {"fr":"insecte","g":"n.m.","zh":"昆虫","en":"insect","sfr":"Le papillon est un bel insecte."},
+  {"fr":"papillon","g":"n.m.","zh":"蝴蝶","en":"butterfly","sfr":"Le papillon vole de fleur en fleur."},
+  {"fr":"abeille","g":"n.f.","zh":"蜜蜂","en":"bee","sfr":"L'abeille butine les fleurs du jardin."},
+  {"fr":"fourmi","g":"n.f.","zh":"蚂蚁","en":"ant","sfr":"La fourmi porte une graine."},
+  {"fr":"coccinelle","g":"n.f.","zh":"瓢虫","en":"ladybug","sfr":"La coccinelle est rouge avec des points noirs."},
+  {"fr":"araignée","g":"n.f.","zh":"蜘蛛","en":"spider","sfr":"L'araignée tisse sa toile dans le coin."},
+  {"fr":"escargot","g":"n.m.","zh":"蜗牛","en":"snail","sfr":"L'escargot avance lentement sur le mur."},
+  {"fr":"grenouille","g":"n.f.","zh":"青蛙","en":"frog","sfr":"La grenouille saute dans la mare."},
+  {"fr":"serpent","g":"n.m.","zh":"蛇","en":"snake","sfr":"Le serpent glisse dans l'herbe."},
+  {"fr":"lion","g":"n.m.","zh":"狮子","en":"lion","sfr":"Le lion rugit dans la savane."},
+  {"fr":"girafe","g":"n.f.","zh":"长颈鹿","en":"giraffe","sfr":"La girafe mange les feuilles des grands arbres."},
+  {"fr":"éléphant","g":"n.m.","zh":"大象","en":"elephant","sfr":"L'éléphant est le plus grand animal terrestre."},
+  {"fr":"singe","g":"n.m.","zh":"猴子","en":"monkey","sfr":"Le singe grimpe aux arbres."},
+  {"fr":"tigre","g":"n.m.","zh":"老虎","en":"tiger","sfr":"Le tigre court très vite dans la jungle."},
+  {"fr":"renard","g":"n.m.","zh":"狐狸","en":"fox","sfr":"Le renard est roux et rusé."},
+  {"fr":"loup","g":"n.m.","zh":"狼","en":"wolf","sfr":"Le loup hurle dans la nuit."},
+  {"fr":"ours","g":"n.m.","zh":"熊","en":"bear","sfr":"L'ours cherche du miel dans la forêt."},
+  {"fr":"dauphin","g":"n.m.","zh":"海豚","en":"dolphin","sfr":"Le dauphin nage dans la mer bleue."},
+  {"fr":"baleine","g":"n.f.","zh":"鲸鱼","en":"whale","sfr":"La baleine est le plus grand animal marin."},
+  {"fr":"requin","g":"n.m.","zh":"鲨鱼","en":"shark","sfr":"Le requin nage vite dans l'océan."},
+  {"fr":"tortue","g":"n.f.","zh":"乌龟","en":"turtle","sfr":"La tortue marche lentement sur la plage."},
+  {"fr":"perroquet","g":"n.m.","zh":"鹦鹉","en":"parrot","sfr":"Le perroquet répète les mots qu'il entend."},
+  {"fr":"hibou","g":"n.m.","zh":"猫头鹰","en":"owl","sfr":"Le hibou chasse la nuit."},
+  {"fr":"aigle","g":"n.m.","zh":"老鹰","en":"eagle","sfr":"L'aigle vole haut dans le ciel."},
+  {"fr":"pingouin","g":"n.m.","zh":"企鹅","en":"penguin","sfr":"Le pingouin vit dans les pays froids."},
+  {"fr":"chameau","g":"n.m.","zh":"骆驼","en":"camel","sfr":"Le chameau marche dans le désert."},
+  {"fr":"zèbre","g":"n.m.","zh":"斑马","en":"zebra","sfr":"Le zèbre a des rayures noires et blanches."},
+  {"fr":"campagne","g":"n.f.","zh":"乡村","en":"countryside","sfr":"On se promène à la campagne le week-end."},
+  {"fr":"champ","g":"n.m.","zh":"田野","en":"field","sfr":"Le champ est plein de blé en été."},
+  {"fr":"prairie","g":"n.f.","zh":"草地","en":"meadow","sfr":"Les vaches broutent dans la prairie."},
+  {"fr":"colline","g":"n.f.","zh":"山丘","en":"hill","sfr":"Nous montons la colline pour voir le paysage."},
+  {"fr":"vallée","g":"n.f.","zh":"山谷","en":"valley","sfr":"La rivière coule dans la vallée."},
+  {"fr":"désert","g":"n.m.","zh":"沙漠","en":"desert","sfr":"Le désert est très chaud le jour."},
+  {"fr":"île","g":"n.f.","zh":"岛屿","en":"island","sfr":"L'île est entourée d'eau."},
+  {"fr":"lac","g":"n.m.","zh":"湖","en":"lake","sfr":"Nous pêchons dans le lac."},
+  {"fr":"étang","g":"n.m.","zh":"池塘","en":"pond","sfr":"Les canards nagent dans l'étang."},
+  {"fr":"cascade","g":"n.f.","zh":"瀑布","en":"waterfall","sfr":"La cascade est belle et bruyante."},
+  {"fr":"rocher","g":"n.m.","zh":"岩石","en":"rock","sfr":"Je grimpe sur le rocher au bord du lac."},
+  {"fr":"pierre","g":"n.f.","zh":"石头","en":"stone","sfr":"Je ramasse une pierre dans le jardin."},
+  {"fr":"sable","g":"n.m.","zh":"沙子","en":"sand","sfr":"Je construis un château de sable."},
+  {"fr":"boue","g":"n.f.","zh":"泥","en":"mud","sfr":"Mes chaussures sont couvertes de boue."},
+  {"fr":"nuage","g":"n.m.","zh":"云","en":"cloud","sfr":"Des nuages blancs flottent dans le ciel."},
+  {"fr":"orage","g":"n.m.","zh":"雷雨","en":"storm","sfr":"L'orage arrive et il faut rentrer."},
+  {"fr":"tonnerre","g":"n.m.","zh":"雷声","en":"thunder","sfr":"Le tonnerre fait peur aux petits enfants."},
+  {"fr":"éclair","g":"n.m.","zh":"闪电","en":"lightning","sfr":"Un éclair illumine le ciel sombre."},
+  {"fr":"arc-en-ciel","g":"n.m.","zh":"彩虹","en":"rainbow","sfr":"Un arc-en-ciel apparaît après la pluie."},
+  {"fr":"brouillard","g":"n.m.","zh":"雾","en":"fog","sfr":"Le brouillard cache les montagnes ce matin."},
+  {"fr":"glace","g":"n.f.","zh":"冰","en":"ice","sfr":"Le lac est couvert de glace en hiver."},
+  {"fr":"gel","g":"n.m.","zh":"霜冻","en":"frost","sfr":"Le gel couvre les vitres le matin."},
+  {"fr":"chaleur","g":"n.f.","zh":"热","en":"heat","sfr":"La chaleur de l'été est parfois très forte."},
+  {"fr":"fraîcheur","g":"n.f.","zh":"凉爽","en":"coolness","sfr":"La fraîcheur du soir est agréable après la journée."},
+  {"fr":"soleil","g":"n.m.","zh":"太阳","en":"sun","sfr":"Le soleil se couche derrière les montagnes."},
+  {"fr":"ciel","g":"n.m.","zh":"天空","en":"sky","sfr":"Le ciel est bleu et sans nuages."},
+  {"fr":"horizon","g":"n.m.","zh":"地平线","en":"horizon","sfr":"Je vois le soleil à l'horizon."},
+  {"fr":"planète","g":"n.f.","zh":"星球","en":"planet","sfr":"La Terre est une planète du système solaire."},
+  {"fr":"Terre","g":"n.f.","zh":"地球","en":"Earth","sfr":"La Terre tourne autour du Soleil."},
+  {"fr":"lune","g":"n.f.","zh":"月球","en":"moon","sfr":"La lune est visible la nuit."},
+  {"fr":"étoile","g":"n.f.","zh":"星星","en":"star","sfr":"Les étoiles brillent dans le ciel noir."},
+  {"fr":"espace","g":"n.m.","zh":"太空","en":"space","sfr":"Les astronautes voyagent dans l'espace."},
+  {"fr":"fusée","g":"n.f.","zh":"火箭","en":"rocket","sfr":"La fusée part vers l'espace."},
+  {"fr":"astronaute","g":"n.m.","zh":"宇航员","en":"astronaut","sfr":"L'astronaute flotte dans l'espace."},
+  {"fr":"expérience","g":"n.f.","zh":"实验","en":"experiment","sfr":"On fait une expérience avec de l'eau et du sel."},
+  {"fr":"observation","g":"n.f.","zh":"观察","en":"observation","sfr":"Je fais une observation des plantes."},
+  {"fr":"instrument","g":"n.m.","zh":"工具","en":"instrument","sfr":"Le microscope est un instrument scientifique."},
+  {"fr":"microscope","g":"n.m.","zh":"显微镜","en":"microscope","sfr":"Je regarde une cellule au microscope."},
+  {"fr":"loupe","g":"n.f.","zh":"放大镜","en":"magnifying glass","sfr":"J'observe la fourmi avec une loupe."},
+  {"fr":"balance","g":"n.f.","zh":"天平","en":"scale","sfr":"Je pèse le sac avec la balance."},
+  {"fr":"thermomètre","g":"n.m.","zh":"温度计","en":"thermometer","sfr":"Le thermomètre indique vingt degrés."},
+  {"fr":"calendrier","g":"n.m.","zh":"日历","en":"calendar","sfr":"Je regarde le calendrier pour voir la date."},
+  {"fr":"horloge","g":"n.f.","zh":"时钟","en":"clock","sfr":"L'horloge de la classe sonne à midi."},
+  {"fr":"montre","g":"n.f.","zh":"手表","en":"watch","sfr":"Je regarde ma montre pour voir l'heure."},
+  {"fr":"heure","g":"n.f.","zh":"小时","en":"hour","sfr":"Il est huit heures, l'école commence."},
+  {"fr":"minute","g":"n.f.","zh":"分钟","en":"minute","sfr":"La récréation dure quinze minutes."},
+  {"fr":"seconde","g":"n.f.","zh":"秒","en":"second","sfr":"Je cours cent mètres en vingt secondes."},
+  {"fr":"semaine","g":"n.f.","zh":"周","en":"week","sfr":"Il y a cinq jours d'école par semaine."},
+  {"fr":"mois","g":"n.m.","zh":"月","en":"month","sfr":"Il y a douze mois dans une année."},
+  {"fr":"année","g":"n.f.","zh":"年","en":"year","sfr":"Cette année, j'entre en CE2."},
+  {"fr":"janvier","g":"n.m.","zh":"一月","en":"January","sfr":"En janvier, il fait souvent très froid."},
+  {"fr":"février","g":"n.m.","zh":"二月","en":"February","sfr":"Mon anniversaire est en février."},
+  {"fr":"mars","g":"n.m.","zh":"三月","en":"March","sfr":"Le printemps commence en mars."},
+  {"fr":"avril","g":"n.m.","zh":"四月","en":"April","sfr":"En avril, les fleurs poussent partout."},
+  {"fr":"mai","g":"n.m.","zh":"五月","en":"May","sfr":"Il y a beaucoup de fêtes en mai."},
+  {"fr":"juin","g":"n.m.","zh":"六月","en":"June","sfr":"Les vacances commencent en juin."},
+  {"fr":"juillet","g":"n.m.","zh":"七月","en":"July","sfr":"En juillet, nous partons à la mer."},
+  {"fr":"août","g":"n.m.","zh":"八月","en":"August","sfr":"Nous revenons de vacances en août."},
+  {"fr":"septembre","g":"n.m.","zh":"九月","en":"September","sfr":"La rentrée est en septembre."},
+  {"fr":"octobre","g":"n.m.","zh":"十月","en":"October","sfr":"En octobre, les feuilles sont orange et jaunes."},
+  {"fr":"novembre","g":"n.m.","zh":"十一月","en":"November","sfr":"En novembre, il fait souvent gris."},
+  {"fr":"décembre","g":"n.m.","zh":"十二月","en":"December","sfr":"En décembre, on attend Noël avec joie."},
+  {"fr":"maison","g":"n.f.","zh":"家","en":"home","sfr":"Je rentre à la maison après l'école."},
+  {"fr":"appartement","g":"n.m.","zh":"公寓","en":"apartment","sfr":"Nous habitons dans un appartement en ville."},
+  {"fr":"salon","g":"n.m.","zh":"客厅","en":"living room","sfr":"On regarde la télévision dans le salon."},
+  {"fr":"salle de bains","g":"n.f.","zh":"浴室","en":"bathroom","sfr":"Je me lave dans la salle de bains."},
+  {"fr":"toilettes","g":"n.f.","zh":"厕所","en":"toilet","sfr":"Les toilettes sont au bout du couloir."},
+  {"fr":"couloir","g":"n.m.","zh":"走廊","en":"hallway","sfr":"Je cours dans le couloir de l'école."},
+  {"fr":"escalier","g":"n.m.","zh":"楼梯","en":"stairs","sfr":"Je monte les escaliers jusqu'à ma chambre."},
+  {"fr":"grenier","g":"n.m.","zh":"阁楼","en":"attic","sfr":"Les vieux jouets sont dans le grenier."},
+  {"fr":"cave","g":"n.f.","zh":"地窖","en":"cellar","sfr":"Le vin est rangé dans la cave."},
+  {"fr":"garage","g":"n.m.","zh":"车库","en":"garage","sfr":"La voiture est dans le garage."},
+  {"fr":"armoire","g":"n.f.","zh":"衣柜","en":"wardrobe","sfr":"Mes habits sont dans l'armoire."},
+  {"fr":"tiroir","g":"n.m.","zh":"抽屉","en":"drawer","sfr":"Mes crayons sont dans le tiroir."},
+  {"fr":"placard","g":"n.m.","zh":"壁橱","en":"cupboard","sfr":"Les assiettes sont dans le placard."},
+  {"fr":"étagère","g":"n.f.","zh":"书架","en":"shelf","sfr":"Les livres sont sur l'étagère."},
+  {"fr":"lampe","g":"n.f.","zh":"台灯","en":"lamp","sfr":"J'allume la lampe pour lire."},
+  {"fr":"rideau","g":"n.m.","zh":"窗帘","en":"curtain","sfr":"Je tire les rideaux le soir."},
+  {"fr":"tapis","g":"n.m.","zh":"地毯","en":"rug","sfr":"Le chat dort sur le tapis."},
+  {"fr":"coussin","g":"n.m.","zh":"靠垫","en":"cushion","sfr":"Je pose la tête sur le coussin."},
+  {"fr":"miroir","g":"n.m.","zh":"镜子","en":"mirror","sfr":"Je me regarde dans le miroir."},
+  {"fr":"téléphone","g":"n.m.","zh":"电话","en":"phone","sfr":"Maman répond au téléphone."},
+  {"fr":"ordinateur","g":"n.m.","zh":"电脑","en":"computer","sfr":"Je fais des exercices sur l'ordinateur."},
+  {"fr":"télévision","g":"n.f.","zh":"电视","en":"television","sfr":"On regarde la télévision après le dîner."},
+  {"fr":"radio","g":"n.f.","zh":"收音机","en":"radio","sfr":"Papa écoute la radio le matin."},
+  {"fr":"internet","g":"n.m.","zh":"网络","en":"internet","sfr":"Je cherche des informations sur internet."},
+  {"fr":"photographie","g":"n.f.","zh":"照片","en":"photograph","sfr":"Je regarde les photographies de vacances."},
+  {"fr":"appareil","g":"n.m.","zh":"设备","en":"device","sfr":"Mon appareil photo prend de belles images."},
+  {"fr":"casque","g":"n.m.","zh":"耳机","en":"headphones","sfr":"J'écoute de la musique avec mon casque."},
+  {"fr":"bouton","g":"n.m.","zh":"按钮","en":"button","sfr":"J'appuie sur le bouton pour éteindre."},
+  {"fr":"clé","g":"n.f.","zh":"钥匙","en":"key","sfr":"Papa prend sa clé pour ouvrir la porte."},
+  {"fr":"poubelle","g":"n.f.","zh":"垃圾桶","en":"bin","sfr":"Je jette les papiers dans la poubelle."},
+  {"fr":"serviette","g":"n.f.","zh":"毛巾","en":"towel","sfr":"Je m'essuie avec la serviette."},
+  {"fr":"savon","g":"n.m.","zh":"肥皂","en":"soap","sfr":"Je me lave les mains avec du savon."},
+  {"fr":"brosse","g":"n.f.","zh":"刷子","en":"brush","sfr":"Je brosse mes cheveux avec une brosse."},
+  {"fr":"peigne","g":"n.m.","zh":"梳子","en":"comb","sfr":"Je me peigne avant d'aller à l'école."},
+  {"fr":"dentifrice","g":"n.m.","zh":"牙膏","en":"toothpaste","sfr":"Je mets du dentifrice sur ma brosse."},
+  {"fr":"shampooing","g":"n.m.","zh":"洗发水","en":"shampoo","sfr":"Je lave mes cheveux avec du shampooing."},
+  {"fr":"mouchoir","g":"n.m.","zh":"手帕","en":"handkerchief","sfr":"Je prends mon mouchoir quand j'éternue."},
+  {"fr":"colle","g":"n.f.","zh":"胶水","en":"glue","sfr":"Je colle les images avec de la colle."},
+  {"fr":"ciseaux","g":"n.m.","zh":"剪刀","en":"scissors","sfr":"Je coupe le papier avec les ciseaux."},
+  {"fr":"pinceau","g":"n.m.","zh":"画笔","en":"paintbrush","sfr":"Je peins avec un pinceau fin."},
+  {"fr":"pot","g":"n.m.","zh":"罐子","en":"jar","sfr":"La peinture est dans le pot."},
+  {"fr":"carton","g":"n.m.","zh":"纸板箱","en":"cardboard","sfr":"Je découpe du carton pour faire une maquette."},
+  {"fr":"feuille","g":"n.f.","zh":"纸张","en":"sheet of paper","sfr":"Je prends une feuille blanche pour dessiner."},
+  {"fr":"tableau d'affichage","g":"n.m.","zh":"公告栏","en":"notice board","sfr":"Je lis les informations sur le tableau d'affichage."},
+  {"fr":"dictionnaire","g":"n.m.","zh":"字典","en":"dictionary","sfr":"Je cherche le sens du mot dans le dictionnaire."},
+  {"fr":"atlas","g":"n.m.","zh":"地图册","en":"atlas","sfr":"Je regarde la carte dans l'atlas."},
+  {"fr":"carte","g":"n.f.","zh":"地图","en":"map","sfr":"Je cherche la France sur la carte."},
+  {"fr":"globe","g":"n.m.","zh":"地球仪","en":"globe","sfr":"Le globe montre tous les pays du monde."},
+  {"fr":"France","g":"n.f.","zh":"法国","en":"France","sfr":"La France est un pays d'Europe."},
+  {"fr":"Paris","g":"n.m.","zh":"巴黎","en":"Paris","sfr":"Paris est la capitale de la France."},
+  {"fr":"Europe","g":"n.f.","zh":"欧洲","en":"Europe","sfr":"La France est en Europe."},
+  {"fr":"pays","g":"n.m.","zh":"国家","en":"country","sfr":"Je connais les drapeaux de dix pays."},
+  {"fr":"drapeau","g":"n.m.","zh":"国旗","en":"flag","sfr":"Le drapeau français est bleu, blanc et rouge."},
+  {"fr":"langue","g":"n.f.","zh":"语言","en":"language","sfr":"J'apprends la langue française à l'école."},
+  {"fr":"culture","g":"n.f.","zh":"文化","en":"culture","sfr":"Chaque pays a sa propre culture."},
+  {"fr":"tradition","g":"n.f.","zh":"传统","en":"tradition","sfr":"La bûche de Noël est une tradition française."},
+  {"fr":"costume","g":"n.m.","zh":"服装","en":"costume","sfr":"Je mets un costume pour la fête."},
+  {"fr":"musée","g":"n.m.","zh":"博物馆","en":"museum","sfr":"On visite un musée plein de fossiles."},
+  {"fr":"monument","g":"n.m.","zh":"纪念碑","en":"monument","sfr":"La tour Eiffel est un monument célèbre."},
+  {"fr":"tour Eiffel","g":"n.f.","zh":"埃菲尔铁塔","en":"Eiffel Tower","sfr":"On voit la tour Eiffel depuis loin."},
+  {"fr":"château","g":"n.m.","zh":"城堡","en":"castle","sfr":"Nous visitons un vieux château en excursion."},
+  {"fr":"cathédrale","g":"n.f.","zh":"大教堂","en":"cathedral","sfr":"La cathédrale est très vieille et belle."},
+  {"fr":"fontaine","g":"n.f.","zh":"喷泉","en":"fountain","sfr":"Je bois à la fontaine dans la cour."},
+  {"fr":"statue","g":"n.f.","zh":"雕像","en":"statue","sfr":"Il y a une statue dans le parc."},
+  {"fr":"spectacle","g":"n.m.","zh":"演出","en":"show","sfr":"On regarde un spectacle de danse."},
+  {"fr":"danse","g":"n.f.","zh":"舞蹈","en":"dance","sfr":"J'apprends la danse le mercredi."},
+  {"fr":"ballet","g":"n.m.","zh":"芭蕾","en":"ballet","sfr":"Ma sœur fait du ballet depuis trois ans."},
+  {"fr":"guitare","g":"n.f.","zh":"吉他","en":"guitar","sfr":"Papa joue de la guitare le soir."},
+  {"fr":"piano","g":"n.f.","zh":"钢琴","en":"piano","sfr":"J'apprends le piano tous les mardis."},
+  {"fr":"flûte","g":"n.f.","zh":"长笛","en":"flute","sfr":"La flûte fait un son doux."},
+  {"fr":"tambour","g":"n.m.","zh":"鼓","en":"drum","sfr":"Mon ami joue du tambour dans la fanfare."},
+  {"fr":"instrument","g":"n.m.","zh":"乐器","en":"instrument","sfr":"La guitare est mon instrument préféré."},
+  {"fr":"mélodie","g":"n.f.","zh":"旋律","en":"melody","sfr":"Cette mélodie est douce et apaisante."},
+  {"fr":"rythme","g":"n.m.","zh":"节奏","en":"rhythm","sfr":"On frappe le rythme avec les mains."},
+  {"fr":"chef","g":"n.m.","zh":"首领","en":"chief","sfr":"Le chef de la classe distribue les cahiers."},
+  {"fr":"directeur","g":"n.m.","zh":"校长","en":"principal","sfr":"Le directeur accueille les parents."},
+  {"fr":"pompier","g":"n.m.","zh":"消防员","en":"firefighter","sfr":"Le pompier éteint l'incendie."},
+  {"fr":"policier","g":"n.m.","zh":"警察","en":"police officer","sfr":"Le policier aide les gens dans la rue."},
+  {"fr":"cuisinier","g":"n.m.","zh":"厨师","en":"cook","sfr":"Le cuisinier prépare le repas à la cantine."},
+  {"fr":"fermier","g":"n.m.","zh":"农民","en":"farmer","sfr":"Le fermier travaille dans les champs."},
+  {"fr":"boulanger","g":"n.m.","zh":"面包师","en":"baker","sfr":"Le boulanger fait le pain chaque matin."},
+  {"fr":"facteur","g":"n.m.","zh":"邮递员","en":"postman","sfr":"Le facteur apporte le courrier."},
+  {"fr":"artiste","g":"n.m.","zh":"艺术家","en":"artist","sfr":"L'artiste peint un beau tableau."},
+  {"fr":"musicien","g":"n.m.","zh":"音乐家","en":"musician","sfr":"Le musicien joue de la guitare dans la rue."},
+  {"fr":"acteur","g":"n.m.","zh":"演员","en":"actor","sfr":"L'acteur joue un rôle dans la pièce."},
+  {"fr":"astronaute","g":"n.m.","zh":"宇航员","en":"astronaut","sfr":"L'astronaute part en mission dans l'espace."},
+  {"fr":"sportif","g":"n.m.","zh":"运动员","en":"athlete","sfr":"Le sportif s'entraîne tous les jours."},
+  {"fr":"champion","g":"n.m.","zh":"冠军","en":"champion","sfr":"Notre équipe est championne de football."},
+  {"fr":"courageux","g":"adj.","zh":"勇敢的","en":"brave","sfr":"Le pompier est courageux dans son métier."},
+  {"fr":"intelligent","g":"adj.","zh":"聪明的","en":"intelligent","sfr":"Mon ami est très intelligent en mathématiques."},
+  {"fr":"créatif","g":"adj.","zh":"有创意的","en":"creative","sfr":"Elle est très créative dans ses dessins."},
+  {"fr":"patient","g":"adj.","zh":"有耐心的","en":"patient","sfr":"La maîtresse est patiente avec les élèves."},
+  {"fr":"poli","g":"adj.","zh":"有礼貌的","en":"polite","sfr":"Je suis poli avec les adultes."},
+  {"fr":"respectueux","g":"adj.","zh":"尊重他人的","en":"respectful","sfr":"Il est respectueux envers ses camarades."},
+  {"fr":"responsable","g":"adj.","zh":"负责任的","en":"responsible","sfr":"Il est responsable de son cartable."},
+  {"fr":"organisé","g":"adj.","zh":"有条理的","en":"organized","sfr":"Ma chambre est bien organisée."},
+  {"fr":"attentif","g":"adj.","zh":"专心的","en":"attentive","sfr":"Je suis attentif pendant la leçon."},
+  {"fr":"bienveillant","g":"adj.","zh":"善意的","en":"kind","sfr":"Mon camarade est bienveillant avec moi."},
+  {"fr":"solidaire","g":"adj.","zh":"团结的","en":"supportive","sfr":"Nous sommes solidaires dans notre classe."},
+  {"fr":"valeur","g":"n.f.","zh":"价值观","en":"value","sfr":"Le respect est une valeur importante."},
+  {"fr":"liberté","g":"n.f.","zh":"自由","en":"freedom","sfr":"La liberté est un droit important."},
+  {"fr":"égalité","g":"n.f.","zh":"平等","en":"equality","sfr":"L'égalité, c'est traiter tout le monde pareil."},
+  {"fr":"respect","g":"n.m.","zh":"尊重","en":"respect","sfr":"J'ai du respect pour mes camarades."},
+  {"fr":"partage","g":"n.m.","zh":"分享","en":"sharing","sfr":"Le partage est une belle qualité."},
+  {"fr":"entraide","g":"n.f.","zh":"互助","en":"mutual aid","sfr":"L'entraide est importante dans une équipe."},
+  {"fr":"courage","g":"n.m.","zh":"勇气","en":"courage","sfr":"Il faut du courage pour parler devant la classe."},
+  {"fr":"imagination","g":"n.f.","zh":"想象力","en":"imagination","sfr":"J'utilise mon imagination pour écrire une histoire."},
+  {"fr":"rêve","g":"n.m.","zh":"梦想","en":"dream","sfr":"Mon rêve est de voyager dans l'espace."},
+  {"fr":"idée","g":"n.f.","zh":"想法","en":"idea","sfr":"J'ai une bonne idée pour notre projet."},
+  {"fr":"projet","g":"n.m.","zh":"项目","en":"project","sfr":"Notre classe prépare un projet sur les animaux."},
+  {"fr":"activité","g":"n.f.","zh":"活动","en":"activity","sfr":"L'activité préférée en classe est le dessin."},
+  {"fr":"atelier","g":"n.m.","zh":"工作坊","en":"workshop","sfr":"Je participe à un atelier de poterie."},
+  {"fr":"exposé","g":"n.m.","zh":"口头报告","en":"presentation","sfr":"Je prépare un exposé sur les dinosaures."},
+  {"fr":"excursion","g":"n.f.","zh":"郊游","en":"excursion","sfr":"Nous faisons une excursion à la ferme."},
+  {"fr":"visite","g":"n.f.","zh":"参观","en":"visit","sfr":"On fait une visite au musée d'histoire."},
+  {"fr":"sortie","g":"n.f.","zh":"外出","en":"outing","sfr":"La sortie scolaire est prévue jeudi."},
+  {"fr":"bulletin","g":"n.m.","zh":"成绩单","en":"report card","sfr":"Le bulletin scolaire arrive en fin de trimestre."},
+  {"fr":"note","g":"n.f.","zh":"成绩","en":"grade","sfr":"J'ai une bonne note en mathématiques."},
+  {"fr":"trimestre","g":"n.m.","zh":"学期","en":"term","sfr":"Le premier trimestre se termine en décembre."},
+  {"fr":"diplôme","g":"n.m.","zh":"文凭","en":"diploma","sfr":"La maîtresse remet un diplôme à chaque élève."},
+  {"fr":"concours","g":"n.m.","zh":"比赛","en":"contest","sfr":"Je participe à un concours de lecture."},
+  {"fr":"récompense","g":"n.f.","zh":"奖励","en":"reward","sfr":"Je reçois une récompense pour mes progrès."},
+  {"fr":"médaille","g":"n.f.","zh":"奖牌","en":"medal","sfr":"Le sportif reçoit une médaille d'or."},
+  {"fr":"trophée","g":"n.m.","zh":"奖杯","en":"trophy","sfr":"Notre équipe a gagné un trophée."},
+  {"fr":"podium","g":"n.m.","zh":"领奖台","en":"podium","sfr":"Le champion monte sur le podium."},
+  {"fr":"record","g":"n.m.","zh":"纪录","en":"record","sfr":"Il a battu le record de course."},
+  {"fr":"entraînement","g":"n.m.","zh":"训练","en":"training","sfr":"L'entraînement de foot est le vendredi soir."},
+  {"fr":"match","g":"n.m.","zh":"比赛","en":"match","sfr":"Nous gagnons le match contre l'autre école."},
+  {"fr":"stade","g":"n.m.","zh":"体育场","en":"stadium","sfr":"On joue au football dans le stade."},
+  {"fr":"terrain","g":"n.m.","zh":"运动场","en":"field","sfr":"Les enfants jouent sur le terrain de sport."},
+  {"fr":"piste","g":"n.f.","zh":"跑道","en":"track","sfr":"Je cours sur la piste du stade."},
+  {"fr":"arbitre","g":"n.m.","zh":"裁判","en":"referee","sfr":"L'arbitre siffle la fin du match."},
+  {"fr":"maillot","g":"n.m.","zh":"运动衫","en":"jersey","sfr":"Je mets mon maillot bleu pour jouer."},
+  {"fr":"basket","g":"n.m.","zh":"篮球","en":"basketball","sfr":"Je joue au basket avec mes amis."},
+  {"fr":"rugby","g":"n.m.","zh":"橄榄球","en":"rugby","sfr":"Mon frère joue au rugby le week-end."},
+  {"fr":"tennis","g":"n.m.","zh":"网球","en":"tennis","sfr":"Je prends des cours de tennis."},
+  {"fr":"gymnasique","g":"n.f.","zh":"体操","en":"gymnastics","sfr":"Elle fait de la gymnasique au club."},
+  {"fr":"ski","g":"n.m.","zh":"滑雪","en":"skiing","sfr":"On fait du ski à la montagne en hiver."},
+  {"fr":"glisser","g":"v.","zh":"滑行","en":"to slide","sfr":"Je glisse sur la luge dans la neige."},
+  {"fr":"patiner","g":"v.","zh":"溜冰","en":"to skate","sfr":"Je patine sur la glace en hiver."},
+  {"fr":"lancer","g":"v.","zh":"投掷","en":"to throw","sfr":"Je lance le ballon à mon ami."},
+  {"fr":"attraper","g":"v.","zh":"接住","en":"to catch","sfr":"J'attrape le ballon de mes deux mains."},
+  {"fr":"frapper","g":"v.","zh":"击打","en":"to hit","sfr":"Je frappe le ballon avec le pied."},
+  {"fr":"dribbler","g":"v.","zh":"运球","en":"to dribble","sfr":"Il dribble avant de marquer un but."},
+  {"fr":"nourrir","g":"v.","zh":"喂食","en":"to feed","sfr":"Je nourris mon lapin chaque matin."},
+  {"fr":"soigner","g":"v.","zh":"照顾","en":"to care for","sfr":"Je soigne mon animal quand il est malade."},
+  {"fr":"protéger","g":"v.","zh":"保护","en":"to protect","sfr":"On protège la nature en ne jetant pas les déchets."},
+  {"fr":"recycler","g":"v.","zh":"回收","en":"to recycle","sfr":"On recycle le papier et le carton."},
+  {"fr":"planter","g":"v.","zh":"种植","en":"to plant","sfr":"Je plante des graines dans un pot."},
+  {"fr":"arroser","g":"v.","zh":"浇水","en":"to water","sfr":"J'arrose les fleurs du jardin chaque matin."},
+  {"fr":"cueillir","g":"v.","zh":"采摘","en":"to pick","sfr":"On cueille des fraises dans le jardin."},
+  {"fr":"ramasser","g":"v.","zh":"捡起","en":"to pick up","sfr":"Je ramasse les feuilles mortes."},
+  {"fr":"observer","g":"v.","zh":"观察","en":"to observe","sfr":"J'observe les fourmis avec ma loupe."},
+  {"fr":"comparer","g":"v.","zh":"比较","en":"to compare","sfr":"Je compare la taille des arbres."},
+  {"fr":"mesurer","g":"v.","zh":"测量","en":"to measure","sfr":"Je mesure la longueur de ma table."},
+  {"fr":"peser","g":"v.","zh":"称重","en":"to weigh","sfr":"Je pèse les fruits avec la balance."},
+  {"fr":"construire","g":"v.","zh":"建造","en":"to build","sfr":"Je construis une tour avec des cubes."},
+  {"fr":"assembler","g":"v.","zh":"组装","en":"to assemble","sfr":"J'assemble les pièces du puzzle."},
+  {"fr":"découper","g":"v.","zh":"剪切","en":"to cut out","sfr":"Je découpe les images avec des ciseaux."},
+  {"fr":"coller","g":"v.","zh":"粘贴","en":"to glue","sfr":"Je colle les images sur le carton."},
+  {"fr":"colorier","g":"v.","zh":"上色","en":"to color","sfr":"Je colorie le dessin avec mes crayons."},
+  {"fr":"peindre","g":"v.","zh":"涂色","en":"to paint","sfr":"Je peins un paysage en cours d'art."},
+  {"fr":"modeler","g":"v.","zh":"塑形","en":"to model","sfr":"Je modèle une poterie en argile."},
+  {"fr":"inventer","g":"v.","zh":"发明","en":"to invent","sfr":"J'invente une histoire avec des personnages."},
+  {"fr":"imaginer","g":"v.","zh":"想象","en":"to imagine","sfr":"J'imagine un château dans les nuages."},
+  {"fr":"raconter","g":"v.","zh":"讲述","en":"to tell","sfr":"Je raconte une histoire à mes amis."},
+  {"fr":"expliquer","g":"v.","zh":"解释","en":"to explain","sfr":"La maîtresse explique la règle clairement."},
+  {"fr":"montrer","g":"v.","zh":"展示","en":"to show","sfr":"Je montre mon dessin à la classe."},
+  {"fr":"présenter","g":"v.","zh":"介绍","en":"to present","sfr":"Je présente mon projet devant la classe."},
+  {"fr":"choisir","g":"v.","zh":"选择","en":"to choose","sfr":"Je choisis le livre que je veux lire."},
+  {"fr":"décider","g":"v.","zh":"决定","en":"to decide","sfr":"Je décide de faire du sport le mercredi."},
+  {"fr":"réussir","g":"v.","zh":"成功","en":"to succeed","sfr":"Je réussis mon exercice de calcul."},
+  {"fr":"essayer","g":"v.","zh":"尝试","en":"to try","sfr":"J'essaie de lire ce mot difficile."},
+  {"fr":"continuer","g":"v.","zh":"继续","en":"to continue","sfr":"Je continue à lire même si c'est difficile."},
+  {"fr":"terminer","g":"v.","zh":"完成","en":"to finish","sfr":"Je termine mon devoir avant le dîner."},
+  {"fr":"commencer","g":"v.","zh":"开始","en":"to start","sfr":"Je commence ma rédaction avec une belle phrase."},
+  {"fr":"répéter","g":"v.","zh":"重复","en":"to repeat","sfr":"Je répète les mots de vocabulaire."},
+  {"fr":"vérifier","g":"v.","zh":"检查","en":"to check","sfr":"Je vérifie mon travail avant de le rendre."},
+  {"fr":"corriger","g":"v.","zh":"改正","en":"to correct","sfr":"La maîtresse corrige les exercices."},
+  {"fr":"mémoriser","g":"v.","zh":"记忆","en":"to memorize","sfr":"Je mémorise la poésie pour vendredi."},
+  {"fr":"réciter","g":"v.","zh":"背诵","en":"to recite","sfr":"Je récite la table de multiplication."},
+  {"fr":"connaître","g":"v.","zh":"了解","en":"to know","sfr":"Je connais le nom de tous mes camarades."},
+  {"fr":"comprendre","g":"v.","zh":"理解","en":"to understand","sfr":"Je comprends la leçon de géométrie."},
+  {"fr":"penser","g":"v.","zh":"思考","en":"to think","sfr":"Je pense à la solution du problème."},
+  {"fr":"deviner","g":"v.","zh":"猜测","en":"to guess","sfr":"Je devine la réponse sans chercher."},
+  {"fr":"chercher","g":"v.","zh":"寻找","en":"to search","sfr":"Je cherche un mot dans le dictionnaire."},
+  {"fr":"travailler","g":"v.","zh":"工作","en":"to work","sfr":"Je travaille sérieusement en classe."},
+  {"fr":"respecter","g":"v.","zh":"尊重","en":"to respect","sfr":"Je respecte les règles de l'école."},
+  {"fr":"féliciter","g":"v.","zh":"恭喜","en":"to congratulate","sfr":"La maîtresse félicite les bons élèves."},
+  {"fr":"encourager","g":"v.","zh":"鼓励","en":"to encourage","sfr":"Je l'encourage à continuer ses efforts."},
+  {"fr":"remercier","g":"v.","zh":"感谢","en":"to thank","sfr":"Je remercie mon ami de m'avoir aidé."},
+  {"fr":"promettre","g":"v.","zh":"承诺","en":"to promise","sfr":"Je promets d'être plus attentif en classe."},
+  {"fr":"permettre","g":"v.","zh":"允许","en":"to allow","sfr":"La maîtresse nous permet de dessiner."},
+  {"fr":"interdire","g":"v.","zh":"禁止","en":"to forbid","sfr":"Il est interdit de courir dans les couloirs."},
+  {"fr":"accepter","g":"v.","zh":"接受","en":"to accept","sfr":"J'accepte les règles du jeu."},
+  {"fr":"refuser","g":"v.","zh":"拒绝","en":"to refuse","sfr":"Je refuse de laisser quelqu'un tricher."},
+  {"fr":"proposer","g":"v.","zh":"提议","en":"to propose","sfr":"Je propose de jouer à un nouveau jeu."},
+  {"fr":"inviter","g":"v.","zh":"邀请","en":"to invite","sfr":"Je l'invite à ma fête d'anniversaire."},
+  {"fr":"accueillir","g":"v.","zh":"欢迎","en":"to welcome","sfr":"La maîtresse accueille les nouveaux élèves."},
+  {"fr":"accompagner","g":"v.","zh":"陪伴","en":"to accompany","sfr":"Papa m'accompagne à l'école le matin."},
+  {"fr":"attendre","g":"v.","zh":"等待","en":"to wait","sfr":"J'attends mon tour pour parler."},
+  {"fr":"observer","g":"v.","zh":"观看","en":"to observe","sfr":"J'observe le ciel pendant la récréation."},
+  {"fr":"étonner","g":"v.","zh":"令人惊讶","en":"to amaze","sfr":"Ce tour de magie m'a bien étonné."},
+  {"fr":"admirer","g":"v.","zh":"欣赏","en":"to admire","sfr":"J'admire le dessin de mon camarade."},
+  {"fr":"découvrir","g":"v.","zh":"发现","en":"to discover","sfr":"Je découvre un nouveau livre à la bibliothèque."},
+  {"fr":"explorer","g":"v.","zh":"探索","en":"to explore","sfr":"On explore la forêt pendant la sortie."},
+  {"fr":"avancer","g":"v.","zh":"前进","en":"to move forward","sfr":"Je continue d'avancer même quand c'est difficile."},
+  {"fr":"améliorer","g":"v.","zh":"改善","en":"to improve","sfr":"Je veux améliorer mon écriture."},
+  {"fr":"grandir","g":"v.","zh":"成长","en":"to grow","sfr":"Les enfants grandissent vite."},
+  {"fr":"vivre","g":"v.","zh":"生活","en":"to live","sfr":"On vit ensemble dans ce quartier."},
+  {"fr":"célébrer","g":"v.","zh":"庆祝","en":"to celebrate","sfr":"On célèbre la victoire de notre équipe."},
+  {"fr":"partager","g":"v.","zh":"分享","en":"to share","sfr":"Je partage mon goûter avec mon camarade."},
+  {"fr":"réunir","g":"v.","zh":"聚集","en":"to gather","sfr":"La famille se réunit le dimanche."},
+  {"fr":"voyager","g":"v.","zh":"旅行","en":"to travel","sfr":"Je veux voyager dans beaucoup de pays."},
+  {"fr":"observer","g":"v.","zh":"观察","en":"to watch","sfr":"J'observe les étoiles avec un télescope."},
+  {"fr":"protéger","g":"v.","zh":"保护","en":"to protect","sfr":"Il faut protéger l'environnement pour l'avenir."},
+  {"fr":"aimer","g":"v.","zh":"aimer","en":"to love","sfr":"J'aime ma famille et mes amis."},
+  {"fr":"respecter","g":"v.","zh":"尊重","en":"to respect","sfr":"Je respecte les autres élèves dans la cour."}
+]
