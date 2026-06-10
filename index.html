@@ -456,7 +456,7 @@ body::before{content:'';position:fixed;inset:0;
           <button class="btn btn-green btn-sm" style="flex:1" onclick="importWords(false)">➕ Ajouter</button>
           <button class="btn btn-red btn-sm" style="flex:1" onclick="importWords(true)">🔄 Remplacer</button>
           <button class="btn btn-gray btn-sm" onclick="downloadTemplate()">📥 Modèle</button>
-          <button class="btn btn-orange btn-sm" onclick="exportWords()">📤 Exporter</button>
+          <button class="btn btn-orange btn-sm" onclick="exportWords()">📤 Exporter JSON</button>
         </div>
       </div>
 
@@ -490,171 +490,10 @@ const LEVELS=[
   {id:'lycee',   label:'Lycée',     sub:'15 ans +',  color:'#FFB347'},
 ];
 
-// ═══════════════════════════════════════════════════
-// DEFAULT BANKS  (fr, gender, zh, en, sfr)
-// ═══════════════════════════════════════════════════
-const DEFAULT_BANKS={
-cp_ce2:[
-  {fr:'chat',g:'n.m.',zh:'猫',en:'cat',sfr:'Le chat dort sur le canapé.'},
-  {fr:'chien',g:'n.m.',zh:'狗',en:'dog',sfr:'Mon chien aime jouer dehors.'},
-  {fr:'maison',g:'n.f.',zh:'房子',en:'house',sfr:'Notre maison est grande.'},
-  {fr:'école',g:'n.f.',zh:'学校',en:'school',sfr:'Je vais à l\'école le matin.'},
-  {fr:'livre',g:'n.m.',zh:'书',en:'book',sfr:'Je lis un livre chaque soir.'},
-  {fr:'ami',g:'n.m.',zh:'朋友',en:'friend',sfr:'Mon ami s\'appelle Lucas.'},
-  {fr:'rouge',g:'adj.',zh:'红色',en:'red',sfr:'La pomme est rouge.'},
-  {fr:'bleu',g:'adj.',zh:'蓝色',en:'blue',sfr:'Le ciel est bleu.'},
-  {fr:'grand',g:'adj.',zh:'大的',en:'big',sfr:'L\'éléphant est très grand.'},
-  {fr:'petit',g:'adj.',zh:'小的',en:'small',sfr:'La souris est petite.'},
-  {fr:'manger',g:'v.',zh:'吃',en:'to eat',sfr:'On mange ensemble en famille.'},
-  {fr:'dormir',g:'v.',zh:'睡觉',en:'to sleep',sfr:'Le bébé dort dans son lit.'},
-  {fr:'jouer',g:'v.',zh:'玩',en:'to play',sfr:'Les enfants jouent dans le jardin.'},
-  {fr:'courir',g:'v.',zh:'跑',en:'to run',sfr:'J\'aime courir dans le parc.'},
-  {fr:'eau',g:'n.f.',zh:'水',en:'water',sfr:'Je bois de l\'eau chaque matin.'},
-  {fr:'pain',g:'n.m.',zh:'面包',en:'bread',sfr:'Je mange du pain au petit-déjeuner.'},
-  {fr:'lait',g:'n.m.',zh:'牛奶',en:'milk',sfr:'Le lait est bon pour la santé.'},
-  {fr:'pomme',g:'n.f.',zh:'苹果',en:'apple',sfr:'Je mange une pomme chaque jour.'},
-  {fr:'arbre',g:'n.m.',zh:'树',en:'tree',sfr:'L\'arbre est très haut.'},
-  {fr:'fleur',g:'n.f.',zh:'花',en:'flower',sfr:'La fleur est belle et parfumée.'},
-  {fr:'soleil',g:'n.m.',zh:'太阳',en:'sun',sfr:'Le soleil brille aujourd\'hui.'},
-  {fr:'lune',g:'n.f.',zh:'月亮',en:'moon',sfr:'La lune brille dans la nuit.'},
-  {fr:'étoile',g:'n.f.',zh:'星星',en:'star',sfr:'Je vois une étoile briller.'},
-  {fr:'pluie',g:'n.f.',zh:'雨',en:'rain',sfr:'Il y a de la pluie aujourd\'hui.'},
-  {fr:'chaud',g:'adj.',zh:'热的',en:'hot',sfr:'L\'été est chaud et ensoleillé.'},
-  {fr:'froid',g:'adj.',zh:'冷的',en:'cold',sfr:'L\'hiver est froid et neigeux.'},
-  {fr:'mère',g:'n.f.',zh:'妈妈',en:'mother',sfr:'Ma mère prépare le repas.'},
-  {fr:'père',g:'n.m.',zh:'爸爸',en:'father',sfr:'Mon père travaille beaucoup.'},
-  {fr:'lapin',g:'n.m.',zh:'兔子',en:'rabbit',sfr:'Le lapin mange des carottes.'},
-  {fr:'canard',g:'n.m.',zh:'鸭子',en:'duck',sfr:'Le canard nage dans le lac.'},
-],
-cm1_cm2:[
-  {fr:'cahier',g:'n.m.',zh:'笔记本',en:'notebook',sfr:'J\'écris dans mon cahier.'},
-  {fr:'crayon',g:'n.m.',zh:'铅笔',en:'pencil',sfr:'Elle dessine avec un crayon.'},
-  {fr:'gomme',g:'n.f.',zh:'橡皮擦',en:'eraser',sfr:'Il efface avec la gomme.'},
-  {fr:'règle',g:'n.f.',zh:'尺子',en:'ruler',sfr:'Je trace une ligne avec la règle.'},
-  {fr:'cartable',g:'n.m.',zh:'书包',en:'schoolbag',sfr:'Mon cartable est très lourd.'},
-  {fr:'tableau',g:'n.m.',zh:'黑板',en:'blackboard',sfr:'La maîtresse écrit au tableau.'},
-  {fr:'maître',g:'n.m.',zh:'男老师',en:'teacher',sfr:'Le maître explique la leçon.'},
-  {fr:'élève',g:'n.m.',zh:'学生',en:'student',sfr:'Chaque élève lit un livre.'},
-  {fr:'récréation',g:'n.f.',zh:'课间休息',en:'break time',sfr:'On joue pendant la récréation.'},
-  {fr:'bibliothèque',g:'n.f.',zh:'图书馆',en:'library',sfr:'Je vais à la bibliothèque le mercredi.'},
-  {fr:'papillon',g:'n.m.',zh:'蝴蝶',en:'butterfly',sfr:'Un papillon vole au-dessus des fleurs.'},
-  {fr:'grenouille',g:'n.f.',zh:'青蛙',en:'frog',sfr:'La grenouille saute dans l\'étang.'},
-  {fr:'écureuil',g:'n.m.',zh:'松鼠',en:'squirrel',sfr:'L\'écureuil grimpe dans l\'arbre.'},
-  {fr:'renard',g:'n.m.',zh:'狐狸',en:'fox',sfr:'Le renard est un animal rusé.'},
-  {fr:'montagne',g:'n.f.',zh:'山',en:'mountain',sfr:'Nous grimpons la montagne ensemble.'},
-  {fr:'rivière',g:'n.f.',zh:'河流',en:'river',sfr:'Les enfants pêchent dans la rivière.'},
-  {fr:'forêt',g:'n.f.',zh:'森林',en:'forest',sfr:'On entend les oiseaux dans la forêt.'},
-  {fr:'nuage',g:'n.m.',zh:'云',en:'cloud',sfr:'Un gros nuage cache le soleil.'},
-  {fr:'fenêtre',g:'n.f.',zh:'窗户',en:'window',sfr:'J\'ouvre la fenêtre pour aérer.'},
-  {fr:'cuisine',g:'n.f.',zh:'厨房',en:'kitchen',sfr:'Maman prépare le repas dans la cuisine.'},
-  {fr:'chanter',g:'v.',zh:'唱歌',en:'to sing',sfr:'Nous chantons une belle chanson.'},
-  {fr:'dessiner',g:'v.',zh:'画画',en:'to draw',sfr:'Elle aime dessiner des animaux.'},
-  {fr:'lire',g:'v.',zh:'阅读',en:'to read',sfr:'Je lis un livre chaque soir.'},
-  {fr:'écrire',g:'v.',zh:'书写',en:'to write',sfr:'Il apprend à écrire son nom.'},
-  {fr:'sauter',g:'v.',zh:'跳',en:'to jump',sfr:'Il peut sauter très haut.'},
-  {fr:'fromage',g:'n.m.',zh:'奶酪',en:'cheese',sfr:'Le fromage est délicieux avec du pain.'},
-  {fr:'gâteau',g:'n.m.',zh:'蛋糕',en:'cake',sfr:'On mange le gâteau pour l\'anniversaire.'},
-  {fr:'fraise',g:'n.f.',zh:'草莓',en:'strawberry',sfr:'Cette fraise est rouge et sucrée.'},
-  {fr:'carotte',g:'n.f.',zh:'胡萝卜',en:'carrot',sfr:'La carotte est bonne pour la vue.'},
-  {fr:'oignon',g:'n.m.',zh:'洋葱',en:'onion',sfr:'L\'oignon fait pleurer quand on le coupe.'},
-],
-s6_s5:[
-  {fr:'vocabulaire',g:'n.m.',zh:'词汇',en:'vocabulary',sfr:'Il faut apprendre le vocabulaire chaque jour.'},
-  {fr:'grammaire',g:'n.f.',zh:'语法',en:'grammar',sfr:'La grammaire française est complexe.'},
-  {fr:'conjugaison',g:'n.f.',zh:'动词变位',en:'conjugation',sfr:'La conjugaison du verbe être est importante.'},
-  {fr:'paragraphe',g:'n.m.',zh:'段落',en:'paragraph',sfr:'Écris un paragraphe sur ce sujet.'},
-  {fr:'dictionnaire',g:'n.m.',zh:'字典',en:'dictionary',sfr:'Je cherche ce mot dans le dictionnaire.'},
-  {fr:'environnement',g:'n.m.',zh:'环境',en:'environment',sfr:'Il faut protéger l\'environnement.'},
-  {fr:'température',g:'n.f.',zh:'温度',en:'temperature',sfr:'La température est de vingt degrés.'},
-  {fr:'géographie',g:'n.f.',zh:'地理',en:'geography',sfr:'Nous étudions la géographie de la France.'},
-  {fr:'histoire',g:'n.f.',zh:'历史',en:'history',sfr:'L\'histoire de France est très riche.'},
-  {fr:'mathématiques',g:'n.f.',zh:'数学',en:'mathematics',sfr:'Les mathématiques sont ma matière préférée.'},
-  {fr:'expérience',g:'n.f.',zh:'经历/实验',en:'experience',sfr:'Cette expérience est très intéressante.'},
-  {fr:'découverte',g:'n.f.',zh:'发现',en:'discovery',sfr:'La découverte de l\'Amérique date de 1492.'},
-  {fr:'gouvernement',g:'n.m.',zh:'政府',en:'government',sfr:'Le gouvernement prend des décisions importantes.'},
-  {fr:'responsabilité',g:'n.f.',zh:'责任',en:'responsibility',sfr:'Chacun a une responsabilité envers la société.'},
-  {fr:'technologie',g:'n.f.',zh:'技术',en:'technology',sfr:'La technologie évolue très rapidement.'},
-  {fr:'économie',g:'n.f.',zh:'经济',en:'economy',sfr:'L\'économie française est la septième mondiale.'},
-  {fr:'pourcentage',g:'n.m.',zh:'百分比',en:'percentage',sfr:'Quel est le pourcentage de réussite?'},
-  {fr:'population',g:'n.f.',zh:'人口',en:'population',sfr:'La population mondiale dépasse huit milliards.'},
-  {fr:'architecture',g:'n.f.',zh:'建筑',en:'architecture',sfr:'L\'architecture de cette cathédrale est magnifique.'},
-  {fr:'littérature',g:'n.f.',zh:'文学',en:'literature',sfr:'La littérature française est très connue.'},
-  {fr:'philosophie',g:'n.f.',zh:'哲学',en:'philosophy',sfr:'La philosophie nous apprend à réfléchir.'},
-  {fr:'biologie',g:'n.f.',zh:'生物',en:'biology',sfr:'La biologie étudie les êtres vivants.'},
-  {fr:'chimie',g:'n.f.',zh:'化学',en:'chemistry',sfr:'La chimie explique la composition des matières.'},
-  {fr:'physique',g:'n.f.',zh:'物理',en:'physics',sfr:'La physique explique les lois de la nature.'},
-  {fr:'électricité',g:'n.f.',zh:'电',en:'electricity',sfr:'L\'électricité est indispensable au quotidien.'},
-  {fr:'évolution',g:'n.f.',zh:'进化',en:'evolution',sfr:'L\'évolution des espèces est un fait scientifique.'},
-  {fr:'citoyenneté',g:'n.f.',zh:'公民身份',en:'citizenship',sfr:'La citoyenneté implique des droits et des devoirs.'},
-  {fr:'superficie',g:'n.f.',zh:'面积',en:'area',sfr:'La superficie de la France est de 551 000 km².'},
-  {fr:'sculpture',g:'n.f.',zh:'雕塑',en:'sculpture',sfr:'Cette sculpture date du Moyen Âge.'},
-  {fr:'magnétisme',g:'n.m.',zh:'磁性',en:'magnetism',sfr:'Le magnétisme attire certains métaux.'},
-],
-s4_s3:[
-  {fr:'abstrait',g:'adj.',zh:'抽象的',en:'abstract',sfr:'Ce concept philosophique est très abstrait.'},
-  {fr:'argumentation',g:'n.f.',zh:'论证',en:'argumentation',sfr:'Son argumentation est très convaincante.'},
-  {fr:'contradiction',g:'n.f.',zh:'矛盾',en:'contradiction',sfr:'Il y a une contradiction dans ton raisonnement.'},
-  {fr:'hypothèse',g:'n.f.',zh:'假设',en:'hypothesis',sfr:'Cette hypothèse doit être vérifiée.'},
-  {fr:'démonstration',g:'n.f.',zh:'证明',en:'demonstration',sfr:'La démonstration mathématique est rigoureuse.'},
-  {fr:'raisonnement',g:'n.m.',zh:'推理',en:'reasoning',sfr:'Ton raisonnement est logique et clair.'},
-  {fr:'chronologie',g:'n.f.',zh:'年代顺序',en:'chronology',sfr:'Respecte la chronologie des événements.'},
-  {fr:'perspective',g:'n.f.',zh:'视角',en:'perspective',sfr:'Observe ce tableau en perspective.'},
-  {fr:'métaphore',g:'n.f.',zh:'比喻',en:'metaphor',sfr:'Cette phrase contient une belle métaphore.'},
-  {fr:'nuance',g:'n.f.',zh:'细微差别',en:'nuance',sfr:'Il faut comprendre les nuances de la langue.'},
-  {fr:'référence',g:'n.f.',zh:'参考',en:'reference',sfr:'Cite tes références dans ta dissertation.'},
-  {fr:'conséquence',g:'n.f.',zh:'后果',en:'consequence',sfr:'Réfléchis aux conséquences de tes actes.'},
-  {fr:'démocratie',g:'n.f.',zh:'民主',en:'democracy',sfr:'La démocratie repose sur le vote des citoyens.'},
-  {fr:'mondialisation',g:'n.f.',zh:'全球化',en:'globalization',sfr:'La mondialisation connecte les économies du monde.'},
-  {fr:'développement',g:'n.m.',zh:'发展',en:'development',sfr:'Le développement durable protège notre planète.'},
-  {fr:'immigration',g:'n.f.',zh:'移民',en:'immigration',sfr:'L\'immigration enrichit la culture française.'},
-  {fr:'discrimination',g:'n.f.',zh:'歧视',en:'discrimination',sfr:'La discrimination est interdite par la loi.'},
-  {fr:'solidarité',g:'n.f.',zh:'团结',en:'solidarity',sfr:'La solidarité est une valeur républicaine.'},
-  {fr:'entreprise',g:'n.f.',zh:'企业',en:'company',sfr:'Cette entreprise emploie mille personnes.'},
-  {fr:'investissement',g:'n.m.',zh:'投资',en:'investment',sfr:'Cet investissement est très rentable.'},
-  {fr:'consommation',g:'n.f.',zh:'消费',en:'consumption',sfr:'La consommation d\'énergie augmente chaque année.'},
-  {fr:'révolution',g:'n.f.',zh:'革命',en:'revolution',sfr:'La Révolution française a changé l\'histoire.'},
-  {fr:'indépendance',g:'n.f.',zh:'独立',en:'independence',sfr:'L\'indépendance du pays fut proclamée en 1960.'},
-  {fr:'constitution',g:'n.f.',zh:'宪法',en:'constitution',sfr:'La constitution garantit nos libertés fondamentales.'},
-  {fr:'psychologie',g:'n.f.',zh:'心理学',en:'psychology',sfr:'La psychologie étudie le comportement humain.'},
-  {fr:'symbolique',g:'adj.',zh:'象征性的',en:'symbolic',sfr:'Ce geste a une valeur symbolique.'},
-  {fr:'allégorie',g:'n.f.',zh:'寓言',en:'allegory',sfr:'Cette peinture est une allégorie de la liberté.'},
-  {fr:'colonisation',g:'n.f.',zh:'殖民',en:'colonization',sfr:'La colonisation a eu des effets durables.'},
-  {fr:'jurisprudence',g:'n.f.',zh:'判例法',en:'jurisprudence',sfr:'La jurisprudence guide les décisions des juges.'},
-  {fr:'production',g:'n.f.',zh:'生产',en:'production',sfr:'La production industrielle a diminué.'},
-],
-lycee:[
-  {fr:'épistémologie',g:'n.f.',zh:'认识论',en:'epistemology',sfr:'L\'épistémologie s\'interroge sur la nature du savoir.'},
-  {fr:'phénoménologie',g:'n.f.',zh:'现象学',en:'phenomenology',sfr:'La phénoménologie analyse l\'expérience vécue.'},
-  {fr:'dialectique',g:'n.f.',zh:'辩证法',en:'dialectic',sfr:'La dialectique hégélienne oppose thèse et antithèse.'},
-  {fr:'subjectivité',g:'n.f.',zh:'主观性',en:'subjectivity',sfr:'La subjectivité influence notre perception du monde.'},
-  {fr:'transcendance',g:'n.f.',zh:'超越性',en:'transcendence',sfr:'La transcendance dépasse les limites du monde sensible.'},
-  {fr:'herméneutique',g:'n.f.',zh:'解释学',en:'hermeneutics',sfr:'L\'herméneutique interprète les textes anciens.'},
-  {fr:'ontologie',g:'n.f.',zh:'本体论',en:'ontology',sfr:'L\'ontologie questionne la nature de l\'être.'},
-  {fr:'déterminisme',g:'n.m.',zh:'决定论',en:'determinism',sfr:'Le déterminisme nie la liberté du hasard.'},
-  {fr:'relativisme',g:'n.m.',zh:'相对主义',en:'relativism',sfr:'Le relativisme remet en cause toute vérité absolue.'},
-  {fr:'pragmatisme',g:'n.m.',zh:'实用主义',en:'pragmatism',sfr:'Le pragmatisme juge les idées à leurs effets pratiques.'},
-  {fr:'rationalisme',g:'n.m.',zh:'理性主义',en:'rationalism',sfr:'Le rationalisme privilégie la raison sur l\'expérience.'},
-  {fr:'empirisme',g:'n.m.',zh:'经验主义',en:'empiricism',sfr:'L\'empirisme fonde la connaissance sur l\'expérience.'},
-  {fr:'idéalisme',g:'n.m.',zh:'唯心主义',en:'idealism',sfr:'L\'idéalisme place les idées au-dessus de la matière.'},
-  {fr:'matérialisme',g:'n.m.',zh:'唯物主义',en:'materialism',sfr:'Le matérialisme explique tout par la matière.'},
-  {fr:'existentialisme',g:'n.m.',zh:'存在主义',en:'existentialism',sfr:'L\'existentialisme affirme que l\'existence précède l\'essence.'},
-  {fr:'structuralisme',g:'n.m.',zh:'结构主义',en:'structuralism',sfr:'Le structuralisme analyse les structures profondes du langage.'},
-  {fr:'déconstruction',g:'n.f.',zh:'解构',en:'deconstruction',sfr:'La déconstruction remet en cause les fondements du texte.'},
-  {fr:'intertextualité',g:'n.f.',zh:'互文性',en:'intertextuality',sfr:'L\'intertextualité relie les œuvres entre elles.'},
-  {fr:'vraisemblance',g:'n.f.',zh:'可信度',en:'verisimilitude',sfr:'La vraisemblance est essentielle dans le roman réaliste.'},
-  {fr:'paradigme',g:'n.m.',zh:'范式',en:'paradigm',sfr:'Ce paradigme scientifique a révolutionné la biologie.'},
-  {fr:'heuristique',g:'adj.',zh:'启发性的',en:'heuristic',sfr:'Une approche heuristique favorise la découverte.'},
-  {fr:'ambivalence',g:'n.f.',zh:'矛盾心理',en:'ambivalence',sfr:'Son ambivalence rend sa décision difficile.'},
-  {fr:'résilience',g:'n.f.',zh:'韧性',en:'resilience',sfr:'La résilience permet de surmonter les épreuves.'},
-  {fr:'dissidence',g:'n.f.',zh:'异见',en:'dissidence',sfr:'La dissidence politique peut être dangereuse.'},
-  {fr:'obsolescence',g:'n.f.',zh:'过时',en:'obsolescence',sfr:'L\'obsolescence programmée nuit à l\'environnement.'},
-  {fr:'bienveillance',g:'n.f.',zh:'善意',en:'benevolence',sfr:'La bienveillance est une vertu essentielle.'},
-  {fr:'clairvoyance',g:'n.f.',zh:'洞察力',en:'clairvoyance',sfr:'Sa clairvoyance lui permet d\'anticiper les problèmes.'},
-  {fr:'immanence',g:'n.f.',zh:'内在性',en:'immanence',sfr:'L\'immanence situe le divin dans le monde réel.'},
-  {fr:'syncrétisme',g:'n.m.',zh:'折中主义',en:'syncretism',sfr:'Le syncrétisme mélange différentes traditions religieuses.'},
-  {fr:'anachronisme',g:'n.m.',zh:'时代错误',en:'anachronism',sfr:'Cet anachronisme brise l\'illusion historique.'},
-],
-};
+// Word banks are loaded from external JSON files at startup (see init()).
+// DEFAULT_BANKS has been removed — edit the JSON files directly.
+
+
 
 // ═══════════════════════════════════════════════════
 // STORAGE
@@ -682,20 +521,42 @@ const PAGE_SIZE=50;
 // ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
-function init(){
+// Map level id → JSON filename
+const LEVEL_FILES={
+  cp_ce2:  'cp-ce2.json',
+  cm1_cm2: 'cm1-cm2.json',
+  s6_s5:   '6e-5e.json',
+  s4_s3:   '4e-3e.json',
+  lycee:   'lycee.json',
+};
+
+async function init(){
   loadVoices();
   if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;
-  const saved=lsGet(SK.banks());
-  if(saved){banks=saved;}
-  else{
-    banks={};
-    for(const l of LEVELS)banks[l.id]=DEFAULT_BANKS[l.id].map(w=>({...w}));
-    lsSet(SK.banks(),banks);
-  }
   dailyCount=lsGet(SK.dailyCount(),30);
   document.getElementById('dailyCountInput').value=dailyCount;
   document.getElementById('mainArea').style.display='flex';
   document.getElementById('mainHeader').style.display='block';
+
+  // Load each level's JSON file; fall back to LocalStorage override or empty array
+  const lsOverride=lsGet(SK.banks(),{});
+  banks={};
+  await Promise.all(LEVELS.map(async l=>{
+    if(lsOverride[l.id]){
+      // User has local edits — use them
+      banks[l.id]=lsOverride[l.id];
+      return;
+    }
+    try{
+      const res=await fetch(LEVEL_FILES[l.id]);
+      if(!res.ok)throw new Error(res.status);
+      const data=await res.json();
+      banks[l.id]=Array.isArray(data)?data:(data.words||[]);
+    }catch(e){
+      console.warn('Could not load',LEVEL_FILES[l.id],e);
+      banks[l.id]=[];
+    }
+  }));
   showWelcome();
 }
 
@@ -1206,7 +1067,11 @@ function deleteWord(gi){
 function saveEditorWords(){banks[editorLevel]=editorWords.map(w=>({...w}));}
 
 function saveEditor(){
-  saveEditorWords();lsSet(SK.banks(),banks);
+  saveEditorWords();
+  // Persist only the levels that have been locally modified (JSON files are the canonical source)
+  const lsOverride=lsGet(SK.banks(),{});
+  lsOverride[editorLevel]=banks[editorLevel];
+  lsSet(SK.banks(),lsOverride);
   // Clean stale indices for all students
   const students=lsGet(SK.students(),[]);
   LEVELS.forEach(lvl=>{
@@ -1259,19 +1124,15 @@ function exportWords(){
   const words=editorWords;
   if(!words.length){showToast('Aucun mot à exporter');return;}
   const lvl=LEVELS.find(l=>l.id===editorLevel);
-  const lines=[
-    `# Mots Magiques — ${lvl?lvl.label:'Lexique'}`,
-    '# Format : français,genre,中文,English,exemple',
-    '#',
-    ...words.map(w=>[w.fr,w.g||'',w.zh||'',w.en||'',w.sfr||''].join(','))
-  ];
-  const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+  const filename=LEVEL_FILES[editorLevel]||`${editorLevel}.json`;
+  const payload=JSON.stringify(words,null,2);
+  const blob=new Blob([payload],{type:'application/json;charset=utf-8'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
   a.href=url;
-  a.download=`mots_magiques_${editorLevel}_${new Date().toISOString().slice(0,10)}.csv`;
+  a.download=filename;
   document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
-  showToast(`📤 ${words.length} mots exportés`);
+  showToast(`📤 ${words.length} mots → ${filename}`);
 }
 
 function downloadTemplate(){
