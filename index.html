@@ -666,7 +666,7 @@ async function diagnoseSyncEnv() {
   // 5. 写入权限探测（用小数据测试 insert，检测 RLS insert policy）
   const testPayload = {
     user_id:    authUser.id,
-    student:    '__diag_test__',
+    username:    '__diag_test__',
     level:      '__diag__',
     mastered:   [],
     wrong:      [],
@@ -680,7 +680,7 @@ async function diagnoseSyncEnv() {
       insertOk = true;
       // 清理测试行
       await _supabase.from('word_progress').delete()
-        .eq('user_id', authUser.id).eq('student', '__diag_test__');
+        .eq('user_id', authUser.id).eq('username', '__diag_test__');
     } else {
       err(`INSERT 权限失败 → code=${ie.code} msg=${ie.message} hint=${ie.hint||''}`);
       if (ie.code === '42501') err('RLS 策略缺少 INSERT policy，请执行下方 SQL');
@@ -691,14 +691,14 @@ async function diagnoseSyncEnv() {
   // 6. 唯一约束探测（upsert 依赖它）
   if (insertOk) {
     const { error: ue } = await _supabase.from('word_progress')
-      .upsert({ ...testPayload, mastered: [1] }, { onConflict: 'user_id,student,level' });
+      .upsert({ ...testPayload, mastered: [1] }, { onConflict: 'user_id,username,level' });
     if (!ue) {
       ok('UPSERT + 唯一约束正常');
       await _supabase.from('word_progress').delete()
-        .eq('user_id', authUser.id).eq('student', '__diag_test__');
+        .eq('user_id', authUser.id).eq('username', '__diag_test__');
     } else {
       err(`UPSERT 失败 → code=${ue.code} msg=${ue.message}`);
-      if (ue.code === '42P10') err('唯一约束缺失！请在 SQL Editor 执行：\nALTER TABLE word_progress ADD CONSTRAINT word_progress_user_student_level_key UNIQUE (user_id, student, level);');
+      if (ue.code === '42P10') err('唯一约束缺失！请在 SQL Editor 执行：\nALTER TABLE word_progress ADD CONSTRAINT word_progress_user_student_level_key UNIQUE (user_id, username, level);');
       if (ue.code === '42501') err('RLS 缺少 UPDATE policy');
     }
   }
@@ -725,7 +725,7 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
 
   const payload = {
     user_id:    authUser.id,   // 明确绑定 uid，绝不依赖 RLS 自动注入
-    student:    String(student),
+    username:    String(student),
     level:      String(level),
     mastered:   safeMastered,
     wrong:      safeWrong,
@@ -738,7 +738,7 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
   try {
     const { error } = await _supabase
       .from('word_progress')
-      .upsert(payload, { onConflict: 'user_id,student,level' });
+      .upsert(payload, { onConflict: 'user_id,username,level' });
 
     if (!error) {
       console.log(`[cloud] ✅ upsert 成功 student="${student}" level="${level}"`);
@@ -773,7 +773,7 @@ async function _cloudDeleteInsert(payload, student, level) {
   try {
     await _supabase.from('word_progress').delete()
       .eq('user_id', payload.user_id)
-      .eq('student',  student)
+      .eq('username',  student)
       .eq('level',    level);
   } catch(e) {
     console.warn('[cloud] delete 步骤异常（忽略）:', e.message);
@@ -802,7 +802,7 @@ async function cloudLoadProgress(student, level) {
       .from('word_progress')
       .select('mastered, wrong')
       .eq('user_id', authUser.id)
-      .eq('student', student)
+      .eq('username', student)
       .eq('level',   level)
       .maybeSingle();
     if (error) {
