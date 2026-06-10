@@ -1,32 +1,465 @@
-[
-  {"fr":"chat","g":"n.m.","zh":"猫","en":"cat","sfr":"Le chat dort sur le canapé."},
-  {"fr":"chien","g":"n.m.","zh":"狗","en":"dog","sfr":"Mon chien aime jouer dehors."},
-  {"fr":"maison","g":"n.f.","zh":"房子","en":"house","sfr":"Notre maison est grande."},
-  {"fr":"école","g":"n.f.","zh":"学校","en":"school","sfr":"Je vais à l'école le matin."},
-  {"fr":"livre","g":"n.m.","zh":"书","en":"book","sfr":"Je lis un livre chaque soir."},
-  {"fr":"ami","g":"n.m.","zh":"朋友","en":"friend","sfr":"Mon ami s'appelle Lucas."},
-  {"fr":"rouge","g":"adj.","zh":"红色","en":"red","sfr":"La pomme est rouge."},
-  {"fr":"bleu","g":"adj.","zh":"蓝色","en":"blue","sfr":"Le ciel est bleu."},
-  {"fr":"grand","g":"adj.","zh":"大的","en":"big","sfr":"L'éléphant est très grand."},
-  {"fr":"petit","g":"adj.","zh":"小的","en":"small","sfr":"La souris est petite."},
-  {"fr":"manger","g":"v.","zh":"吃","en":"to eat","sfr":"On mange ensemble en famille."},
-  {"fr":"dormir","g":"v.","zh":"睡觉","en":"to sleep","sfr":"Le bébé dort dans son lit."},
-  {"fr":"jouer","g":"v.","zh":"玩","en":"to play","sfr":"Les enfants jouent dans le jardin."},
-  {"fr":"courir","g":"v.","zh":"跑","en":"to run","sfr":"J'aime courir dans le parc."},
-  {"fr":"eau","g":"n.f.","zh":"水","en":"water","sfr":"Je bois de l'eau chaque matin."},
-  {"fr":"pain","g":"n.m.","zh":"面包","en":"bread","sfr":"Je mange du pain au petit-déjeuner."},
-  {"fr":"lait","g":"n.m.","zh":"牛奶","en":"milk","sfr":"Le lait est bon pour la santé."},
-  {"fr":"pomme","g":"n.f.","zh":"苹果","en":"apple","sfr":"Je mange une pomme chaque jour."},
-  {"fr":"arbre","g":"n.m.","zh":"树","en":"tree","sfr":"L'arbre est très haut."},
-  {"fr":"fleur","g":"n.f.","zh":"花","en":"flower","sfr":"La fleur est belle et parfumée."},
-  {"fr":"soleil","g":"n.m.","zh":"太阳","en":"sun","sfr":"Le soleil brille aujourd'hui."},
-  {"fr":"lune","g":"n.f.","zh":"月亮","en":"moon","sfr":"La lune brille dans la nuit."},
-  {"fr":"étoile","g":"n.f.","zh":"星星","en":"star","sfr":"Je vois une étoile briller."},
-  {"fr":"pluie","g":"n.f.","zh":"雨","en":"rain","sfr":"Il y a de la pluie aujourd'hui."},
-  {"fr":"chaud","g":"adj.","zh":"热的","en":"hot","sfr":"L'été est chaud et ensoleillé."},
-  {"fr":"froid","g":"adj.","zh":"冷的","en":"cold","sfr":"L'hiver est froid et neigeux."},
-  {"fr":"mère","g":"n.f.","zh":"妈妈","en":"mother","sfr":"Ma mère prépare le repas."},
-  {"fr":"père","g":"n.m.","zh":"爸爸","en":"father","sfr":"Mon père travaille beaucoup."},
-  {"fr":"lapin","g":"n.m.","zh":"兔子","en":"rabbit","sfr":"Le lapin mange des carottes."},
-  {"fr":"canard","g":"n.m.","zh":"鸭子","en":"duck","sfr":"Le canard nage dans le lac."}
-]
+école,学校,school,Je vais à l'école.
+classe,班级,class,Ma classe est grande.
+élève,学生,student,L'élève écoute le professeur.
+professeur,老师,teacher,Le professeur explique la leçon.
+cahier,练习本,notebook,J'écris dans mon cahier.
+livre,书,book,Je lis un livre.
+stylo,钢笔,pen,J'ai un stylo bleu.
+crayon,铅笔,pencil,Mon crayon est sur la table.
+gomme,橡皮,eraser,J'utilise ma gomme.
+règle,尺子,ruler,La règle mesure trente centimètres.
+cartable,书包,schoolbag,Mon cartable est lourd.
+table,桌子,table,Le livre est sur la table.
+chaise,椅子,chair,Je suis assis sur une chaise.
+tableau,黑板,board,Le professeur écrit au tableau.
+feuille,纸张,sheet,Prends une feuille blanche.
+exercice,练习,exercise,Je fais un exercice.
+leçon,课程,lesson,J'apprends ma leçon.
+devoir,作业,homework,J'ai beaucoup de devoirs.
+question,问题,question,Le professeur pose une question.
+réponse,答案,answer,J'ai la bonne réponse.
+bibliothèque,图书馆,library,Je vais à la bibliothèque.
+ordinateur,电脑,computer,L'ordinateur est allumé.
+père,爸爸,father,Mon père travaille.
+mère,妈妈,mother,Ma mère cuisine.
+frère,兄弟,brother,J'ai un frère.
+sœur,姐妹,sister,J'ai une sœur.
+grand-père,爷爷/外公,grandfather,Mon grand-père raconte une histoire.
+grand-mère,奶奶/外婆,grandmother,Ma grand-mère prépare un gâteau.
+cousin,堂/表兄弟,cousin,Je joue avec mon cousin.
+cousine,堂/表姐妹,cousin,Ma cousine habite à Paris.
+famille,家庭,family,J'aime ma famille.
+maison,房子,house,Ma maison est grande.
+chambre,房间,bedroom,J'aime ma chambre.
+lit,床,bed,Je fais mon lit.
+porte,门,door,Ouvre la porte.
+fenêtre,窗户,window,Ferme la fenêtre.
+jardin,花园,garden,Nous jouons dans le jardin.
+cuisine,厨房,kitchen,La cuisine est propre.
+salon,客厅,living room,Nous regardons la télévision dans le salon.
+voisin,邻居（男）,neighbor,Mon voisin est gentil.
+voisine,邻居（女）,neighbor,Ma voisine a un chat.
+ami,朋友（男）,friend,C'est mon ami.
+amie,朋友（女）,friend,C'est mon amie.
+garçon,男孩,boy,Le garçon court vite.
+fille,女孩,girl,La fille dessine bien.
+enfant,孩子,child,L'enfant joue dehors.
+homme,男人,man,Cet homme travaille ici.
+femme,女人,woman,Cette femme lit un journal.
+bébé,婴儿,baby,Le bébé dort.
+chat,猫,cat,Le chat dort sur le canapé.
+chien,狗,dog,Le chien aime courir.
+oiseau,鸟,bird,L'oiseau chante.
+poisson,鱼,fish,Le poisson nage.
+lapin,兔子,rabbit,Le lapin mange une carotte.
+cheval,马,horse,Le cheval est rapide.
+vache,奶牛,cow,La vache mange de l'herbe.
+poule,母鸡,hen,La poule pond un œuf.
+canard,鸭子,duck,Le canard nage dans l'eau.
+souris,老鼠,mouse,La souris est petite.
+manger,吃,to eat,Je mange une pomme.
+boire,喝,to drink,Je bois de l'eau.
+dormir,睡觉,to sleep,Je dors bien.
+jouer,玩,to play,Je joue au football.
+courir,跑,to run,Je cours vite.
+marcher,走路,to walk,Nous marchons à l'école.
+sauter,跳,to jump,L'enfant saute haut.
+nager,游泳,to swim,Je nage en été.
+lire,阅读,to read,Je lis chaque jour.
+écrire,书写,to write,J'écris une phrase.
+dessiner,画画,to draw,J'aime dessiner.
+chanter,唱歌,to sing,Nous chantons ensemble.
+danser,跳舞,to dance,Elle danse bien.
+écouter,听,to listen,J'écoute la musique.
+regarder,看,to watch,Je regarde un film.
+parler,说话,to speak,Je parle français.
+raconter,讲述,to tell,Je raconte une histoire.
+travailler,学习/工作,to work,Je travaille bien à l'école.
+chercher,寻找,to look for,Je cherche mon livre.
+trouver,找到,to find,J'ai trouvé mon stylo.
+ouvrir,打开,to open,Ouvre ton cahier.
+fermer,关闭,to close,Ferme la porte.
+laver,洗,to wash,Je lave mes mains.
+ranger,整理,to tidy up,Je range ma chambre.
+porter,穿/拿,to wear,Je porte un manteau.
+apporter,带来,to bring,Apporte ton cahier.
+montrer,展示,to show,Montre-moi ton dessin.
+aider,帮助,to help,J'aide mon ami.
+attendre,等待,to wait,Nous attendons le bus.
+aimer,喜欢,to like,J'aime lire.
+préférer,更喜欢,to prefer,Je préfère le chocolat.
+acheter,购买,to buy,Ma mère achète du pain.
+grand,大的,big,Le chien est grand.
+petit,小的,small,Le chat est petit.
+jeune,年轻的,young,Mon frère est jeune.
+vieux,年老的,old,Le vieux monsieur sourit.
+gentil,友善的,kind,Ma maîtresse est gentille.
+triste,伤心的,sad,L'enfant est triste.
+content,高兴的,happy,Je suis content aujourd'hui.
+tête,头,head,J'ai mal à la tête.
+visage,脸,face,Elle a un joli visage.
+œil,眼睛,eye,J'ai les yeux bleus.
+nez,鼻子,nose,Mon nez est froid.
+bouche,嘴,mouth,Ouvre la bouche.
+oreille,耳朵,ear,J'écoute avec mes oreilles.
+dent,牙齿,tooth,Je me brosse les dents.
+cheveu,头发,hair,Elle a les cheveux longs.
+cou,脖子,neck,Le cou de la girafe est long.
+épaule,肩膀,shoulder,Mon sac est sur mon épaule.
+bras,手臂,arm,Je lève le bras.
+main,手,hand,Lave tes mains.
+doigt,手指,finger,J'ai cinq doigts.
+jambe,腿,leg,Je bouge les jambes.
+genou,膝盖,knee,Mon genou me fait mal.
+pied,脚,foot,J'ai mal au pied.
+ventre,肚子,belly,J'ai mal au ventre.
+dos,背,back,Mon dos est fatigué.
+cœur,心脏,heart,Mon cœur bat vite.
+corps,身体,body,Le corps humain est incroyable.
+pain,面包,bread,Je mange du pain.
+beurre,黄油,butter,J'aime le pain avec du beurre.
+fromage,奶酪,cheese,Le fromage est délicieux.
+lait,牛奶,milk,Je bois du lait.
+eau,水,water,L'eau est importante.
+jus,果汁,juice,Je bois du jus d'orange.
+pomme,苹果,apple,La pomme est rouge.
+poire,梨,pear,Je mange une poire.
+banane,香蕉,banana,La banane est jaune.
+orange,橙子,orange,J'aime les oranges.
+fraise,草莓,strawberry,Les fraises sont sucrées.
+raisin,葡萄,grape,Le raisin est bon.
+cerise,樱桃,cherry,La cerise est rouge.
+carotte,胡萝卜,carrot,Le lapin mange une carotte.
+tomate,西红柿,tomato,La tomate est rouge.
+pomme de terre,土豆,potato,Je mange des pommes de terre.
+salade,生菜/沙拉,salad,La salade est fraîche.
+soupe,汤,soup,La soupe est chaude.
+gâteau,蛋糕,cake,Le gâteau est délicieux.
+chocolat,巧克力,chocolate,J'adore le chocolat.
+bonbon,糖果,candy,Les enfants aiment les bonbons.
+glace,冰淇淋,ice cream,Je mange une glace.
+œuf,鸡蛋,egg,Je mange un œuf au petit-déjeuner.
+viande,肉,meat,La viande est cuite.
+poisson,鱼肉,fish,Le poisson est frais.
+poulet,鸡肉,chicken,Le poulet est bon.
+petit-déjeuner,早餐,breakfast,Je prends mon petit-déjeuner.
+déjeuner,午餐,lunch,Nous déjeunons à midi.
+dîner,晚餐,dinner,Nous dînons en famille.
+jour,天,day,Aujourd'hui est un beau jour.
+nuit,夜晚,night,La nuit est calme.
+matin,早晨,morning,Je me lève le matin.
+midi,中午,noon,Nous mangeons à midi.
+soir,晚上,evening,Le soir je lis.
+heure,小时,hour,Il est trois heures.
+minute,分钟,minute,Attends une minute.
+seconde,秒,seconde,Une seconde seulement.
+jour de semaine,工作日,weekday,C'est un jour de semaine.
+lundi,星期一,Monday,Lundi nous avons école.
+mardi,星期二,Tuesday,Mardi est mon jour préféré.
+mercredi,星期三,Wednesday,Le mercredi je fais du sport.
+jeudi,星期四,Thursday,Jeudi il pleut.
+vendredi,星期五,Friday,Nous sommes vendredi.
+samedi,星期六,Saturday,Samedi je joue dehors.
+dimanche,星期日,Sunday,Dimanche nous nous reposons.
+semaine,星期,week,La semaine passe vite.
+mois,月,month,Le mois de juin est agréable.
+année,年,year,Cette année est intéressante.
+janvier,一月,January,Janvier est en hiver.
+février,二月,February,Février est court.
+mars,三月,March,Mars annonce le printemps.
+avril,四月,April,Avril apporte la pluie.
+mai,五月,May,Les fleurs poussent en mai.
+juin,六月,June,Juin est ensoleillé.
+juillet,七月,July,Nous partons en vacances en juillet.
+août,八月,August,Il fait chaud en août.
+septembre,九月,September,L'école recommence en septembre.
+octobre,十月,October,Les feuilles tombent en octobre.
+novembre,十一月,November,Novembre est souvent gris.
+décembre,十二月,December,Noël est en décembre.
+hier,昨天,yesterday,J'ai joué hier.
+aujourd'hui,今天,today,Aujourd'hui il fait beau.
+demain,明天,tomorrow,Demain nous voyagerons.
+printemps,春天,spring,J'aime le printemps.
+été,夏天,summer,Nous nageons en été.
+automne,秋天,autumn,Les feuilles tombent en automne.
+hiver,冬天,winter,Il neige en hiver.
+soleil,太阳,sun,Le soleil brille.
+nuage,云,cloud,Le nuage est blanc.
+pluie,雨,rain,La pluie tombe.
+neige,雪,snow,La neige est blanche.
+vent,风,wind,Le vent souffle fort.
+orage,雷雨,storm,L'orage approche.
+arc-en-ciel,彩虹,rainbow,Je vois un arc-en-ciel.
+chaud,热的,hot,L'eau est chaude.
+froid,冷的,cold,L'hiver est froid.
+beau temps,好天气,good weather,Nous avons du beau temps.
+vêtement,衣服,clothes,J'aime mes vêtements.
+tee-shirt,T恤衫,T-shirt,Je porte un tee-shirt bleu.
+chemise,衬衫,shirt,Mon père porte une chemise.
+pull,毛衣,sweater,Je mets un pull en hiver.
+veste,夹克,jacket,Ma veste est chaude.
+manteau,大衣,coat,J'ai un manteau rouge.
+pantalon,裤子,trousers,Mon pantalon est noir.
+jean,牛仔裤,jeans,Je porte un jean.
+short,短裤,shorts,Je mets un short en été.
+robe,连衣裙,dress,Ma sœur porte une robe.
+jupe,裙子,skirt,Cette jupe est jolie.
+chaussette,袜子,sock,J'ai deux chaussettes.
+chaussure,鞋,shoe,Mes chaussures sont neuves.
+basket,运动鞋,sneaker,Je porte des baskets.
+botte,靴子,boot,Les bottes sont utiles quand il pleut.
+chapeau,帽子,hat,Je mets un chapeau au soleil.
+casquette,鸭舌帽,cap,Ma casquette est bleue.
+écharpe,围巾,scarf,L'écharpe est chaude.
+gant,手套,glove,J'ai des gants en hiver.
+pyjama,睡衣,pajamas,Je mets mon pyjama le soir.
+immeuble,楼房,building,Cet immeuble est haut.
+appartement,公寓,apartment,Nous habitons dans un appartement.
+toit,屋顶,roof,Le chat est sur le toit.
+mur,墙,wall,Le mur est blanc.
+sol,地板,floor,Le sol est propre.
+plafond,天花板,ceiling,Le plafond est haut.
+escalier,楼梯,stairs,Je monte l'escalier.
+ascenseur,电梯,elevator,L'ascenseur est rapide.
+garage,车库,garage,La voiture est dans le garage.
+cour,院子,courtyard,Les enfants jouent dans la cour.
+ville,城市,city,Paris est une grande ville.
+village,村庄,village,Mon village est calme.
+rue,街道,street,Ma rue est tranquille.
+route,道路,road,La route est longue.
+place,广场,square,Nous nous retrouvons sur la place.
+parc,公园,park,Les enfants jouent au parc.
+magasin,商店,shop,Je vais au magasin.
+marché,市场,market,Nous achetons des fruits au marché.
+boulangerie,面包店,bakery,J'achète du pain à la boulangerie.
+pharmacie,药店,pharmacy,La pharmacie est ouverte.
+hôpital,医院,hospital,L'hôpital est près d'ici.
+poste,邮局,post office,Je vais à la poste.
+banque,银行,bank,La banque est en centre-ville.
+gare,火车站,train station,La gare est grande.
+musée,博物馆,museum,Nous visitons un musée.
+cinéma,电影院,cinema,Je vais au cinéma.
+piscine,游泳池,swimming pool,Nous nageons à la piscine.
+bibliothèque,图书馆,library,Je lis à la bibliothèque.
+voiture,汽车,car,La voiture est rouge.
+vélo,自行车,bicycle,Je vais à l'école à vélo.
+bus,公交车,bus,J'attends le bus.
+train,火车,train,Le train arrive.
+tramway,有轨电车,tram,Le tramway passe ici.
+métro,地铁,subway,Nous prenons le métro.
+avion,飞机,airplane,L'avion vole haut.
+bateau,船,boat,Le bateau traverse la rivière.
+camion,卡车,truck,Le camion transporte des marchandises.
+moto,摩托车,motorbike,La moto est rapide.
+voyage,旅行,trip,Le voyage est intéressant.
+ici,这里,here,Viens ici.
+là,那里,there,Le livre est là.
+dedans,里面,inside,Le chat est dedans.
+dehors,外面,outside,Les enfants jouent dehors.
+devant,前面,in front of,La voiture est devant la maison.
+derrière,后面,behind,Le chien est derrière la porte.
+près de,靠近,near,L'école est près de chez moi.
+loin de,远离,far from,Le village est loin de la ville.
+entre,在……之间,between,Le ballon est entre les chaises.
+sur,在……上,on,Le livre est sur la table.
+sous,在……下面,under,Le chat est sous la chaise.
+dans,在……里面,in,Le stylo est dans le sac.
+à côté de,在……旁边,next to,L'arbre est à côté de la maison.
+gauche,左,left,Tourne à gauche.
+droite,右,right,Tourne à droite.
+haut,上方,up,Regarde en haut.
+bas,下方,down,Le ballon tombe en bas.
+grand,大的,big,Le chien est grand.
+petit,小的,small,Le chat est petit.
+long,长的,long,La route est longue.
+court,短的,short,Le film est court.
+large,宽的,wide,La rue est large.
+étroit,窄的,narrow,Le passage est étroit.
+jeune,年轻的,young,Elle est jeune.
+vieux,年老的,old,Le grand-père est vieux.
+fort,强壮的,strong,Il est fort.
+faible,虚弱的,weak,Je me sens faible.
+gentil,友善的,kind,C'est un garçon gentil.
+méchant,坏的,mean,Le loup est méchant dans l'histoire.
+drôle,有趣的,funny,Cette histoire est drôle.
+sérieux,严肃的,serious,Il est sérieux en classe.
+propre,干净的,clean,La chambre est propre.
+sale,脏的,dirty,Les chaussures sont sales.
+facile,简单的,easy,Cet exercice est facile.
+difficile,困难的,difficult,Le problème est difficile.
+rapide,快速的,fast,Le train est rapide.
+lent,缓慢的,slow,La tortue est lente.
+zéro,零,zero,J'ai zéro faute.
+un,一,one,J'ai un livre.
+deux,二,two,J'ai deux frères.
+trois,三,three,Il y a trois pommes.
+quatre,四,four,Nous sommes quatre.
+cinq,五,five,J'ai cinq doigts.
+six,六,six,La classe a six fenêtres.
+sept,七,seven,J'ai sept ans.
+huit,八,eight,Nous avons huit crayons.
+neuf,九,nine,Il est neuf heures.
+dix,十,ten,J'ai dix euros.
+onze,十一,eleven,Il y a onze élèves.
+douze,十二,twelve,Nous sommes douze.
+treize,十三,thirteen,Le bus arrive à treize heures.
+quatorze,十四,fourteen,J'ai quatorze billes.
+quinze,十五,fifteen,Il y a quinze livres.
+seize,十六,sixteen,La bibliothèque ouvre à seize heures.
+dix-sept,十七,seventeen,Nous avons dix-sept cahiers.
+dix-huit,十八,eighteen,J'ai dix-huit cartes.
+dix-neuf,十九,nineteen,Le train part à dix-neuf heures.
+vingt,二十,twenty,Il y a vingt élèves.
+trente,三十,thirty,Le trajet dure trente minutes.
+quarante,四十,forty,Le livre coûte quarante euros.
+cinquante,五十,fifty,Nous avons cinquante pages.
+soixante,六十,sixty,Le musée accueille soixante visiteurs.
+cent,一百,one hundred,La collection compte cent objets.
+premier,第一,first,Je suis le premier.
+deuxième,第二,second,Il arrive deuxième.
+troisième,第三,third,Elle termine troisième.
+dernier,最后,last,Je suis le dernier de la file.
+rouge,红色,red,La pomme est rouge.
+bleu,蓝色,blue,Le ciel est bleu.
+vert,绿色,green,L'herbe est verte.
+jaune,黄色,yellow,Le soleil est jaune.
+orange,橙色,orange,L'orange est orange.
+rose,粉色,pink,Ma fleur est rose.
+violet,紫色,purple,Le cahier est violet.
+marron,棕色,brown,L'ours est marron.
+gris,灰色,grey,Le nuage est gris.
+blanc,白色,white,La neige est blanche.
+noir,黑色,black,Le chat est noir.
+clair,浅色的,light,Cette couleur est claire.
+foncé,深色的,dark,Le bleu est foncé.
+couleur,颜色,color,J'aime cette couleur.
+football,足球,football,Je joue au football.
+basket-ball,篮球,basketball,Nous jouons au basket-ball.
+tennis,网球,tennis,Elle joue au tennis.
+natation,游泳,swimming,J'aime la natation.
+course,跑步,running,La course est amusante.
+vélo,骑自行车,cycling,Je fais du vélo.
+danse,舞蹈,dance,Ma sœur fait de la danse.
+gymnastique,体操,gymnastics,La gymnastique développe l'équilibre.
+sport,运动,sport,Le sport est bon pour la santé.
+équipe,队伍,team,Notre équipe a gagné.
+match,比赛,match,Le match commence bientôt.
+joueur,运动员/player,player,Le joueur marque un but.
+but,进球,goal,Il marque un but.
+victoire,胜利,victory,Nous célébrons la victoire.
+défaite,失败,defeat,L'équipe accepte la défaite.
+arbitre,裁判,referee,L'arbitre siffle.
+ballon,球,ball,Balance-moi le ballon.
+terrain,场地,field,Le terrain est grand.
+médaille,奖牌,medal,Elle gagne une médaille.
+nature,自然,nature,J'aime la nature.
+arbre,树,tree,L'arbre est très haut.
+fleur,花,flower,La fleur sent bon.
+herbe,草,grass,L'herbe est verte.
+feuille,叶子,leaf,La feuille tombe.
+racine,根,root,La racine est sous la terre.
+branche,树枝,branch,L'oiseau est sur une branche.
+graine,种子,seed,Je plante une graine.
+fruit,水果,fruit,Le fruit est mûr.
+légume,蔬菜,vegetable,Je mange un légume.
+champ,田野,field,Le champ est vaste.
+forêt,森林,forest,La forêt est calme.
+rivière,河流,river,La rivière est propre.
+lac,湖,lake,Le lac est magnifique.
+mer,海,sea,Nous allons à la mer.
+océan,海洋,ocean,L'océan est immense.
+plage,海滩,beach,Les enfants jouent sur la plage.
+sable,沙子,sand,Le sable est chaud.
+rocher,岩石,rock,Le rocher est grand.
+île,岛,island,Cette île est belle.
+lion,狮子,lion,Le lion rugit.
+tigre,老虎,tiger,Le tigre est fort.
+éléphant,大象,elephant,L'éléphant est énorme.
+girafe,长颈鹿,giraffe,La girafe a un long cou.
+singe,猴子,monkey,Le singe grimpe à l'arbre.
+ours,熊,bear,L'ours dort en hiver.
+loup,狼,wolf,Le loup vit dans la forêt.
+renard,狐狸,fox,Le renard est malin.
+écureuil,松鼠,squirrel,L'écureuil mange une noisette.
+hérisson,刺猬,hedgehog,Le hérisson est petit.
+abeille,蜜蜂,bee,L'abeille produit du miel.
+papillon,蝴蝶,butterfly,Le papillon vole.
+fourmi,蚂蚁,ant,La fourmi travaille beaucoup.
+araignée,蜘蛛,spider,L'araignée tisse sa toile.
+dauphin,海豚,dolphin,Le dauphin nage vite.
+requin,鲨鱼,shark,Le requin vit dans l'océan.
+baleine,鲸鱼,whale,La baleine est très grande.
+tortue,乌龟,turtle,La tortue avance lentement.
+grenouille,青蛙,frog,La grenouille saute.
+serpent,蛇,snake,Le serpent rampe.
+pouvoir,能够,can/to be able to,Je peux finir mon travail.
+vouloir,想要,to want,Je veux un gâteau.
+devoir,必须,have to/must,Je dois faire mes devoirs.
+savoir,知道,to know,Je sais la réponse.
+connaître,认识,to know (a person/place),Je connais ce garçon.
+penser,思考,to think,Je pense à toi.
+croire,相信,to believe,Je crois en lui.
+trouver,找到,to find,Je trouve mes clés.
+chercher,寻找,to search,Je cherche mon livre.
+porter,穿/拿,to wear/carry,Je porte un manteau.
+mettre,放置,to put,Je mets le livre sur la table.
+prendre,拿/to take,to take,Je prends le bus.
+donner,给,to give,Je donne un cadeau.
+recevoir,收到,to receive,Je reçois une lettre.
+ouvrir,打开,to open,J’ouvre la porte.
+fermer,关闭,to close,Je ferme la fenêtre.
+entrer,进入,to enter,Nous entrons dans la classe.
+sortir,出去,to go out,Je sors avec mes amis.
+monter,上升/to go up,to go up,Je monte les escaliers.
+descendre,下降/to go down,Je descends l’escalier.
+marcher,走路,to walk,Je marche à l’école.
+courir,跑步,to run,L’enfant court vite.
+sauter,跳,to jump,Je saute sur le lit.
+jouer,玩,to play,Les enfants jouent dehors.
+regarder,看,to watch,Je regarde la télé.
+écouter,听,to listen,J’écoute la musique.
+parler,说,to speak,Je parle français.
+répondre,回答,to answer,Je réponds à la question.
+poser,提出/to ask,to ask,Je pose une question.
+expliquer,解释,to explain,Le professeur explique la leçon.
+comprendre,理解,to understand,Je comprends le texte.
+apprendre,学习,to learn,J’apprends une poésie.
+enseigner,教,to teach,Il enseigne les maths.
+lire,阅读,to read,Je lis un livre.
+écrire,写,to write,J’écris une lettre.
+dessiner,画,to draw,Je dessine un chat.
+colorier,涂色,to color,Je colorie le dessin.
+chanter,唱,to sing,Je chante une chanson.
+danser,跳舞,to dance,Nous dansons ensemble.
+aimer,喜欢,to like/love,J’aime le chocolat.
+détester,讨厌,to hate,Je déteste les devoirs.
+vivre,生活,to live,Nous vivons à Paris.
+habiter,居住,to live (reside),J’habite en ville.
+naître,出生,to be born,Je suis né en 2015.
+mourir,去世,to die,Le vieux chien est mort.
+grandir,长大,to grow up,L’enfant grandit vite.
+rester,停留,to stay,Je reste à la maison.
+venir,来,to come,Tu viens avec moi.
+aller,去,to go,Je vais à l’école.
+revenir,回来,to come back,Je reviens bientôt.
+commencer,开始,to start,Le cours commence à 8h.
+finir,结束,to finish,Je finis mon travail.
+continuer,继续,to continue,Nous continuons la lecture.
+attendre,等待,to wait,J’attends le bus.
+arriver,到达,to arrive,Le train arrive à midi.
+partir,离开,to leave,Nous partons demain.
+voyager,旅行,to travel,Nous voyageons en France.
+acheter,买,to buy,J’achète du pain.
+vendre,卖,to sell,Il vend des fruits.
+payer,支付,to pay,Je paie la note.
+coûter,花费,to cost,Ce livre coûte 10 euros.
+gagner,赢/to earn,to win/earn,Il gagne le match.
+perdre,失去/to lose,to lose,Je perds mes clés.
+aider,帮助,to help,J’aide mon ami.
+sauver,拯救,to save,Le pompier sauve le chat.
+travailler,工作,to work,Mon père travaille beaucoup.
+réussir,成功,to succeed,Je réussis mon examen.
+échouer,失败,to fail,Il échoue au test.
+utiliser,使用,to use,J’utilise mon stylo.
+envoyer,发送,to send,J’envoie un message.
+recevoir,接收,to receive,Je reçois un email.

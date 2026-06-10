@@ -1,32 +1,582 @@
-[
-  {"fr":"cahier","g":"n.m.","zh":"笔记本","en":"notebook","sfr":"J'écris dans mon cahier."},
-  {"fr":"crayon","g":"n.m.","zh":"铅笔","en":"pencil","sfr":"Elle dessine avec un crayon."},
-  {"fr":"gomme","g":"n.f.","zh":"橡皮擦","en":"eraser","sfr":"Il efface avec la gomme."},
-  {"fr":"règle","g":"n.f.","zh":"尺子","en":"ruler","sfr":"Je trace une ligne avec la règle."},
-  {"fr":"cartable","g":"n.m.","zh":"书包","en":"schoolbag","sfr":"Mon cartable est très lourd."},
-  {"fr":"tableau","g":"n.m.","zh":"黑板","en":"blackboard","sfr":"La maîtresse écrit au tableau."},
-  {"fr":"maître","g":"n.m.","zh":"男老师","en":"teacher","sfr":"Le maître explique la leçon."},
-  {"fr":"élève","g":"n.m.","zh":"学生","en":"student","sfr":"Chaque élève lit un livre."},
-  {"fr":"récréation","g":"n.f.","zh":"课间休息","en":"break time","sfr":"On joue pendant la récréation."},
-  {"fr":"bibliothèque","g":"n.f.","zh":"图书馆","en":"library","sfr":"Je vais à la bibliothèque le mercredi."},
-  {"fr":"papillon","g":"n.m.","zh":"蝴蝶","en":"butterfly","sfr":"Un papillon vole au-dessus des fleurs."},
-  {"fr":"grenouille","g":"n.f.","zh":"青蛙","en":"frog","sfr":"La grenouille saute dans l'étang."},
-  {"fr":"écureuil","g":"n.m.","zh":"松鼠","en":"squirrel","sfr":"L'écureuil grimpe dans l'arbre."},
-  {"fr":"renard","g":"n.m.","zh":"狐狸","en":"fox","sfr":"Le renard est un animal rusé."},
-  {"fr":"montagne","g":"n.f.","zh":"山","en":"mountain","sfr":"Nous grimpons la montagne ensemble."},
-  {"fr":"rivière","g":"n.f.","zh":"河流","en":"river","sfr":"Les enfants pêchent dans la rivière."},
-  {"fr":"forêt","g":"n.f.","zh":"森林","en":"forest","sfr":"On entend les oiseaux dans la forêt."},
-  {"fr":"nuage","g":"n.m.","zh":"云","en":"cloud","sfr":"Un gros nuage cache le soleil."},
-  {"fr":"fenêtre","g":"n.f.","zh":"窗户","en":"window","sfr":"J'ouvre la fenêtre pour aérer."},
-  {"fr":"cuisine","g":"n.f.","zh":"厨房","en":"kitchen","sfr":"Maman prépare le repas dans la cuisine."},
-  {"fr":"chanter","g":"v.","zh":"唱歌","en":"to sing","sfr":"Nous chantons une belle chanson."},
-  {"fr":"dessiner","g":"v.","zh":"画画","en":"to draw","sfr":"Elle aime dessiner des animaux."},
-  {"fr":"lire","g":"v.","zh":"阅读","en":"to read","sfr":"Je lis un livre chaque soir."},
-  {"fr":"écrire","g":"v.","zh":"书写","en":"to write","sfr":"Il apprend à écrire son nom."},
-  {"fr":"sauter","g":"v.","zh":"跳","en":"to jump","sfr":"Il peut sauter très haut."},
-  {"fr":"fromage","g":"n.m.","zh":"奶酪","en":"cheese","sfr":"Le fromage est délicieux avec du pain."},
-  {"fr":"gâteau","g":"n.m.","zh":"蛋糕","en":"cake","sfr":"On mange le gâteau pour l'anniversaire."},
-  {"fr":"fraise","g":"n.f.","zh":"草莓","en":"strawberry","sfr":"Cette fraise est rouge et sucrée."},
-  {"fr":"carotte","g":"n.f.","zh":"胡萝卜","en":"carrot","sfr":"La carotte est bonne pour la vue."},
-  {"fr":"oignon","g":"n.m.","zh":"洋葱","en":"onion","sfr":"L'oignon fait pleurer quand on le coupe."}
-]
+absolument,绝对地,absolutely,C’est absolument nécessaire.
+accent,口音,accent,Il a un accent français.
+accident,事故,accident,Il y a eu un accident.
+activité,活动,activity,L’activité est intéressante.
+actualité,新闻/时事,current news,Les actualités sont importantes.
+admettre,承认,to admit,Il admet son erreur.
+adolescent,青少年,teenager,L’adolescent est content.
+adulte,成人,adult,L’adulte travaille.
+affaire,事情/生意,matter/business,C’est une affaire importante.
+agir,行动,to act,Il faut agir vite.
+aider,帮助,to help,J’aide mes amis.
+améliorer,改善,to improve,Il veut améliorer son français.
+analyse,分析,analysis,L’analyse est difficile.
+annonce,公告,announcement,L’annonce est affichée.
+apparence,外表,appearance,L’apparence compte parfois.
+approfondir,深入,to deepen,Il faut approfondir la leçon.
+argument,论点,argument,Son argument est logique.
+arrangement,安排,arrangement,L’arrangement est prêt.
+aspect,方面,aspect,Cet aspect est important.
+attitude,态度,attitude,Son attitude est positive.
+aucun,没有任何,no/none,Il n’y a aucun problème.
+augmenter,增加,to increase,Les prix augmentent.
+avantage,优势,advantage,C’est un avantage important.
+avenir,未来,future,L’avenir est incertain.
+avertir,警告,to warn,Je t’avertis du danger.
+baisser,降低,to lower,Les prix baissent.
+besoin,需要,need,J’ai besoin d’aide.
+blesser,受伤,to injure,Il s’est blessé.
+bruit,噪音,noise,Il y a du bruit.
+cacher,隐藏,to hide,Il cache le secret.
+campagne,乡村/campaign,countryside,C’est calme à la campagne.
+capable,有能力的,capable,Elle est capable de réussir.
+cause,原因,cause,La cause est inconnue.
+certain,某些/sure,certain,Il est certain de venir.
+changer,改变,to change,Les choses changent.
+choix,选择,choice,Le choix est difficile.
+clairement,清楚地,clearly,Il explique clairement.
+client,顾客,customer,Le client est satisfait.
+collecter,收集,to collect,Elle collecte des données.
+combattre,战斗,to fight,Ils combattent ensemble.
+communiquer,交流,to communicate,Nous communiquons bien.
+complet,完整的,complete,Le dossier est complet.
+comprendre,理解,to understand,Je comprends la situation.
+conseil,建议,advice,Merci pour ton conseil.
+conséquence,后果,consequence,La conséquence est grave.
+construire,建造,to build,Ils construisent une maison.
+contact,联系,contact,Je reste en contact.
+continuer,继续,to continue,Il continue son travail.
+contrôler,控制,to control,Le professeur contrôle le test.
+copie,抄写/副本,copy,La copie est correcte.
+correction,修改,correction,La correction est difficile.
+danger,危险,danger,Il y a du danger.
+décision,决定,decision,La décision est prise.
+décrire,描述,to describe,Décris la scène.
+développement,发展,development,Le développement est rapide.
+différence,差异,difference,Quelle est la différence ?
+discussion,讨论,discussion,La discussion est utile.
+durer,持续,to last,L’examen dure une heure.
+échec,失败,failure,L’échec fait partie de la vie.
+effort,努力,effort,Il fait beaucoup d’efforts.
+égalité,平等,equality,L’égalité est importante.
+éducation,教育,education,L’éducation est essentielle.
+efficacité,效率,efficiency,Son efficacité est remarquable.
+éliminer,消除,to eliminate,Il faut éliminer les erreurs.
+émotion,情绪,emotion,Elle cache ses émotions.
+emploi,工作,job,Chercher un emploi.
+encourager,鼓励,to encourage,Il encourage ses amis.
+énergie,能量,energy,J’ai beaucoup d’énergie.
+engagement,承诺,commitment,Son engagement est fort.
+ennemi,敌人,enemy,L’ennemi est proche.
+enquête,调查,investigation,L’enquête continue.
+entrer,进入,to enter,Il entre dans la salle.
+environnement,环境,environment,L’environnement est fragile.
+erreur,错误,error,Il y a une erreur.
+essayer,尝试,to try,J’essaie encore.
+étape,步骤,step,L’étape est importante.
+état,状态,state,L’état du système.
+évident,明显的,obvious,C’est évident.
+éviter,避免,to avoid,Il faut éviter les risques.
+évolution,发展/evolution,evolution,L’évolution est rapide.
+exemple,例子,example,Donne un exemple.
+expérience,经验/实验,experience,L’expérience est utile.
+explique,解释,explain,Explique la règle.
+expression,表达,expression,Une expression française.
+extraordinaire,非凡的,extraordinary,C’est extraordinaire.
+fabriquer,制作,to make/produce,Ils fabriquent des jouets.
+facilement,容易地,easily,Il apprend facilement.
+faim,饥饿,hunger,J’ai très faim.
+faute,错误/fault,fault,Il a fait une faute.
+féliciter,祝贺,to congratulate,Je te félicite.
+ferme,农场,farm,La ferme est grande.
+fiable,可靠的,reliable,C’est une source fiable.
+fier,自豪的,proud,Elle est fière de lui.
+force,力量,strength,Il a beaucoup de force.
+former,形成/培训,to form/train,Ils forment une équipe.
+fournir,提供,to provide,L’école fournit des livres.
+fréquent,频繁的,frequent,C’est un problème fréquent.
+garder,保留/to keep,to keep,Je garde ce secret.
+général,一般的/general,C’est une idée générale.
+gérer,管理,to manage,Il gère une entreprise.
+grâce,由于/感谢,thanks to,Grâce à toi, j’ai réussi.
+habituel,习惯的,usual,C’est son horaire habituel.
+hésiter,犹豫,to hesitate,N’hésite pas à demander.
+historique,历史的,historical,C’est un site historique.
+important,重要的,important,C’est très important.
+impossible,不可能的,impossible,C’est impossible à faire.
+inquiéter,担心,to worry,Je m’inquiète pour toi.
+installer,安装,to install,Il installe l’application.
+instant,瞬间,instant,Un instant magique.
+intelligent,聪明的,intelligent,L’enfant est intelligent.
+intérêt,兴趣,interest,J’ai un intérêt pour la science.
+inviter,邀请,to invite,J’invite mes amis.
+journal,报纸/newspaper,newspaper,Je lis le journal.
+justice,正义,justice,La justice est importante.
+laisser,让/to leave,to leave,Je laisse la porte ouverte.
+libre,自由的,free,Je suis libre aujourd’hui.
+limiter,限制,to limit,Il faut limiter le bruit.
+lire,阅读,to read,Je lis tous les jours.
+local,当地的,local,Le marché local est ouvert.
+logique,逻辑的,logical,C’est logique.
+longtemps,长时间,long time,Il attend longtemps.
+lumière,光,light,La lumière est forte.
+maintenant,现在,now,Je travaille maintenant.
+malgré,尽管,despite,Malgré la pluie, il sort.
+manière,方式,way,Il parle de cette manière.
+marché,市场,market,Je vais au marché.
+mémoire,记忆,memory,Sa mémoire est bonne.
+message,信息,message,J’ai reçu un message.
+métier,职业,job/profession,Quel est ton métier ?
+milieu,中间,middle,Au milieu de la rue.
+mince,瘦的/thin,thin,Il est mince.
+moment,时刻,moment,Un bon moment.
+montrer,展示,to show,Je montre mon dessin.
+motif,原因/pattern,motive,C’est le motif du problème.
+nature,自然,nature,La nature est belle.
+nécessaire,必要的,necessary,C’est nécessaire.
+nouveau,新的,new,Un nouveau livre.
+objectif,目标,goal/objective,Mon objectif est clair.
+occasion,机会,occasion,C’est une bonne occasion.
+occuper,占据/to occupy,to occupy,Il occupe la place.
+offrir,提供/赠送,to offer,J’offre un cadeau.
+opinion,意见,opinion,Quelle est ton opinion ?
+organiser,组织,to organize,Nous organisons une fête.
+outil,工具,tool,Un outil utile.
+ouvert,开放的,open,Le magasin est ouvert.
+parfois,有时,sometimes,Je vais parfois au parc.
+partager,分享,to share,Je partage mon goûter.
+participer,参加,to participate,Je participe au jeu.
+passage,通过/段落,passage,Le passage est étroit.
+penser,思考,to think,Je pense souvent à toi.
+permettre,允许,to allow,Le professeur permet cela.
+personnage,人物,character,Un personnage important.
+peur,害怕,fear,Il a peur du noir.
+phrase,句子,sentence,Écris une phrase.
+plaisir,快乐,pleasure,C’est un plaisir.
+plutôt,相当/rather,rather,Il est plutôt grand.
+possible,可能的,possible,C’est possible.
+pouvoir,权力/能够,power/can,Je peux t’aider.
+pratique,实用的,practical,C’est très pratique.
+préparer,准备,to prepare,Je prépare mon examen.
+présent,现在的/present,present,Je suis présent.
+problème,问题,problem,Il y a un problème.
+produire,生产,to produce,La ferme produit du lait.
+projet,项目,project,Un grand projet.
+protéger,保护,to protect,Il protège la nature.
+question,问题,question,Pose une question.
+réalité,现实,reality,C’est la réalité.
+récent,最近的,recent,Un événement récent.
+réfléchir,思考,to reflect,Je réfléchis beaucoup.
+refuser,拒绝,to refuse,Il refuse l’offre.
+regretter,后悔,to regret,Je regrette mon choix.
+relation,关系,relation,Une bonne relation.
+remplacer,替换,to replace,Remplace le mot.
+réparer,修理,to repair,Il répare la voiture.
+représenter,代表,to represent,Il représente la classe.
+résultat,结果,result,Le résultat est bon.
+risque,风险,risk,Il y a un risque.
+rôle,角色,role,Quel est son rôle ?
+santé,健康,health,La santé est importante.
+sécurité,安全,safety,La sécurité est prioritaire.
+signifier,意味着,to mean,Que signifie ce mot ?
+solution,解决方案,solution,La solution est simple.
+souvent,经常,often,Je viens souvent ici.
+succès,成功,success,Son succès est grand.
+suffisant,足够的,sufficient,C’est suffisant.
+sujet,主题,subject,Le sujet est intéressant.
+supporter,支持/to bear,to support,Je supporte mon équipe.
+système,系统,system,Un système complexe.
+tâche,任务,task,Une tâche difficile.
+temps,时间,time,Le temps passe vite.
+travail,工作,work,Le travail est fini.
+aborder,接近/讨论,to approach,Nous abordons le sujet.
+accompagner,陪伴,to accompany,J’accompagne mon ami.
+accomplir,完成,to accomplish,Il accomplit sa tâche.
+accord,同意/协议,agreement,Nous sommes d’accord.
+accuser,指控,to accuse,Il accuse son voisin.
+adapter,适应,to adapt,Il s’adapte rapidement.
+admettre,承认,to admit,Il admet la vérité.
+adopter,收养/采用,to adopt,Ils adoptent un chien.
+affirmer,断言,to affirm,Il affirme son opinion.
+agir,行动,to act,Il faut agir vite.
+aide,帮助,help,L’aide est importante.
+amélioration,改善,improvement,Il y a une amélioration.
+analyser,分析,to analyze,Analyse le texte.
+annoncer,宣布,to announce,Il annonce la nouvelle.
+apparaître,出现,to appear,Le soleil apparaît.
+appartenir,属于,to belong,Ce livre m’appartient.
+appliquer,应用/to apply,to apply,Applique la règle.
+apporter,带来,to bring,J’apporte un cadeau.
+apprécier,欣赏/to appreciate,to appreciate,J’apprécie ton aide.
+apprendre,学习,to learn,J’apprends vite.
+approcher,接近,to approach,Il approche la porte.
+après-midi,下午,afternoon,L’après-midi est calme.
+arrêter,停止/to stop,to stop,Il arrête le bus.
+assez,足够,enough,C’est assez difficile.
+assister,参加/to attend,to attend,J’assiste au cours.
+assurer,确保,to ensure,Il assure la sécurité.
+atteindre,达到,to reach,Nous atteignons le sommet.
+attirer,吸引,to attract,Cela attire les touristes.
+augmenter,增加,to increase,Les prix augmentent.
+avancer,前进,to move forward,Nous avançons lentement.
+avertissement,警告,warning,Un avertissement important.
+avoir lieu,发生,to take place,L’événement a lieu ici.
+bénéficier,受益,to benefit,Nous bénéficions de l’aide.
+besoin,需要,need,J’ai besoin de repos.
+blessure,伤害,injury,La blessure est légère.
+boîte,盒子,box,Une boîte en carton.
+brillant,明亮/优秀的,bright,Un élève brillant.
+capacité,能力,capacity,Sa capacité est grande.
+cause,原因,cause,La cause est inconnue.
+célébrer,庆祝,to celebrate,Nous célébrons Noël.
+changer,改变,to change,Les choses changent.
+charger,装载/to load,to load,Il charge la voiture.
+choisir,选择,to choose,Je choisis une option.
+clairement,清楚地,clearly,Il parle clairement.
+collaborer,合作,to collaborate,Nous collaborons ensemble.
+combinaison,组合,combination,Une bonne combinaison.
+commencer,开始,to begin,Le cours commence.
+comparer,比较,to compare,Compare les deux.
+compléter,完成,to complete,Complète la phrase.
+comportement,行为,behavior,Son comportement est bon.
+compter,数/to count,to count,Je compte les objets.
+conclure,总结/to conclude,to conclude,On conclut la réunion.
+confirmer,确认,to confirm,Je confirme la réservation.
+connaissance,知识/认识,knowledge,Sa connaissance est vaste.
+conseiller,建议/to advise,to advise,Je te conseille ceci.
+considérer,考虑/to consider,to consider,Je considère cette option.
+construire,建造,to build,Ils construisent une maison.
+contacter,联系,to contact,Je contacte le professeur.
+continuer,继续,to continue,Continue ton travail.
+contrôler,控制/to control,to control,Le professeur contrôle la classe.
+convaincre,说服,to convince,Il me convainc.
+corriger,纠正,to correct,Corrige les erreurs.
+couper,切,to cut,Je coupe le pain.
+créer,创造,to create,Il crée un projet.
+croire,相信,to believe,Je crois en toi.
+décider,决定,to decide,Je décide maintenant.
+défendre,保护/to defend,to defend,Il défend son ami.
+demander,询问/to ask,to ask,Je demande une question.
+dépendre,依赖,to depend,Cela dépend du temps.
+développer,发展,to develop,La ville se développe.
+diffuser,传播,to broadcast,La chaîne diffuse le film.
+disparaître,消失,to disappear,Le chat disparaît.
+discuter,讨论,to discuss,Nous discutons du problème.
+donner,给,to give,Je donne un exemple.
+durée,持续时间,duration,La durée est courte.
+éclairer,照亮,to light up,La lampe éclaire la pièce.
+écouter,听,to listen,J’écoute attentivement.
+effet,效果,effect,L’effet est positif.
+élever,提高/养,to raise,Il élève des animaux.
+éliminer,消除,to eliminate,Il faut éliminer le bruit.
+émotion,情绪,emotion,L’émotion est forte.
+encore,还/再,again/still,Il est encore là.
+endroit,地方,place,Cet endroit est calme.
+enlever,去掉,to remove,Enlève le mot.
+ensemble,一起,together,Nous travaillons ensemble.
+entendre,听见,to hear,J’entends un bruit.
+entièrement,完全地,completely,Je suis entièrement d’accord.
+environnement,环境,environment,Protéger l’environnement.
+espace,空间,space,L’espace est grand.
+espérer,希望,to hope,J’espère réussir.
+essentiel,重要的,essential,C’est essentiel.
+établir,建立,to establish,Il établit une règle.
+éteindre,关闭,to turn off,Éteins la lumière.
+événement,事件,event,Un grand événement.
+examiner,检查,to examine,Le médecin examine le patient.
+expliquer,解释,to explain,Explique la règle.
+explorer,探索,to explore,Nous explorons la ville.
+exprimer,表达,to express,Exprime ton opinion.
+extraire,提取,to extract,On extrait l’information.
+faciliter,促进,to facilitate,Cela facilite le travail.
+fonctionner,运作,to function,Le système fonctionne.
+forcer,强迫,to force,Il force la porte.
+former,形成/to form,to form,Il forme une équipe.
+fournir,提供,to provide,L’école fournit des livres.
+franchir,跨越,to cross,Il franchit la ligne.
+gagner,赢/to win,to win,Nous gagnons le match.
+gérer,管理,to manage,Elle gère l’entreprise.
+harmonie,和谐,harmony,L’harmonie est importante.
+identifier,识别,to identify,Identifie le mot.
+imposer,强加,to impose,Il impose sa règle.
+inclure,包括,to include,Le prix inclut tout.
+indiquer,指出,to indicate,Indique la réponse.
+influencer,影响,to influence,Cela influence les gens.
+informer,通知,to inform,Je vous informe.
+inquiéter,担心,to worry,Cela m’inquiète.
+insister,坚持,to insist,Il insiste toujours.
+installer,安装,to install,Installe l’application.
+interdire,禁止,to forbid,Il est interdit de fumer.
+intéresser,感兴趣,to interest,Cela m’intéresse.
+introduire,介绍/to introduce,to introduce,Il introduit le sujet.
+inventer,发明,to invent,Il invente une machine.
+investir,投资,to invest,Ils investissent beaucoup.
+joindre,加入/联系,to join,Je joins le groupe.
+juger,判断/to judge,to judge,Ne juge pas trop vite.
+justifier,证明/to justify,Il justifie sa réponse.
+lancer,投掷/启动,to launch,Il lance la balle.
+libérer,释放,to free,On libère les animaux.
+limite,限制/边界,limit,La limite est claire.
+liquide,液体,liquid,Le liquide est chaud.
+localiser,定位,to locate,On localise la ville.
+logement,住房,housing,Le logement est cher.
+longueur,长度,length,La longueur est importante.
+lutter,斗争,to fight,Ils luttent pour la liberté.
+maîtriser,掌握,to master,Il maîtrise la langue.
+manquer,缺少/to miss,to miss,J’ai manqué le bus.
+mélanger,混合,to mix,Mélange les ingrédients.
+menacer,威胁,to threaten,Il menace son voisin.
+mériter,值得/to deserve,Tu mérites la récompense.
+mesurer,测量,to measure,Mesure la table.
+montrer,展示,to show,Montre ton travail.
+motiver,激励,to motivate,Il motive les élèves.
+mouvement,运动/movement,movement,Le mouvement est rapide.
+multiplier,乘/增加,to multiply,Multiplie les nombres.
+naissance,出生,birth,Sa naissance est en mai.
+nécessité,必要性,necessity,C’est une nécessité.
+obliger,强迫,to oblige,Il oblige à venir.
+observer,观察,to observe,Observe le ciel.
+obtenir,获得,to obtain,Il obtient un bon résultat.
+occuper,占据/to occupy,to occupy,Il occupe la salle.
+officiel,官方的,official,C’est une annonce officielle.
+opération,操作/手术,operation,L’opération est réussie.
+organiser,组织,to organize,Nous organisons un événement.
+oublier,忘记,to forget,N’oublie pas tes clés.
+ouvrir,打开,to open,Ouvre la fenêtre.
+participation,参与,participation,La participation est importante.
+particulier,特别的,particular,C’est un cas particulier.
+passer,通过/to pass,to pass,Il passe l’examen.
+perception,感知,perception,Sa perception est fine.
+permettre,允许,to allow,Cela permet de réussir.
+personnel,个人的/staff,personal/staff,Le personnel est gentil.
+photographier,拍照,to photograph,Il photographie la ville.
+placer,放置,to place,Place le livre ici.
+planifier,计划,to plan,Nous planifions le voyage.
+plonger,潜水/to dive,to dive,Il plonge dans l’eau.
+population,人口,population,La population augmente.
+position,位置,position,Sa position est claire.
+possibilité,可能性,possibility,Il y a une possibilité.
+poursuivre,追求/继续,to pursue,Il poursuit ses études.
+pousser,推/to push,to push,Il pousse la porte.
+préciser,明确/to specify,to specify,Précise ta réponse.
+préférer,更喜欢,to prefer,Je préfère le chocolat.
+préparer,准备,to prepare,Je prépare le dîner.
+présenter,介绍/to present,to present,Il présente son projet.
+pression,压力,pressure,La pression est forte.
+prévenir,预防/通知,to warn/prevent,Je te préviens.
+principal,主要的,main,Le problème principal.
+principe,原则,principle,Un bon principe.
+produit,产品/product,product,Ce produit est cher.
+profond,深的,deep,Le lac est profond.
+programme,计划/节目,program,Le programme commence.
+progression,进步,progress,Sa progression est rapide.
+promettre,承诺,to promise,Je te promets.
+proposer,提议/to propose,to propose,Il propose une idée.
+protéger,保护,to protect,Il protège la nature.
+public,公众的/public,public,Le public écoute.
+publier,发布,to publish,Il publie un livre.
+punir,惩罚,to punish,Le professeur punit.
+qualité,质量,quality,La qualité est bonne.
+quantité,数量,quantity,La quantité est grande.
+questionner,提问,to question,Il questionne l’élève.
+réagir,反应,to react,Il réagit vite.
+réaliser,实现/to realize,to realize,Il réalise son rêve.
+rechercher,研究/to research,to search,Je recherche des infos.
+réfléchir,思考,to reflect,Il réfléchit longtemps.
+refuser,拒绝,to refuse,Elle refuse l’offre.
+regarder,看,to watch,Je regarde le film.
+régler,解决/to fix,to solve,On règle le problème.
+remarquer,注意到,to notice,Je remarque un détail.
+remplacer,替换,to replace,Remplace le mot.
+répondre,回答,to answer,Réponds à la question.
+représenter,代表,to represent,Il représente l’école.
+résoudre,解决,to solve,Il résout le problème.
+respecter,尊重,to respect,Respecte les règles.
+responsable,负责的,responsible,Il est responsable.
+résultat,结果,result,Le résultat est clair.
+réussite,成功,success,Sa réussite est grande.
+revoir,再见/重看,to see again,Au revoir.
+risquer,冒险,to risk,Il risque tout.
+rôle,角色,role,Son rôle est important.
+sélectionner,选择,to select,Sélectionne une option.
+sens,意义/感觉,meaning/sense,Le sens du mot.
+séparer,分开,to separate,Sépare les objets.
+service,服务,service,Un bon service.
+situation,情况,situation,La situation est difficile.
+souhaiter,希望/to wish,to wish,Je souhaite bonne chance.
+soumettre,提交,to submit,Je soumets mon travail.
+supporter,支持/to tolerate,to support,Je supporte l’équipe.
+supposer,假设,to suppose,Je suppose que oui.
+surveiller,监视/to supervise,to monitor,Le professeur surveille.
+système,系统,system,Un système complexe.
+tenter,尝试,to attempt,Il tente sa chance.
+terminer,结束,to finish,Je termine le devoir.
+tirer,拉/to pull,to pull,Il tire la porte.
+traduire,翻译,to translate,Je traduis le texte.
+utilisation,使用,usage,L’utilisation est simple.
+valeur,价值,value,La valeur est élevée.
+vérifier,检查,to verify,Vérifie la réponse.
+victoire,胜利,victory,La victoire est totale.
+viser,瞄准/to aim,to aim,Il vise la cible.
+acquisition,获得,acquisition,L’acquisition des connaissances est importante.
+affichage,显示/公告,display,L’affichage est clair.
+agriculture,农业,agriculture,L’agriculture est essentielle.
+améliorer,改善,to improve,Il veut améliorer son niveau.
+analyse,分析,analysis,L’analyse du texte est difficile.
+annuler,取消,to cancel,On annule la réunion.
+appliquer,应用,to apply,Applique la règle correctement.
+approuver,批准,to approve,Le professeur approuve.
+associé,合作的/伙伴,associate,Il est associé au projet.
+atmosphère,气氛/大气,atmosphere,L’atmosphère est calme.
+autorité,权威,authority,L’autorité décide.
+avantageux,有利的,advantageous,C’est une situation avantageuse.
+besogne,任务/工作,task,La besogne est difficile.
+bilan,总结/balance sheet,summary,Le bilan est positif.
+capitale,首都,capital,Paris est la capitale.
+caractéristique,特征,characteristic,C’est une caractéristique importante.
+catégorie,类别,category,Choisis une catégorie.
+circonstance,情况,circumstance,Selon la circonstance.
+citoyen,公民,citizen,Le citoyen vote.
+cohérence,连贯性,coherence,Le texte manque de cohérence.
+collège,初中,middle school,Il entre au collège.
+communauté,社区,community,La communauté est unie.
+complexe,复杂的,complex,C’est un problème complexe.
+comportemental,行为的,behavioral,Analyse comportementale.
+concerné,有关的,concerned,Les personnes concernées.
+conclusion,结论,conclusion,La conclusion est claire.
+condition,条件,condition,À condition que tu viennes.
+confiance,信任,trust,J’ai confiance en toi.
+conflit,冲突,conflict,Il y a un conflit.
+conscience,意识,conscience,Il a conscience du danger.
+conséquent,重要的/相当的,considerable,Un effort conséquent.
+constitution,宪法,constitution,La constitution du pays.
+consulter,咨询,to consult,Je consulte le médecin.
+contenu,内容,content,Le contenu est intéressant.
+contradiction,矛盾,contradiction,C’est une contradiction.
+conviction,信念,conviction,Il parle avec conviction.
+coopération,合作,cooperation,La coopération est utile.
+corriger,纠正,to correct,Corrige les fautes.
+courage,勇气,courage,Il a du courage.
+crise,危机,crisis,Une crise économique.
+critique,批评/评论,criticism,Une critique constructive.
+culture,文化,culture,La culture française.
+débat,辩论,debate,Un débat important.
+découverte,发现,discovery,Une grande découverte.
+défaut,缺点,fault,Un petit défaut.
+définitif,最终的,definitive,Une décision définitive.
+démarche,步骤/方法,approach,Une démarche logique.
+densité,密度,density,La densité est élevée.
+dépendance,依赖,dependence,La dépendance est forte.
+désaccord,分歧,disagreement,Un désaccord important.
+développement durable,可持续发展,sustainable development,Le développement durable est crucial.
+diagnostic,诊断,diagnosis,Un diagnostic médical.
+dimension,维度,dimension,Une nouvelle dimension.
+directive,指令,directive,Une directive claire.
+discours,演讲,speech,Un discours important.
+disponible,可用的,available,Le document est disponible.
+diversité,多样性,diversity,La diversité culturelle.
+document,文件,document,Un document officiel.
+doute,怀疑,doubt,Un doute persiste.
+échantillon,样本,sample,Un échantillon gratuit.
+efficacité,效率,efficiency,L’efficacité du système.
+élaboration,制定,elaboration,L’élaboration du projet.
+électeur,选民,voter,L’électeur vote.
+élément,元素,element,Un élément clé.
+émergence,出现/emergence,emergence,L’émergence d’une idée.
+émission,节目/broadcast,program,Une émission télévisée.
+employé,雇员,employee,L’employé travaille.
+enjeu,赌注/关键问题,stake,Un enjeu important.
+enrichir,丰富,to enrich,Il enrichit son vocabulaire.
+ensemble,整体,together/as a whole,L’ensemble du projet.
+entité,实体,entity,Une entité juridique.
+entraînement,训练,training,Un entraînement intensif.
+entreprise,企业,company,Une grande entreprise.
+équilibre,平衡,balance,L’équilibre est fragile.
+essai,尝试/论文,essay/test,Un essai scientifique.
+établissement,机构,institution,L’établissement scolaire.
+état,状态/state,state,L’état du pays.
+éthique,伦理,ethics,L’éthique est importante.
+évaluation,评估,evaluation,Une évaluation finale.
+éventuel,可能的,potential,Un problème éventuel.
+évolution,演变,evolution,L’évolution du système.
+exclusion,排除,exclusion,L’exclusion sociale.
+exécution,执行,execution,L’exécution du plan.
+expansion,扩展,expansion,L’expansion économique.
+expertise,专业知识,expertise,Son expertise est reconnue.
+exploitation,开发/利用,exploitation,L’exploitation des ressources.
+facteur,因素,factor,Un facteur important.
+finalité,目的,purpose,La finalité du projet.
+flexibilité,灵活性,flexibility,La flexibilité est utile.
+fonction,功能,function,La fonction est simple.
+fondamental,基础的,fundamental,Un principe fondamental.
+formation,培训/training,training,Une formation professionnelle.
+fragilité,脆弱性,fragility,La fragilité du système.
+garantie,保证,guarantee,Une garantie officielle.
+gestion,管理,management,La gestion est efficace.
+hypothèse,假设,hypothesis,Une hypothèse scientifique.
+identité,身份,identity,Son identité est connue.
+immédiat,立即的,immediate,Une réponse immédiate.
+impact,影响,impact,Un impact fort.
+implication,参与/含义,involvement,Son implication est forte.
+importance,重要性,importance,L’importance du sujet.
+indicateur,指标,indicator,Un indicateur clé.
+individu,个体,individual,Chaque individu compte.
+influence,影响,influence,Son influence est grande.
+information,信息,information,L’information est claire.
+innovation,创新,innovation,L’innovation technologique.
+installation,安装/设施,installation,Une installation moderne.
+interaction,互动,interaction,L’interaction sociale.
+intervention,干预,intervention,Une intervention rapide.
+interprétation,解释/诠释,interpretation,Une bonne interprétation.
+investigation,调查,investigation,L’investigation continue.
+journaliste,记者,journalist,Le journaliste écrit.
+justification,理由/证明,justification,Une justification claire.
+laboratoire,实验室,laboratory,Le laboratoire est équipé.
+légalité,合法性,legality,La légalité est vérifiée.
+liberté,自由,freedom,La liberté est essentielle.
+limitation,限制,limitation,Une limitation importante.
+logique,逻辑,logic,La logique du raisonnement.
+méthode,方法,method,Une méthode efficace.
+modification,修改,modification,Une modification mineure.
+moral,道德的,moral,Un principe moral.
+niveau,水平,level,Un niveau élevé.
+objectif,目标,objective,Un objectif clair.
+opposition,反对,opposition,L’opposition est forte.
+organisation,组织,organization,Une grande organisation.
+partage,分享,sharing,Le partage des idées.
+performance,表现,performance,Une bonne performance.
+phénomène,现象,phenomenon,Un phénomène naturel.
+politique,政治的,political,Une décision politique.
+possibilité,可能性,possibility,Une possibilité réelle.
+pratique,实践/practical,practical,Une solution pratique.
+processus,过程,process,Un processus long.
+production,生产,production,La production augmente.
+progrès,进步,progress,Des progrès rapides.
+protection,保护,protection,La protection de la nature.
+questionnaire,问卷,questionnaire,Un questionnaire simple.
+réaction,反应,reaction,Une réaction rapide.
+réalité,现实,reality,La réalité est différente.
+recherche,研究,research,Une recherche scientifique.
+relation,关系,relation,Une bonne relation.
+responsabilité,责任,responsibility,Sa responsabilité est grande.
+résolution,解决/决心,resolution,Une résolution forte.
+ressource,资源,resource,Des ressources naturelles.
+résultat,结果,result,Le résultat final.
+révolution,革命,revolution,La révolution française.
+scénario,情景/剧本,scenario,Un scénario possible.
+sélection,选择/筛选,selection,Une sélection rigoureuse.
+service public,公共服务,public service,Le service public est important.
+solution,解决方案,solution,Une solution simple.
+structure,结构,structure,La structure du texte.
+système éducatif,教育系统,education system,Le système éducatif français.
+technologie,技术,technology,La technologie moderne.
+tendance,趋势,trend,Une tendance actuelle.
+théorie,理论,theory,Une théorie scientifique.
+transformation,转变,transformation,Une transformation rapide.
+utilité,用途,utility,L’utilité du système.
+validation,验证,validation,Une validation nécessaire.
+valeur,价值,value,Une valeur importante.
+variable,变量,variable,Une variable importante.
+vérité,真相,truth,La vérité est claire.
+vision,视野/观点,vision,Une vision globale.
+volonté,意志,will,Une forte volonté.
