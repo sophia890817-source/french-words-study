@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-//<base href="./">
+
 <title>🌟 Mots Magiques</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
@@ -526,12 +526,27 @@ body::before{content:'';position:fixed;inset:0;
 // SUPABASE — 仅账号模块，不触碰任何业务逻辑
 // ═══════════════════════════════════════════════════
 const SUPABASE_URL  = "https://zmjdwdpslcumajabmney.supabase.co"; // ← 填写 Project URL
-const SUPABASE_ANON_KEY = "sb_publishable_WQoe22ZFvAju9P7JStq-og_5oRSksUs"; // ← 填写 anon key
+// ⚠️ 必须填写 Supabase 项目的 anon/public JWT（三段式 xxx.yyy.zzz，在 Project Settings → API 下复制）
+// 不能使用 sb_publishable_xxx 格式的 key，否则所有请求都会返回 401
+const SUPABASE_ANON_KEY = "sb_secret_UsuaiRspBEDO0r-0r5dJfg_-1Zdv6zY"; // ← 从 Supabase 控制台 Project Settings → API → anon public 复制
 
 let _supabase = null;
 try {
   if (typeof supabase !== 'undefined' && supabase.createClient) {
-    _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // [VERCEL-FIX-1] 显式指定 auth 持久化存储为 localStorage，
+    // 并设置 autoRefreshToken/detectSessionInUrl 保证线上刷新、手机跳转后登录态不丢失。
+    _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        storage:             window.localStorage,
+        persistSession:      true,
+        autoRefreshToken:    true,
+        detectSessionInUrl:  true,
+      },
+      global: {
+        // [VERCEL-FIX-2] 线上 HTTPS 环境明确携带凭证头，避免 Supabase CORS 预检失败
+        headers: { 'X-Client-Info': 'mots-magiques/1.0' },
+      },
+    });
   }
 } catch(e) { console.warn('Supabase init failed, running in local mode:', e); }
 
@@ -583,11 +598,11 @@ async function handleAuthSubmit() {
       closeAuthModal();
       updateAuthUI();
       showToast(tab === 'login' ? `✅ 欢迎，${email.split('@')[0]}！` : '✅ 注册并登录成功！');
-      // ★ FIX 1: 登录成功后，把当前学生的本地历史进度全量上传云端
-      // currentStudent 可能为 null（刚进页面），等学生选定后再同步也可以
-      // 这里先触发一次；selectStudent 里也加了钩子兜底
+      // 登录成功后，若已选学生则全量上传本地进度；否则提示用户选择学生
       if (currentStudent) {
         setTimeout(() => syncAllToCloud({ silent: true }), 600);
+      } else {
+        setTimeout(() => showToast('💡 请选择学生后，点击 ☁️ 同步 上传进度'), 1200);
       }
     }
   } catch(e) {
@@ -597,29 +612,41 @@ async function handleAuthSubmit() {
 }
 
 async function handleLogout() {
-  if (_supabase) await _supabase.auth.signOut();
+  // [VERCEL-FIX-5] scope:'global' 清除所有设备 session；兜底手动清除 localStorage key 防残留
+  if (_supabase) {
+    try { await _supabase.auth.signOut({ scope: 'local' }); } catch(e) {}
+    // 清除 Supabase 自动写入 localStorage 的 session key（防止手机浏览器退出后仍自动恢复）
+    Object.keys(localStorage).filter(k => k.startsWith('sb-')).forEach(k => localStorage.removeItem(k));
+  }
   authUser = null;
   updateAuthUI();
   showToast('已退出登录，切换至本地模式');
 }
 
 // 页面加载后检查是否已有会话
+// [VERCEL-FIX-3] 先注册 onAuthStateChange 监听器，再调用 getSession，
+// 保证 Vercel 线上环境 / 手机浏览器刷新后会话能被正确恢复，不丢登录态。
 async function initAuth() {
   if (!_supabase) return;
   try {
-    const { data } = await _supabase.auth.getSession();
-    authUser = data?.session?.user || null;
-    updateAuthUI();
-    // ★ FIX 2: onAuthStateChange 登录事件也触发本地进度上传
+    // 必须先挂监听，再 getSession，否则 INITIAL_SESSION 事件可能在 getSession 返回前触发而被遗漏
     _supabase.auth.onAuthStateChange((_event, session) => {
       const prevUser = authUser;
       authUser = session?.user || null;
       updateAuthUI();
-      // 首次获得登录态（刷新页面自动恢复会话）且有学生时上传
+      // 首次获得登录态（刷新页面自动恢复会话 / 手机新标签打开）且有学生时静默上传
       if (authUser && !prevUser && currentStudent) {
         setTimeout(() => syncAllToCloud({ silent: true }), 800);
+      } else if (authUser && !prevUser && !currentStudent) {
+        setTimeout(() => showToast('💡 请选择学生后，点击 ☁️ 同步 上传进度'), 900);
       }
     });
+    // 补充调用 getSession 确保当前 session 立即可用（监听器不一定立即回调）
+    const { data } = await _supabase.auth.getSession();
+    if (!authUser && data?.session?.user) {
+      authUser = data.session.user;
+      updateAuthUI();
+    }
   } catch(e) { console.warn('Auth session check failed:', e); }
 }
 
@@ -666,41 +693,49 @@ async function diagnoseSyncEnv() {
   // 5. 写入权限探测（用小数据测试 insert，检测 RLS insert policy）
   const testPayload = {
     user_id:    authUser.id,
-    username:    '__diag_test__',
+    student_name: '__diag_test__',
     level:      '__diag__',
     mastered:   [],
     wrong:      [],
     updated_at: new Date().toISOString(),
   };
   let insertOk = false;
+  let testRowExists = false; // 追踪测试行是否真正存在于数据库
   try {
+    // 先尝试删除可能残留的旧测试行，确保环境干净
+    await _supabase.from('word_progress').delete()
+      .eq('user_id', authUser.id).eq('student_name', '__diag_test__').eq('level', '__diag__');
+
     const { error: ie } = await _supabase.from('word_progress').insert(testPayload);
     if (!ie) {
       ok('INSERT 权限正常（测试行已写入）');
       insertOk = true;
-      // 清理测试行
-      await _supabase.from('word_progress').delete()
-        .eq('user_id', authUser.id).eq('username', '__diag_test__');
+      testRowExists = true;
     } else {
       err(`INSERT 权限失败 → code=${ie.code} msg=${ie.message} hint=${ie.hint||''}`);
       if (ie.code === '42501') err('RLS 策略缺少 INSERT policy，请执行下方 SQL');
-      if (ie.code === '23505') { ok('INSERT 权限正常（唯一冲突说明行已存在）'); insertOk = true; }
+      if (ie.code === '23505') {
+        ok('INSERT 权限正常（唯一冲突说明行已存在）');
+        insertOk = true;
+        testRowExists = true; // 行已存在，后续 upsert 可以测试
+      }
     }
   } catch(e) { err('INSERT 探测异常: ' + e.message); }
 
   // 6. 唯一约束探测（upsert 依赖它）
-  if (insertOk) {
+  if (insertOk && testRowExists) {
     const { error: ue } = await _supabase.from('word_progress')
-      .upsert({ ...testPayload, mastered: [1] }, { onConflict: 'user_id,username,level' });
+      .upsert({ ...testPayload, mastered: [1] }, { onConflict: 'user_id,student_name,level' });
     if (!ue) {
       ok('UPSERT + 唯一约束正常');
-      await _supabase.from('word_progress').delete()
-        .eq('user_id', authUser.id).eq('username', '__diag_test__');
     } else {
       err(`UPSERT 失败 → code=${ue.code} msg=${ue.message}`);
-      if (ue.code === '42P10') err('唯一约束缺失！请在 SQL Editor 执行：\nALTER TABLE word_progress ADD CONSTRAINT word_progress_user_student_level_key UNIQUE (user_id, username, level);');
+      if (ue.code === '42P10') err('唯一约束缺失！请在 SQL Editor 执行：\nALTER TABLE word_progress ADD CONSTRAINT word_progress_user_student_level_key UNIQUE (user_id, student_name, level);');
       if (ue.code === '42501') err('RLS 缺少 UPDATE policy');
     }
+    // 统一清理测试行（无论 upsert 成功与否）
+    await _supabase.from('word_progress').delete()
+      .eq('user_id', authUser.id).eq('student_name', '__diag_test__').eq('level', '__diag__');
   }
 
   console.log(log.join('\n'));
@@ -725,7 +760,7 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
 
   const payload = {
     user_id:    authUser.id,   // 明确绑定 uid，绝不依赖 RLS 自动注入
-    username:    String(student),
+    student_name: String(student),
     level:      String(level),
     mastered:   safeMastered,
     wrong:      safeWrong,
@@ -738,7 +773,7 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
   try {
     const { error } = await _supabase
       .from('word_progress')
-      .upsert(payload, { onConflict: 'user_id,username,level' });
+      .upsert(payload, { onConflict: 'user_id,student_name,level' });
 
     if (!error) {
       console.log(`[cloud] ✅ upsert 成功 student="${student}" level="${level}"`);
@@ -773,7 +808,7 @@ async function _cloudDeleteInsert(payload, student, level) {
   try {
     await _supabase.from('word_progress').delete()
       .eq('user_id', payload.user_id)
-      .eq('username',  student)
+      .eq('student_name', student)
       .eq('level',    level);
   } catch(e) {
     console.warn('[cloud] delete 步骤异常（忽略）:', e.message);
@@ -802,7 +837,7 @@ async function cloudLoadProgress(student, level) {
       .from('word_progress')
       .select('mastered, wrong')
       .eq('user_id', authUser.id)
-      .eq('username', student)
+      .eq('student_name', student)
       .eq('level',   level)
       .maybeSingle();
     if (error) {
@@ -934,12 +969,180 @@ const PAGE_SIZE=50;
 // INIT
 // ═══════════════════════════════════════════════════
 // Map level id → JSON filename
+// [VERCEL-FIX-4] 使用根路径 /，兼容 Vercel 静态托管规则（文件放仓库根目录或 public/）
+// 本地 file:// 模式不走 fetch，此路径仅用于「导出 JSON」功能的文件命名，不影响词库加载。
 const LEVEL_FILES={
-  cp_ce2:  'cp-ce2.json',
-  cm1_cm2: 'cm1-cm2.json',
-  s6_s5:   '6e-5e.json',
-  s4_s3:   '4e-3e.json',
-  lycee:   'lycee.json',
+  cp_ce2:  '/cp-ce2.json',
+  cm1_cm2: '/cm1-cm2.json',
+  s6_s5:   '/6e-5e.json',
+  s4_s3:   '/4e-3e.json',
+  lycee:   '/lycee.json',
+};
+
+// ── 内嵌默认词库 ─────────────────────────────────────
+// 直接内嵌，彻底解决 file:// CORS 问题，无需任何外部 JSON 文件。
+// 可在「📝 Lexique」编辑器中修改词汇，保存后优先使用本地版本。
+const DEFAULT_BANKS = {
+  cp_ce2: [
+    {fr:'bonjour',g:'interj.',zh:'你好',en:'hello',sfr:"Bonjour tout le monde !"},
+    {fr:'chat',g:'n.m.',zh:'猫',en:'cat',sfr:"Le chat dort sur le canapé."},
+    {fr:'chien',g:'n.m.',zh:'狗',en:'dog',sfr:"Mon chien aime jouer."},
+    {fr:'maison',g:'n.f.',zh:'房子',en:'house',sfr:"Ma maison est grande."},
+    {fr:'école',g:'n.f.',zh:'学校',en:'school',sfr:"Je vais à l'école chaque matin."},
+    {fr:'livre',g:'n.m.',zh:'书',en:'book',sfr:"J'aime lire des livres."},
+    {fr:'stylo',g:'n.m.',zh:'钢笔/圆珠笔',en:'pen',sfr:"J'écris avec mon stylo."},
+    {fr:'table',g:'n.f.',zh:'桌子',en:'table',sfr:"Le livre est sur la table."},
+    {fr:'chaise',g:'n.f.',zh:'椅子',en:'chair',sfr:"Assieds-toi sur la chaise."},
+    {fr:'ami',g:'n.m.',zh:'朋友',en:'friend',sfr:"C'est mon meilleur ami."},
+    {fr:'eau',g:'n.f.',zh:'水',en:'water',sfr:"Je bois de l'eau."},
+    {fr:'pomme',g:'n.f.',zh:'苹果',en:'apple',sfr:"Je mange une pomme."},
+    {fr:'pain',g:'n.m.',zh:'面包',en:'bread',sfr:"Le pain est chaud."},
+    {fr:'mère',g:'n.f.',zh:'妈妈',en:'mother',sfr:"Ma mère est gentille."},
+    {fr:'père',g:'n.m.',zh:'爸爸',en:'father',sfr:"Mon père travaille beaucoup."},
+    {fr:'rouge',g:'adj.',zh:'红色的',en:'red',sfr:"La pomme est rouge."},
+    {fr:'bleu',g:'adj.',zh:'蓝色的',en:'blue',sfr:"Le ciel est bleu."},
+    {fr:'grand',g:'adj.',zh:'大的',en:'big',sfr:"L'éléphant est très grand."},
+    {fr:'petit',g:'adj.',zh:'小的',en:'small',sfr:"Le chat est petit."},
+    {fr:'manger',g:'v.',zh:'吃',en:'to eat',sfr:"J'aime manger des fruits."},
+    {fr:'boire',g:'v.',zh:'喝',en:'to drink',sfr:"Je bois du jus d'orange."},
+    {fr:'courir',g:'v.',zh:'跑步',en:'to run',sfr:"J'aime courir dans le parc."},
+    {fr:'dormir',g:'v.',zh:'睡觉',en:'to sleep',sfr:"Je dors huit heures par nuit."},
+    {fr:'jouer',g:'v.',zh:'玩耍',en:'to play',sfr:"Les enfants jouent dans le jardin."},
+    {fr:'lire',g:'v.',zh:'阅读',en:'to read',sfr:"J'aime lire le soir."},
+    {fr:'écrire',g:'v.',zh:'写',en:'to write',sfr:"J'écris une lettre."},
+    {fr:'soleil',g:'n.m.',zh:'太阳',en:'sun',sfr:"Le soleil brille aujourd'hui."},
+    {fr:'lune',g:'n.f.',zh:'月亮',en:'moon',sfr:"La lune est belle ce soir."},
+    {fr:'fleur',g:'n.f.',zh:'花',en:'flower',sfr:"Cette fleur sent bon."},
+    {fr:'arbre',g:'n.m.',zh:'树',en:'tree',sfr:"L'arbre est très haut."},
+  ],
+  cm1_cm2: [
+    {fr:'bibliothèque',g:'n.f.',zh:'图书馆',en:'library',sfr:"Je vais à la bibliothèque après l'école."},
+    {fr:'professeur',g:'n.m.',zh:'老师',en:'teacher',sfr:"Notre professeur est très sympa."},
+    {fr:'cahier',g:'n.m.',zh:'练习本',en:'notebook',sfr:"J'écris mes devoirs dans mon cahier."},
+    {fr:'cartable',g:'n.m.',zh:'书包',en:'school bag',sfr:"Mon cartable est lourd."},
+    {fr:'récréation',g:'n.f.',zh:'课间休息',en:'break time',sfr:"On joue pendant la récréation."},
+    {fr:'mathématiques',g:'n.f.',zh:'数学',en:'mathematics',sfr:"J'aime les mathématiques."},
+    {fr:'histoire',g:'n.f.',zh:'历史/故事',en:'history/story',sfr:"On étudie l'histoire de France."},
+    {fr:'géographie',g:'n.f.',zh:'地理',en:'geography',sfr:"La géographie est intéressante."},
+    {fr:'sciences',g:'n.f.',zh:'科学',en:'science',sfr:"On fait des expériences en sciences."},
+    {fr:'musique',g:'n.f.',zh:'音乐',en:'music',sfr:"J'adore la musique classique."},
+    {fr:'dessin',g:'n.m.',zh:'绘画/图画',en:'drawing',sfr:"Je fais un dessin pour ma mère."},
+    {fr:'sport',g:'n.m.',zh:'体育/运动',en:'sport',sfr:"Le sport est bon pour la santé."},
+    {fr:'piscine',g:'n.f.',zh:'游泳池',en:'swimming pool',sfr:"On va à la piscine le mercredi."},
+    {fr:'vélo',g:'n.m.',zh:'自行车',en:'bicycle',sfr:"Je roule à vélo tous les jours."},
+    {fr:'vacances',g:'n.f.',zh:'假期',en:'holidays',sfr:"Les vacances d'été sont longues."},
+    {fr:'famille',g:'n.f.',zh:'家庭',en:'family',sfr:"J'aime passer du temps en famille."},
+    {fr:'frère',g:'n.m.',zh:'哥哥/弟弟',en:'brother',sfr:"Mon frère est plus grand que moi."},
+    {fr:'soeur',g:'n.f.',zh:'姐姐/妹妹',en:'sister',sfr:"Ma soeur joue du piano."},
+    {fr:'grand-père',g:'n.m.',zh:'祖父/外祖父',en:'grandfather',sfr:"Mon grand-père raconte des histoires."},
+    {fr:'grand-mère',g:'n.f.',zh:'祖母/外祖母',en:'grandmother',sfr:"Ma grand-mère fait de bons gâteaux."},
+    {fr:'appartement',g:'n.m.',zh:'公寓',en:'apartment',sfr:"Nous habitons dans un appartement."},
+    {fr:'cuisine',g:'n.f.',zh:'厨房',en:'kitchen',sfr:"Ma mère cuisine dans la cuisine."},
+    {fr:'chambre',g:'n.f.',zh:'卧室',en:'bedroom',sfr:"Ma chambre est bien rangée."},
+    {fr:'jardin',g:'n.m.',zh:'花园',en:'garden',sfr:"On joue dans le jardin."},
+    {fr:'marché',g:'n.m.',zh:'市场',en:'market',sfr:"On achète des légumes au marché."},
+    {fr:'boulangerie',g:'n.f.',zh:'面包店',en:'bakery',sfr:"Le pain vient de la boulangerie."},
+    {fr:'hôpital',g:'n.m.',zh:'医院',en:'hospital',sfr:"Le médecin travaille à l'hôpital."},
+    {fr:'facile',g:'adj.',zh:'容易的',en:'easy',sfr:"Cet exercice est facile."},
+    {fr:'difficile',g:'adj.',zh:'难的',en:'difficult',sfr:"Ce problème est difficile."},
+    {fr:'propre',g:'adj.',zh:'干净的/自己的',en:'clean/own',sfr:"La salle de classe est propre."},
+  ],
+  s6_s5: [
+    {fr:'environnement',g:'n.m.',zh:'环境',en:'environment',sfr:"Il faut protéger l'environnement."},
+    {fr:'développement',g:'n.m.',zh:'发展',en:'development',sfr:"Le développement durable est essentiel."},
+    {fr:'gouvernement',g:'n.m.',zh:'政府',en:'government',sfr:"Le gouvernement prend des décisions."},
+    {fr:'démocratie',g:'n.f.',zh:'民主',en:'democracy',sfr:"La France est une démocratie."},
+    {fr:'constitution',g:'n.f.',zh:'宪法',en:'constitution',sfr:"La constitution garantit nos libertés."},
+    {fr:'économie',g:'n.f.',zh:'经济',en:'economy',sfr:"L'économie mondiale est complexe."},
+    {fr:'technologie',g:'n.f.',zh:'技术',en:'technology',sfr:"La technologie évolue rapidement."},
+    {fr:'recherche',g:'n.f.',zh:'研究',en:'research',sfr:"La recherche scientifique est importante."},
+    {fr:'expérience',g:'n.f.',zh:'经验/实验',en:'experience',sfr:"Cette expérience m'a appris beaucoup."},
+    {fr:'observation',g:'n.f.',zh:'观察',en:'observation',sfr:"L'observation est la base des sciences."},
+    {fr:'hypothèse',g:'n.f.',zh:'假设',en:'hypothesis',sfr:"On formule une hypothèse avant l'expérience."},
+    {fr:'conclusion',g:'n.f.',zh:'结论',en:'conclusion',sfr:"La conclusion résume les résultats."},
+    {fr:'littérature',g:'n.f.',zh:'文学',en:'literature',sfr:"J'étudie la littérature française."},
+    {fr:'poème',g:'n.m.',zh:'诗歌',en:'poem',sfr:"Victor Hugo a écrit de beaux poèmes."},
+    {fr:'métaphore',g:'n.f.',zh:'比喻/隐喻',en:'metaphor',sfr:"Cette phrase contient une métaphore."},
+    {fr:'personnage',g:'n.m.',zh:'人物/角色',en:'character',sfr:"Le personnage principal est courageux."},
+    {fr:'intrigue',g:'n.f.',zh:'情节',en:'plot',sfr:"L'intrigue de ce roman est captivante."},
+    {fr:'chapitre',g:'n.m.',zh:'章节',en:'chapter',sfr:"J'ai lu le premier chapitre."},
+    {fr:'vocabulaire',g:'n.m.',zh:'词汇',en:'vocabulary',sfr:"Il faut enrichir son vocabulaire."},
+    {fr:'grammaire',g:'n.f.',zh:'语法',en:'grammar',sfr:"La grammaire française est complexe."},
+    {fr:'conjugaison',g:'n.f.',zh:'动词变位',en:'conjugation',sfr:"La conjugaison du subjonctif est difficile."},
+    {fr:'synonyme',g:'n.m.',zh:'同义词',en:'synonym',sfr:'Trouver un synonyme de "heureux".'},
+    {fr:'orthographe',g:'n.f.',zh:'拼写',en:'spelling',sfr:"Fais attention à l'orthographe."},
+    {fr:'prononciation',g:'n.f.',zh:'发音',en:'pronunciation',sfr:"La prononciation du français est difficile."},
+    {fr:'traduction',g:'n.f.',zh:'翻译',en:'translation',sfr:"La traduction de ce texte est précise."},
+    {fr:'compréhension',g:'n.f.',zh:'理解',en:'comprehension',sfr:"La compréhension orale s'améliore avec la pratique."},
+    {fr:'argumentation',g:'n.f.',zh:'论证',en:'argumentation',sfr:"L'argumentation doit être logique."},
+    {fr:'citoyenneté',g:'n.f.',zh:'公民身份',en:'citizenship',sfr:"La citoyenneté implique des droits et des devoirs."},
+    {fr:'solidarité',g:'n.f.',zh:'团结',en:'solidarity',sfr:"La solidarité entre les peuples est nécessaire."},
+    {fr:'responsabilité',g:'n.f.',zh:'责任',en:'responsibility',sfr:"Chacun a une responsabilité envers la société."},
+  ],
+  s4_s3: [
+    {fr:'mondialisation',g:'n.f.',zh:'全球化',en:'globalisation',sfr:"La mondialisation a des effets positifs et négatifs."},
+    {fr:'immigration',g:'n.f.',zh:'移民',en:'immigration',sfr:"L'immigration enrichit la culture."},
+    {fr:'discrimination',g:'n.f.',zh:'歧视',en:'discrimination',sfr:"La discrimination est interdite par la loi."},
+    {fr:'inégalité',g:'n.f.',zh:'不平等',en:'inequality',sfr:"Les inégalités sociales persistent."},
+    {fr:'engagement',g:'n.m.',zh:'承诺/参与',en:'commitment',sfr:"L'engagement citoyen est valorisé."},
+    {fr:'autonomie',g:'n.f.',zh:'自主',en:'autonomy',sfr:"L'autonomie est une valeur importante."},
+    {fr:'coopération',g:'n.f.',zh:'合作',en:'cooperation',sfr:"La coopération internationale est nécessaire."},
+    {fr:'négociation',g:'n.f.',zh:'谈判',en:'negotiation',sfr:"La négociation a permis un accord."},
+    {fr:'compromis',g:'n.m.',zh:'妥协/折中',en:'compromise',sfr:"Un compromis a été trouvé."},
+    {fr:'philosophie',g:'n.f.',zh:'哲学',en:'philosophy',sfr:"La philosophie pose des questions fondamentales."},
+    {fr:'conscience',g:'n.f.',zh:'意识/良知',en:'consciousness',sfr:"La conscience de soi est importante."},
+    {fr:'identité',g:'n.f.',zh:'身份/认同',en:'identity',sfr:"L'identité culturelle est précieuse."},
+    {fr:'contradiction',g:'n.f.',zh:'矛盾',en:'contradiction',sfr:"Il y a une contradiction dans ton raisonnement."},
+    {fr:'abstrait',g:'adj.',zh:'抽象的',en:'abstract',sfr:"Ce concept est très abstrait."},
+    {fr:'concret',g:'adj.',zh:'具体的',en:'concrete',sfr:"Donnez un exemple concret."},
+    {fr:'ambigu',g:'adj.',zh:'模糊的/歧义的',en:'ambiguous',sfr:"Cette phrase est ambiguë."},
+    {fr:'pertinent',g:'adj.',zh:'相关的/恰当的',en:'relevant',sfr:"Ta remarque est très pertinente."},
+    {fr:'cohérent',g:'adj.',zh:'连贯的',en:'coherent',sfr:"Ton discours doit être cohérent."},
+    {fr:'approfondi',g:'adj.',zh:'深入的',en:'in-depth',sfr:"Une étude approfondie est nécessaire."},
+    {fr:'nuancer',g:'v.',zh:'细化/区分',en:'to nuance',sfr:"Il faut nuancer cette affirmation."},
+    {fr:'analyser',g:'v.',zh:'分析',en:'to analyse',sfr:"Analysons les causes du problème."},
+    {fr:'synthétiser',g:'v.',zh:'综合',en:'to synthesise',sfr:"Sais-tu synthétiser ce texte ?"},
+    {fr:'interpréter',g:'v.',zh:'解释/诠释',en:'to interpret',sfr:"Comment interprètes-tu ce passage ?"},
+    {fr:'déduire',g:'v.',zh:'推断',en:'to deduce',sfr:"On peut en déduire que..."},
+    {fr:'démontrer',g:'v.',zh:'证明',en:'to demonstrate',sfr:"Il faut démontrer cette hypothèse."},
+    {fr:'contredire',g:'v.',zh:'反驳',en:'to contradict',sfr:"Tu te contredis toi-même."},
+    {fr:'problématiser',g:'v.',zh:'形成问题意识',en:'to problematise',sfr:"Il faut problématiser le sujet."},
+    {fr:'contextualiser',g:'v.',zh:'情境化',en:'to contextualise',sfr:"Contextualisons cette citation."},
+    {fr:'argumenter',g:'v.',zh:'论证',en:'to argue',sfr:"Il faut argumenter avec des exemples."},
+    {fr:'récapituler',g:'v.',zh:'概括总结',en:'to recap',sfr:"Récapitulons les points clés."},
+  ],
+  lycee: [
+    {fr:'épistémologie',g:'n.f.',zh:'认识论',en:'epistemology',sfr:"L'épistémologie étudie les fondements du savoir."},
+    {fr:'dialectique',g:'n.f.',zh:'辩证法',en:'dialectic',sfr:"La dialectique de Hegel est complexe."},
+    {fr:'métaphysique',g:'n.f.',zh:'形而上学',en:'metaphysics',sfr:"La métaphysique pose des questions sur l'être."},
+    {fr:'ontologie',g:'n.f.',zh:'本体论',en:'ontology',sfr:"L'ontologie est une branche de la philosophie."},
+    {fr:'pragmatisme',g:'n.m.',zh:'实用主义',en:'pragmatism',sfr:"Le pragmatisme valorise l'action pratique."},
+    {fr:'déterminisme',g:'n.m.',zh:'决定论',en:'determinism',sfr:"Le déterminisme nie le libre arbitre."},
+    {fr:'rationalisme',g:'n.m.',zh:'理性主义',en:'rationalism',sfr:"Descartes est un représentant du rationalisme."},
+    {fr:'empirisme',g:'n.m.',zh:'经验主义',en:'empiricism',sfr:"L'empirisme valorise l'expérience sensible."},
+    {fr:'subjectivité',g:'n.f.',zh:'主观性',en:'subjectivity',sfr:"La subjectivité influence notre perception."},
+    {fr:'objectivité',g:'n.f.',zh:'客观性',en:'objectivity',sfr:"La science vise l'objectivité."},
+    {fr:'transcendance',g:'n.f.',zh:'超越性',en:'transcendence',sfr:"La transcendance dépasse le monde sensible."},
+    {fr:'aliénation',g:'n.f.',zh:'异化',en:'alienation',sfr:"Marx analyse l'aliénation du travail."},
+    {fr:'émancipation',g:'n.f.',zh:'解放',en:'emancipation',sfr:"L'émancipation est un idéal des Lumières."},
+    {fr:'paradigme',g:'n.m.',zh:'范式',en:'paradigm',sfr:"Kuhn a introduit le concept de paradigme scientifique."},
+    {fr:'relativisme',g:'n.m.',zh:'相对主义',en:'relativism',sfr:"Le relativisme remet en question les vérités absolues."},
+    {fr:'herméneutique',g:'n.f.',zh:'诠释学',en:'hermeneutics',sfr:"L'herméneutique interprète les textes."},
+    {fr:'déconstruction',g:'n.f.',zh:'解构',en:'deconstruction',sfr:"Derrida propose une méthode de déconstruction."},
+    {fr:'phénoménologie',g:'n.f.',zh:'现象学',en:'phenomenology',sfr:"Husserl est le fondateur de la phénoménologie."},
+    {fr:'immanence',g:'n.f.',zh:'内在性',en:'immanence',sfr:"L'immanence désigne ce qui est contenu dans un être."},
+    {fr:'heuristique',g:'adj.',zh:'启发性的',en:'heuristic',sfr:"Cette approche est très heuristique."},
+    {fr:'axiomatique',g:'adj.',zh:'公理的',en:'axiomatic',sfr:"Un système axiomatique repose sur des axiomes."},
+    {fr:'tautologique',g:'adj.',zh:'同义反复的',en:'tautological',sfr:"Cet argument est tautologique."},
+    {fr:'polysémique',g:'adj.',zh:'多义的',en:'polysemic',sfr:"Ce terme est polysémique."},
+    {fr:'anachronique',g:'adj.',zh:'不合时宜的',en:'anachronistic',sfr:"Cette idée semble anachronique aujourd'hui."},
+    {fr:'paradigmatique',g:'adj.',zh:'典型的',en:'paradigmatic',sfr:"C'est un exemple paradigmatique."},
+    {fr:'appréhender',g:'v.',zh:'理解/把握',en:'to apprehend',sfr:"Il est difficile d'appréhender ce concept."},
+    {fr:'conceptualiser',g:'v.',zh:'概念化',en:'to conceptualise',sfr:"Peux-tu conceptualiser cette idée ?"},
+    {fr:'problématiser',g:'v.',zh:'形成问题意识',en:'to problematise',sfr:"Il faut problématiser le sujet."},
+    {fr:'contextualiser',g:'v.',zh:'情境化',en:'to contextualise',sfr:"Contextualisons cette citation."},
+    {fr:'opérationnaliser',g:'v.',zh:'操作化',en:'to operationalise',sfr:"Il faut opérationnaliser ces concepts."},
+  ],
 };
 
 async function init(){
@@ -950,27 +1153,17 @@ async function init(){
   document.getElementById('mainArea').style.display='flex';
   document.getElementById('mainHeader').style.display='block';
 
-  // Load each level's JSON file; fall back to LocalStorage override or empty array
+  // 优先使用用户在编辑器中保存的本地修改，否则使用内嵌默认词库
+  // 完全不依赖外部 JSON 文件，file:// 直接双击打开即可使用
   const lsOverride=lsGet(SK.banks(),{});
   banks={};
-  await Promise.all(LEVELS.map(async l=>{
-    if(lsOverride[l.id]){
-      // User has local edits — use them
-      banks[l.id]=lsOverride[l.id];
-      return;
-    }
-    try{
-      const res=await fetch(LEVEL_FILES[l.id]);
-      if(!res.ok)throw new Error(res.status);
-      const data=await res.json();
-      banks[l.id]=Array.isArray(data)?data:(data.words||[]);
-    }catch(e){
-      console.warn('Could not load',LEVEL_FILES[l.id],e);
-      banks[l.id]=[];
-    }
-  }));
+  LEVELS.forEach(l=>{
+    banks[l.id]=lsOverride[l.id]
+      ? lsOverride[l.id]
+      : (DEFAULT_BANKS[l.id]||[]).map(w=>({...w}));
+  });
   showWelcome();
-  initAuth(); // 新增：检查 Supabase 登录状态（不影响任何业务逻辑）
+  initAuth();
 }
 
 function loadVoices(){
@@ -1014,10 +1207,8 @@ function confirmName(){
 function selectStudent(name){
   currentStudent=name;
   document.getElementById('nameInput').value='';
-  // ★ FIX 8: 先登录再选学生的场景——选定后立即上传本地进度
-  if (authUser && _supabase) {
-    setTimeout(() => syncAllToCloud({ silent: true }), 400);
-  }
+  // 选定学生后不再自动上传（避免与 startLevel 的下载产生竞争条件）
+  // 用户可手动点击 ☁️ 同步 按钮全量上传
   showLevelSelect();
 }
 
@@ -1027,6 +1218,17 @@ function deleteStudent(name,e){
   const students=lsGet(SK.students(),[]).filter(s=>s!==name);
   lsSet(SK.students(),students);
   LEVELS.forEach(l=>{localStorage.removeItem(SK.mastered(name,l.id));localStorage.removeItem(SK.wrong(name,l.id));});
+  // 同步删除云端记录（已登录时）
+  if (authUser && _supabase) {
+    _supabase.from('word_progress')
+      .delete()
+      .eq('user_id', authUser.id)
+      .eq('student_name', name)
+      .then(({ error }) => {
+        if (error) console.warn('[cloud] 删除学生云端数据失败:', error.message);
+        else console.log(`[cloud] 已删除学生 "${name}" 的云端数据`);
+      });
+  }
   renderStudentList();
   showToast(`Données de ${name} supprimées`);
 }
@@ -1091,8 +1293,13 @@ function showDoneEmpty(){
 // PROGRESS (memory system)
 // ═══════════════════════════════════════════════════
 function loadProgress(){
-  mastered=new Set(lsGet(SK.mastered(currentStudent,currentLevel),[]));
-  wrongSet=lsGet(SK.wrong(currentStudent,currentLevel),[]);
+  const rawMastered = lsGet(SK.mastered(currentStudent,currentLevel),[]);
+  const rawWrong    = lsGet(SK.wrong(currentStudent,currentLevel),[]);
+  // 防御旧版本可能存储的非数组格式
+  const safeMastered = Array.isArray(rawMastered) ? rawMastered.filter(i=>typeof i==='number') : [];
+  const safeWrong    = Array.isArray(rawWrong)    ? rawWrong.filter(i=>typeof i==='number')    : [];
+  mastered = new Set(safeMastered);
+  wrongSet = safeWrong;
 }
 function saveProgress(){
   lsSet(SK.mastered(currentStudent,currentLevel),[...mastered]);
@@ -1148,7 +1355,7 @@ function showWordDisplay(pos){
   document.getElementById('englishMeaning').textContent=word.en||'';
   const sbox=document.getElementById('sentenceDisplay');
   const sfr=document.getElementById('sentenceFr');
-  if(word.sfr){sfr.textContent=word.sfr;sbox.classList.add('hidden');}
+  if(word.sfr){sfr.textContent=word.sfr;sbox.classList.remove('hidden');}
   else{sbox.classList.add('hidden');}
   document.getElementById('phaseIcon').textContent='📖';
   document.getElementById('phaseArea').innerHTML=`
@@ -1603,6 +1810,39 @@ function showToast(msg){
   t.textContent=msg;t.classList.add('show');
   clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
 }
+
+// ═══════════════════════════════════════════════════
+// SUPABASE 建表 SQL（在 Supabase SQL Editor 中执行一次）
+// ═══════════════════════════════════════════════════
+/*
+-- 1. 建表
+CREATE TABLE IF NOT EXISTS word_progress (
+  id         BIGSERIAL PRIMARY KEY,
+  user_id    UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  student_name TEXT NOT NULL,
+  level      TEXT NOT NULL,
+  mastered   JSONB NOT NULL DEFAULT '[]',
+  wrong      JSONB NOT NULL DEFAULT '[]',
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  CONSTRAINT word_progress_user_student_level_key UNIQUE (user_id, student_name, level)
+);
+
+-- 2. 开启 RLS
+ALTER TABLE word_progress ENABLE ROW LEVEL SECURITY;
+
+-- 3. RLS 策略（SELECT / INSERT / UPDATE / DELETE 各一条）
+CREATE POLICY "select own rows" ON word_progress
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "insert own rows" ON word_progress
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "update own rows" ON word_progress
+  FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "delete own rows" ON word_progress
+  FOR DELETE USING (auth.uid() = user_id);
+*/
 
 // ═══════════════════════════════════════════════════
 // START
