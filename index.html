@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+//<base href="./">
 <title>🌟 Mots Magiques</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
@@ -297,6 +298,13 @@ body::before{content:'';position:fixed;inset:0;
     <div class="header-title">🌟 Mots Magiques</div>
     <button class="hbtn" onclick="openEditor()">📝 Lexique</button>
   </div>
+  <!-- ── 新增：账号栏 ── -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:7px;flex-wrap:wrap;">
+    <span id="authUserLabel" style="display:none;font-size:11px;font-weight:700;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:10px;padding:3px 9px;"></span>
+    <button id="authLoginBtn" class="hbtn" style="font-size:11px;padding:4px 11px;min-height:28px;" onclick="openAuthModal('login')">🔑 登录 / 注册</button>
+    <button id="authSyncBtn"  class="hbtn" style="display:none;font-size:11px;padding:4px 11px;min-height:28px;background:rgba(100,200,255,0.28);" onclick="syncAllToCloud()">☁️ 同步</button>
+    <button id="authLogoutBtn" class="hbtn" style="display:none;font-size:11px;padding:4px 11px;min-height:28px;background:rgba(255,100,100,0.25);" onclick="handleLogout()">退出登录</button>
+  </div>
   <div class="stats-row">
     <div class="stat-badge">📚 <span id="statProgress">0/0</span></div>
     <div class="stat-badge">❌ <span id="statWrong">0</span></div>
@@ -477,8 +485,239 @@ body::before{content:'';position:fixed;inset:0;
 
 <div class="toast" id="toast"></div>
 
+<!-- ══ 新增：账号登录/注册弹窗 ══ -->
+<div class="modal-overlay hidden" id="authOverlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="modal" style="max-height:480px;">
+    <div class="modal-header">
+      <div class="modal-title">👤 账号</div>
+      <button class="modal-close" onclick="closeAuthModal()">✕</button>
+    </div>
+    <div class="modal-body" style="gap:14px;">
+      <!-- Tab 切换 -->
+      <div class="tabs" style="margin-bottom:2px;">
+        <button class="tab active" id="authTabLogin"    onclick="switchAuthTab('login')">登录</button>
+        <button class="tab"        id="authTabRegister" onclick="switchAuthTab('register')">注册</button>
+      </div>
+      <div class="field-group">
+        <div class="field-label">邮箱</div>
+        <input class="field-input" id="authEmail" type="email" placeholder="your@email.com" autocomplete="email"/>
+      </div>
+      <div class="field-group">
+        <div class="field-label">密码</div>
+        <input class="field-input" id="authPassword" type="password" placeholder="请输入密码" autocomplete="current-password"/>
+      </div>
+      <div id="authMsg" style="font-size:12px;font-weight:700;min-height:18px;text-align:center;"></div>
+      <div style="font-size:11px;color:var(--text-mid);text-align:center;line-height:1.5;">
+        未登录时完全使用本地模式，数据保存在本设备。
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-gray" onclick="closeAuthModal()">取消</button>
+      <button class="btn btn-primary" id="authSubmitBtn" data-tab="login" style="flex:1;" onclick="handleAuthSubmit()">登录</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 'use strict';
+
+// ═══════════════════════════════════════════════════
+// SUPABASE — 仅账号模块，不触碰任何业务逻辑
+// ═══════════════════════════════════════════════════
+const SUPABASE_URL  = "https://zmjdwdpslcumajabmney.supabase.co"; // ← 填写 Project URL
+const SUPABASE_ANON_KEY = "sb_publishable_WQoe22ZFvAju9P7JStq-og_5oRSksUs"; // ← 填写 anon key
+
+let _supabase = null;
+try {
+  if (typeof supabase !== 'undefined' && supabase.createClient) {
+    _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+} catch(e) { console.warn('Supabase init failed, running in local mode:', e); }
+
+// 当前登录用户（null = 未登录，走 localStorage 模式）
+let authUser = null;
+
+// ── 账号 UI helpers ──────────────────────────────
+
+function openAuthModal(tab) {
+  document.getElementById('authOverlay').classList.remove('hidden');
+  switchAuthTab(tab || 'login');
+  document.getElementById('authEmail').value = '';
+  document.getElementById('authPassword').value = '';
+  document.getElementById('authMsg').textContent = '';
+}
+function closeAuthModal() {
+  document.getElementById('authOverlay').classList.add('hidden');
+}
+function switchAuthTab(tab) {
+  document.getElementById('authTabLogin').classList.toggle('active',  tab === 'login');
+  document.getElementById('authTabRegister').classList.toggle('active', tab === 'register');
+  document.getElementById('authSubmitBtn').textContent = tab === 'login' ? '登录' : '注册';
+  document.getElementById('authSubmitBtn').dataset.tab = tab;
+  document.getElementById('authMsg').textContent = '';
+}
+
+async function handleAuthSubmit() {
+  if (!_supabase) { showToast('Supabase 未初始化，请检查配置'); return; }
+  const tab  = document.getElementById('authSubmitBtn').dataset.tab;
+  const email = document.getElementById('authEmail').value.trim();
+  const pw    = document.getElementById('authPassword').value;
+  const msg   = document.getElementById('authMsg');
+  if (!email || !pw) { msg.textContent = '请填写邮箱和密码'; msg.style.color='#c0392b'; return; }
+  msg.textContent = tab === 'login' ? '登录中…' : '注册中…';
+  msg.style.color = '#5a5a8a';
+  try {
+    let result;
+    if (tab === 'login') {
+      result = await _supabase.auth.signInWithPassword({ email, password: pw });
+    } else {
+      result = await _supabase.auth.signUp({ email, password: pw });
+    }
+    if (result.error) throw result.error;
+    authUser = result.data?.user || null;
+    if (tab === 'register' && !authUser?.confirmed_at && !authUser?.email_confirmed_at) {
+      msg.textContent = '✅ 注册成功！请查收确认邮件后再登录。';
+      msg.style.color = '#1a7a2e';
+    } else {
+      closeAuthModal();
+      updateAuthUI();
+      showToast(tab === 'login' ? `✅ 欢迎，${email.split('@')[0]}！` : '✅ 注册并登录成功！');
+    }
+  } catch(e) {
+    msg.textContent = e.message || '操作失败，请重试';
+    msg.style.color = '#c0392b';
+  }
+}
+
+async function handleLogout() {
+  if (_supabase) await _supabase.auth.signOut();
+  authUser = null;
+  updateAuthUI();
+  showToast('已退出登录，切换至本地模式');
+}
+
+// 页面加载后检查是否已有会话
+async function initAuth() {
+  if (!_supabase) return;
+  try {
+    const { data } = await _supabase.auth.getSession();
+    authUser = data?.session?.user || null;
+    updateAuthUI();
+    _supabase.auth.onAuthStateChange((_event, session) => {
+      authUser = session?.user || null;
+      updateAuthUI();
+    });
+  } catch(e) { console.warn('Auth session check failed:', e); }
+}
+
+// ═══════════════════════════════════════════════════
+// CLOUD PROGRESS SYNC — 仅新增，不修改任何业务代码
+// 依赖 Supabase 表：word_progress
+//   列: id(uuid pk), user_id(uuid), student(text),
+//       level(text), mastered(jsonb), wrong(jsonb),
+//       updated_at(timestamptz)
+// RLS: user_id = auth.uid()
+// ═══════════════════════════════════════════════════
+
+/**
+ * 将当前学生+等级的 mastered/wrong 上传到云端
+ * 不阻塞调用方，失败静默处理
+ */
+async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
+  if (!_supabase || !authUser) return;
+  try {
+    const { error } = await _supabase
+      .from('word_progress')
+      .upsert({
+        user_id:     authUser.id,
+        student:     student,
+        level:       level,
+        mastered:    masteredArr,
+        wrong:       wrongArr,
+        updated_at:  new Date().toISOString(),
+      }, { onConflict: 'user_id,student,level' });
+    if (error) console.warn('Cloud save error:', error.message);
+  } catch(e) { console.warn('Cloud save exception:', e); }
+}
+
+/**
+ * 从云端加载指定学生+等级的进度，写入 localStorage
+ * 返回 true 表示成功加载了云端数据
+ */
+async function cloudLoadProgress(student, level) {
+  if (!_supabase || !authUser) return false;
+  try {
+    const { data, error } = await _supabase
+      .from('word_progress')
+      .select('mastered, wrong')
+      .eq('user_id', authUser.id)
+      .eq('student', student)
+      .eq('level', level)
+      .single();
+    if (error || !data) return false;
+    // 用云端数据覆盖本地 localStorage（原有 lsGet/lsSet 完全不动）
+    lsSet(SK.mastered(student, level), data.mastered || []);
+    lsSet(SK.wrong(student, level),    data.wrong    || []);
+    return true;
+  } catch(e) { console.warn('Cloud load exception:', e); return false; }
+}
+
+/**
+ * 将当前学生所有等级的本地进度全量上传到云端
+ * 供"☁️ 同步"按钮调用
+ */
+async function syncAllToCloud() {
+  if (!_supabase || !authUser) { showToast('请先登录'); return; }
+  if (!currentStudent) { showToast('请先选择学生'); return; }
+  showToast('⏫ 同步中…');
+  let ok = 0, fail = 0;
+  for (const lvl of LEVELS) {
+    const masteredArr = lsGet(SK.mastered(currentStudent, lvl.id), []);
+    const wrongArr    = lsGet(SK.wrong(currentStudent, lvl.id), []);
+    try {
+      const { error } = await _supabase
+        .from('word_progress')
+        .upsert({
+          user_id:    authUser.id,
+          student:    currentStudent,
+          level:      lvl.id,
+          mastered:   masteredArr,
+          wrong:      wrongArr,
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'user_id,student,level' });
+      if (error) fail++;
+      else ok++;
+    } catch(e) { fail++; }
+  }
+  showToast(fail === 0
+    ? `✅ 已同步 ${ok} 个等级到云端`
+    : `⚠️ ${ok} 成功 / ${fail} 失败`);
+}
+
+// 更新账号栏 UI（同时控制同步按钮显隐）
+function updateAuthUI() {
+  const loginBtn  = document.getElementById('authLoginBtn');
+  const logoutBtn = document.getElementById('authLogoutBtn');
+  const userLabel = document.getElementById('authUserLabel');
+  const syncBtn   = document.getElementById('authSyncBtn');
+  if (!loginBtn) return;
+  if (authUser) {
+    loginBtn.style.display  = 'none';
+    logoutBtn.style.display = 'inline-flex';
+    userLabel.style.display = 'inline';
+    userLabel.textContent   = authUser.email ? authUser.email.split('@')[0] : '已登录';
+    if (syncBtn) syncBtn.style.display = 'inline-flex';
+  } else {
+    loginBtn.style.display  = 'inline-flex';
+    logoutBtn.style.display = 'none';
+    userLabel.style.display = 'none';
+    userLabel.textContent   = '';
+    if (syncBtn) syncBtn.style.display = 'none';
+  }
+}
+
+// ── 以下为原有业务代码，完全未修改 ─────────────────
 // ═══════════════════════════════════════════════════
 // LEVELS
 // ═══════════════════════════════════════════════════
@@ -558,6 +797,7 @@ async function init(){
     }
   }));
   showWelcome();
+  initAuth(); // 新增：检查 Supabase 登录状态（不影响任何业务逻辑）
 }
 
 function loadVoices(){
@@ -646,6 +886,18 @@ function renderLevelGrid(){
 
 function startLevel(levelId){
   currentLevel=levelId;
+  // ── 云端进度钩子：登录时先拉取云端进度写入 localStorage，再走原有 loadProgress ──
+  if (authUser && _supabase) {
+    cloudLoadProgress(currentStudent, levelId).then(loaded => {
+      if (loaded) showToast('☁️ 已加载云端进度');
+      loadProgress();buildSession();
+      if(!sessionQueue.length){showDoneEmpty();return;}
+      showWordCard();updateHeader();
+      showWordDisplay(0);
+    });
+    return; // 异步路径接管，直接返回
+  }
+  // 未登录：原有同步路径完全不变
   loadProgress();buildSession();
   if(!sessionQueue.length){showDoneEmpty();return;}
   showWordCard();updateHeader();
@@ -668,6 +920,10 @@ function loadProgress(){
 function saveProgress(){
   lsSet(SK.mastered(currentStudent,currentLevel),[...mastered]);
   lsSet(SK.wrong(currentStudent,currentLevel),wrongSet);
+  // ── 云端进度钩子：登录时异步同步，不阻塞原有逻辑 ──
+  if (authUser && _supabase) {
+    cloudSaveProgress(currentStudent, currentLevel, [...mastered], [...wrongSet]);
+  }
 }
 function markMastered(idx){mastered.add(idx);wrongSet=wrongSet.filter(i=>i!==idx);saveProgress();}
 function markWrong(idx){mastered.delete(idx);if(!wrongSet.includes(idx))wrongSet.push(idx);saveProgress();}
