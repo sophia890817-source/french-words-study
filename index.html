@@ -965,14 +965,15 @@ const PAGE_SIZE=50;
 // INIT
 // ═══════════════════════════════════════════════════
 // Map level id → JSON filename
-// [VERCEL-FIX-4] 使用根路径 /，兼容 Vercel 静态托管规则（文件放仓库根目录或 public/）
-// 本地 file:// 模式不走 fetch，此路径仅用于「导出 JSON」功能的文件命名，不影响词库加载。
+// [FIX] 使用同级相对路径（不加 / 前缀），兼容 Vercel、GitHub Pages、本地 HTTP 服务器。
+// 注意：直接双击 file:// 打开时 fetch 会被 CORS 阻断，此时自动降级为内嵌词库。
+// GitHub Pages 子路径部署（如 /french-words-study/）时此相对路径同样生效。
 const LEVEL_FILES={
-  cp_ce2:  '/cp-ce2.json',
-  cm1_cm2: '/cm1-cm2.json',
-  s6_s5:   '/6e-5e.json',
-  s4_s3:   '/4e-3e.json',
-  lycee:   '/lycee.json',
+  cp_ce2:  'cp-ce2.json',
+  cm1_cm2: 'cm1-cm2.json',
+  s6_s5:   '6e-5e.json',
+  s4_s3:   '4e-3e.json',
+  lycee:   'lycee.json',
 };
 
 // ── 内嵌默认词库 ─────────────────────────────────────
@@ -1149,36 +1150,63 @@ async function init(){
   document.getElementById('mainArea').style.display='flex';
   document.getElementById('mainHeader').style.display='block';
 
-  // 词库加载优先级：
-  //   1. 用户在编辑器中保存的本地修改（localStorage）
-  //   2. 根目录 JSON 文件（/cp-ce2.json 等，Vercel 静态文件）
-  //   3. 内嵌 DEFAULT_BANKS（JSON 文件不存在 / 为空 / 请求失败时兜底）
+  // [FIX] 词库加载优先级（外部 JSON 最优先）：
+  //   1. 外部 JSON 文件（同级相对路径，Vercel/GitHub Pages 静态文件）
+  //   2. localStorage 编辑器本地修改（仅当外部 JSON 加载失败时使用）
+  //   3. 内嵌 DEFAULT_BANKS（404 / 网络异常 / 解析失败时最终兜底）
+  // 控制台日志：每个等级都会打印请求路径和加载结果，F12 可直接排查。
   const lsOverride=lsGet(SK.banks(),{});
   banks={};
 
   await Promise.all(LEVELS.map(async l=>{
-    // 优先级 1：用户本地编辑器修改
-    if(lsOverride[l.id] && lsOverride[l.id].length > 0){
-      banks[l.id] = lsOverride[l.id];
-      return;
-    }
-    // 优先级 2：fetch 根目录 JSON 文件
+    const path = LEVEL_FILES[l.id];
+    console.log(`[词库] ${l.id} → 请求路径: "${path}"`);
+
+    // ── 优先级 1：fetch 外部 JSON 文件 ──
     try{
-      const res = await fetch(LEVEL_FILES[l.id]);
+      const res = await fetch(path);
+      console.log(`[词库] ${l.id} → HTTP ${res.status} ${res.statusText}`);
       if(res.ok){
-        const data = await res.json();
-        const words = Array.isArray(data) ? data : (data.words || []);
-        if(words.length > 0){
-          banks[l.id] = words;
-          return;
+        let data;
+        try{
+          data = await res.json();
+        }catch(parseErr){
+          console.error(`[词库] ${l.id} → JSON 解析失败:`, parseErr);
+          data = null;
         }
+        if(data){
+          const words = Array.isArray(data) ? data : (data.words || []);
+          if(words.length > 0){
+            banks[l.id] = words;
+            console.log(`[词库] ${l.id} → ✅ 外部 JSON 加载成功，共 ${words.length} 个词`);
+            return;
+          } else {
+            console.warn(`[词库] ${l.id} → ⚠️ 外部 JSON 为空数组，降级`);
+          }
+        }
+      } else if(res.status === 404){
+        console.warn(`[词库] ${l.id} → ⚠️ 404 文件不存在，降级`);
+      } else {
+        console.warn(`[词库] ${l.id} → ⚠️ 请求失败 HTTP ${res.status}，降级`);
       }
     }catch(e){
-      // 网络错误 / file:// CORS 等，静默降级
+      // file:// CORS、网络断开等
+      console.warn(`[词库] ${l.id} → ⚠️ fetch 异常（file://CORS 或网络错误）:`, e.message);
     }
-    // 优先级 3：内嵌默认词库兜底
+
+    // ── 优先级 2：localStorage 编辑器本地修改 ──
+    if(lsOverride[l.id] && lsOverride[l.id].length > 0){
+      banks[l.id] = lsOverride[l.id];
+      console.log(`[词库] ${l.id} → 🗂 使用 localStorage 本地编辑词库，共 ${lsOverride[l.id].length} 个词`);
+      return;
+    }
+
+    // ── 优先级 3：内嵌 DEFAULT_BANKS 兜底 ──
     banks[l.id] = (DEFAULT_BANKS[l.id]||[]).map(w=>({...w}));
+    console.log(`[词库] ${l.id} → 📦 使用内嵌默认词库（兜底），共 ${banks[l.id].length} 个词`);
   }));
+
+  console.log('[词库] 全部等级加载完毕:', Object.fromEntries(LEVELS.map(l=>[l.id, banks[l.id]?.length??0])));
 
   showWelcome();
   initAuth();
@@ -1782,7 +1810,8 @@ function exportWords(){
   const words=editorWords;
   if(!words.length){showToast('Aucun mot à exporter');return;}
   const lvl=LEVELS.find(l=>l.id===editorLevel);
-  const filename=(LEVEL_FILES[editorLevel]||`${editorLevel}.json`).replace(/^\//, '');
+  // [FIX] 导出文件名直接用 LEVEL_FILES 相对路径（已无前导 /）
+  const filename=LEVEL_FILES[editorLevel]||`${editorLevel}.json`;
   const payload=JSON.stringify(words,null,2);
   const blob=new Blob([payload],{type:'application/json;charset=utf-8'});
   const url=URL.createObjectURL(blob);
