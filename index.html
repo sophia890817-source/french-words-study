@@ -1782,7 +1782,7 @@ function exportWords(){
   const words=editorWords;
   if(!words.length){showToast('Aucun mot à exporter');return;}
   const lvl=LEVELS.find(l=>l.id===editorLevel);
-  const filename=LEVEL_FILES[editorLevel]||`${editorLevel}.json`;
+  const filename=(LEVEL_FILES[editorLevel]||`${editorLevel}.json`).replace(/^\//, '');
   const payload=JSON.stringify(words,null,2);
   const blob=new Blob([payload],{type:'application/json;charset=utf-8'});
   const url=URL.createObjectURL(blob);
