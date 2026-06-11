@@ -1149,15 +1149,37 @@ async function init(){
   document.getElementById('mainArea').style.display='flex';
   document.getElementById('mainHeader').style.display='block';
 
-  // 优先使用用户在编辑器中保存的本地修改，否则使用内嵌默认词库
-  // 完全不依赖外部 JSON 文件，file:// 直接双击打开即可使用
+  // 词库加载优先级：
+  //   1. 用户在编辑器中保存的本地修改（localStorage）
+  //   2. 根目录 JSON 文件（/cp-ce2.json 等，Vercel 静态文件）
+  //   3. 内嵌 DEFAULT_BANKS（JSON 文件不存在 / 为空 / 请求失败时兜底）
   const lsOverride=lsGet(SK.banks(),{});
   banks={};
-  LEVELS.forEach(l=>{
-    banks[l.id]=lsOverride[l.id]
-      ? lsOverride[l.id]
-      : (DEFAULT_BANKS[l.id]||[]).map(w=>({...w}));
-  });
+
+  await Promise.all(LEVELS.map(async l=>{
+    // 优先级 1：用户本地编辑器修改
+    if(lsOverride[l.id] && lsOverride[l.id].length > 0){
+      banks[l.id] = lsOverride[l.id];
+      return;
+    }
+    // 优先级 2：fetch 根目录 JSON 文件
+    try{
+      const res = await fetch(LEVEL_FILES[l.id]);
+      if(res.ok){
+        const data = await res.json();
+        const words = Array.isArray(data) ? data : (data.words || []);
+        if(words.length > 0){
+          banks[l.id] = words;
+          return;
+        }
+      }
+    }catch(e){
+      // 网络错误 / file:// CORS 等，静默降级
+    }
+    // 优先级 3：内嵌默认词库兜底
+    banks[l.id] = (DEFAULT_BANKS[l.id]||[]).map(w=>({...w}));
+  }));
+
   showWelcome();
   initAuth();
 }
