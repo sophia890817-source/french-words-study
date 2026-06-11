@@ -302,7 +302,7 @@ body::before{content:'';position:fixed;inset:0;
   <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:7px;flex-wrap:wrap;">
     <span id="authUserLabel" style="display:none;font-size:11px;font-weight:700;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:10px;padding:3px 9px;"></span>
     <button id="authLoginBtn" class="hbtn" style="font-size:11px;padding:4px 11px;min-height:28px;" onclick="openAuthModal('login')">🔑 登录 / 注册</button>
-    <button id="authSyncBtn"  class="hbtn" style="display:none;font-size:11px;padding:4px 11px;min-height:28px;background:rgba(100,200,255,0.28);" onclick="syncAllToCloud()">☁️ 同步</button>
+    <!-- 手动同步按钮已移除：进度变动自动实时上传，登录时自动拉取云端数据 -->
     <button id="authLogoutBtn" class="hbtn" style="display:none;font-size:11px;padding:4px 11px;min-height:28px;background:rgba(255,100,100,0.25);" onclick="handleLogout()">退出登录</button>
   </div>
   <div class="stats-row">
@@ -523,35 +523,78 @@ body::before{content:'';position:fixed;inset:0;
 'use strict';
 
 // ═══════════════════════════════════════════════════
-// SUPABASE — 仅账号模块，不触碰任何业务逻辑
+// SUPABASE — 账号 + 云端进度同步
 // ═══════════════════════════════════════════════════
-const SUPABASE_URL  = "https://zmjdwdpslcumajabmney.supabase.co"; // ← 填写 Project URL
-// ⚠️ 必须填写 Supabase 项目的 anon/public JWT（三段式 xxx.yyy.zzz，在 Project Settings → API 下复制）
-// 不能使用 sb_publishable_xxx 格式的 key，否则所有请求都会返回 401
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptamR3ZHBzbGN1bWFqYWJtbmV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwOTMsImV4cCI6MjA5NjY3NTA5M30.HB7umpS9haOuU2UH2MgqkpjZUUZar5iEI4llYVIWGhc"; // ← 从 Supabase 控制台 Project Settings → API → anon public 复制
+const SUPABASE_URL      = "https://zmjdwdpslcumajabmney.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptamR3ZHBzbGN1bWFqYWJtbmV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwOTMsImV4cCI6MjA5NjY3NTA5M30.HB7umpS9haOuU2UH2MgqkpjZUUZar5iEI4llYVIWGhc"; // ← Project Settings → API → anon public JWT
 
 let _supabase = null;
 try {
   if (typeof supabase !== 'undefined' && supabase.createClient) {
-    // [VERCEL-FIX-1] 显式指定 auth 持久化存储为 localStorage，
-    // 并设置 autoRefreshToken/detectSessionInUrl 保证线上刷新、手机跳转后登录态不丢失。
     _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       auth: {
-        storage:             window.localStorage,
-        persistSession:      true,
-        autoRefreshToken:    true,
-        detectSessionInUrl:  true,
+        storage:            window.localStorage, // session 持久化到 localStorage
+        persistSession:     true,                // 刷新页面不丢登录态
+        autoRefreshToken:   true,                // token 到期自动续期
+        detectSessionInUrl: true,                // 处理邮件确认回调
       },
       global: {
-        // [VERCEL-FIX-2] 线上 HTTPS 环境明确携带凭证头，避免 Supabase CORS 预检失败
-        headers: { 'X-Client-Info': 'mots-magiques/1.0' },
+        headers: { 'X-Client-Info': 'mots-magiques/1.0' }, // 避免 CORS 预检失败
       },
     });
   }
-} catch(e) { console.warn('Supabase init failed, running in local mode:', e); }
+} catch(e) { console.warn('[auth] Supabase init failed, local mode:', e); }
 
-// 当前登录用户（null = 未登录，走 localStorage 模式）
+// 当前登录用户（null = 未登录，纯本地模式）
 let authUser = null;
+
+// ── 离线队列：断网时临时缓存待上传的进度变更 ──────────────
+// 数据结构：[{ student, level, mastered:[], wrong:[] }, ...]
+// 网络恢复后 flushOfflineQueue() 自动上传并清空
+const OFFLINE_QUEUE_KEY = 'mm_offline_queue';
+
+function getOfflineQueue() {
+  try { return JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]'); } catch(e) { return []; }
+}
+function setOfflineQueue(q) {
+  localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(q));
+}
+// 将一条进度变更加入离线队列（去重：相同 student+level 只保留最新）
+function enqueueOffline(student, level, masteredArr, wrongArr) {
+  const q = getOfflineQueue().filter(x => !(x.student === student && x.level === level));
+  q.push({ student, level, mastered: masteredArr, wrong: wrongArr, ts: Date.now() });
+  setOfflineQueue(q);
+  console.log(`[offline] 已加入离线队列 student="${student}" level="${level}" 共 ${q.length} 条`);
+}
+// 网络恢复后批量上传离线队列，成功后清空
+async function flushOfflineQueue() {
+  if (!authUser || !_supabase) return;
+  const q = getOfflineQueue();
+  if (!q.length) return;
+  console.log(`[offline] 检测到 ${q.length} 条离线数据，开始上传…`);
+  const failed = [];
+  for (const item of q) {
+    const ok = await cloudSaveProgress(item.student, item.level, item.mastered, item.wrong);
+    if (!ok) failed.push(item);
+  }
+  setOfflineQueue(failed); // 上传失败的留在队列，成功的清除
+  if (!failed.length) {
+    console.log('[offline] ✅ 离线数据全部上传完毕，队列已清空');
+    showToast('✅ 离线期间的学习记录已同步到云端');
+  } else {
+    console.warn(`[offline] ⚠️ ${failed.length} 条上传失败，将在下次联网后重试`);
+  }
+}
+
+// ── 网络状态监听：恢复联网时自动上传离线队列 ────────────────
+window.addEventListener('online', () => {
+  console.log('[net] 网络已恢复，尝试上传离线队列…');
+  flushOfflineQueue();
+});
+window.addEventListener('offline', () => {
+  console.log('[net] 网络已断开，学习记录将暂存本地');
+  showToast('📴 已离线，学习记录暂存本地，联网后自动同步');
+});
 
 // ── 账号 UI helpers ──────────────────────────────
 
@@ -597,12 +640,15 @@ async function handleAuthSubmit() {
     } else {
       closeAuthModal();
       updateAuthUI();
-      showToast(tab === 'login' ? `✅ 欢迎，${email.split('@')[0]}！` : '✅ 注册并登录成功！');
-      // 登录成功后，若已选学生则全量上传本地进度；否则提示用户选择学生
+      showToast(tab === 'login' ? `✅ 欢迎，${email.split('@')[0]}！正在拉取云端进度…` : '✅ 注册并登录成功！');
+      // 【规则1】登录成功瞬间：从云端拉取最新进度，云端数据覆盖本地旧数据
+      // 不再上传本地数据到云端，以云端为准
       if (currentStudent) {
-        setTimeout(() => syncAllToCloud({ silent: true }), 600);
+        await pullAllFromCloud(currentStudent);
+        // 同时尝试上传离线期间积累的队列
+        await flushOfflineQueue();
       } else {
-        setTimeout(() => showToast('💡 请选择学生后，点击 ☁️ 同步 上传进度'), 1200);
+        setTimeout(() => showToast('💡 请选择学生，将自动加载云端进度'), 1200);
       }
     }
   } catch(e) {
@@ -612,10 +658,9 @@ async function handleAuthSubmit() {
 }
 
 async function handleLogout() {
-  // [VERCEL-FIX-5] scope:'global' 清除所有设备 session；兜底手动清除 localStorage key 防残留
   if (_supabase) {
     try { await _supabase.auth.signOut({ scope: 'local' }); } catch(e) {}
-    // 清除 Supabase 自动写入 localStorage 的 session key（防止手机浏览器退出后仍自动恢复）
+    // 清除 Supabase 写入 localStorage 的 sb- session key，防止手机浏览器退出后仍恢复会话
     Object.keys(localStorage).filter(k => k.startsWith('sb-')).forEach(k => localStorage.removeItem(k));
   }
   authUser = null;
@@ -623,182 +668,176 @@ async function handleLogout() {
   showToast('已退出登录，切换至本地模式');
 }
 
+// ── 互斥登录实现说明 ─────────────────────────────────────────
+// 方案：Supabase Realtime Broadcast Channel + localStorage token 时间戳
+//
+// 原理：
+//   每次登录成功，向 Broadcast Channel "auth:{uid}" 广播一条 {token, ts} 消息。
+//   token = 随机字符串，写入 localStorage key "mm_session_token:{uid}"。
+//   所有已打开的标签页/设备都订阅该 Channel，收到广播后对比 token：
+//     - token 与本地不一致 → 说明另一台设备刚登录 → 本机强制退出，跳转登录页。
+//     - token 一致 → 自己发出的广播，忽略。
+//
+// 限制：Supabase Realtime 广播仅在两端都在线时实时生效；
+//       若旧设备处于离线状态，需等下次联网收到广播才会被踢出。
+// ─────────────────────────────────────────────────────────────
+
+let _sessionToken = null;       // 本设备当前登录 token
+let _kickChannel  = null;       // Realtime Broadcast Channel 引用
+
+function _genToken() {
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+function _sessionTokenKey(uid) {
+  return `mm_session_token:${uid}`;
+}
+
+// 登录成功后：生成新 token，广播给其他设备，订阅踢出监听
+function _registerDeviceSession(uid) {
+  _sessionToken = _genToken();
+  localStorage.setItem(_sessionTokenKey(uid), _sessionToken);
+  console.log(`[mutex] 本设备 session token: ${_sessionToken}`);
+
+  // 取消旧 Channel（切换账号场景）
+  if (_kickChannel) { try { _supabase.removeChannel(_kickChannel); } catch(e){} }
+
+  // 订阅 Realtime Broadcast Channel，监听其他设备的登录广播
+  _kickChannel = _supabase.channel(`auth:${uid}`, {
+    config: { broadcast: { self: false } } // self:false → 不接收自己发出的消息
+  });
+  _kickChannel
+    .on('broadcast', { event: 'new_login' }, ({ payload }) => {
+      // 【互斥登录】收到其他设备的登录广播
+      if (payload.token && payload.token !== _sessionToken) {
+        console.warn('[mutex] 检测到账号在其他设备登录，本设备强制退出');
+        _forceLogout();
+      }
+    })
+    .subscribe();
+
+  // 广播"我上线了"给其他已登录设备，触发它们退出
+  setTimeout(() => {
+    _kickChannel.send({
+      type: 'broadcast',
+      event: 'new_login',
+      payload: { token: _sessionToken, ts: Date.now() }
+    });
+    console.log('[mutex] 已广播新登录事件，旧设备将被踢出');
+  }, 600); // 延迟确保订阅已建立再广播
+}
+
+// 被踢出时强制退出，刷新页面跳回登录态
+async function _forceLogout() {
+  showToast('⚠️ 账号已在其他设备登录，本设备已退出');
+  if (_supabase) {
+    try { await _supabase.auth.signOut({ scope: 'local' }); } catch(e) {}
+  }
+  Object.keys(localStorage).filter(k => k.startsWith('sb-')).forEach(k => localStorage.removeItem(k));
+  authUser = null;
+  _sessionToken = null;
+  // 1.5s 后刷新页面，让用户看到 toast 提示
+  setTimeout(() => { location.reload(); }, 1500);
+}
+
 // 页面加载后检查是否已有会话
-// [VERCEL-FIX-3] 先注册 onAuthStateChange 监听器，再调用 getSession，
-// 保证 Vercel 线上环境 / 手机浏览器刷新后会话能被正确恢复，不丢登录态。
+// 先注册 onAuthStateChange 监听器，再调用 getSession，
+// 保证 Vercel / 手机浏览器刷新后会话能被正确恢复，不丢登录态。
 async function initAuth() {
   if (!_supabase) return;
   try {
-    // 必须先挂监听，再 getSession，否则 INITIAL_SESSION 事件可能在 getSession 返回前触发而被遗漏
-    _supabase.auth.onAuthStateChange((_event, session) => {
+    // 必须先挂监听，再 getSession，否则 INITIAL_SESSION 可能被遗漏
+    _supabase.auth.onAuthStateChange(async (_event, session) => {
       const prevUser = authUser;
       authUser = session?.user || null;
       updateAuthUI();
-      // 首次获得登录态（刷新页面自动恢复会话 / 手机新标签打开）且有学生时静默上传
-      if (authUser && !prevUser && currentStudent) {
-        setTimeout(() => syncAllToCloud({ silent: true }), 800);
-      } else if (authUser && !prevUser && !currentStudent) {
-        setTimeout(() => showToast('💡 请选择学生后，点击 ☁️ 同步 上传进度'), 900);
+
+      if (authUser && !prevUser) {
+        // 【首次获得登录态】刷新页面恢复会话 / 手机新标签打开
+        console.log(`[auth] 会话恢复，uid=${authUser.id}`);
+        // 互斥登录：注册本设备 session token，踢出其他旧登录设备
+        _registerDeviceSession(authUser.id);
+        // 【规则1】拉取云端最新进度覆盖本地
+        if (currentStudent) {
+          await pullAllFromCloud(currentStudent);
+        }
+        // 上传离线积压数据
+        await flushOfflineQueue();
+      } else if (!authUser && prevUser) {
+        // 登出事件
+        console.log('[auth] 用户已登出');
+        if (_kickChannel) { try { _supabase.removeChannel(_kickChannel); } catch(e){} _kickChannel = null; }
       }
     });
-    // 补充调用 getSession 确保当前 session 立即可用（监听器不一定立即回调）
+
+    // 补充 getSession 确保当前 session 立即可用
     const { data } = await _supabase.auth.getSession();
     if (!authUser && data?.session?.user) {
       authUser = data.session.user;
       updateAuthUI();
     }
-  } catch(e) { console.warn('Auth session check failed:', e); }
+  } catch(e) { console.warn('[auth] initAuth 异常:', e); }
 }
 
 // ═══════════════════════════════════════════════════
-// CLOUD PROGRESS SYNC — v3 完全重写，彻底修复同步失败
+// CLOUD PROGRESS SYNC
 // ═══════════════════════════════════════════════════
-
-// ── 自诊断：同步前检测环境，输出可读报告 ──────────
-async function diagnoseSyncEnv() {
-  const log = [];
-  const ok  = (s) => log.push('  ✅ ' + s);
-  const err = (s) => log.push('  ❌ ' + s);
-  const warn= (s) => log.push('  ⚠️ ' + s);
-
-  console.group('[cloud] 🔍 同步环境自诊断');
-
-  // 1. SDK
-  if (_supabase) ok('Supabase SDK 已初始化');
-  else { err('Supabase SDK 未初始化，检查 CDN 或配置'); console.log(log.join('\n')); console.groupEnd(); return false; }
-
-  // 2. 登录状态
-  if (authUser && authUser.id) ok(`用户已登录，uid = ${authUser.id}`);
-  else { err('authUser 为空，用户未登录'); console.log(log.join('\n')); console.groupEnd(); return false; }
-
-  // 3. Session token（JWT 过期会导致所有请求 401）
-  try {
-    const { data: sd } = await _supabase.auth.getSession();
-    if (sd?.session?.access_token) ok('Session token 有效');
-    else { err('Session token 不存在，尝试刷新页面重新登录'); console.log(log.join('\n')); console.groupEnd(); return false; }
-  } catch(e) { err('getSession 异常: ' + e.message); }
-
-  // 4. 表可访问性（用 select 探测，不会触发 RLS insert 限制）
-  try {
-    const { error } = await _supabase.from('word_progress').select('id').limit(1);
-    if (!error) ok('word_progress 表可以访问（SELECT 权限正常）');
-    else {
-      err(`word_progress 表访问失败 → code=${error.code} msg=${error.message}`);
-      if (error.code === '42P01') err('表不存在！请先在 Supabase SQL Editor 执行建表 SQL');
-      if (error.code === 'PGRST301') err('RLS 阻止了 SELECT，请检查 SELECT policy');
-      console.log(log.join('\n')); console.groupEnd(); return false;
-    }
-  } catch(e) { err('SELECT 探测异常: ' + e.message); console.log(log.join('\n')); console.groupEnd(); return false; }
-
-  // 5. 写入权限探测（用小数据测试 insert，检测 RLS insert policy）
-  const testPayload = {
-    user_id:    authUser.id,
-    student_name: '__diag_test__',
-    level:      '__diag__',
-    mastered:   [],
-    wrong:      [],
-    updated_at: new Date().toISOString(),
-  };
-  let insertOk = false;
-  let testRowExists = false; // 追踪测试行是否真正存在于数据库
-  try {
-    // 先尝试删除可能残留的旧测试行，确保环境干净
-    await _supabase.from('word_progress').delete()
-      .eq('user_id', authUser.id).eq('student_name', '__diag_test__').eq('level', '__diag__');
-
-    const { error: ie } = await _supabase.from('word_progress').insert(testPayload);
-    if (!ie) {
-      ok('INSERT 权限正常（测试行已写入）');
-      insertOk = true;
-      testRowExists = true;
-    } else {
-      err(`INSERT 权限失败 → code=${ie.code} msg=${ie.message} hint=${ie.hint||''}`);
-      if (ie.code === '42501') err('RLS 策略缺少 INSERT policy，请执行下方 SQL');
-      if (ie.code === '23505') {
-        ok('INSERT 权限正常（唯一冲突说明行已存在）');
-        insertOk = true;
-        testRowExists = true; // 行已存在，后续 upsert 可以测试
-      }
-    }
-  } catch(e) { err('INSERT 探测异常: ' + e.message); }
-
-  // 6. 唯一约束探测（upsert 依赖它）
-  if (insertOk && testRowExists) {
-    const { error: ue } = await _supabase.from('word_progress')
-      .upsert({ ...testPayload, mastered: [1] }, { onConflict: 'user_id,student_name,level' });
-    if (!ue) {
-      ok('UPSERT + 唯一约束正常');
-    } else {
-      err(`UPSERT 失败 → code=${ue.code} msg=${ue.message}`);
-      if (ue.code === '42P10') err('唯一约束缺失！请在 SQL Editor 执行：\nALTER TABLE word_progress ADD CONSTRAINT word_progress_user_student_level_key UNIQUE (user_id, student_name, level);');
-      if (ue.code === '42501') err('RLS 缺少 UPDATE policy');
-    }
-    // 统一清理测试行（无论 upsert 成功与否）
-    await _supabase.from('word_progress').delete()
-      .eq('user_id', authUser.id).eq('student_name', '__diag_test__').eq('level', '__diag__');
-  }
-
-  console.log(log.join('\n'));
-  console.groupEnd();
-  const hasError = log.some(l => l.startsWith('  ❌'));
-  return !hasError;
-}
 
 /**
- * 安全写入单条进度：先 upsert，失败则降级为 delete+insert。
- * 每步都输出详细日志，单条失败不影响其他条目。
+ * 安全写入单条进度到云端。
+ * 联网状态：直接 upsert；断网/失败：加入离线队列，联网后自动上传。
+ * 【规则2】进度变动实时上传，不依赖本地缓存做主存储。
  */
 async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
   if (!_supabase || !authUser) {
-    console.warn('[cloud] cloudSaveProgress 跳过：未登录');
+    // 未登录时直接返回（进度已存 localStorage，无需云端）
     return false;
   }
 
-  // 确保数据格式正确：数组化、去重、只保留数字
   const safeMastered = [...new Set((masteredArr || []).filter(i => typeof i === 'number'))];
   const safeWrong    = [...new Set((wrongArr    || []).filter(i => typeof i === 'number'))];
-
   const payload = {
-    user_id:    authUser.id,   // 明确绑定 uid，绝不依赖 RLS 自动注入
+    user_id:      authUser.id,
     student_name: String(student),
-    level:      String(level),
-    mastered:   safeMastered,
-    wrong:      safeWrong,
-    updated_at: new Date().toISOString(),
+    level:        String(level),
+    mastered:     safeMastered,
+    wrong:        safeWrong,
+    updated_at:   new Date().toISOString(),
   };
 
-  console.log(`[cloud] ▶ 写入 student="${student}" level="${level}" mastered=${safeMastered.length}条 wrong=${safeWrong.length}条`);
+  console.log(`[cloud] ▶ 上传 student="${student}" level="${level}" mastered=${safeMastered.length} wrong=${safeWrong.length}`);
 
-  // ── 策略1：upsert（有唯一约束时成功）──
+  // 【规则3】断网检测：navigator.onLine 为 false 时直接入离线队列
+  if (!navigator.onLine) {
+    console.log(`[offline] 当前离线，加入队列 student="${student}" level="${level}"`);
+    enqueueOffline(student, level, safeMastered, safeWrong);
+    return false;
+  }
+
   try {
     const { error } = await _supabase
       .from('word_progress')
       .upsert(payload, { onConflict: 'user_id,student_name,level' });
 
     if (!error) {
-      console.log(`[cloud] ✅ upsert 成功 student="${student}" level="${level}"`);
+      console.log(`[cloud] ✅ 上传成功 student="${student}" level="${level}"`);
       return true;
     }
 
-    // upsert 失败，记录详细原因
-    console.warn(`[cloud] upsert 失败 code=${error.code} msg="${error.message}" hint="${error.hint || ''}" details="${error.details || ''}"`);
+    console.warn(`[cloud] upsert 失败 code=${error.code} msg="${error.message}"`);
 
-    // 唯一约束缺失 → 降级策略
+    // 唯一约束缺失降级
     if (error.code === '42P10') {
-      console.warn('[cloud] 检测到唯一约束缺失，尝试 delete+insert 降级策略…');
       return await _cloudDeleteInsert(payload, student, level);
     }
 
-    // RLS insert 拒绝
-    if (error.code === '42501') {
-      console.error('[cloud] ❌ RLS INSERT policy 缺失，请在 Supabase 执行：\n' +
-        "CREATE POLICY \"insert own rows\" ON word_progress FOR INSERT WITH CHECK (auth.uid() = user_id);");
-    }
-
+    // 其他失败：加入离线队列，下次联网重试
+    enqueueOffline(student, level, safeMastered, safeWrong);
     return false;
 
   } catch(e) {
-    console.error(`[cloud] ❌ upsert 异常 student="${student}" level="${level}":`, e);
+    // 网络异常（断网但 navigator.onLine 未及时更新）
+    console.warn(`[cloud] 上传异常，加入离线队列:`, e.message);
+    enqueueOffline(student, level, safeMastered, safeWrong);
     return false;
   }
 }
@@ -807,12 +846,8 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
 async function _cloudDeleteInsert(payload, student, level) {
   try {
     await _supabase.from('word_progress').delete()
-      .eq('user_id', payload.user_id)
-      .eq('student_name', student)
-      .eq('level',    level);
-  } catch(e) {
-    console.warn('[cloud] delete 步骤异常（忽略）:', e.message);
-  }
+      .eq('user_id', payload.user_id).eq('student_name', student).eq('level', level);
+  } catch(e) { console.warn('[cloud] delete 步骤异常（忽略）:', e.message); }
   try {
     const { error } = await _supabase.from('word_progress').insert(payload);
     if (!error) {
@@ -820,15 +855,18 @@ async function _cloudDeleteInsert(payload, student, level) {
       return true;
     }
     console.error(`[cloud] ❌ insert 也失败 code=${error.code} msg="${error.message}"`);
+    enqueueOffline(student, level, payload.mastered, payload.wrong);
     return false;
   } catch(e) {
     console.error('[cloud] ❌ insert 异常:', e);
+    enqueueOffline(student, level, payload.mastered, payload.wrong);
     return false;
   }
 }
 
 /**
- * 从云端拉取进度，合并写入 localStorage
+ * 从云端拉取单条进度，写入 localStorage 供业务层使用。
+ * 【规则1/5】切换等级时拉取，保证最新进度。
  */
 async function cloudLoadProgress(student, level) {
   if (!_supabase || !authUser) return false;
@@ -838,15 +876,17 @@ async function cloudLoadProgress(student, level) {
       .select('mastered, wrong')
       .eq('user_id', authUser.id)
       .eq('student_name', student)
-      .eq('level',   level)
+      .eq('level', level)
       .maybeSingle();
     if (error) {
       console.error(`[cloud] loadProgress 失败 code=${error.code} msg="${error.message}"`);
       return false;
     }
-    if (!data) return false;
+    if (!data) { console.log(`[cloud] 云端暂无数据 student="${student}" level="${level}"`); return false; }
+    // 云端数据覆盖本地
     lsSet(SK.mastered(student, level), data.mastered || []);
     lsSet(SK.wrong(student, level),    data.wrong    || []);
+    console.log(`[cloud] ✅ 拉取成功 student="${student}" level="${level}" mastered=${(data.mastered||[]).length} wrong=${(data.wrong||[]).length}`);
     return true;
   } catch(e) {
     console.error('[cloud] loadProgress 异常:', e);
@@ -855,73 +895,45 @@ async function cloudLoadProgress(student, level) {
 }
 
 /**
- * 全量同步：先诊断环境，再逐条上传，失败条目单独报告
+ * 拉取指定学生全部等级的云端进度，覆盖本地 localStorage。
+ * 【规则1】登录成功后立即调用，以云端为准。
  */
-async function syncAllToCloud(options = {}) {
-  if (!_supabase || !authUser) { showToast('请先登录账号'); return; }
-  if (!currentStudent) { showToast('请先选择学生后再同步'); return; }
-
-  if (!options.silent) {
-    showToast('🔍 检测同步环境…');
-    // 先跑诊断，发现严重问题则中止
-    const envOk = await diagnoseSyncEnv();
-    if (!envOk) {
-      showToast('❌ 同步环境有问题，请打开控制台查看详情');
-      return;
-    }
-    showToast('⏫ 同步中…');
-  }
-
-  let ok = 0, fail = 0;
-  const failedLevels = [];
-
+async function pullAllFromCloud(student) {
+  if (!_supabase || !authUser || !student) return;
+  console.log(`[cloud] 开始拉取学生 "${student}" 全部等级云端进度…`);
+  showToast('☁️ 正在同步云端进度…');
+  let pulled = 0;
   for (const lvl of LEVELS) {
-    // lsGet 已有 fallback []，不会返回 null
-    const masteredRaw = lsGet(SK.mastered(currentStudent, lvl.id), []);
-    const wrongRaw    = lsGet(SK.wrong(currentStudent, lvl.id),    []);
-
-    // 防御：处理旧版本可能存的 Set 序列化问题
-    const masteredArr = Array.isArray(masteredRaw) ? masteredRaw : [];
-    const wrongArr    = Array.isArray(wrongRaw)    ? wrongRaw    : [];
-
-    const success = await cloudSaveProgress(currentStudent, lvl.id, masteredArr, wrongArr);
-    if (success) {
-      ok++;
-    } else {
-      fail++;
-      failedLevels.push(lvl.label);
-    }
+    const ok = await cloudLoadProgress(student, lvl.id);
+    if (ok) pulled++;
   }
-
-  const resultMsg = fail === 0
-    ? `✅ 全部 ${ok} 个等级已同步到云端`
-    : `⚠️ ${ok} 成功 / ${fail} 失败（${failedLevels.join('、')}）\n请打开控制台查看 [cloud] 错误`;
-
-  if (!options.silent || fail > 0) showToast(resultMsg);
-  console.log(`[cloud] 同步完成：${ok} 成功 / ${fail} 失败`, fail > 0 ? failedLevels : '');
+  if (pulled > 0) {
+    console.log(`[cloud] 拉取完毕，${pulled}/${LEVELS.length} 个等级已更新`);
+    showToast(`✅ 已加载云端进度（${pulled} 个等级）`);
+    // 如果当前正在某等级，刷新统计显示
+    if (currentLevel) { loadProgress(); updateHeader(); }
+  } else {
+    console.log('[cloud] 云端暂无进度数据');
+    showToast('☁️ 云端暂无进度，使用本地数据');
+  }
 }
 
-/**
- * 更新 Header 账号栏 UI
- */
+// 更新 Header 账号栏 UI
 function updateAuthUI() {
   const loginBtn  = document.getElementById('authLoginBtn');
   const logoutBtn = document.getElementById('authLogoutBtn');
   const userLabel = document.getElementById('authUserLabel');
-  const syncBtn   = document.getElementById('authSyncBtn');
   if (!loginBtn) return;
   if (authUser) {
     loginBtn.style.display  = 'none';
     logoutBtn.style.display = 'inline-flex';
     userLabel.style.display = 'inline';
     userLabel.textContent   = authUser.email ? authUser.email.split('@')[0] : '已登录';
-    if (syncBtn) syncBtn.style.display = 'inline-flex';
   } else {
     loginBtn.style.display  = 'inline-flex';
     logoutBtn.style.display = 'none';
     userLabel.style.display = 'none';
     userLabel.textContent   = '';
-    if (syncBtn) syncBtn.style.display = 'none';
   }
 }
 
@@ -1253,9 +1265,12 @@ function confirmName(){
 function selectStudent(name){
   currentStudent=name;
   document.getElementById('nameInput').value='';
-  // 选定学生后不再自动上传（避免与 startLevel 的下载产生竞争条件）
-  // 用户可手动点击 ☁️ 同步 按钮全量上传
-  showLevelSelect();
+  // 【规则1/5】已登录时选定学生，立即拉取该学生全部等级的云端进度
+  if (authUser && _supabase) {
+    pullAllFromCloud(name).then(() => showLevelSelect());
+  } else {
+    showLevelSelect();
+  }
 }
 
 function deleteStudent(name,e){
@@ -1311,18 +1326,18 @@ function renderLevelGrid(){
 
 function startLevel(levelId){
   currentLevel=levelId;
-  // ── 云端进度钩子：登录时先拉取云端进度写入 localStorage，再走原有 loadProgress ──
+  // 【规则5】切换等级时从云端拉取该等级最新进度（保证跨设备实时同步）
   if (authUser && _supabase) {
     cloudLoadProgress(currentStudent, levelId).then(loaded => {
-      if (loaded) showToast('☁️ 已加载云端进度');
+      if (loaded) console.log(`[cloud] 等级 ${levelId} 进度已从云端更新`);
       loadProgress();buildSession();
       if(!sessionQueue.length){showDoneEmpty();return;}
       showWordCard();updateHeader();
       showWordDisplay(0);
     });
-    return; // 异步路径接管，直接返回
+    return;
   }
-  // 未登录：原有同步路径完全不变
+  // 未登录：纯本地模式
   loadProgress();buildSession();
   if(!sessionQueue.length){showDoneEmpty();return;}
   showWordCard();updateHeader();
@@ -1348,10 +1363,14 @@ function loadProgress(){
   wrongSet = safeWrong;
 }
 function saveProgress(){
+  // 【规则2/3】进度存储策略：
+  //   - 已登录 + 联网：直接上传云端，同时写 localStorage 作为本地缓存备份
+  //   - 已登录 + 断网：写 localStorage，同时加入离线队列，联网后自动上传
+  //   - 未登录：仅写 localStorage（纯本地模式）
   lsSet(SK.mastered(currentStudent,currentLevel),[...mastered]);
   lsSet(SK.wrong(currentStudent,currentLevel),wrongSet);
-  // ── 云端进度钩子：登录时异步同步，不阻塞原有逻辑 ──
   if (authUser && _supabase) {
+    // 异步上传，不阻塞答题流程；断网时 cloudSaveProgress 内部自动加入离线队列
     cloudSaveProgress(currentStudent, currentLevel, [...mastered], [...wrongSet]);
   }
 }
