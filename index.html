@@ -141,7 +141,13 @@ body::before{content:'';position:fixed;inset:0;
 /* ── MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(40,30,80,0.52);z-index:100;
   display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);animation:fadeIn 0.2s;}
+/* 【首页改版】登录注册弹窗居中显示，不贴底部 */
+#authOverlay{align-items:center;padding:20px;}
+#authOverlay .modal{border-radius:24px;max-height:90vh;}
 .modal-overlay.hidden{display:none!important;}
+/* 【首页改版】登录/注册弹窗居中展示，不贴底部 */
+#authOverlay{align-items:center;padding:16px;}
+#authOverlay .modal{border-radius:24px;max-height:92vh;}
 .modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:500px;
   max-height:92vh;display:flex;flex-direction:column;animation:slideUp 0.28s cubic-bezier(0.34,1.3,0.64,1);overflow:hidden;}
 .modal-header{background:linear-gradient(135deg,#667eea,#764ba2);padding:15px 16px 13px;
@@ -292,15 +298,16 @@ body::before{content:'';position:fixed;inset:0;
 <div class="deco">🌈</div>
 
 <!-- HEADER -->
-<div class="header" id="mainHeader" style="display:none">
+<div class="header" id="mainHeader">
   <div class="header-top">
     <button class="hbtn" onclick="openSettings()">⚙️</button>
     <div class="header-title">🌟 Mots Magiques</div>
     <button class="hbtn" onclick="openEditor()">📝 Lexique</button>
   </div>
-  <!-- 账号栏：仅显示登录按钮和用户名，无退出按钮（儿童场景无需手动登出） -->
+  <!-- 账号栏：仅显示用户名标签，无退出按钮、无同步按钮 -->
   <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:7px;flex-wrap:wrap;">
     <span id="authUserLabel" style="display:none;font-size:11px;font-weight:700;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:10px;padding:3px 9px;"></span>
+    <!-- 已登录后登录按钮自动隐藏，用户名标签显示 -->
     <button id="authLoginBtn" class="hbtn" style="font-size:11px;padding:4px 11px;min-height:28px;" onclick="openAuthModal('login')">🔑 登录 / 注册</button>
   </div>
   <div class="stats-row">
@@ -314,22 +321,21 @@ body::before{content:'';position:fixed;inset:0;
 </div>
 
 <!-- MAIN -->
-<div class="main" id="mainArea" style="display:none">
+<div class="main" id="mainArea" style="display:flex">
   <div class="progress-bar-wrap">
     <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
   </div>
 
-  <!-- WELCOME -->
-  <div class="welcome-card" id="welcomeCard">
+  <!-- WELCOME：已改为纯登录态检测，登录前不显示任何学习内容 -->
+  <!-- 此卡片在登录后自动进入等级选择，不再有姓名输入 -->
+  <div class="welcome-card hidden" id="welcomeCard">
     <div style="font-size:52px">🌟</div>
     <div class="welcome-title">Mots Magiques</div>
-    <div class="welcome-sub">Entrez votre prénom pour commencer</div>
-    <input class="name-input" id="nameInput" type="text" placeholder="Votre prénom..." autocomplete="off"
-      onkeydown="if(event.key==='Enter')confirmName()"/>
-    <button class="btn btn-primary btn-full" onclick="confirmName()" style="font-size:18px;padding:15px;min-height:52px;">
-      Commencer 🚀
+    <div class="welcome-sub" id="welcomeSub">请先登录账号开始学习</div>
+    <button class="btn btn-primary btn-full" onclick="openAuthModal('login')"
+      style="font-size:18px;padding:15px;min-height:52px;" id="welcomeLoginBtn">
+      🔑 登录 / 注册
     </button>
-    <div id="existingStudents" class="student-list" style="display:none"></div>
   </div>
 
   <!-- LEVEL SELECT -->
@@ -342,9 +348,7 @@ body::before{content:'';position:fixed;inset:0;
       <div style="font-size:12px;color:var(--text-mid);margin-top:3px;font-weight:600;" id="levelStudentHint"></div>
     </div>
     <div class="level-grid" id="levelGrid"></div>
-    <div style="margin-top:11px;text-align:center;">
-      <button class="btn btn-gray btn-sm" onclick="switchStudent()">👤 Changer d'élève</button>
-    </div>
+    <!-- 账号即学生，已移除"切换学生"按钮 -->
   </div>
 
   <!-- WORD CARD -->
@@ -483,35 +487,45 @@ body::before{content:'';position:fixed;inset:0;
 
 <div class="toast" id="toast"></div>
 
-<!-- ══ 新增：账号登录/注册弹窗 ══ -->
-<div class="modal-overlay hidden" id="authOverlay" onclick="if(event.target===this)closeAuthModal()">
-  <div class="modal" style="max-height:480px;">
+<!-- ══ 账号登录/注册弹窗（用户名+密码，无需邮箱验证）══ -->
+<div class="modal-overlay hidden" id="authOverlay">
+  <!-- 注意：此弹窗在未登录时禁止点击背景关闭，已登录后才可关闭 -->
+  <div class="modal" style="max-height:520px;border-radius:24px;margin:auto;">
     <div class="modal-header">
-      <div class="modal-title">👤 账号</div>
-      <button class="modal-close" onclick="closeAuthModal()">✕</button>
+      <div class="modal-title">🌟 Mots Magiques — 账号</div>
+      <!-- 关闭按钮仅登录后显示 -->
+      <button class="modal-close hidden" id="authCloseBtn" onclick="closeAuthModal()">✕</button>
     </div>
-    <div class="modal-body" style="gap:14px;">
-      <!-- Tab 切换 -->
-      <div class="tabs" style="margin-bottom:2px;">
+    <div class="modal-body" style="gap:16px;padding:20px 18px;">
+      <!-- Tab 切换：登录 / 注册 -->
+      <div class="tabs" style="margin-bottom:4px;">
         <button class="tab active" id="authTabLogin"    onclick="switchAuthTab('login')">登录</button>
         <button class="tab"        id="authTabRegister" onclick="switchAuthTab('register')">注册</button>
       </div>
+
+      <!-- 用户名输入框 -->
       <div class="field-group">
-        <div class="field-label">邮箱</div>
-        <input class="field-input" id="authEmail" type="email" placeholder="your@email.com" autocomplete="email"/>
+        <div class="field-label">用户名</div>
+        <input class="field-input" id="authUsername" type="text"
+          placeholder="输入用户名" autocomplete="username"
+          autocorrect="off" autocapitalize="off" spellcheck="false"
+          onkeydown="if(event.key==='Enter')document.getElementById('authPassword').focus()"/>
       </div>
+
+      <!-- 密码输入框 -->
       <div class="field-group">
         <div class="field-label">密码</div>
-        <input class="field-input" id="authPassword" type="password" placeholder="请输入密码" autocomplete="current-password"/>
+        <input class="field-input" id="authPassword" type="password"
+          placeholder="输入密码" autocomplete="current-password"
+          onkeydown="if(event.key==='Enter')handleAuthSubmit()"/>
       </div>
-      <div id="authMsg" style="font-size:12px;font-weight:700;min-height:18px;text-align:center;"></div>
-      <div style="font-size:11px;color:var(--text-mid);text-align:center;line-height:1.5;">
-        未登录时完全使用本地模式，数据保存在本设备。
-      </div>
+
+      <!-- 提示信息 -->
+      <div id="authMsg" style="font-size:12px;font-weight:700;min-height:18px;text-align:center;color:#c0392b;"></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-gray" onclick="closeAuthModal()">取消</button>
-      <button class="btn btn-primary" id="authSubmitBtn" data-tab="login" style="flex:1;" onclick="handleAuthSubmit()">登录</button>
+    <div class="modal-footer" style="padding:14px 18px;">
+      <button class="btn btn-primary btn-full" id="authSubmitBtn" data-tab="login"
+        style="font-size:16px;padding:14px;" onclick="handleAuthSubmit()">登录</button>
     </div>
   </div>
 </div>
@@ -523,41 +537,43 @@ body::before{content:'';position:fixed;inset:0;
 // ═══════════════════════════════════════════════════
 // SUPABASE — 账号 + 云端进度同步
 // ═══════════════════════════════════════════════════
+// 【认证方式】仅用户名 + 密码，无邮箱验证。
+// 使用 Supabase 自定义表 `app_users`（字段：id, username, pw_hash）
+// 密码通过 Web Crypto API SHA-256 哈希后存储，不明文传输。
+// ─────────────────────────────────────────────────────────────
 const SUPABASE_URL      = "https://zmjdwdpslcumajabmney.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptamR3ZHBzbGN1bWFqYWJtbmV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwOTMsImV4cCI6MjA5NjY3NTA5M30.HB7umpS9haOuU2UH2MgqkpjZUUZar5iEI4llYVIWGhc"; // ← Project Settings → API → anon public JWT
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptamR3ZHBzbGN1bWFqYWJtbmV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwOTMsImV4cCI6MjA5NjY3NTA5M30.HB7umpS9haOuU2UH2MgqkpjZUUZar5iEI4llYVIWGhc";
 
+// Supabase JS 客户端（仅用于数据库操作，不使用 Supabase Auth）
 let _supabase = null;
 try {
   if (typeof supabase !== 'undefined' && supabase.createClient) {
     _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      auth: {
-        storage:            window.localStorage, // session 持久化到 localStorage
-        persistSession:     true,                // 刷新页面不丢登录态
-        autoRefreshToken:   true,                // token 到期自动续期
-        detectSessionInUrl: true,                // 处理邮件确认回调
-      },
-      global: {
-        headers: { 'X-Client-Info': 'mots-magiques/1.0' }, // 避免 CORS 预检失败
-      },
+      auth: { persistSession: false },  // 不使用 Supabase Auth，关闭 session 持久化
+      global: { headers: { 'X-Client-Info': 'mots-magiques/2.0' } },
     });
   }
 } catch(e) { console.warn('[auth] Supabase init failed, local mode:', e); }
 
-// 当前登录用户（null = 未登录，纯本地模式）
+// ── 当前登录用户（自定义用户对象，非 Supabase Auth user）────────
+// 结构：{ id: string, username: string }  |  null = 未登录
 let authUser = null;
 
-// ── 离线队列：断网时临时缓存待上传的进度变更 ──────────────
-// 数据结构：[{ student, level, mastered:[], wrong:[] }, ...]
-// 网络恢复后 flushOfflineQueue() 自动上传并清空
-const OFFLINE_QUEUE_KEY = 'mm_offline_queue';
+// ── SHA-256 密码哈希（Web Crypto API）─────────────────────────
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
+// ── 离线队列：断网时临时缓存待上传的进度变更 ──────────────
+const OFFLINE_QUEUE_KEY = 'mm_offline_queue';
 function getOfflineQueue() {
   try { return JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]'); } catch(e) { return []; }
 }
 function setOfflineQueue(q) {
   localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(q));
 }
-// 将一条进度变更加入离线队列（去重：相同 student+level 只保留最新）
+// 将一条进度变更加入离线队列（去重：相同 uid+level 只保留最新）
 function enqueueOffline(student, level, masteredArr, wrongArr) {
   const q = getOfflineQueue().filter(x => !(x.student === student && x.level === level));
   q.push({ student, level, mastered: masteredArr, wrong: wrongArr, ts: Date.now() });
@@ -575,7 +591,7 @@ async function flushOfflineQueue() {
     const ok = await cloudSaveProgress(item.student, item.level, item.mastered, item.wrong);
     if (!ok) failed.push(item);
   }
-  setOfflineQueue(failed); // 上传失败的留在队列，成功的清除
+  setOfflineQueue(failed);
   if (!failed.length) {
     console.log('[offline] ✅ 离线数据全部上传完毕，队列已清空');
     showToast('✅ 离线期间的学习记录已同步到云端');
@@ -596,84 +612,183 @@ window.addEventListener('offline', () => {
 
 // ── 账号 UI helpers ──────────────────────────────
 
+// 打开登录/注册弹窗
+// forceOpen=true 时不可点背景关闭（未登录强制登录场景）
 function openAuthModal(tab) {
-  document.getElementById('authOverlay').classList.remove('hidden');
+  const overlay = document.getElementById('authOverlay');
+  overlay.classList.remove('hidden');
+  // 未登录时背景点击无效，已登录才显示关闭按钮
+  overlay.onclick = null;
+  const closeBtn = document.getElementById('authCloseBtn');
+  if (authUser) {
+    closeBtn.classList.remove('hidden');
+    overlay.onclick = (e) => { if (e.target === overlay) closeAuthModal(); };
+  } else {
+    closeBtn.classList.add('hidden');
+  }
   switchAuthTab(tab || 'login');
-  document.getElementById('authEmail').value = '';
+  document.getElementById('authUsername').value = '';
   document.getElementById('authPassword').value = '';
   document.getElementById('authMsg').textContent = '';
+  setTimeout(() => document.getElementById('authUsername').focus(), 150);
 }
+
 function closeAuthModal() {
+  if (!authUser) return; // 未登录时禁止关闭
   document.getElementById('authOverlay').classList.add('hidden');
 }
+
 function switchAuthTab(tab) {
-  document.getElementById('authTabLogin').classList.toggle('active',  tab === 'login');
+  document.getElementById('authTabLogin').classList.toggle('active', tab === 'login');
   document.getElementById('authTabRegister').classList.toggle('active', tab === 'register');
-  document.getElementById('authSubmitBtn').textContent = tab === 'login' ? '登录' : '注册';
+  document.getElementById('authSubmitBtn').textContent = tab === 'login' ? '登录' : '注册账号';
   document.getElementById('authSubmitBtn').dataset.tab = tab;
   document.getElementById('authMsg').textContent = '';
 }
 
+// ── 核心：处理登录 / 注册提交 ─────────────────────────────
 async function handleAuthSubmit() {
-  if (!_supabase) { showToast('Supabase 未初始化，请检查配置'); return; }
-  const tab   = document.getElementById('authSubmitBtn').dataset.tab;
-  const email = document.getElementById('authEmail').value.trim();
-  const pw    = document.getElementById('authPassword').value;
-  const msg   = document.getElementById('authMsg');
-  if (!email || !pw) { msg.textContent = '请填写邮箱和密码'; msg.style.color='#c0392b'; return; }
+  if (!_supabase) { showToast('网络连接失败，请检查网络后重试'); return; }
+  const tab      = document.getElementById('authSubmitBtn').dataset.tab;
+  const username = document.getElementById('authUsername').value.trim();
+  const pw       = document.getElementById('authPassword').value;
+  const msg      = document.getElementById('authMsg');
+
+  // 输入校验
+  if (!username) { msg.textContent = '请输入用户名'; msg.style.color = '#c0392b'; return; }
+  if (!pw)       { msg.textContent = '请输入密码';   msg.style.color = '#c0392b'; return; }
+  if (username.length < 2) { msg.textContent = '用户名至少2个字符'; msg.style.color = '#c0392b'; return; }
+  if (pw.length < 4)       { msg.textContent = '密码至少4位';       msg.style.color = '#c0392b'; return; }
+
   msg.textContent = tab === 'login' ? '登录中…' : '注册中…';
   msg.style.color = '#5a5a8a';
+
   try {
-    let result;
-    if (tab === 'login') {
-      result = await _supabase.auth.signInWithPassword({ email, password: pw });
-    } else {
-      result = await _supabase.auth.signUp({ email, password: pw });
-    }
-    if (result.error) throw result.error;
-    authUser = result.data?.user || null;
-    if (tab === 'register' && !authUser?.confirmed_at && !authUser?.email_confirmed_at) {
-      msg.textContent = '✅ 注册成功！请查收确认邮件后再登录。';
-      msg.style.color = '#1a7a2e';
-    } else {
-      closeAuthModal();
-      updateAuthUI();
-      showToast(tab === 'login' ? `✅ 欢迎，${email.split('@')[0]}！正在拉取云端进度…` : '✅ 注册并登录成功！');
-      // 【规则1】登录成功瞬间：从云端拉取最新进度，云端数据覆盖本地旧数据
-      // 不再上传本地数据到云端，以云端为准
-      if (currentStudent) {
-        await pullAllFromCloud(currentStudent);
-        // 同时尝试上传离线期间积累的队列
-        await flushOfflineQueue();
-      } else {
-        setTimeout(() => showToast('💡 请选择学生，将自动加载云端进度'), 1200);
+    // 密码哈希（SHA-256，前端哈希后传输）
+    const pwHash = await sha256(pw + username); // 加盐：username 作为盐
+
+    if (tab === 'register') {
+      // ── 注册：检查用户名是否已存在
+      const { data: existing } = await _supabase
+        .from('app_users')
+        .select('id')
+        .eq('username', username)
+        .maybeSingle();
+
+      if (existing) {
+        msg.textContent = '用户名已被注册，请换一个或直接登录';
+        msg.style.color = '#c0392b';
+        return;
       }
+
+      // 插入新用户
+      const { data: newUser, error: insertErr } = await _supabase
+        .from('app_users')
+        .insert({ username, pw_hash: pwHash })
+        .select('id, username')
+        .single();
+
+      if (insertErr) throw insertErr;
+
+      // 注册成功直接登录
+      authUser = { id: newUser.id, username: newUser.username };
+      _onLoginSuccess('register');
+
+    } else {
+      // ── 登录：验证用户名 + 密码哈希
+      const { data: user, error: selErr } = await _supabase
+        .from('app_users')
+        .select('id, username, pw_hash')
+        .eq('username', username)
+        .maybeSingle();
+
+      if (selErr) throw selErr;
+      if (!user) {
+        msg.textContent = '用户名不存在，请先注册';
+        msg.style.color = '#c0392b';
+        return;
+      }
+      if (user.pw_hash !== pwHash) {
+        msg.textContent = '密码错误，请重试';
+        msg.style.color = '#c0392b';
+        return;
+      }
+
+      authUser = { id: user.id, username: user.username };
+      _onLoginSuccess('login');
     }
+
   } catch(e) {
-    msg.textContent = e.message || '操作失败，请重试';
+    console.error('[auth] handleAuthSubmit error:', e);
+    msg.textContent = (e.message || '操作失败，请检查网络后重试');
     msg.style.color = '#c0392b';
   }
 }
 
-// handleLogout 已移除：儿童场景无需手动退出登录
-// 账号互斥踢出逻辑见 _forceLogout()
+// 登录成功后的统一处理
+async function _onLoginSuccess(action) {
+  // 将 userId 持久化到 localStorage（用于页面刷新后恢复登录态）
+  localStorage.setItem('mm_auth_uid',      authUser.id);
+  localStorage.setItem('mm_auth_username', authUser.username);
 
-// ── 互斥登录实现说明 ─────────────────────────────────────────
-// 方案：Supabase Realtime Broadcast Channel + localStorage token 时间戳
-//
-// 原理：
-//   每次登录成功，向 Broadcast Channel "auth:{uid}" 广播一条 {token, ts} 消息。
-//   token = 随机字符串，写入 localStorage key "mm_session_token:{uid}"。
-//   所有已打开的标签页/设备都订阅该 Channel，收到广播后对比 token：
-//     - token 与本地不一致 → 说明另一台设备刚登录 → 本机强制退出，跳转登录页。
-//     - token 一致 → 自己发出的广播，忽略。
-//
-// 限制：Supabase Realtime 广播仅在两端都在线时实时生效；
-//       若旧设备处于离线状态，需等下次联网收到广播才会被踢出。
-// ─────────────────────────────────────────────────────────────
+  closeAuthModal();
+  updateAuthUI();
 
-let _sessionToken = null;       // 本设备当前登录 token
-let _kickChannel  = null;       // Realtime Broadcast Channel 引用
+  // 【Bug修复1】跨设备登录：先清空本地旧缓存，再拉云端最新进度
+  // 防止旧设备本地进度覆盖云端最新数据
+  _clearLocalProgressCache();
+
+  showToast(`✅ ${action === 'login' ? '欢迎回来' : '注册成功'}，${authUser.username}！正在加载云端进度…`);
+
+  // 互斥登录：广播新登录事件，踢出其他设备
+  _registerDeviceSession(authUser.id);
+
+  // 拉取全部等级云端进度（以云端为准）
+  if (currentStudent) {
+    await pullAllFromCloud(currentStudent);
+  }
+  // 上传离线积压数据
+  await flushOfflineQueue();
+
+  // 登录后：直接跳转到学习页面（使用 username 作为 student name）
+  _enterAsStudent(authUser.username);
+}
+
+// 【Bug修复1关键函数】清空本地所有等级的进度缓存（仅清进度，不清词库）
+// 在登录成功后、拉取云端数据之前调用，确保云端数据不被本地旧数据污染
+function _clearLocalProgressCache() {
+  console.log('[sync] 登录成功，清空本地旧进度缓存，准备加载云端最新数据…');
+  // 清除所有学生所有等级的本地进度
+  const students = lsGet(SK.students(), []);
+  // 同时也清当前 authUser.username 的缓存（新登录账号的本地数据可能过期）
+  const allStudents = new Set([...students, authUser.username]);
+  allStudents.forEach(s => {
+    LEVELS.forEach(l => {
+      localStorage.removeItem(SK.mastered(s, l.id));
+      localStorage.removeItem(SK.wrong(s, l.id));
+    });
+  });
+  // 清空离线队列（旧离线数据可能属于其他账号，避免错误上传）
+  setOfflineQueue([]);
+  console.log('[sync] ✅ 本地旧进度缓存已清空，将以云端数据为准');
+}
+
+// 登录后以账号用户名为 student 进入学习
+function _enterAsStudent(username) {
+  // 将用户名加入 students 列表（如果不存在）
+  const students = lsGet(SK.students(), []);
+  if (!students.includes(username)) {
+    students.push(username);
+    lsSet(SK.students(), students);
+  }
+  selectStudent(username);
+}
+
+// ── 互斥登录实现 ─────────────────────────────────────────────
+// 原理：每次登录，向 Supabase Realtime Broadcast Channel "auth:{uid}" 广播新 token。
+// 已在线的旧设备收到不同 token 后立即强制退出，清空本地数据，跳转登录页。
+let _sessionToken = null;
+let _kickChannel  = null;
 
 function _genToken() {
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
@@ -684,20 +799,20 @@ function _sessionTokenKey(uid) {
 
 // 登录成功后：生成新 token，广播给其他设备，订阅踢出监听
 function _registerDeviceSession(uid) {
+  if (!_supabase) return;
   _sessionToken = _genToken();
   localStorage.setItem(_sessionTokenKey(uid), _sessionToken);
   console.log(`[mutex] 本设备 session token: ${_sessionToken}`);
 
-  // 取消旧 Channel（切换账号场景）
   if (_kickChannel) { try { _supabase.removeChannel(_kickChannel); } catch(e){} }
 
   // 订阅 Realtime Broadcast Channel，监听其他设备的登录广播
   _kickChannel = _supabase.channel(`auth:${uid}`, {
-    config: { broadcast: { self: false } } // self:false → 不接收自己发出的消息
+    config: { broadcast: { self: false } }
   });
   _kickChannel
     .on('broadcast', { event: 'new_login' }, ({ payload }) => {
-      // 【互斥登录】收到其他设备的登录广播
+      // 【异地登录踢出】收到其他设备的登录广播且 token 不一致
       if (payload.token && payload.token !== _sessionToken) {
         console.warn('[mutex] 检测到账号在其他设备登录，本设备强制退出');
         _forceLogout();
@@ -713,26 +828,14 @@ function _registerDeviceSession(uid) {
       payload: { token: _sessionToken, ts: Date.now() }
     });
     console.log('[mutex] 已广播新登录事件，旧设备将被踢出');
-  }, 600); // 延迟确保订阅已建立再广播
+  }, 600);
 }
 
-// 被踢出时强制退出：清空所有本地用户数据，跳转初始登录页
-// 规则3：不遗留任何用户名、学习进度、账号缓存信息
+// 【异地登录下线】被踢出时：清空全部本地用户数据，跳转登录页
 async function _forceLogout() {
   showToast('⚠️ 账号已在其他设备登录，本设备已自动退出');
 
-  // 1. 清除 Supabase session（本地退出，不影响新设备）
-  if (_supabase) {
-    try { await _supabase.auth.signOut({ scope: 'local' }); } catch(e) {}
-  }
-
-  // 2. 清除 Supabase 写入的所有 sb- 开头的 session key
-  Object.keys(localStorage)
-    .filter(k => k.startsWith('sb-'))
-    .forEach(k => localStorage.removeItem(k));
-
-  // 3. 清除本应用所有用户数据：学生列表、各等级进度、日常设置
-  //    遍历所有学生的所有等级进度，确保不遗留任何学习信息
+  // 1. 清除所有学生所有等级本地进度
   const students = lsGet(SK.students(), []);
   students.forEach(s => {
     LEVELS.forEach(l => {
@@ -740,221 +843,81 @@ async function _forceLogout() {
       localStorage.removeItem(SK.wrong(s, l.id));
     });
   });
-  localStorage.removeItem(SK.students());   // 清除学生列表
-  localStorage.removeItem(SK.banks());      // 清除词库编辑缓存
-  localStorage.removeItem(OFFLINE_QUEUE_KEY); // 清除离线队列
 
-  // 4. 清除互斥登录 token
+  // 2. 清除应用数据
+  localStorage.removeItem(SK.students());
+  localStorage.removeItem(SK.banks());
+  localStorage.removeItem(OFFLINE_QUEUE_KEY);
+
+  // 3. 清除互斥登录 token
   if (authUser) {
     localStorage.removeItem(_sessionTokenKey(authUser.id));
   }
 
-  // 5. 重置内存状态
+  // 4. 清除登录持久化信息
+  localStorage.removeItem('mm_auth_uid');
+  localStorage.removeItem('mm_auth_username');
+
+  // 5. 清除 Realtime 订阅
+  if (_kickChannel) { try { _supabase.removeChannel(_kickChannel); } catch(e){} _kickChannel = null; }
+
+  // 6. 重置内存状态
   authUser = null;
   _sessionToken = null;
   currentStudent = null;
   currentLevel = null;
 
-  // 6. 1.5s 后刷新页面，回到初始登录界面（让用户看到 toast）
+  // 7. 1.5s 后刷新页面，回到初始登录界面
   setTimeout(() => { location.reload(); }, 1500);
 }
 
-// 页面加载后检查是否已有会话
-// 先注册 onAuthStateChange 监听器，再调用 getSession，
-// 保证 Vercel / 手机浏览器刷新后会话能被正确恢复，不丢登录态。
+// ── 页面刷新后恢复登录态（从 localStorage 读取）───────────────
+// 【注意】不使用 Supabase Auth session，用自定义 localStorage 持久化
 async function initAuth() {
-  if (!_supabase) return;
-  try {
-    // 必须先挂监听，再 getSession，否则 INITIAL_SESSION 可能被遗漏
-    _supabase.auth.onAuthStateChange(async (_event, session) => {
-      const prevUser = authUser;
-      authUser = session?.user || null;
-      updateAuthUI();
+  const uid      = localStorage.getItem('mm_auth_uid');
+  const username = localStorage.getItem('mm_auth_username');
 
-      if (authUser && !prevUser) {
-        // 【首次获得登录态】刷新页面恢复会话 / 手机新标签打开
-        console.log(`[auth] 会话恢复，uid=${authUser.id}`);
-        // 互斥登录：注册本设备 session token，踢出其他旧登录设备
-        _registerDeviceSession(authUser.id);
-        // 【规则1】拉取云端最新进度覆盖本地
-        if (currentStudent) {
-          await pullAllFromCloud(currentStudent);
-        }
-        // 上传离线积压数据
-        await flushOfflineQueue();
-      } else if (!authUser && prevUser) {
-        // 登出事件
-        console.log('[auth] 用户已登出');
-        if (_kickChannel) { try { _supabase.removeChannel(_kickChannel); } catch(e){} _kickChannel = null; }
-      }
-    });
+  if (uid && username) {
+    // 恢复登录态
+    authUser = { id: uid, username };
+    console.log(`[auth] 会话恢复，username="${username}" uid=${uid}`);
+    updateAuthUI();
 
-    // 补充 getSession 确保当前 session 立即可用
-    const { data } = await _supabase.auth.getSession();
-    if (!authUser && data?.session?.user) {
-      authUser = data.session.user;
-      updateAuthUI();
-    }
-  } catch(e) { console.warn('[auth] initAuth 异常:', e); }
-}
+    // 【Bug修复1】页面刷新时：清空本地旧进度缓存，优先请求云端最新数据
+    // 防止电脑端完成学习后，手机打开时读取到旧的本地缓存数据
+    _clearLocalProgressCache();
 
-// ═══════════════════════════════════════════════════
-// CLOUD PROGRESS SYNC
-// ═══════════════════════════════════════════════════
+    // 重新注册互斥登录监听（刷新后订阅重置）
+    if (_supabase) _registerDeviceSession(uid);
 
-/**
- * 安全写入单条进度到云端。
- * 联网状态：直接 upsert；断网/失败：加入离线队列，联网后自动上传。
- * 【规则2】进度变动实时上传，不依赖本地缓存做主存储。
- */
-async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
-  if (!_supabase || !authUser) {
-    // 未登录时直接返回（进度已存 localStorage，无需云端）
-    return false;
-  }
+    // 上传离线积压数据
+    await flushOfflineQueue();
 
-  const safeMastered = [...new Set((masteredArr || []).filter(i => typeof i === 'number'))];
-  const safeWrong    = [...new Set((wrongArr    || []).filter(i => typeof i === 'number'))];
-  const payload = {
-    user_id:      authUser.id,
-    student_name: String(student),
-    level:        String(level),
-    mastered:     safeMastered,
-    wrong:        safeWrong,
-    updated_at:   new Date().toISOString(),
-  };
-
-  console.log(`[cloud] ▶ 上传 student="${student}" level="${level}" mastered=${safeMastered.length} wrong=${safeWrong.length}`);
-
-  // 【规则3】断网检测：navigator.onLine 为 false 时直接入离线队列
-  if (!navigator.onLine) {
-    console.log(`[offline] 当前离线，加入队列 student="${student}" level="${level}"`);
-    enqueueOffline(student, level, safeMastered, safeWrong);
-    return false;
-  }
-
-  try {
-    const { error } = await _supabase
-      .from('word_progress')
-      .upsert(payload, { onConflict: 'user_id,student_name,level' });
-
-    if (!error) {
-      console.log(`[cloud] ✅ 上传成功 student="${student}" level="${level}"`);
-      return true;
-    }
-
-    console.warn(`[cloud] upsert 失败 code=${error.code} msg="${error.message}"`);
-
-    // 唯一约束缺失降级
-    if (error.code === '42P10') {
-      return await _cloudDeleteInsert(payload, student, level);
-    }
-
-    // 其他失败：加入离线队列，下次联网重试
-    enqueueOffline(student, level, safeMastered, safeWrong);
-    return false;
-
-  } catch(e) {
-    // 网络异常（断网但 navigator.onLine 未及时更新）
-    console.warn(`[cloud] 上传异常，加入离线队列:`, e.message);
-    enqueueOffline(student, level, safeMastered, safeWrong);
-    return false;
-  }
-}
-
-/** 降级策略：先删旧行再插新行（绕过唯一约束问题） */
-async function _cloudDeleteInsert(payload, student, level) {
-  try {
-    await _supabase.from('word_progress').delete()
-      .eq('user_id', payload.user_id).eq('student_name', student).eq('level', level);
-  } catch(e) { console.warn('[cloud] delete 步骤异常（忽略）:', e.message); }
-  try {
-    const { error } = await _supabase.from('word_progress').insert(payload);
-    if (!error) {
-      console.log(`[cloud] ✅ delete+insert 成功 student="${student}" level="${level}"`);
-      return true;
-    }
-    console.error(`[cloud] ❌ insert 也失败 code=${error.code} msg="${error.message}"`);
-    enqueueOffline(student, level, payload.mastered, payload.wrong);
-    return false;
-  } catch(e) {
-    console.error('[cloud] ❌ insert 异常:', e);
-    enqueueOffline(student, level, payload.mastered, payload.wrong);
-    return false;
-  }
-}
-
-/**
- * 从云端拉取单条进度，写入 localStorage 供业务层使用。
- * 【规则1/5】切换等级时拉取，保证最新进度。
- */
-async function cloudLoadProgress(student, level) {
-  if (!_supabase || !authUser) return false;
-  try {
-    const { data, error } = await _supabase
-      .from('word_progress')
-      .select('mastered, wrong')
-      .eq('user_id', authUser.id)
-      .eq('student_name', student)
-      .eq('level', level)
-      .maybeSingle();
-    if (error) {
-      console.error(`[cloud] loadProgress 失败 code=${error.code} msg="${error.message}"`);
-      return false;
-    }
-    if (!data) { console.log(`[cloud] 云端暂无数据 student="${student}" level="${level}"`); return false; }
-    // 云端数据覆盖本地
-    lsSet(SK.mastered(student, level), data.mastered || []);
-    lsSet(SK.wrong(student, level),    data.wrong    || []);
-    console.log(`[cloud] ✅ 拉取成功 student="${student}" level="${level}" mastered=${(data.mastered||[]).length} wrong=${(data.wrong||[]).length}`);
-    return true;
-  } catch(e) {
-    console.error('[cloud] loadProgress 异常:', e);
-    return false;
-  }
-}
-
-/**
- * 拉取指定学生全部等级的云端进度，覆盖本地 localStorage。
- * 【规则1】登录成功后立即调用，以云端为准。
- */
-async function pullAllFromCloud(student) {
-  if (!_supabase || !authUser || !student) return;
-  console.log(`[cloud] 开始拉取学生 "${student}" 全部等级云端进度…`);
-  showToast('☁️ 正在同步云端进度…');
-  let pulled = 0;
-  for (const lvl of LEVELS) {
-    const ok = await cloudLoadProgress(student, lvl.id);
-    if (ok) pulled++;
-  }
-  if (pulled > 0) {
-    console.log(`[cloud] 拉取完毕，${pulled}/${LEVELS.length} 个等级已更新`);
-    showToast(`✅ 已加载云端进度（${pulled} 个等级）`);
-    // 如果当前正在某等级，刷新统计显示
-    if (currentLevel) { loadProgress(); updateHeader(); }
+    // 直接以账号用户名进入学习（刷新后恢复到等级选择）
+    _enterAsStudent(username);
   } else {
-    console.log('[cloud] 云端暂无进度数据');
-    showToast('☁️ 云端暂无进度，使用本地数据');
+    // 未登录：显示登录/注册弹窗（强制登录，不可关闭）
+    console.log('[auth] 未登录，显示登录界面');
+    updateAuthUI();
+    openAuthModal('login');
   }
 }
 
-// 更新 Header 账号栏 UI（无退出按钮，仅显示登录按钮或用户名）
+// 更新 Header 账号栏 UI
 function updateAuthUI() {
   const loginBtn  = document.getElementById('authLoginBtn');
   const userLabel = document.getElementById('authUserLabel');
   if (!loginBtn) return;
   if (authUser) {
-    // 已登录：隐藏登录按钮，显示用户名
     loginBtn.style.display  = 'none';
     userLabel.style.display = 'inline';
-    userLabel.textContent   = authUser.email ? authUser.email.split('@')[0] : '已登录';
+    userLabel.textContent   = `👤 ${authUser.username}`;
   } else {
-    // 未登录：显示登录按钮，隐藏用户名
     loginBtn.style.display  = 'inline-flex';
     userLabel.style.display = 'none';
-    userLabel.textContent   = '';
   }
 }
+
 
 // ── 以下为原有业务代码，完全未修改 ─────────────────
 // ═══════════════════════════════════════════════════
@@ -1178,8 +1141,7 @@ async function init(){
   if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;
   dailyCount=lsGet(SK.dailyCount(),30);
   document.getElementById('dailyCountInput').value=dailyCount;
-  document.getElementById('mainArea').style.display='flex';
-  document.getElementById('mainHeader').style.display='block';
+  // mainArea 和 mainHeader 默认已显示（由 CSS 控制），无需 JS 设置
 
   // [FIX] 词库加载优先级（外部 JSON 最优先）：
   //   1. 外部 JSON 文件（同级相对路径，Vercel/GitHub Pages 静态文件）
@@ -1239,7 +1201,8 @@ async function init(){
 
   console.log('[词库] 全部等级加载完毕:', Object.fromEntries(LEVELS.map(l=>[l.id, banks[l.id]?.length??0])));
 
-  showWelcome();
+  // 【改版】init 不再直接 showWelcome，而是由 initAuth 决定是否显示登录页
+  // initAuth 会检查本地登录态：有则恢复会话，无则弹出登录弹窗
   initAuth();
 }
 
@@ -1251,10 +1214,16 @@ function loadVoices(){
 // ═══════════════════════════════════════════════════
 // WELCOME
 // ═══════════════════════════════════════════════════
+// showWelcome：仅在异常情况回退使用（正常流程由 initAuth 控制）
 function showWelcome(){
   hideAllCards();
-  document.getElementById('welcomeCard').classList.remove('hidden');
-  renderStudentList();
+  if (!authUser) {
+    // 未登录：弹出登录弹窗
+    openAuthModal('login');
+    return;
+  }
+  // 已登录但无当前学生：直接以账号用户名进入
+  _enterAsStudent(authUser.username);
 }
 
 function renderStudentList(){
@@ -1273,13 +1242,8 @@ function renderStudentList(){
   });
 }
 
-function confirmName(){
-  const name=document.getElementById('nameInput').value.trim();
-  if(!name){showToast('Entrez votre prénom !');return;}
-  const students=lsGet(SK.students(),[]);
-  if(!students.includes(name)){students.push(name);lsSet(SK.students(),students);}
-  selectStudent(name);
-}
+// confirmName 已弃用（首页改版，姓名输入已删除）
+function confirmName(){ if(authUser)_enterAsStudent(authUser.username); }
 
 function selectStudent(name){
   currentStudent=name;
@@ -1313,7 +1277,8 @@ function deleteStudent(name,e){
   showToast(`Données de ${name} supprimées`);
 }
 
-function switchStudent(){clearAll();currentStudent=null;currentLevel=null;showWelcome();}
+// switchStudent：不再允许切换学生（账号即学生），此函数保留供设置页调用但行为改为刷新等级选择
+function switchStudent(){clearAll();currentLevel=null;if(currentStudent)showLevelSelect();else showWelcome();}
 
 // ═══════════════════════════════════════════════════
 // LEVEL SELECT
@@ -1900,10 +1865,23 @@ function showToast(msg){
 // SUPABASE 建表 SQL（在 Supabase SQL Editor 中执行一次）
 // ═══════════════════════════════════════════════════
 /*
+-- 0. 用户表（用户名+密码哈希，替代 Supabase Auth）
+-- 注意：此处使用 anon key + RLS 策略控制权限，需在 Supabase SQL Editor 执行
+CREATE TABLE IF NOT EXISTS app_users (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  username   TEXT NOT NULL UNIQUE,
+  pw_hash    TEXT NOT NULL,           -- SHA-256(password + username) 前端哈希
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+-- RLS：允许 anon 角色 insert（注册）和 select（登录验证）
+ALTER TABLE app_users ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "anon can register" ON app_users FOR INSERT WITH CHECK (true);
+CREATE POLICY "anon can login"    ON app_users FOR SELECT USING (true);
+
 -- 1. 建表
 CREATE TABLE IF NOT EXISTS word_progress (
   id         BIGSERIAL PRIMARY KEY,
-  user_id    UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  user_id    TEXT NOT NULL,            -- 对应 app_users.id（UUID 字符串）
   student_name TEXT NOT NULL,
   level      TEXT NOT NULL,
   mastered   JSONB NOT NULL DEFAULT '[]',
@@ -1916,17 +1894,8 @@ CREATE TABLE IF NOT EXISTS word_progress (
 ALTER TABLE word_progress ENABLE ROW LEVEL SECURITY;
 
 -- 3. RLS 策略（SELECT / INSERT / UPDATE / DELETE 各一条）
-CREATE POLICY "select own rows" ON word_progress
-  FOR SELECT USING (auth.uid() = user_id);
-
-CREATE POLICY "insert own rows" ON word_progress
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
-
-CREATE POLICY "update own rows" ON word_progress
-  FOR UPDATE USING (auth.uid() = user_id);
-
-CREATE POLICY "delete own rows" ON word_progress
-  FOR DELETE USING (auth.uid() = user_id);
+-- 进度表 RLS：允许 anon 操作（应用层负责过滤 user_id，或可改为更严格策略）
+CREATE POLICY "allow all on word_progress" ON word_progress FOR ALL USING (true) WITH CHECK (true);
 */
 
 // ═══════════════════════════════════════════════════
