@@ -298,12 +298,10 @@ body::before{content:'';position:fixed;inset:0;
     <div class="header-title">🌟 Mots Magiques</div>
     <button class="hbtn" onclick="openEditor()">📝 Lexique</button>
   </div>
-  <!-- ── 新增：账号栏 ── -->
+  <!-- 账号栏：仅显示登录按钮和用户名，无退出按钮（儿童场景无需手动登出） -->
   <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:7px;flex-wrap:wrap;">
     <span id="authUserLabel" style="display:none;font-size:11px;font-weight:700;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:10px;padding:3px 9px;"></span>
     <button id="authLoginBtn" class="hbtn" style="font-size:11px;padding:4px 11px;min-height:28px;" onclick="openAuthModal('login')">🔑 登录 / 注册</button>
-    <!-- 手动同步按钮已移除：进度变动自动实时上传，登录时自动拉取云端数据 -->
-    <button id="authLogoutBtn" class="hbtn" style="display:none;font-size:11px;padding:4px 11px;min-height:28px;background:rgba(255,100,100,0.25);" onclick="handleLogout()">退出登录</button>
   </div>
   <div class="stats-row">
     <div class="stat-badge">📚 <span id="statProgress">0/0</span></div>
@@ -657,16 +655,8 @@ async function handleAuthSubmit() {
   }
 }
 
-async function handleLogout() {
-  if (_supabase) {
-    try { await _supabase.auth.signOut({ scope: 'local' }); } catch(e) {}
-    // 清除 Supabase 写入 localStorage 的 sb- session key，防止手机浏览器退出后仍恢复会话
-    Object.keys(localStorage).filter(k => k.startsWith('sb-')).forEach(k => localStorage.removeItem(k));
-  }
-  authUser = null;
-  updateAuthUI();
-  showToast('已退出登录，切换至本地模式');
-}
+// handleLogout 已移除：儿童场景无需手动退出登录
+// 账号互斥踢出逻辑见 _forceLogout()
 
 // ── 互斥登录实现说明 ─────────────────────────────────────────
 // 方案：Supabase Realtime Broadcast Channel + localStorage token 时间戳
@@ -726,16 +716,46 @@ function _registerDeviceSession(uid) {
   }, 600); // 延迟确保订阅已建立再广播
 }
 
-// 被踢出时强制退出，刷新页面跳回登录态
+// 被踢出时强制退出：清空所有本地用户数据，跳转初始登录页
+// 规则3：不遗留任何用户名、学习进度、账号缓存信息
 async function _forceLogout() {
-  showToast('⚠️ 账号已在其他设备登录，本设备已退出');
+  showToast('⚠️ 账号已在其他设备登录，本设备已自动退出');
+
+  // 1. 清除 Supabase session（本地退出，不影响新设备）
   if (_supabase) {
     try { await _supabase.auth.signOut({ scope: 'local' }); } catch(e) {}
   }
-  Object.keys(localStorage).filter(k => k.startsWith('sb-')).forEach(k => localStorage.removeItem(k));
+
+  // 2. 清除 Supabase 写入的所有 sb- 开头的 session key
+  Object.keys(localStorage)
+    .filter(k => k.startsWith('sb-'))
+    .forEach(k => localStorage.removeItem(k));
+
+  // 3. 清除本应用所有用户数据：学生列表、各等级进度、日常设置
+  //    遍历所有学生的所有等级进度，确保不遗留任何学习信息
+  const students = lsGet(SK.students(), []);
+  students.forEach(s => {
+    LEVELS.forEach(l => {
+      localStorage.removeItem(SK.mastered(s, l.id));
+      localStorage.removeItem(SK.wrong(s, l.id));
+    });
+  });
+  localStorage.removeItem(SK.students());   // 清除学生列表
+  localStorage.removeItem(SK.banks());      // 清除词库编辑缓存
+  localStorage.removeItem(OFFLINE_QUEUE_KEY); // 清除离线队列
+
+  // 4. 清除互斥登录 token
+  if (authUser) {
+    localStorage.removeItem(_sessionTokenKey(authUser.id));
+  }
+
+  // 5. 重置内存状态
   authUser = null;
   _sessionToken = null;
-  // 1.5s 后刷新页面，让用户看到 toast 提示
+  currentStudent = null;
+  currentLevel = null;
+
+  // 6. 1.5s 后刷新页面，回到初始登录界面（让用户看到 toast）
   setTimeout(() => { location.reload(); }, 1500);
 }
 
@@ -918,20 +938,19 @@ async function pullAllFromCloud(student) {
   }
 }
 
-// 更新 Header 账号栏 UI
+// 更新 Header 账号栏 UI（无退出按钮，仅显示登录按钮或用户名）
 function updateAuthUI() {
   const loginBtn  = document.getElementById('authLoginBtn');
-  const logoutBtn = document.getElementById('authLogoutBtn');
   const userLabel = document.getElementById('authUserLabel');
   if (!loginBtn) return;
   if (authUser) {
+    // 已登录：隐藏登录按钮，显示用户名
     loginBtn.style.display  = 'none';
-    logoutBtn.style.display = 'inline-flex';
     userLabel.style.display = 'inline';
     userLabel.textContent   = authUser.email ? authUser.email.split('@')[0] : '已登录';
   } else {
+    // 未登录：显示登录按钮，隐藏用户名
     loginBtn.style.display  = 'inline-flex';
-    logoutBtn.style.display = 'none';
     userLabel.style.display = 'none';
     userLabel.textContent   = '';
   }
