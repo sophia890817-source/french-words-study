@@ -1472,14 +1472,10 @@ updateHeader();
 
   if (!sessionQueue.length) { showDoneEmpty(); return; }
 
-  showWordCard();
-  updateHeader();
-setTimeout(() => {
-    updateHeader();
-}, 1200);
+showWordCard();
+updateHeader();
 showWordDisplay(0);
-}
-  showWordDisplay(0);
+ 
 }
 
 function showDoneEmpty(){
