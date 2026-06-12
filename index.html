@@ -1773,6 +1773,9 @@ let learnedNum = 0;
 if (typeof mastered !== "undefined" && Array.isArray(mastered)) {
     learnedNum = mastered.length;
 }
+console.log('等级总单词数：', totalLevelWords);
+console.log('已掌握单词数：', learnedNum);
+console.log('计算后剩余：', totalLevelWords - learnedNum);
 const remain = Math.max(0, totalLevelWords - learnedNum); // 剩余数
 
   const el = (id) => document.getElementById(id);
