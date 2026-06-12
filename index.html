@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <title>🌟 Mots Magiques</title>
@@ -922,6 +923,125 @@ async function initAuth() {
   }
 }
 
+
+// ═══════════════════════════════════════════════════
+// CLOUD PROGRESS SYNC
+// ═══════════════════════════════════════════════════
+
+/**
+ * 安全写入单条进度到云端（upsert）。
+ * 联网：直接 upsert；断网/失败：加入离线队列，联网后自动重传。
+ */
+async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
+  if (!_supabase || !authUser) return false;
+
+  const safeMastered = [...new Set((masteredArr || []).filter(i => typeof i === 'number'))];
+  const safeWrong    = [...new Set((wrongArr    || []).filter(i => typeof i === 'number'))];
+  const payload = {
+    user_id:      authUser.id,
+    student_name: String(student),
+    level:        String(level),
+    mastered:     safeMastered,
+    wrong:        safeWrong,
+    updated_at:   new Date().toISOString(),
+  };
+
+  console.log(`[cloud] ▶ 上传 student="${student}" level="${level}" mastered=${safeMastered.length} wrong=${safeWrong.length}`);
+
+  if (!navigator.onLine) {
+    enqueueOffline(student, level, safeMastered, safeWrong);
+    return false;
+  }
+
+  try {
+    const { error } = await _supabase
+      .from('word_progress')
+      .upsert(payload, { onConflict: 'user_id,student_name,level' });
+
+    if (!error) {
+      console.log(`[cloud] ✅ 上传成功 student="${student}" level="${level}"`);
+      return true;
+    }
+    console.warn(`[cloud] upsert 失败 code=${error.code} msg="${error.message}"`);
+    if (error.code === '42P10') return await _cloudDeleteInsert(payload, student, level);
+    enqueueOffline(student, level, safeMastered, safeWrong);
+    return false;
+  } catch(e) {
+    console.warn(`[cloud] 上传异常，加入离线队列:`, e.message);
+    enqueueOffline(student, level, safeMastered, safeWrong);
+    return false;
+  }
+}
+
+/** 降级策略：先删再插（绕过唯一约束冲突） */
+async function _cloudDeleteInsert(payload, student, level) {
+  try {
+    await _supabase.from('word_progress').delete()
+      .eq('user_id', payload.user_id).eq('student_name', student).eq('level', level);
+  } catch(e) { console.warn('[cloud] delete 步骤异常（忽略）:', e.message); }
+  try {
+    const { error } = await _supabase.from('word_progress').insert(payload);
+    if (!error) { console.log(`[cloud] ✅ delete+insert 成功`); return true; }
+    enqueueOffline(student, level, payload.mastered, payload.wrong);
+    return false;
+  } catch(e) {
+    enqueueOffline(student, level, payload.mastered, payload.wrong);
+    return false;
+  }
+}
+
+/**
+ * 从云端拉取单条进度，以云端数据覆盖 localStorage。
+ * 【Bug修复1】_clearLocalProgressCache 之后调用，确保云端为准。
+ */
+async function cloudLoadProgress(student, level) {
+  if (!_supabase || !authUser) return false;
+  try {
+    const { data, error } = await _supabase
+      .from('word_progress')
+      .select('mastered, wrong')
+      .eq('user_id', authUser.id)
+      .eq('student_name', student)
+      .eq('level', level)
+      .maybeSingle();
+
+    if (error) { console.error(`[cloud] loadProgress 失败:`, error.message); return false; }
+    if (!data)  { console.log(`[cloud] 云端暂无数据 student="${student}" level="${level}"`); return false; }
+
+    // 云端数据写入本地（以云端为准）
+    lsSet(SK.mastered(student, level), data.mastered || []);
+    lsSet(SK.wrong(student, level),    data.wrong    || []);
+    console.log(`[cloud] ✅ 拉取成功 level="${level}" mastered=${(data.mastered||[]).length} wrong=${(data.wrong||[]).length}`);
+    return true;
+  } catch(e) {
+    console.error('[cloud] loadProgress 异常:', e);
+    return false;
+  }
+}
+
+/**
+ * 拉取指定学生全部等级云端进度，覆盖本地 localStorage。
+ * 登录成功 / 页面刷新恢复会话后调用，以云端为准。
+ */
+async function pullAllFromCloud(student) {
+  if (!_supabase || !authUser || !student) return;
+  console.log(`[cloud] 开始拉取 "${student}" 全部等级云端进度…`);
+  showToast('☁️ 正在同步云端进度…');
+  let pulled = 0;
+  for (const lvl of LEVELS) {
+    const ok = await cloudLoadProgress(student, lvl.id);
+    if (ok) pulled++;
+  }
+  if (pulled > 0) {
+    console.log(`[cloud] 拉取完毕，${pulled}/${LEVELS.length} 个等级已更新`);
+    showToast(`✅ 已加载云端进度（${pulled} 个等级）`);
+    if (currentLevel) { loadProgress(); updateHeader(); }
+  } else {
+    console.log('[cloud] 云端暂无进度，新账号从零开始');
+    showToast('☁️ 云端暂无进度，从零开始');
+  }
+}
+
 // 更新 Header 账号栏 UI
 // 已登录：显示用户名栏，隐藏登录按钮
 // 未登录：隐藏用户名栏，显示登录按钮
@@ -1322,23 +1442,28 @@ function renderLevelGrid(){
   });
 }
 
-function startLevel(levelId){
-  currentLevel=levelId;
-  // 【规则5】切换等级时从云端拉取该等级最新进度（保证跨设备实时同步）
+// startLevel：选择等级后进入学习
+// 已登录时先拉该等级云端最新进度（确保跨设备同步），再开始学习
+async function startLevel(levelId){
+  currentLevel = levelId;
+
   if (authUser && _supabase) {
-    cloudLoadProgress(currentStudent, levelId).then(loaded => {
+    try {
+      const loaded = await cloudLoadProgress(currentStudent, levelId);
       if (loaded) console.log(`[cloud] 等级 ${levelId} 进度已从云端更新`);
-      loadProgress();buildSession();
-      if(!sessionQueue.length){showDoneEmpty();return;}
-      showWordCard();updateHeader();
-      showWordDisplay(0);
-    });
-    return;
+    } catch(e) {
+      console.warn('[cloud] startLevel 拉取失败，使用本地数据:', e.message);
+    }
   }
-  // 未登录：纯本地模式
-  loadProgress();buildSession();
-  if(!sessionQueue.length){showDoneEmpty();return;}
-  showWordCard();updateHeader();
+
+  // 加载本地进度（已被云端数据覆盖，或纯本地模式）
+  loadProgress();
+  buildSession();
+
+  if (!sessionQueue.length) { showDoneEmpty(); return; }
+
+  showWordCard();
+  updateHeader();
   showWordDisplay(0);
 }
 
