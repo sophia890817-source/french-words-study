@@ -1764,7 +1764,7 @@ function updateHeader(){
   const wrong   = wrongSet.length;              // 错词数
   //const remain  = Math.max(0, total - sessionPos); // 剩余数
 let totalLevelWords = 0;
-if(currentBank) totalLevelWords = currentBank.length;
+if(currentBank) { totalLevelWords = currentBank.length; }
 const learnedNum = mastered.length;
 const remain = Math.max(0, totalLevelWords - learnedNum);// 剩余数
 
