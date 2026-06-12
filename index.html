@@ -962,23 +962,13 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
       console.log(`[cloud] ✅ 上传成功 student="${student}" level="${level}"`);
       return true;
     }
-
-    // ── 详细错误诊断 ──────────────────────────────────────────────
-    console.error(`[cloud] ❌ upsert 失败`, {
-      code: error.code, message: error.message, details: error.details, hint: error.hint
-    });
-
-    // 42501 = RLS policy violation（最常见：RLS 策略未正确配置）
+    console.error(`[cloud] ❌ upsert 失败 code=${error.code} msg="${error.message}"`);
+    // 42501 = RLS 策略拦截（最常见原因：Supabase 上旧 RLS 策略基于 auth.uid()，
+    //         本项目不用 Supabase Auth，需在控制台重建策略，详见文件末尾 SQL 注释）
     if (error.code === '42501') {
-      console.error('[cloud] ⚠️ RLS 策略拦截！请在 Supabase SQL Editor 执行修复 SQL：
-' +
-        'DROP POLICY IF EXISTS "allow all on word_progress" ON word_progress;
-' +
-        'CREATE POLICY "anon_all" ON word_progress FOR ALL TO anon USING (true) WITH CHECK (true);');
+      console.error('[cloud] ⚠️ RLS 拦截！请在 Supabase SQL Editor 执行文件末尾的修复 SQL');
     }
-    // 42P10 = 唯一约束缺失，降级为 delete+insert
     if (error.code === '42P10') return await _cloudDeleteInsert(payload, student, level);
-
     enqueueOffline(student, level, safeMastered, safeWrong);
     return false;
   } catch(e) {
@@ -1021,10 +1011,8 @@ async function cloudLoadProgress(student, level) {
       .maybeSingle();
 
     if (error) {
-      console.error(`[cloud] ❌ loadProgress 失败`, { code: error.code, message: error.message });
-      if (error.code === '42501') {
-        console.error('[cloud] ⚠️ RLS 策略拦截读取！请检查 word_progress 表的 SELECT 策略。');
-      }
+      console.error(`[cloud] ❌ loadProgress 失败 code=${error.code}:`, error.message);
+      if (error.code === '42501') console.error('[cloud] ⚠️ RLS 拦截读取！请检查 word_progress SELECT 策略');
       return false;
     }
     if (!data)  { console.log(`[cloud] 云端暂无数据 student="${student}" level="${level}"`); return false; }
@@ -2091,23 +2079,25 @@ CREATE TABLE IF NOT EXISTS word_progress (
 -- 2. 开启 RLS
 ALTER TABLE word_progress ENABLE ROW LEVEL SECURITY;
 
--- 3. RLS 策略修复（关键！）
+-- 3. RLS 策略（跨设备同步修复关键步骤）
 -- 本项目使用自定义 app_users 表认证，不走 Supabase Auth，
--- 因此 auth.uid() 永远为 null，必须用 TO anon 角色 + USING(true) 放行。
--- ⚠️ 如果之前建过基于 auth.uid() 的旧策略，必须先 DROP 再重建：
-DROP POLICY IF EXISTS "allow all on word_progress"        ON word_progress;
-DROP POLICY IF EXISTS "select own rows"                   ON word_progress;
-DROP POLICY IF EXISTS "insert own rows"                   ON word_progress;
-DROP POLICY IF EXISTS "update own rows"                   ON word_progress;
-DROP POLICY IF EXISTS "delete own rows"                   ON word_progress;
-
--- 新策略：对 anon 角色完全放行（应用层通过 user_id 字段过滤数据隔离）
+-- auth.uid() 永远为 null，旧策略 USING(auth.uid()=user_id) 会导致 42501 拒绝所有读写。
+-- 必须先删除旧策略，再建基于 anon 角色的新策略：
+--
+-- 第一步：删旧策略（在 Supabase SQL Editor 执行）
+DROP POLICY IF EXISTS "allow all on word_progress" ON word_progress;
+DROP POLICY IF EXISTS "select own rows"            ON word_progress;
+DROP POLICY IF EXISTS "insert own rows"            ON word_progress;
+DROP POLICY IF EXISTS "update own rows"            ON word_progress;
+DROP POLICY IF EXISTS "delete own rows"            ON word_progress;
+--
+-- 第二步：建新策略（anon 角色全放行，数据隔离由应用层 user_id 过滤保证）
 CREATE POLICY "anon_select" ON word_progress FOR SELECT TO anon USING (true);
 CREATE POLICY "anon_insert" ON word_progress FOR INSERT TO anon WITH CHECK (true);
 CREATE POLICY "anon_update" ON word_progress FOR UPDATE TO anon USING (true) WITH CHECK (true);
 CREATE POLICY "anon_delete" ON word_progress FOR DELETE TO anon USING (true);
-
--- 验证策略是否生效（执行后应看到4条新策略）：
+--
+-- 验证（应看到4条新策略）：
 -- SELECT policyname, cmd, roles FROM pg_policies WHERE tablename = 'word_progress';
 */
 
