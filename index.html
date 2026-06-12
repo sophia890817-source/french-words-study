@@ -1769,7 +1769,9 @@ if (typeof currentBank !== "undefined" && currentBank) {
     totalLevelWords = currentBank.length;
 }
 let learnedNum = 0;
-if(mastered) learnedNum = mastered.length;
+if (typeof mastered !== "undefined" && Array.isArray(mastered)) {
+    learnedNum = mastered.length;
+}
 const remain = Math.max(0, totalLevelWords - learnedNum); // 剩余数
 
   const el = (id) => document.getElementById(id);
