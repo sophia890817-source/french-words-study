@@ -1768,19 +1768,8 @@ function updateHeader(){
   const total   = sessionQueue.length;           // 今日待背总数
   const correct = sessionCorrect;                // 本轮答对数
   const wrong   = wrongSet.length;              // 错词数
-  //const remain  = Math.max(0, total - sessionPos); // 剩余数
-let totalLevelWords = 0;
-if (typeof currentBank !== "undefined" && currentBank) {
-    totalLevelWords = currentBank.length;
-}
-let learnedNum = 0;
-if (typeof mastered !== "undefined" && Array.isArray(mastered)) {
-    learnedNum = mastered.length;
-}
-console.log('等级总单词数：', totalLevelWords);
-console.log('已掌握单词数：', learnedNum);
-console.log('计算后剩余：', totalLevelWords - learnedNum);
-const remain = Math.max(0, totalLevelWords - learnedNum); // 剩余数
+  // 本级剩余 = 本级词库总词数 - 已掌握词数（mastered 是 Set，用 .size）
+  const remain = Math.max(0, (banks[currentLevel]||[]).length - mastered.size);
 
   const el = (id) => document.getElementById(id);
   if(el('statTotal2'))   el('statTotal2').textContent  = total;
