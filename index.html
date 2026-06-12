@@ -943,7 +943,7 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
     level:        String(level),
     mastered:     safeMastered,
     wrong:        safeWrong,
-    updated_at:   new Date().toISOString(),
+    //updated_at:   new Date().toISOString(),
   };
 
   console.log(`[cloud] ▶ 上传 student="${student}" level="${level}" mastered=${safeMastered.length} wrong=${safeWrong.length}`);
