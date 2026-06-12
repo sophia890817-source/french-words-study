@@ -410,19 +410,21 @@ body::before{content:'';position:fixed;inset:0;
         </div>
         <input class="num-input" id="dailyCountInput" type="number" min="5" max="200" value="30"/>
       </div>
+      <!-- 换人：退出当前账号，清空本地缓存，跳转登录注册界面 -->
       <div class="setting-row">
         <div>
-          <div class="setting-label">Élève actuel</div>
-          <div class="setting-sub" id="settingStudentName"></div>
+          <div class="setting-label">🔄 切换账号</div>
+          <div class="setting-sub" id="settingStudentName">退出后可登录其他账号</div>
         </div>
-        <button class="btn btn-gray btn-sm" onclick="closeSettings();switchStudent()">Changer</button>
+        <button class="btn btn-gray btn-sm" onclick="switchAccount()">换人</button>
       </div>
+      <!-- 重置级别：直接跳转到等级选择界面 -->
       <div class="setting-row">
         <div>
-          <div class="setting-label">Réinitialiser le niveau</div>
-          <div class="setting-sub">Efface les mots maîtrisés pour recommencer</div>
+          <div class="setting-label">🎯 重置学习级别</div>
+          <div class="setting-sub">返回等级选择页，切换学习等级</div>
         </div>
-        <button class="btn btn-red btn-sm" onclick="resetProgress()">Reset</button>
+        <button class="btn btn-red btn-sm" onclick="resetLevel()">重置</button>
       </div>
     </div>
     <div class="modal-footer">
@@ -1766,10 +1768,19 @@ function updateHeader(){
   const total   = sessionQueue.length;           // 今日待背总数
   const correct = sessionCorrect;                // 本轮答对数
   const wrong   = wrongSet.length;              // 错词数
-  // 本级剩余 = 本级总单词数 - 已掌握单词数（mastered 是 Set）
-  const totalLevelWords = (banks[currentLevel] || []).length;
-  const learnedNum      = (mastered instanceof Set) ? mastered.size : 0;
-  const remain          = Math.max(0, totalLevelWords - learnedNum);
+  //const remain  = Math.max(0, total - sessionPos); // 剩余数
+let totalLevelWords = 0;
+if (typeof currentBank !== "undefined" && currentBank) {
+    totalLevelWords = currentBank.length;
+}
+let learnedNum = 0;
+if (typeof mastered !== "undefined" && Array.isArray(mastered)) {
+    learnedNum = mastered.length;
+}
+console.log('等级总单词数：', totalLevelWords);
+console.log('已掌握单词数：', learnedNum);
+console.log('计算后剩余：', totalLevelWords - learnedNum);
+const remain = Math.max(0, totalLevelWords - learnedNum); // 剩余数
 
   const el = (id) => document.getElementById(id);
   if(el('statTotal2'))   el('statTotal2').textContent  = total;
@@ -1808,7 +1819,9 @@ function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
 // ═══════════════════════════════════════════════════
 function openSettings(){
   document.getElementById('dailyCountInput').value=dailyCount;
-  document.getElementById('settingStudentName').textContent=currentStudent||'—';
+  // 显示当前登录账号名
+  const el=document.getElementById('settingStudentName');
+  if(el) el.textContent=authUser?`当前账号：${authUser.username}`:'未登录';
   document.getElementById('settingsOverlay').classList.remove('hidden');
 }
 function closeSettings(){document.getElementById('settingsOverlay').classList.add('hidden');}
@@ -1823,6 +1836,54 @@ function resetProgress(){
   if(!confirm('Réinitialiser la progression de ce niveau ?'))return;
   mastered.clear();wrongSet=[];saveProgress();
   closeSettings();showToast('✅ Progression réinitialisée');
+}
+
+// 换人：退出当前账号，清空本地全部用户缓存，直接跳转登录注册界面
+async function switchAccount(){
+  closeSettings();
+  // 停止互斥登录订阅
+  if(typeof _kickChannel!=='undefined'&&_kickChannel&&_supabase){
+    try{_supabase.removeChannel(_kickChannel);}catch(e){} _kickChannel=null;
+  }
+  // 清空所有学生的本地进度缓存
+  const students=lsGet(SK.students(),[]);
+  students.forEach(s=>{
+    LEVELS.forEach(l=>{
+      localStorage.removeItem(SK.mastered(s,l.id));
+      localStorage.removeItem(SK.wrong(s,l.id));
+    });
+  });
+  localStorage.removeItem(SK.students());
+  localStorage.removeItem(SK.banks());
+  localStorage.removeItem(OFFLINE_QUEUE_KEY);
+  // 清除登录持久化信息
+  if(authUser){
+    localStorage.removeItem(_sessionTokenKey(authUser.id));
+  }
+  localStorage.removeItem('mm_auth_uid');
+  localStorage.removeItem('mm_auth_username');
+  // 重置内存状态
+  authUser=null;
+  if(typeof _sessionToken!=='undefined') _sessionToken=null;
+  currentStudent=null;
+  currentLevel=null;
+  // 直接弹出登录注册界面（无需刷新页面，即时响应）
+  updateAuthUI();
+  hideAllCards();
+  openAuthModal('login');
+}
+
+// 重置级别：关闭设置弹窗，直接跳转到等级选择界面
+function resetLevel(){
+  closeSettings();
+  currentLevel=null;
+  clearAll();
+  // 直接显示等级选择界面
+  if(currentStudent){
+    showLevelSelect();
+  } else {
+    showWelcome();
+  }
 }
 
 // ═══════════════════════════════════════════════════
