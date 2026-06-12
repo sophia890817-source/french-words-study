@@ -1463,6 +1463,7 @@ async function startLevel(levelId){
     } catch(e) {
       console.warn('[cloud] startLevel 拉取失败，使用本地数据:', e.message);
     }
+updateHeader();
   }
 
   // 加载本地进度（已被云端数据覆盖，或纯本地模式）
