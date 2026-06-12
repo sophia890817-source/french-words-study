@@ -297,46 +297,62 @@ body::before{content:'';position:fixed;inset:0;
 <div class="deco">🦋</div>
 <div class="deco">🌈</div>
 
-<!-- HEADER -->
+<!-- HEADER：顶部固定展示用户名 + 学习数据 -->
 <div class="header" id="mainHeader">
+  <!-- 第一行：功能按钮 + 标题 -->
   <div class="header-top">
     <button class="hbtn" onclick="openSettings()">⚙️</button>
     <div class="header-title">🌟 Mots Magiques</div>
     <button class="hbtn" onclick="openEditor()">📝 Lexique</button>
   </div>
-  <!-- 账号栏：仅显示用户名标签，无退出按钮、无同步按钮 -->
-  <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:7px;flex-wrap:wrap;">
-    <span id="authUserLabel" style="display:none;font-size:11px;font-weight:700;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:10px;padding:3px 9px;"></span>
-    <!-- 已登录后登录按钮自动隐藏，用户名标签显示 -->
-    <button id="authLoginBtn" class="hbtn" style="font-size:11px;padding:4px 11px;min-height:28px;" onclick="openAuthModal('login')">🔑 登录 / 注册</button>
+
+  <!-- 第二行：当前登录用户名（固定展示，已登录才显示） -->
+  <div id="userNameBar" style="display:none;text-align:center;margin-top:6px;">
+    <span id="authUserLabel"
+      style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;
+             color:rgba(255,255,255,0.95);background:rgba(255,255,255,0.18);
+             border-radius:20px;padding:4px 14px;letter-spacing:0.5px;">
+      👤 <span id="authUserName">—</span>
+    </span>
   </div>
-  <div class="stats-row">
-    <div class="stat-badge">📚 <span id="statProgress">0/0</span></div>
-    <div class="stat-badge">❌ <span id="statWrong">0</span></div>
-    <div class="stat-badge">✅ <span id="statMastered">0</span></div>
-    <div class="stat-badge">📖 <span id="statTotal">0</span></div>
+
+  <!-- 第三行：学习数据统计（仅学习中显示） -->
+  <!-- 今日待背 / 答对 / 答错 / 剩余 -->
+  <div class="stats-row" id="statsRow" style="display:none;">
+    <div class="stat-badge" title="今日待背单词总数">📚 <span id="statTotal2">0</span> 待背</div>
+    <div class="stat-badge" title="本轮答对数">✅ <span id="statCorrect">0</span> 答对</div>
+    <div class="stat-badge" title="当前错误单词数">❌ <span id="statWrong">0</span> 答错</div>
+    <div class="stat-badge" title="剩余未完成单词数">⏳ <span id="statRemain">0</span> 剩余</div>
   </div>
-  <div class="student-tag" id="studentTag"></div>
-  <div class="mode-tag" id="modeTag"></div>
+
+  <!-- 第四行：当前等级标签 -->
+  <div class="mode-tag" id="modeTag" style="display:none;"></div>
+
+  <!-- 进度条（学习中显示） -->
+  <div id="headerProgressWrap" style="display:none;margin-top:6px;">
+    <div style="width:100%;background:rgba(255,255,255,0.25);border-radius:20px;height:5px;overflow:hidden;">
+      <div id="headerProgressFill" style="height:100%;background:rgba(255,255,255,0.9);border-radius:20px;transition:width 0.5s ease;width:0%;"></div>
+    </div>
+  </div>
+
+  <!-- 未登录时显示的登录按钮（隐藏状态，通过 updateAuthUI 控制） -->
+  <button id="authLoginBtn" class="hbtn hidden"
+    style="font-size:11px;padding:4px 11px;min-height:28px;margin-top:6px;"
+    onclick="openAuthModal('login')">🔑 登录 / 注册</button>
+
+  <!-- 兼容旧代码引用（隐藏元素，不显示） -->
+  <span id="studentTag" style="display:none;"></span>
+  <div id="statProgress" style="display:none;"></div>
+  <div id="statMastered" style="display:none;"></div>
+  <div id="statTotal" style="display:none;"></div>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN：登录后直接显示等级选择，无欢迎页 -->
 <div class="main" id="mainArea" style="display:flex">
-  <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
-  </div>
-
-  <!-- WELCOME：已改为纯登录态检测，登录前不显示任何学习内容 -->
-  <!-- 此卡片在登录后自动进入等级选择，不再有姓名输入 -->
-  <div class="welcome-card hidden" id="welcomeCard">
-    <div style="font-size:52px">🌟</div>
-    <div class="welcome-title">Mots Magiques</div>
-    <div class="welcome-sub" id="welcomeSub">请先登录账号开始学习</div>
-    <button class="btn btn-primary btn-full" onclick="openAuthModal('login')"
-      style="font-size:18px;padding:15px;min-height:52px;" id="welcomeLoginBtn">
-      🔑 登录 / 注册
-    </button>
-  </div>
+  <!-- progressFill 已移至 header，此处保留兼容引用（不显示） -->
+  <div style="display:none"><div id="progressFill"></div></div>
+  <!-- welcomeCard 保留空节点，兼容 hideAllCards() 引用 -->
+  <div id="welcomeCard" style="display:none;"></div>
 
   <!-- LEVEL SELECT -->
   <div class="card hidden" id="levelCard">
@@ -345,7 +361,7 @@ body::before{content:'';position:fixed;inset:0;
       <div style="font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:var(--text-dark);margin-top:3px;">
         Choisir un niveau
       </div>
-      <div style="font-size:12px;color:var(--text-mid);margin-top:3px;font-weight:600;" id="levelStudentHint"></div>
+      <div style="font-size:13px;color:var(--text-mid);margin-top:3px;font-weight:700;" id="levelStudentHint"></div>
     </div>
     <div class="level-grid" id="levelGrid"></div>
     <!-- 账号即学生，已移除"切换学生"按钮 -->
@@ -743,15 +759,11 @@ async function _onLoginSuccess(action) {
   // 互斥登录：广播新登录事件，踢出其他设备
   _registerDeviceSession(authUser.id);
 
-  // 拉取全部等级云端进度（以云端为准）
-  if (currentStudent) {
-    await pullAllFromCloud(currentStudent);
-  }
-  // 上传离线积压数据
+  // 上传离线积压数据（断网期间积累的数据）
   await flushOfflineQueue();
 
-  // 登录后：直接跳转到学习页面（使用 username 作为 student name）
-  _enterAsStudent(authUser.username);
+  // 以账号用户名进入学习（内部会拉取云端进度 + 显示等级选择）
+  await _enterAsStudent(authUser.username);
 }
 
 // 【Bug修复1关键函数】清空本地所有等级的进度缓存（仅清进度，不清词库）
@@ -773,15 +785,22 @@ function _clearLocalProgressCache() {
   console.log('[sync] ✅ 本地旧进度缓存已清空，将以云端数据为准');
 }
 
-// 登录后以账号用户名为 student 进入学习
-function _enterAsStudent(username) {
-  // 将用户名加入 students 列表（如果不存在）
+// 登录成功后以账号用户名作为 student 进入学习
+// 登录/刷新恢复会话时调用，负责：记录 student、拉云端进度、显示等级选择
+async function _enterAsStudent(username) {
+  // 将用户名加入 students 列表（如不存在则追加）
   const students = lsGet(SK.students(), []);
   if (!students.includes(username)) {
     students.push(username);
     lsSet(SK.students(), students);
   }
-  selectStudent(username);
+  currentStudent = username;
+  // 拉取云端全部等级进度（_clearLocalProgressCache 已在 _onLoginSuccess 中调用）
+  if (authUser && _supabase) {
+    await pullAllFromCloud(username);
+  }
+  // 进入等级选择界面
+  showLevelSelect();
 }
 
 // ── 互斥登录实现 ─────────────────────────────────────────────
@@ -904,17 +923,20 @@ async function initAuth() {
 }
 
 // 更新 Header 账号栏 UI
+// 已登录：显示用户名栏，隐藏登录按钮
+// 未登录：隐藏用户名栏，显示登录按钮
 function updateAuthUI() {
-  const loginBtn  = document.getElementById('authLoginBtn');
-  const userLabel = document.getElementById('authUserLabel');
+  const loginBtn   = document.getElementById('authLoginBtn');
+  const userNameBar = document.getElementById('userNameBar');
+  const userNameEl  = document.getElementById('authUserName');
   if (!loginBtn) return;
   if (authUser) {
-    loginBtn.style.display  = 'none';
-    userLabel.style.display = 'inline';
-    userLabel.textContent   = `👤 ${authUser.username}`;
+    loginBtn.classList.add('hidden');
+    userNameBar.style.display = 'block';
+    if (userNameEl) userNameEl.textContent = authUser.username;
   } else {
-    loginBtn.style.display  = 'inline-flex';
-    userLabel.style.display = 'none';
+    loginBtn.classList.remove('hidden');
+    userNameBar.style.display = 'none';
   }
 }
 
@@ -1214,46 +1236,27 @@ function loadVoices(){
 // ═══════════════════════════════════════════════════
 // WELCOME
 // ═══════════════════════════════════════════════════
-// showWelcome：仅在异常情况回退使用（正常流程由 initAuth 控制）
+// showWelcome：回退函数（正常流程由 initAuth 控制，此处兜底）
 function showWelcome(){
   hideAllCards();
   if (!authUser) {
-    // 未登录：弹出登录弹窗
-    openAuthModal('login');
+    openAuthModal('login');  // 未登录：弹出登录弹窗
     return;
   }
-  // 已登录但无当前学生：直接以账号用户名进入
-  _enterAsStudent(authUser.username);
+  _enterAsStudent(authUser.username); // 已登录：直接以账号用户名进入等级选择
 }
 
-function renderStudentList(){
-  const students=lsGet(SK.students(),[]);
-  const cont=document.getElementById('existingStudents');
-  if(!students.length){cont.style.display='none';return;}
-  cont.style.display='flex';
-  cont.innerHTML='<div style="font-size:12px;font-weight:700;color:var(--text-mid);text-align:left;">Ou choisir un élève existant :</div>';
-  students.forEach(name=>{
-    const d=document.createElement('div');
-    d.className='student-item';
-    d.innerHTML=`<span class="si-name">👤 ${escH(name)}</span>
-      <button class="si-del" onclick="deleteStudent('${escH(name)}',event)">🗑</button>`;
-    d.onclick=e=>{if(e.target.classList.contains('si-del'))return;selectStudent(name);};
-    cont.appendChild(d);
-  });
-}
+// renderStudentList：首页改版后不再使用，保留空函数避免报错
+function renderStudentList(){ /* 已弃用：账号即学生，无需选择学生 */ }
 
 // confirmName 已弃用（首页改版，姓名输入已删除）
 function confirmName(){ if(authUser)_enterAsStudent(authUser.username); }
 
+// selectStudent：设置当前学生，进入等级选择
+// 注意：登录流程中进度已由 _enterAsStudent 拉取，此处不重复请求
 function selectStudent(name){
-  currentStudent=name;
-  document.getElementById('nameInput').value='';
-  // 【规则1/5】已登录时选定学生，立即拉取该学生全部等级的云端进度
-  if (authUser && _supabase) {
-    pullAllFromCloud(name).then(() => showLevelSelect());
-  } else {
-    showLevelSelect();
-  }
+  currentStudent = name;
+  showLevelSelect();
 }
 
 function deleteStudent(name,e){
@@ -1273,7 +1276,7 @@ function deleteStudent(name,e){
         else console.log(`[cloud] 已删除学生 "${name}" 的云端数据`);
       });
   }
-  renderStudentList();
+  // renderStudentList 已简化，此处只提示
   showToast(`Données de ${name} supprimées`);
 }
 
@@ -1283,11 +1286,22 @@ function switchStudent(){clearAll();currentLevel=null;if(currentStudent)showLeve
 // ═══════════════════════════════════════════════════
 // LEVEL SELECT
 // ═══════════════════════════════════════════════════
+// showLevelSelect：显示等级选择卡片，隐藏统计栏
 function showLevelSelect(){
   hideAllCards();
   document.getElementById('levelCard').classList.remove('hidden');
-  document.getElementById('levelStudentHint').textContent=`👤 ${currentStudent} — choisis ton niveau`;
-  document.getElementById('studentTag').textContent=`👤 ${currentStudent}`;
+  // 等级选择提示：显示欢迎+用户名
+  const hint = document.getElementById('levelStudentHint');
+  if(hint) hint.textContent = authUser ? `👤 ${authUser.username}，选择今天的学习等级` : '选择学习等级';
+
+  // 等级选择页：隐藏统计行和进度条（还未开始学习）
+  const statsRow     = document.getElementById('statsRow');
+  const modeTag      = document.getElementById('modeTag');
+  const progressWrap = document.getElementById('headerProgressWrap');
+  if(statsRow)     statsRow.style.display     = 'none';
+  if(modeTag)      modeTag.style.display      = 'none';
+  if(progressWrap) progressWrap.style.display = 'none';
+
   renderLevelGrid();
 }
 
@@ -1584,27 +1598,65 @@ function endSession(){
   updateHeader();
 }
 
-function goToLevelSelect(){clearAll();showLevelSelect();}
+// 返回等级选择：隐藏学习统计栏，回到等级列表
+function goToLevelSelect(){
+  clearAll();
+  currentLevel = null;
+  showLevelSelect();
+}
 
 // ═══════════════════════════════════════════════════
 // UI HELPERS
 // ═══════════════════════════════════════════════════
 function hideAllCards(){
-  ['welcomeCard','levelCard','wordCard','doneCard'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  ['welcomeCard','levelCard','wordCard','doneCard'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) { el.classList.add('hidden'); el.style.display=''; }
+  });
 }
 
+// updateHeader：更新顶部统计数据
+// 今日待背 = sessionQueue.length（本轮总数）
+// 答对     = sessionCorrect（本轮答对计数）
+// 答错     = wrongSet.length（当前错词数）
+// 剩余     = sessionQueue.length - sessionPos（未完成数）
 function updateHeader(){
-  if(!currentLevel)return;
-  const bank=banks[currentLevel]||[];
-  const lvl=LEVELS.find(l=>l.id===currentLevel);
-  document.getElementById('statProgress').textContent=`${sessionPos}/${sessionQueue.length}`;
-  document.getElementById('statWrong').textContent=wrongSet.length;
-  document.getElementById('statMastered').textContent=mastered.size;
-  document.getElementById('statTotal').textContent=bank.length;
-  document.getElementById('studentTag').textContent=`👤 ${currentStudent}`;
-  document.getElementById('modeTag').textContent=lvl?`📚 ${lvl.label}`:'';
-  const pct=sessionQueue.length>0?(sessionPos/sessionQueue.length)*100:0;
-  document.getElementById('progressFill').style.width=pct+'%';
+  if(!currentLevel) return;
+  const lvl = LEVELS.find(l=>l.id===currentLevel);
+
+  // 更新统计数据
+  const total   = sessionQueue.length;           // 今日待背总数
+  const correct = sessionCorrect;                // 本轮答对数
+  const wrong   = wrongSet.length;              // 错词数
+  const remain  = Math.max(0, total - sessionPos); // 剩余数
+
+  const el = (id) => document.getElementById(id);
+  if(el('statTotal2'))   el('statTotal2').textContent  = total;
+  if(el('statCorrect'))  el('statCorrect').textContent  = correct;
+  if(el('statWrong'))    el('statWrong').textContent    = wrong;
+  if(el('statRemain'))   el('statRemain').textContent   = remain;
+
+  // 显示统计栏和等级标签
+  const statsRow = el('statsRow');
+  const modeTag  = el('modeTag');
+  const progressWrap = el('headerProgressWrap');
+  if(statsRow)   { statsRow.style.display = 'flex'; }
+  if(modeTag)    { modeTag.style.display = 'block'; modeTag.textContent = lvl ? `📚 ${lvl.label}` : ''; }
+
+  // 更新顶部进度条
+  const pct = total > 0 ? (sessionPos / total) * 100 : 0;
+  if(el('headerProgressFill')) el('headerProgressFill').style.width = pct + '%';
+  if(progressWrap) progressWrap.style.display = 'block';
+
+  // 兼容：保持旧的进度条不报错
+  const oldFill = el('progressFill');
+  if(oldFill) oldFill.style.width = pct + '%';
+
+  // 兼容旧引用
+  if(el('studentTag')) el('studentTag').textContent = currentStudent ? `👤 ${currentStudent}` : '';
+  if(el('statProgress')) el('statProgress').textContent = `${sessionPos}/${total}`;
+  if(el('statMastered')) el('statMastered').textContent = mastered.size;
+  if(el('statTotal'))    el('statTotal').textContent    = (banks[currentLevel]||[]).length;
 }
 
 function clearAll(){clearTimeout(showTimer);clearInterval(cdInterval);synth.cancel();}
