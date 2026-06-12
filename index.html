@@ -1710,7 +1710,15 @@ function checkSpell(idx){
       </div>`;
   }
   updateHeader();
+  //setTimeout(()=>{sessionPos++;showWordDisplay(sessionPos);},2200);
+// 区分对错设置不同延时：错误多加 1 秒
+if (ok) {
+  // 拼写正确：保持原 2200ms
   setTimeout(()=>{sessionPos++;showWordDisplay(sessionPos);},2200);
+} else {
+  // 拼写错误：+1秒 = 3200ms
+  setTimeout(()=>{sessionPos++;showWordDisplay(sessionPos);},3200);
+}
 }
 
 // ═══════════════════════════════════════════════════
