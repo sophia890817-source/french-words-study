@@ -1755,8 +1755,10 @@ function hideAllCards(){
 // 答错     = wrongSet.length（当前错词数）
 // 剩余     = sessionQueue.length - sessionPos（未完成数）
 function updateHeader(){
-  if(!currentLevel) return;
+  //if(!currentLevel) return;
+  if(!currentLevel || typeof currentBank === "undefined") return;
   const lvl = LEVELS.find(l=>l.id===currentLevel);
+
 
   // 更新统计数据
   const total   = sessionQueue.length;           // 今日待背总数
