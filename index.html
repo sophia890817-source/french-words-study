@@ -379,42 +379,38 @@ body::before{content:'';position:fixed;inset:0;
 </div>
 
 <!-- ══ SETTINGS MODAL ══ -->
-<!-- [改动I] 设置弹窗：完善三项功能（每日单词量/切换账号/重置级别） -->
 <div class="modal-overlay hidden" id="settingsOverlay" onclick="if(event.target===this)closeSettings()">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">⚙️ 设置</div>
+      <div class="modal-title">⚙️ Paramètres</div>
       <button class="modal-close" onclick="closeSettings()">✕</button>
     </div>
     <div class="modal-body">
-      <!-- 功能1：每日单词量，保存时写入账号专属 key -->
       <div class="setting-row">
         <div>
-          <div class="setting-label">📚 每日单词量</div>
-          <div class="setting-sub">错词 + 新词，不足时补复习词</div>
+          <div class="setting-label">Mots par session</div>
+          <div class="setting-sub">Erreurs + nouveaux mots (complété par révision si besoin)</div>
         </div>
         <input class="num-input" id="dailyCountInput" type="number" min="5" max="200" value="30"/>
       </div>
-      <!-- 功能2：切换账号，清空本地缓存，跳转登录页 -->
       <div class="setting-row">
         <div>
-          <div class="setting-label">🔄 切换账号</div>
-          <div class="setting-sub" id="settingStudentName">退出后可登录其他账号</div>
+          <div class="setting-label">Élève actuel</div>
+          <div class="setting-sub" id="settingStudentName"></div>
         </div>
-        <button class="btn btn-gray btn-sm" onclick="switchAccount()">换人</button>
+        <button class="btn btn-gray btn-sm" onclick="closeSettings();switchStudent()">Changer</button>
       </div>
-      <!-- 功能3：重置学习级别，返回等级选择页 -->
       <div class="setting-row">
         <div>
-          <div class="setting-label">🎯 重置学习级别</div>
-          <div class="setting-sub">返回等级选择页，切换学习等级</div>
+          <div class="setting-label">Réinitialiser le niveau</div>
+          <div class="setting-sub">Efface les mots maîtrisés pour recommencer</div>
         </div>
-        <button class="btn btn-red btn-sm" onclick="resetLevel()">重置级别</button>
+        <button class="btn btn-red btn-sm" onclick="resetProgress()">Reset</button>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-gray" onclick="closeSettings()">取消</button>
-      <button class="btn btn-primary" style="flex:1" onclick="saveSettings()">✅ 保存</button>
+      <button class="btn btn-gray" onclick="closeSettings()">Annuler</button>
+      <button class="btn btn-primary" style="flex:1" onclick="saveSettings()">✅ Enregistrer</button>
     </div>
   </div>
 </div>
@@ -754,8 +750,8 @@ async function _onLoginSuccess(action) {
   // 上传离线积压数据
   await flushOfflineQueue();
 
-  // [改动D] 登录后进入学习；resumeLastLevel=true 让老用户直接进入上次等级
-  await _enterAsStudent(authUser.username, true);
+  // 登录后：直接跳转到学习页面（使用 username 作为 student name）
+  _enterAsStudent(authUser.username);
 }
 
 // 【Bug修复1关键函数】清空本地所有等级的进度缓存（仅清进度，不清词库）
@@ -777,35 +773,15 @@ function _clearLocalProgressCache() {
   console.log('[sync] ✅ 本地旧进度缓存已清空，将以云端数据为准');
 }
 
-// [改动C] 登录后以账号用户名进入学习
-// resumeLastLevel=true：老用户读取上次选定等级直接进入，跳过等级选择页（需求2）
-async function _enterAsStudent(username, resumeLastLevel=false) {
-  const students=lsGet(SK.students(),[]);
-  if(!students.includes(username)){ students.push(username); lsSet(SK.students(),students); }
-  currentStudent=username;
-
-  // 拉取全部等级云端进度（以云端为准）
-  if(authUser&&_supabase) await pullAllFromCloud(username);
-  await flushOfflineQueue();
-
-  // 恢复该账号的每日单词量设置
-  if(authUser){
-    const saved=localStorage.getItem('mm_dailyCount_'+authUser.id);
-    if(saved!==null){ dailyCount=parseInt(saved)||30; lsSet(SK.dailyCount(),dailyCount); }
+// 登录后以账号用户名为 student 进入学习
+function _enterAsStudent(username) {
+  // 将用户名加入 students 列表（如果不存在）
+  const students = lsGet(SK.students(), []);
+  if (!students.includes(username)) {
+    students.push(username);
+    lsSet(SK.students(), students);
   }
-
-  // 老用户二次登录：读取上次等级，直接进入，跳过等级选择页
-  if(resumeLastLevel&&authUser){
-    const lastLevel=localStorage.getItem(SK.lastLevel(authUser.id));
-    if(lastLevel&&LEVELS.find(l=>l.id===lastLevel)){
-      console.log(`[nav] 老用户恢复上次等级: ${lastLevel}`);
-      startLevel(lastLevel);
-      return;
-    }
-  }
-
-  // 新用户 or 无等级记录：显示等级选择页
-  showLevelSelect();
+  selectStudent(username);
 }
 
 // ── 互斥登录实现 ─────────────────────────────────────────────
@@ -917,8 +893,8 @@ async function initAuth() {
     // 上传离线积压数据
     await flushOfflineQueue();
 
-    // [改动E] 刷新后同样尝试恢复上次等级（resumeLastLevel=true）
-    await _enterAsStudent(username, true);
+    // 直接以账号用户名进入学习（刷新后恢复到等级选择）
+    _enterAsStudent(username);
   } else {
     // 未登录：显示登录/注册弹窗（强制登录，不可关闭）
     console.log('[auth] 未登录，显示登录界面');
@@ -959,14 +935,12 @@ const LEVELS=[
 // ═══════════════════════════════════════════════════
 // STORAGE
 // ═══════════════════════════════════════════════════
-// [改动A] 新增 lastLevel 键：记录用户上次选定的等级，供二次登录时直接恢复
 const SK={
   banks:()=>'mm_banks',
   students:()=>'mm_students',
   dailyCount:()=>'mm_dailyCount',
   mastered:(s,l)=>`mm_${s}_${l}_mastered`,
   wrong:(s,l)=>`mm_${s}_${l}_wrong`,
-  lastLevel:(uid)=>`mm_lastLevel_${uid}`,  // 按账号 uid 独立存储，记录上次选定的等级 id
 };
 function lsGet(k,d=null){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
@@ -1271,13 +1245,13 @@ function renderStudentList(){
 // confirmName 已弃用（首页改版，姓名输入已删除）
 function confirmName(){ if(authUser)_enterAsStudent(authUser.username); }
 
-// [改动G] selectStudent：nameInput 安全访问（新版首页可能无该输入框）
 function selectStudent(name){
   currentStudent=name;
-  const ni=document.getElementById('nameInput');if(ni)ni.value='';
-  if(authUser&&_supabase){
-    pullAllFromCloud(name).then(()=>showLevelSelect());
-  }else{
+  document.getElementById('nameInput').value='';
+  // 【规则1/5】已登录时选定学生，立即拉取该学生全部等级的云端进度
+  if (authUser && _supabase) {
+    pullAllFromCloud(name).then(() => showLevelSelect());
+  } else {
     showLevelSelect();
   }
 }
@@ -1303,8 +1277,8 @@ function deleteStudent(name,e){
   showToast(`Données de ${name} supprimées`);
 }
 
-// [改动H] switchStudent 保留兼容，行为等同 resetLevel
-function switchStudent(){if(typeof resetLevel==='function')resetLevel();else{clearAll();currentLevel=null;if(currentStudent)showLevelSelect();else showWelcome();}}
+// switchStudent：不再允许切换学生（账号即学生），此函数保留供设置页调用但行为改为刷新等级选择
+function switchStudent(){clearAll();currentLevel=null;if(currentStudent)showLevelSelect();else showWelcome();}
 
 // ═══════════════════════════════════════════════════
 // LEVEL SELECT
@@ -1336,9 +1310,7 @@ function renderLevelGrid(){
 
 function startLevel(levelId){
   currentLevel=levelId;
-  // [改动F] 记录本次选定的等级，供下次登录/刷新时直接恢复（需求2）
-  if(authUser) localStorage.setItem(SK.lastLevel(authUser.id), levelId);
-  // 切换等级时从云端拉取该等级最新进度（跨设备实时同步）
+  // 【规则5】切换等级时从云端拉取该等级最新进度（保证跨设备实时同步）
   if (authUser && _supabase) {
     cloudLoadProgress(currentStudent, levelId).then(loaded => {
       if (loaded) console.log(`[cloud] 等级 ${levelId} 进度已从云端更新`);
@@ -1641,66 +1613,23 @@ function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
 // ═══════════════════════════════════════════════════
 // SETTINGS
 // ═══════════════════════════════════════════════════
-
 function openSettings(){
   document.getElementById('dailyCountInput').value=dailyCount;
-  // [改动B-1] 显示当前登录用户名
-  const el=document.getElementById('settingStudentName');
-  if(el) el.textContent=authUser?`当前账号：${authUser.username}`:'未登录';
+  document.getElementById('settingStudentName').textContent=currentStudent||'—';
   document.getElementById('settingsOverlay').classList.remove('hidden');
 }
-
 function closeSettings(){document.getElementById('settingsOverlay').classList.add('hidden');}
-
-// [改动B-2] 保存每日单词量，同时写入账号专属 key，换设备登录后自动恢复
 function saveSettings(){
   const v=parseInt(document.getElementById('dailyCountInput').value)||30;
   dailyCount=Math.max(5,Math.min(200,v));
   lsSet(SK.dailyCount(),dailyCount);
-  if(authUser) localStorage.setItem('mm_dailyCount_'+authUser.id, dailyCount);
-  closeSettings();
-  showToast(`✅ 每日单词量已设为 ${dailyCount} 个`);
+  closeSettings();showToast(`✅ ${dailyCount} mots par session`);
 }
-
-// [改动B-3] 切换账号：退出当前账号，清空本地全部缓存，刷新跳转登录页
-async function switchAccount(){
-  if(!confirm('退出当前账号？本地缓存将被清除，下次登录自动加载云端进度。'))return;
-  closeSettings();
-  if(_kickChannel&&_supabase){try{_supabase.removeChannel(_kickChannel);}catch(e){}_kickChannel=null;}
-  const students=lsGet(SK.students(),[]);
-  students.forEach(s=>{LEVELS.forEach(l=>{
-    localStorage.removeItem(SK.mastered(s,l.id));
-    localStorage.removeItem(SK.wrong(s,l.id));
-  });});
-  localStorage.removeItem(SK.students());
-  localStorage.removeItem(SK.banks());
-  localStorage.removeItem(OFFLINE_QUEUE_KEY);
-  if(authUser){
-    localStorage.removeItem(_sessionTokenKey(authUser.id));
-    localStorage.removeItem(SK.lastLevel(authUser.id));
-  }
-  localStorage.removeItem('mm_auth_uid');
-  localStorage.removeItem('mm_auth_username');
-  authUser=null; _sessionToken=null; currentStudent=null; currentLevel=null;
-  showToast('👋 已退出，请重新登录');
-  setTimeout(()=>location.reload(),1200);
-}
-
-// [改动B-4] 重置学习级别：清除上次等级记录，弹出等级选择页
-function resetLevel(){
-  closeSettings();
-  if(authUser) localStorage.removeItem(SK.lastLevel(authUser.id));
-  currentLevel=null;
-  clearAll();
-  if(currentStudent){ showLevelSelect(); showToast('📚 请选择新的学习级别'); }
-  else showWelcome();
-}
-
 function resetProgress(){
-  if(!currentStudent||!currentLevel){showToast('请先选择等级');return;}
-  if(!confirm('重置本等级的全部学习进度？'))return;
+  if(!currentStudent||!currentLevel){showToast('Choisissez d\'abord un élève et un niveau');return;}
+  if(!confirm('Réinitialiser la progression de ce niveau ?'))return;
   mastered.clear();wrongSet=[];saveProgress();
-  showToast('✅ 本等级进度已重置');
+  closeSettings();showToast('✅ Progression réinitialisée');
 }
 
 // ═══════════════════════════════════════════════════
