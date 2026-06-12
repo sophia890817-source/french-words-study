@@ -1755,8 +1755,7 @@ function hideAllCards(){
 // 答错     = wrongSet.length（当前错词数）
 // 剩余     = sessionQueue.length - sessionPos（未完成数）
 function updateHeader(){
-  //if(!currentLevel) return;
-  if(!currentLevel || typeof currentBank === "undefined") return;
+  if(!currentLevel) return;
   const lvl = LEVELS.find(l=>l.id===currentLevel);
 
 
@@ -1765,8 +1764,11 @@ function updateHeader(){
   const correct = sessionCorrect;                // 本轮答对数
   const wrong   = wrongSet.length;              // 错词数
   //const remain  = Math.max(0, total - sessionPos); // 剩余数
+
 let totalLevelWords = 0;
-if(currentBank) { totalLevelWords = currentBank.length; }
+if (typeof currentBank !== "undefined" && currentBank) {
+    totalLevelWords = currentBank.length;
+}
 const learnedNum = mastered.length;
 const remain = Math.max(0, totalLevelWords - learnedNum);// 剩余数
 
