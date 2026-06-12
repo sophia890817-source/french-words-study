@@ -323,7 +323,7 @@ body::before{content:'';position:fixed;inset:0;
     <div class="stat-badge" title="今日待背单词总数">📚 <span id="statTotal2">0</span> 待背</div>
     <div class="stat-badge" title="本轮答对数">✅ <span id="statCorrect">0</span> 答对</div>
     <div class="stat-badge" title="当前错误单词数">❌ <span id="statWrong">0</span> 答错</div>
-    <div class="stat-badge" title="剩余未完成单词数">⏳ <span id="statRemain">0</span> 剩余</div>
+    <div class="stat-badge" title="剩余未完成单词数">⏳ <span id="statRemain">0</span> 本级剩余</div>
   </div>
 
   <!-- 第四行：当前等级标签 -->
@@ -1762,7 +1762,10 @@ function updateHeader(){
   const total   = sessionQueue.length;           // 今日待背总数
   const correct = sessionCorrect;                // 本轮答对数
   const wrong   = wrongSet.length;              // 错词数
-  const remain  = Math.max(0, total - sessionPos); // 剩余数
+  //const remain  = Math.max(0, total - sessionPos); // 剩余数
+const totalLevelWords = currentBank.length;
+const learnedNum = mastered.length;
+const remain = Math.max(0, totalLevelWords - learnedNum);// 剩余数
 
   const el = (id) => document.getElementById(id);
   if(el('statTotal2'))   el('statTotal2').textContent  = total;
