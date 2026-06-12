@@ -1473,7 +1473,12 @@ updateHeader();
   if (!sessionQueue.length) { showDoneEmpty(); return; }
 
   showWordCard();
-  updateHeader();
+  //updateHeader();
+setTimeout(() => {
+    updateHeader();
+}, 1200);
+showWordDisplay(0);
+}
   showWordDisplay(0);
 }
 
