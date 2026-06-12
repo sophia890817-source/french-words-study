@@ -6,7 +6,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 <title>🌟 Mots Magiques</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
@@ -38,7 +37,6 @@ body::before{content:'';position:fixed;inset:0;
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes slideUp{from{transform:translateY(56px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 @keyframes starPop{0%{transform:scale(0.4);opacity:0;}60%{transform:scale(1.3);opacity:1;}100%{transform:scale(1);opacity:1;}}
-
 /* ── HEADER ── */
 .header{width:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
   padding:12px 14px 14px;position:relative;z-index:10;
@@ -46,31 +44,28 @@ body::before{content:'';position:fixed;inset:0;
 .header-top{display:flex;align-items:center;justify-content:space-between;gap:6px;}
 .header-title{font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:#fff;
   flex:1;text-align:center;letter-spacing:1px;text-shadow:0 2px 6px rgba(0,0,0,0.2);}
-.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,255,0.42);
+.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,0.42);
   border-radius:12px;color:#fff;font-size:12px;font-weight:700;padding:6px 11px;
   cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;min-height:36px;}
 .hbtn:active{background:rgba(255,255,255,0.38);}
 .stats-row{display:flex;justify-content:center;gap:6px;margin-top:9px;flex-wrap:wrap;}
-.stat-badge{background:rgba(255,255,255,0.18);border:2px solid rgba(255,255,255,0.35);
+.stat-badge{background:rgba(255,255,255,0.18);border:2px solid rgba(255,255,0.35);
   border-radius:20px;padding:4px 11px;color:#fff;font-size:11px;font-weight:700;
   display:flex;align-items:center;gap:3px;}
 .mode-tag{text-align:center;margin-top:4px;font-size:11px;color:rgba(255,255,255,0.82);font-weight:600;}
 .student-tag{text-align:center;margin-top:2px;font-size:12px;color:#fff;font-weight:700;}
-
 /* ── MAIN ── */
 .main{position:relative;z-index:5;width:100%;max-width:440px;
   padding:14px 13px 0;display:flex;flex-direction:column;align-items:center;gap:13px;}
 .progress-bar-wrap{width:100%;background:rgba(255,255,255,0.48);border-radius:20px;height:9px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--ocean));
   border-radius:20px;transition:width 0.5s cubic-bezier(0.34,1.56,0.64,1);min-width:5px;}
-
 /* ── CARD ── */
 .card{background:#fff;border-radius:24px;padding:22px 18px 18px;width:100%;
   box-shadow:0 8px 30px var(--shadow);position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;
   background:linear-gradient(90deg,var(--coral),var(--sun),var(--mint),var(--ocean));
   border-radius:24px 24px 0 0;}
-
 /* ── WORD DISPLAY ── */
 .word-area{text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px;}
 .phase-icon{font-size:30px;display:block;margin-bottom:2px;}
@@ -85,18 +80,15 @@ body::before{content:'';position:fixed;inset:0;
   font-size:13px;font-weight:600;color:#5a4a8a;line-height:1.5;text-align:center;width:100%;}
 .sent-label{font-size:10px;font-weight:700;color:#a78bfa;letter-spacing:1px;margin-bottom:2px;}
 .sent-fr{font-family:'Baloo 2',cursive;font-size:13px;color:var(--ocean);font-weight:700;}
-
 /* ── PHASE AREA ── */
 .phase-area{margin-top:13px;display:flex;flex-direction:column;align-items:center;gap:9px;min-height:96px;}
 .status-msg{text-align:center;font-size:13px;font-weight:700;color:var(--lavender);min-height:20px;}
-
 /* ── SPEAK BUTTON ── */
 .speak-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--ocean),#6d6aea);
   color:#fff;font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;border:none;
   border-radius:16px;cursor:pointer;box-shadow:0 4px 14px rgba(77,150,255,0.4);
   transition:transform 0.15s;-webkit-appearance:none;min-height:54px;}
 .speak-btn:active{transform:scale(0.96);}
-
 /* ── COUNTDOWN ── */
 .countdown-wrap{display:flex;flex-direction:column;align-items:center;gap:5px;}
 .countdown-ring{position:relative;width:66px;height:66px;}
@@ -107,7 +99,6 @@ body::before{content:'';position:fixed;inset:0;
 .countdown-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-family:'Baloo 2',cursive;font-size:23px;font-weight:800;color:var(--coral);}
 .countdown-label{font-size:11px;color:var(--text-mid);font-weight:600;}
-
 /* ── SPELL INPUT ── */
 .input-area{width:100%;display:flex;flex-direction:column;gap:9px;}
 .spell-input{width:100%;font-family:'Baloo 2',cursive;font-size:26px;font-weight:700;
@@ -120,14 +111,12 @@ body::before{content:'';position:fixed;inset:0;
   border-radius:15px;cursor:pointer;box-shadow:0 4px 13px rgba(107,203,119,0.4);
   transition:transform 0.15s;-webkit-appearance:none;min-height:54px;}
 .submit-btn:active{transform:scale(0.96);}
-
 /* ── FEEDBACK ── */
 .feedback{text-align:center;padding:13px 16px;border-radius:16px;font-size:15px;font-weight:700;
   width:100%;animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
 .feedback.correct{background:linear-gradient(135deg,#d4f5dc,#b8f0c5);color:#1a7a2e;border:2px solid #6BCB77;}
 .feedback.wrong{background:linear-gradient(135deg,#fde8e8,#ffd0d0);color:#c0392b;border:2px solid var(--coral);}
 .stars-display{font-size:28px;letter-spacing:4px;animation:starPop 0.5s ease forwards;}
-
 /* ── DONE ── */
 .done-card{background:#fff;border-radius:24px;padding:30px 20px;width:100%;text-align:center;
   box-shadow:0 8px 30px var(--shadow);display:flex;flex-direction:column;align-items:center;gap:13px;}
@@ -138,7 +127,6 @@ body::before{content:'';position:fixed;inset:0;
   font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;border:none;border-radius:15px;
   cursor:pointer;box-shadow:0 4px 13px rgba(77,150,255,0.4);min-height:50px;}
 .restart-btn:active{transform:scale(0.96);}
-
 /* ── MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(40,30,80,0.52);z-index:100;
   display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);animation:fadeIn 0.2s;}
@@ -159,7 +147,6 @@ body::before{content:'';position:fixed;inset:0;
 .modal-body{flex:1;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:11px;
   -webkit-overflow-scrolling:touch;}
 .modal-footer{padding:11px 13px;border-top:1px solid #f0f0f8;flex-shrink:0;display:flex;gap:7px;}
-
 /* ── FORM ── */
 .field-label{font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:3px;}
 .field-input{width:100%;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;
@@ -168,7 +155,6 @@ body::before{content:'';position:fixed;inset:0;
 .field-input:focus{border-color:var(--ocean);}
 .field-row{display:flex;gap:7px;align-items:flex-end;flex-wrap:wrap;}
 .field-group{display:flex;flex-direction:column;gap:0;}
-
 /* ── BUTTONS ── */
 .btn{padding:10px 16px;font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;
   border:none;border-radius:13px;cursor:pointer;-webkit-appearance:none;
@@ -181,7 +167,6 @@ body::before{content:'';position:fixed;inset:0;
 .btn-orange{background:linear-gradient(135deg,#FFB347,#e67e22);color:#fff;}
 .btn-sm{padding:7px 11px;font-size:12px;border-radius:10px;min-height:34px;}
 .btn-full{width:100%;}
-
 /* ── TABS ── */
 .tabs{display:flex;gap:5px;background:#f5f5fa;border-radius:13px;padding:3px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .tab{flex-shrink:0;padding:7px 10px;font-family:'Baloo 2',cursive;font-size:12px;font-weight:700;
@@ -190,7 +175,6 @@ body::before{content:'';position:fixed;inset:0;
 .tab.active{background:#fff;color:var(--ocean);box-shadow:0 2px 6px rgba(0,0,0,0.08);}
 /* ── EDITOR TABS BAR (fixed below modal header) ── */
 .editor-tabs-bar{padding:8px 13px 6px;background:#fff;border-bottom:2px solid #f0f0f8;flex-shrink:0;}
-
 /* ── LEVEL GRID ── */
 .level-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .level-card{background:#f7f8fc;border:2px solid #e8eaf0;border-radius:15px;padding:12px 9px;
@@ -200,7 +184,6 @@ body::before{content:'';position:fixed;inset:0;
 .lc-title{font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;}
 .lc-sub{font-size:10px;color:var(--text-mid);font-weight:600;margin-top:1px;}
 .lc-count{font-size:10px;color:var(--mint);font-weight:700;margin-top:4px;}
-
 /* ── WORD LIST ── */
 .word-list-header{display:flex;align-items:center;justify-content:space-between;}
 .word-count-badge{background:var(--lavender);color:#fff;border-radius:11px;padding:3px 9px;font-size:11px;font-weight:700;}
@@ -211,14 +194,13 @@ body::before{content:'';position:fixed;inset:0;
 .word-item-fr{font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;color:var(--ocean);}
 .word-item-gender{font-size:11px;color:#a78bfa;font-weight:700;font-style:italic;margin-left:4px;}
 .word-item-meta{font-size:11px;color:var(--text-mid);font-weight:600;margin-top:1px;}
-.word-item-sent{font-size:10px;color:#a78bfa;font-style:italic;margin-top:2px;}
+.word-item-sent{font-size:11px;color:#a78bfa;font-style:italic;margin-top:2px;}
 .word-item-actions{display:flex;gap:4px;flex-shrink:0;}
 .icon-btn{background:none;border:none;font-size:15px;cursor:pointer;padding:4px 5px;
   border-radius:7px;color:#ccc;line-height:1;min-width:30px;min-height:30px;
   display:flex;align-items:center;justify-content:center;}
 .icon-btn:active{color:var(--ocean);background:#e8f0ff;}
 .icon-btn.del:active{color:var(--coral);background:#fde8e8;}
-
 /* ── INLINE EDIT ── */
 .inline-edit{display:flex;flex-direction:column;gap:4px;width:100%;}
 .inline-input{width:100%;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;
@@ -226,7 +208,6 @@ body::before{content:'';position:fixed;inset:0;
   color:var(--text-dark);background:#fff;-webkit-appearance:none;}
 .inline-input:focus{border-color:var(--ocean);}
 .inline-actions{display:flex;gap:5px;margin-top:2px;}
-
 /* ── IMPORT ── */
 .import-box{background:#f0faf2;border:2px dashed #6BCB77;border-radius:15px;padding:12px 13px;
   display:flex;flex-direction:column;gap:8px;}
@@ -236,14 +217,12 @@ body::before{content:'';position:fixed;inset:0;
   border:2px solid #c8e6c9;border-radius:10px;outline:none;resize:vertical;
   color:var(--text-dark);background:#fff;min-height:80px;}
 .import-btns{display:flex;gap:5px;flex-wrap:wrap;}
-
 /* ── PAGINATION ── */
 .pagination{display:flex;align-items:center;justify-content:center;gap:7px;padding:3px 0;}
 .page-btn{background:#f0f0f8;border:2px solid #e0e0f0;border-radius:9px;padding:6px 11px;
   font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-mid);min-height:36px;}
 .page-btn.active{background:var(--ocean);color:#fff;border-color:var(--ocean);}
 .page-info{font-size:12px;font-weight:600;color:var(--text-mid);}
-
 /* ── SETTINGS ── */
 .setting-row{display:flex;align-items:center;justify-content:space-between;
   padding:11px 0;border-bottom:1px solid #f0f0f8;gap:10px;}
@@ -254,12 +233,10 @@ body::before{content:'';position:fixed;inset:0;
   text-align:center;padding:6px 8px;border:2px solid #e0e4f0;border-radius:11px;
   outline:none;color:var(--text-dark);background:var(--sky);-webkit-appearance:none;}
 .num-input:focus{border-color:var(--ocean);}
-
 /* ── GENDER SELECT ── */
 .gender-select{font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;
   padding:6px 8px;border:2px solid #d0d8f0;border-radius:9px;outline:none;
   color:var(--text-dark);background:#fff;-webkit-appearance:none;cursor:pointer;}
-
 /* ── WELCOME ── */
 .welcome-card{background:#fff;border-radius:24px;padding:28px 20px;width:100%;text-align:center;
   box-shadow:0 8px 30px var(--shadow);display:flex;flex-direction:column;align-items:center;gap:14px;}
@@ -276,7 +253,6 @@ body::before{content:'';position:fixed;inset:0;
 .si-name{font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;color:var(--text-dark);flex:1;}
 .si-del{background:none;border:none;font-size:15px;cursor:pointer;color:#ccc;
   padding:2px 5px;min-width:28px;min-height:28px;}
-
 /* ── TOAST ── */
 .toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);
   background:var(--text-dark);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;
@@ -284,11 +260,9 @@ body::before{content:'';position:fixed;inset:0;
   transition:opacity 0.3s,transform 0.3s;white-space:nowrap;pointer-events:none;max-width:90vw;
   text-align:center;white-space:normal;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
 /* ── GENDER BADGE ── */
 .g-badge{display:inline-block;font-size:11px;font-weight:700;font-style:italic;
   color:#a78bfa;background:#f3f0ff;border-radius:6px;padding:1px 6px;margin-left:4px;}
-
 .hidden{display:none!important;}
 </style>
 </head>
@@ -297,7 +271,6 @@ body::before{content:'';position:fixed;inset:0;
 <div class="deco">⭐</div>
 <div class="deco">🦋</div>
 <div class="deco">🌈</div>
-
 <!-- HEADER：顶部固定展示用户名 + 学习数据 -->
 <div class="header" id="mainHeader">
   <!-- 第一行：功能按钮 + 标题 -->
@@ -306,55 +279,46 @@ body::before{content:'';position:fixed;inset:0;
     <div class="header-title">🌟 Mots Magiques</div>
     <button class="hbtn" onclick="openEditor()">📝 Lexique</button>
   </div>
-
   <!-- 第二行：当前登录用户名（固定展示，已登录才显示） -->
   <div id="userNameBar" style="display:none;text-align:center;margin-top:6px;">
     <span id="authUserLabel"
       style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;
-             color:rgba(255,255,255,0.95);background:rgba(255,255,255,0.18);
+             color:rgba(255,255,255,0.95);background:rgba(255,255,0.18);
              border-radius:20px;padding:4px 14px;letter-spacing:0.5px;">
       👤 <span id="authUserName">—</span>
     </span>
   </div>
-
   <!-- 第三行：学习数据统计（仅学习中显示） -->
-  <!-- 今日待背 / 答对 / 答错 / 剩余 -->
   <div class="stats-row" id="statsRow" style="display:none;">
     <div class="stat-badge" title="今日待背单词总数">📚 <span id="statTotal2">0</span> 待背</div>
     <div class="stat-badge" title="本轮答对数">✅ <span id="statCorrect">0</span> 答对</div>
     <div class="stat-badge" title="当前错误单词数">❌ <span id="statWrong">0</span> 答错</div>
     <div class="stat-badge" title="剩余未完成单词数">⏳ <span id="statRemain">0</span> 剩余</div>
   </div>
-
   <!-- 第四行：当前等级标签 -->
   <div class="mode-tag" id="modeTag" style="display:none;"></div>
-
   <!-- 进度条（学习中显示） -->
   <div id="headerProgressWrap" style="display:none;margin-top:6px;">
     <div style="width:100%;background:rgba(255,255,255,0.25);border-radius:20px;height:5px;overflow:hidden;">
       <div id="headerProgressFill" style="height:100%;background:rgba(255,255,255,0.9);border-radius:20px;transition:width 0.5s ease;width:0%;"></div>
     </div>
   </div>
-
   <!-- 未登录时显示的登录按钮（隐藏状态，通过 updateAuthUI 控制） -->
   <button id="authLoginBtn" class="hbtn hidden"
     style="font-size:11px;padding:4px 11px;min-height:28px;margin-top:6px;"
     onclick="openAuthModal('login')">🔑 登录 / 注册</button>
-
   <!-- 兼容旧代码引用（隐藏元素，不显示） -->
   <span id="studentTag" style="display:none;"></span>
   <div id="statProgress" style="display:none;"></div>
   <div id="statMastered" style="display:none;"></div>
   <div id="statTotal" style="display:none;"></div>
 </div>
-
 <!-- MAIN：登录后直接显示等级选择，无欢迎页 -->
 <div class="main" id="mainArea" style="display:flex">
   <!-- progressFill 已移至 header，此处保留兼容引用（不显示） -->
   <div style="display:none"><div id="progressFill"></div></div>
   <!-- welcomeCard 保留空节点，兼容 hideAllCards() 引用 -->
   <div id="welcomeCard" style="display:none;"></div>
-
   <!-- LEVEL SELECT -->
   <div class="card hidden" id="levelCard">
     <div style="text-align:center;margin-bottom:13px;">
@@ -367,13 +331,12 @@ body::before{content:'';position:fixed;inset:0;
     <div class="level-grid" id="levelGrid"></div>
     <!-- 账号即学生，已移除"切换学生"按钮 -->
   </div>
-
   <!-- WORD CARD -->
   <div class="card hidden" id="wordCard">
     <div class="word-area">
       <span class="phase-icon" id="phaseIcon">📖</span>
       <div class="french-word" id="frenchWord">—</div>
-      <div class="word-gender" id="wordGender"></div>
+      <div class="wordGender" id="wordGender"></div>
       <div class="chinese-meaning" id="chineseMeaning"></div>
       <div class="english-meaning" id="englishMeaning"></div>
       <div class="sentence-display hidden" id="sentenceDisplay">
@@ -385,7 +348,6 @@ body::before{content:'';position:fixed;inset:0;
       <div class="status-msg">Prêt...</div>
     </div>
   </div>
-
   <!-- DONE -->
   <div class="done-card hidden" id="doneCard">
     <div class="done-emoji">🎉</div>
@@ -394,7 +356,6 @@ body::before{content:'';position:fixed;inset:0;
     <button class="restart-btn" onclick="goToLevelSelect()">Continuer 📚</button>
   </div>
 </div>
-
 <!-- ══ SETTINGS MODAL ══ -->
 <div class="modal-overlay hidden" id="settingsOverlay" onclick="if(event.target===this)closeSettings()">
   <div class="modal">
@@ -431,7 +392,6 @@ body::before{content:'';position:fixed;inset:0;
     </div>
   </div>
 </div>
-
 <!-- ══ EDITOR MODAL ══ -->
 <div class="modal-overlay hidden" id="editorOverlay" onclick="if(event.target===this)closeEditor()">
   <div class="modal">
@@ -443,7 +403,6 @@ body::before{content:'';position:fixed;inset:0;
       <div class="tabs" id="editorTabs"></div>
     </div>
     <div class="modal-body" id="editorBody">
-
       <!-- Add word -->
       <div class="import-box" style="border-color:var(--ocean);background:#f0f6ff;">
         <div class="ib-title" style="color:var(--ocean);">➕ Ajouter un mot</div>
@@ -472,7 +431,6 @@ body::before{content:'';position:fixed;inset:0;
           <button class="btn btn-primary btn-sm" onclick="addWord()">Ajouter</button>
         </div>
       </div>
-
       <!-- Import -->
       <div class="import-box">
         <div class="ib-title">📂 Importation par lots (niveau actuel)</div>
@@ -480,13 +438,12 @@ body::before{content:'';position:fixed;inset:0;
           Genre : n.m. / n.f. / v. / adj. / adv. — colonnes 2-5 optionnelles</div>
         <textarea id="importText" placeholder="chat,n.m.,猫,cat,Le chat dort.&#10;courir,v.,跑步,to run,J'aime courir.&#10;école,n.f.,学校,school,"></textarea>
         <div class="import-btns">
-          <button class="btn btn-green btn-sm" style="flex:1" onclick="importWords(false)">➕ Ajouter</button>
-          <button class="btn btn-red btn-sm" style="flex:1" onclick="importWords(true)">🔄 Remplacer</button>
+          <button class="btn btn-green btn-sm" onclick="importWords(false)">➕ Ajouter</button>
+          <button class="btn btn-red btn-sm" onclick="importWords(true)">🔄 Remplacer</button>
           <button class="btn btn-gray btn-sm" onclick="downloadTemplate()">📥 Modèle</button>
           <button class="btn btn-orange btn-sm" onclick="exportWords()">📤 Exporter JSON</button>
         </div>
       </div>
-
       <!-- Word list -->
       <div class="word-list-header">
         <div class="field-label" id="editorLevelLabel">Liste</div>
@@ -501,9 +458,7 @@ body::before{content:'';position:fixed;inset:0;
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
-
 <!-- ══ 账号登录/注册弹窗（用户名+密码，无需邮箱验证）══ -->
 <div class="modal-overlay hidden" id="authOverlay">
   <!-- 注意：此弹窗在未登录时禁止点击背景关闭，已登录后才可关闭 -->
@@ -516,10 +471,9 @@ body::before{content:'';position:fixed;inset:0;
     <div class="modal-body" style="gap:16px;padding:20px 18px;">
       <!-- Tab 切换：登录 / 注册 -->
       <div class="tabs" style="margin-bottom:4px;">
-        <button class="tab active" id="authTabLogin"    onclick="switchAuthTab('login')">登录</button>
-        <button class="tab"        id="authTabRegister" onclick="switchAuthTab('register')">注册</button>
+        <button class="tab active" id="authTabLogin" onclick="switchAuthTab('login')">登录</button>
+        <button class="tab" id="authTabRegister" onclick="switchAuthTab('register')">注册</button>
       </div>
-
       <!-- 用户名输入框 -->
       <div class="field-group">
         <div class="field-label">用户名</div>
@@ -528,7 +482,6 @@ body::before{content:'';position:fixed;inset:0;
           autocorrect="off" autocapitalize="off" spellcheck="false"
           onkeydown="if(event.key==='Enter')document.getElementById('authPassword').focus()"/>
       </div>
-
       <!-- 密码输入框 -->
       <div class="field-group">
         <div class="field-label">密码</div>
@@ -536,7 +489,6 @@ body::before{content:'';position:fixed;inset:0;
           placeholder="输入密码" autocomplete="current-password"
           onkeydown="if(event.key==='Enter')handleAuthSubmit()"/>
       </div>
-
       <!-- 提示信息 -->
       <div id="authMsg" style="font-size:12px;font-weight:700;min-height:18px;text-align:center;color:#c0392b;"></div>
     </div>
@@ -546,11 +498,9 @@ body::before{content:'';position:fixed;inset:0;
     </div>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 'use strict';
-
 // ═══════════════════════════════════════════════════
 // SUPABASE — 账号 + 云端进度同步
 // ═══════════════════════════════════════════════════
@@ -560,7 +510,6 @@ body::before{content:'';position:fixed;inset:0;
 // ─────────────────────────────────────────────────────────────
 const SUPABASE_URL      = "https://zmjdwdpslcumajabmney.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptamR3ZHBzbGN1bWFqYWJtbmV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwOTMsImV4cCI6MjA5NjY3NTA5M30.HB7umpS9haOuU2UH2MgqkpjZUUZar5iEI4llYVIWGhc";
-
 // Supabase JS 客户端（仅用于数据库操作，不使用 Supabase Auth）
 let _supabase = null;
 try {
@@ -571,17 +520,14 @@ try {
     });
   }
 } catch(e) { console.warn('[auth] Supabase init failed, local mode:', e); }
-
 // ── 当前登录用户（自定义用户对象，非 Supabase Auth user）────────
 // 结构：{ id: string, username: string }  |  null = 未登录
 let authUser = null;
-
 // ── SHA-256 密码哈希（Web Crypto API）─────────────────────────
 async function sha256(text) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
-
 // ── 离线队列：断网时临时缓存待上传的进度变更 ──────────────
 const OFFLINE_QUEUE_KEY = 'mm_offline_queue';
 function getOfflineQueue() {
@@ -616,7 +562,6 @@ async function flushOfflineQueue() {
     console.warn(`[offline] ⚠️ ${failed.length} 条上传失败，将在下次联网后重试`);
   }
 }
-
 // ── 网络状态监听：恢复联网时自动上传离线队列 ────────────────
 window.addEventListener('online', () => {
   console.log('[net] 网络已恢复，尝试上传离线队列…');
@@ -626,9 +571,7 @@ window.addEventListener('offline', () => {
   console.log('[net] 网络已断开，学习记录将暂存本地');
   showToast('📴 已离线，学习记录暂存本地，联网后自动同步');
 });
-
 // ── 账号 UI helpers ──────────────────────────────
-
 // 打开登录/注册弹窗
 // forceOpen=true 时不可点背景关闭（未登录强制登录场景）
 function openAuthModal(tab) {
@@ -649,12 +592,10 @@ function openAuthModal(tab) {
   document.getElementById('authMsg').textContent = '';
   setTimeout(() => document.getElementById('authUsername').focus(), 150);
 }
-
 function closeAuthModal() {
   if (!authUser) return; // 未登录时禁止关闭
   document.getElementById('authOverlay').classList.add('hidden');
 }
-
 function switchAuthTab(tab) {
   document.getElementById('authTabLogin').classList.toggle('active', tab === 'login');
   document.getElementById('authTabRegister').classList.toggle('active', tab === 'register');
@@ -662,28 +603,23 @@ function switchAuthTab(tab) {
   document.getElementById('authSubmitBtn').dataset.tab = tab;
   document.getElementById('authMsg').textContent = '';
 }
-
 // ── 核心：处理登录 / 注册提交 ─────────────────────────────
 async function handleAuthSubmit() {
   if (!_supabase) { showToast('网络连接失败，请检查网络后重试'); return; }
-  const tab      = document.getElementById('authSubmitBtn').dataset.tab;
+  const tab = document.getElementById('authSubmitBtn').dataset.tab;
   const username = document.getElementById('authUsername').value.trim();
-  const pw       = document.getElementById('authPassword').value;
-  const msg      = document.getElementById('authMsg');
-
+  const pw = document.getElementById('authPassword').value;
+  const msg = document.getElementById('authMsg');
   // 输入校验
   if (!username) { msg.textContent = '请输入用户名'; msg.style.color = '#c0392b'; return; }
-  if (!pw)       { msg.textContent = '请输入密码';   msg.style.color = '#c0392b'; return; }
+  if (!pw) { msg.textContent = '请输入密码'; msg.style.color = '#c0392b'; return; }
   if (username.length < 2) { msg.textContent = '用户名至少2个字符'; msg.style.color = '#c0392b'; return; }
-  if (pw.length < 4)       { msg.textContent = '密码至少4位';       msg.style.color = '#c0392b'; return; }
-
+  if (pw.length < 4) { msg.textContent = '密码至少4位'; msg.style.color = '#c0392b'; return; }
   msg.textContent = tab === 'login' ? '登录中…' : '注册中…';
   msg.style.color = '#5a5a8a';
-
   try {
     // 密码哈希（SHA-256，前端哈希后传输）
     const pwHash = await sha256(pw + username); // 加盐：username 作为盐
-
     if (tab === 'register') {
       // ── 注册：检查用户名是否已存在
       const { data: existing } = await _supabase
@@ -691,26 +627,21 @@ async function handleAuthSubmit() {
         .select('id')
         .eq('username', username)
         .maybeSingle();
-
       if (existing) {
         msg.textContent = '用户名已被注册，请换一个或直接登录';
         msg.style.color = '#c0392b';
         return;
       }
-
       // 插入新用户
       const { data: newUser, error: insertErr } = await _supabase
         .from('app_users')
         .insert({ username, pw_hash: pwHash })
         .select('id, username')
         .single();
-
       if (insertErr) throw insertErr;
-
       // 注册成功直接登录
       authUser = { id: newUser.id, username: newUser.username };
       _onLoginSuccess('register');
-
     } else {
       // ── 登录：验证用户名 + 密码哈希
       const { data: user, error: selErr } = await _supabase
@@ -718,7 +649,6 @@ async function handleAuthSubmit() {
         .select('id, username, pw_hash')
         .eq('username', username)
         .maybeSingle();
-
       if (selErr) throw selErr;
       if (!user) {
         msg.textContent = '用户名不存在，请先注册';
@@ -730,50 +660,40 @@ async function handleAuthSubmit() {
         msg.style.color = '#c0392b';
         return;
       }
-
       authUser = { id: user.id, username: user.username };
       _onLoginSuccess('login');
     }
-
   } catch(e) {
     console.error('[auth] handleAuthSubmit error:', e);
     msg.textContent = (e.message || '操作失败，请检查网络后重试');
     msg.style.color = '#c0392b';
   }
 }
-
 // 登录成功后的统一处理
 async function _onLoginSuccess(action) {
   // 将 userId 持久化到 localStorage（用于页面刷新后恢复登录态）
-  localStorage.setItem('mm_auth_uid',      authUser.id);
+  localStorage.setItem('mm_auth_uid', authUser.id);
   localStorage.setItem('mm_auth_username', authUser.username);
-
   closeAuthModal();
   updateAuthUI();
-
-  // 【Bug修复1】跨设备登录：先清空本地旧缓存，再拉云端最新进度
+  // 【Bug修复1】跨设备登录：先清空本地旧缓存，再拉云端最新数据
   // 防止旧设备本地进度覆盖云端最新数据
   _clearLocalProgressCache();
-
   showToast(`✅ ${action === 'login' ? '欢迎回来' : '注册成功'}，${authUser.username}！正在加载云端进度…`);
-
   // 互斥登录：广播新登录事件，踢出其他设备
   _registerDeviceSession(authUser.id);
-
-  // 上传离线积压数据（断网期间积累的数据）
+  // 上传离线积压数据
   await flushOfflineQueue();
-
-  // 以账号用户名进入学习（内部会拉取云端进度 + 显示等级选择）
+  // 以账号用户名进入学习
   await _enterAsStudent(authUser.username);
 }
-
 // 【Bug修复1关键函数】清空本地所有等级的进度缓存（仅清进度，不清词库）
 // 在登录成功后、拉取云端数据之前调用，确保云端数据不被本地旧数据污染
 function _clearLocalProgressCache() {
   console.log('[sync] 登录成功，清空本地旧进度缓存，准备加载云端最新数据…');
   // 清除所有学生所有等级的本地进度
   const students = lsGet(SK.students(), []);
-  // 同时也清当前 authUser.username 的缓存（新登录账号的本地数据可能过期）
+  // 同时也清当前账号的本地数据
   const allStudents = new Set([...students, authUser.username]);
   allStudents.forEach(s => {
     LEVELS.forEach(l => {
@@ -781,66 +701,54 @@ function _clearLocalProgressCache() {
       localStorage.removeItem(SK.wrong(s, l.id));
     });
   });
-  // 清空离线队列（旧离线数据可能属于其他账号，避免错误上传）
+  // 清空离线队列
   setOfflineQueue([]);
   console.log('[sync] ✅ 本地旧进度缓存已清空，将以云端数据为准');
 }
-
 // 登录成功后以账号用户名作为 student 进入学习
-// 登录/刷新恢复会话时调用，负责：记录 student、拉云端进度、显示等级选择
 async function _enterAsStudent(username) {
-  // 将用户名加入 students 列表（如不存在则追加）
+  // 将用户名加入 students 列表
   const students = lsGet(SK.students(), []);
   if (!students.includes(username)) {
     students.push(username);
     lsSet(SK.students(), students);
   }
   currentStudent = username;
-  // 拉取云端全部等级进度（_clearLocalProgressCache 已在 _onLoginSuccess 中调用）
+  // 拉取云端全部等级进度
   if (authUser && _supabase) {
     await pullAllFromCloud(username);
   }
   // 进入等级选择界面
   showLevelSelect();
 }
-
 // ── 互斥登录实现 ─────────────────────────────────────────────
-// 原理：每次登录，向 Supabase Realtime Broadcast Channel "auth:{uid}" 广播新 token。
-// 已在线的旧设备收到不同 token 后立即强制退出，清空本地数据，跳转登录页。
 let _sessionToken = null;
-let _kickChannel  = null;
-
+let _kickChannel = null;
 function _genToken() {
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 function _sessionTokenKey(uid) {
   return `mm_session_token:${uid}`;
 }
-
-// 登录成功后：生成新 token，广播给其他设备，订阅踢出监听
 function _registerDeviceSession(uid) {
   if (!_supabase) return;
   _sessionToken = _genToken();
   localStorage.setItem(_sessionTokenKey(uid), _sessionToken);
   console.log(`[mutex] 本设备 session token: ${_sessionToken}`);
-
-  if (_kickChannel) { try { _supabase.removeChannel(_kickChannel); } catch(e){} }
-
-  // 订阅 Realtime Broadcast Channel，监听其他设备的登录广播
+  if (_kickChannel) {
+    try { _supabase.removeChannel(_kickChannel); } catch(e){}
+  }
   _kickChannel = _supabase.channel(`auth:${uid}`, {
     config: { broadcast: { self: false } }
   });
   _kickChannel
     .on('broadcast', { event: 'new_login' }, ({ payload }) => {
-      // 【异地登录踢出】收到其他设备的登录广播且 token 不一致
       if (payload.token && payload.token !== _sessionToken) {
         console.warn('[mutex] 检测到账号在其他设备登录，本设备强制退出');
         _forceLogout();
       }
     })
     .subscribe();
-
-  // 广播"我上线了"给其他已登录设备，触发它们退出
   setTimeout(() => {
     _kickChannel.send({
       type: 'broadcast',
@@ -850,12 +758,9 @@ function _registerDeviceSession(uid) {
     console.log('[mutex] 已广播新登录事件，旧设备将被踢出');
   }, 600);
 }
-
-// 【异地登录下线】被踢出时：清空全部本地用户数据，跳转登录页
+// 异地登录下线
 async function _forceLogout() {
   showToast('⚠️ 账号已在其他设备登录，本设备已自动退出');
-
-  // 1. 清除所有学生所有等级本地进度
   const students = lsGet(SK.students(), []);
   students.forEach(s => {
     LEVELS.forEach(l => {
@@ -863,1248 +768,191 @@ async function _forceLogout() {
       localStorage.removeItem(SK.wrong(s, l.id));
     });
   });
-
-  // 2. 清除应用数据
   localStorage.removeItem(SK.students());
   localStorage.removeItem(SK.banks());
   localStorage.removeItem(OFFLINE_QUEUE_KEY);
-
-  // 3. 清除互斥登录 token
   if (authUser) {
     localStorage.removeItem(_sessionTokenKey(authUser.id));
   }
-
-  // 4. 清除登录持久化信息
-  localStorage.removeItem('mm_auth_uid');
-  localStorage.removeItem('mm_auth_username');
-
-  // 5. 清除 Realtime 订阅
-  if (_kickChannel) { try { _supabase.removeChannel(_kickChannel); } catch(e){} _kickChannel = null; }
-
-  // 6. 重置内存状态
+  if (_kickChannel) {
+    try { _supabase.removeChannel(_kickChannel); } catch(e){}
+    _kickChannel = null;
+  }
   authUser = null;
   _sessionToken = null;
   currentStudent = null;
   currentLevel = null;
-
-  // 7. 1.5s 后刷新页面，回到初始登录界面
   setTimeout(() => { location.reload(); }, 1500);
 }
-
-// ── 页面刷新后恢复登录态（从 localStorage 读取）───────────────
-// 【注意】不使用 Supabase Auth session，用自定义 localStorage 持久化
+// ── 页面刷新后恢复登录态 ────────────────
 async function initAuth() {
-  const uid      = localStorage.getItem('mm_auth_uid');
+  const uid = localStorage.getItem('mm_auth_uid');
   const username = localStorage.getItem('mm_auth_username');
-
   if (uid && username) {
-    // 恢复登录态
     authUser = { id: uid, username };
     console.log(`[auth] 会话恢复，username="${username}" uid=${uid}`);
     updateAuthUI();
-
-    // 【Bug修复1】页面刷新时：清空本地旧进度缓存，优先请求云端最新数据
-    // 防止电脑端完成学习后，手机打开时读取到旧的本地缓存数据
     _clearLocalProgressCache();
-
-    // 重新注册互斥登录监听（刷新后订阅重置）
     if (_supabase) _registerDeviceSession(uid);
-
-    // 上传离线积压数据
     await flushOfflineQueue();
-
-    // 直接以账号用户名进入学习（刷新后恢复到等级选择）
     _enterAsStudent(username);
   } else {
-    // 未登录：显示登录/注册弹窗（强制登录，不可关闭）
     console.log('[auth] 未登录，显示登录界面');
     updateAuthUI();
     openAuthModal('login');
   }
 }
-
-
 // ═══════════════════════════════════════════════════
 // CLOUD PROGRESS SYNC
 // ═══════════════════════════════════════════════════
-
 /**
- * 安全写入单条进度到云端（upsert）。
- * 联网：直接 upsert；断网/失败：加入离线队列，联网后自动重传。
+ * 云端保存学习进度（upsert）
+ * ─────────────────────────────────────────────────
+ * 表字段：user_id | student_name | level | mastered | wrong
+ * 策略：
+ *   1. 未登录 → 硬拦截，不发请求
+ *   2. 断网   → 写离线队列，联网后自动重传
+ *   3. 联网   → upsert（有唯一约束则更新，无则降级 delete+insert）
+ *   4. 全程输出详细错误日志，便于排查
  */
 async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
-  if (!_supabase || !authUser) return false;
-
-  const safeMastered = [...new Set((masteredArr || []).filter(i => typeof i === 'number'))];
-  const safeWrong    = [...new Set((wrongArr    || []).filter(i => typeof i === 'number'))];
+  // ── 未登录拦截 ──────────────────────────────────────────────────
+  if (!authUser) {
+    console.warn('[cloud] ⛔ 未登录，禁止保存进度');
+    return false;
+  }
+  if (!_supabase) {
+    console.warn('[cloud] ⛔ Supabase 客户端未初始化');
+    return false;
+  }
+  // ── 数据清洗（只保留合法数字索引）──────────────────────────────
+  const safeMastered = [...new Set((masteredArr || []).filter(i => Number.isInteger(i) && i >= 0))];
+  const safeWrong = [...new Set((wrongArr || []).filter(i => Number.isInteger(i) && i >= 0))];
+  // ── 严格匹配数据库字段（不含 updated_at，避免列不存在报错）──────
   const payload = {
-    user_id:      authUser.id,
+    user_id: String(authUser.id),
     student_name: String(student),
-    level:        String(level),
-    mastered:     safeMastered,
-    wrong:        safeWrong,
-    updated_at:   new Date().toISOString(),
+    level: String(level),
+    mastered: safeMastered,
+    wrong: safeWrong,
   };
-
-  console.log(`[cloud] ▶ 上传 student="${student}" level="${level}" mastered=${safeMastered.length} wrong=${safeWrong.length}`);
-
+  console.log(`[cloud] ▶ 保存进度 uid=${authUser.id} student="${student}" level="${level}"`,
+    `mastered=${safeMastered.length} wrong=${safeWrong.length}`);
+  // ── 断网：入离线队列 ─────────────────────────────────────────────
   if (!navigator.onLine) {
     enqueueOffline(student, level, safeMastered, safeWrong);
+    console.log('[cloud] 📴 断网，已加入离线队列');
     return false;
   }
-
+  // ── 联网：尝试 upsert ────────────────────────────────────────────
   try {
-    const { error } = await _supabase
+    const { data, error, status, statusText } = await _supabase
       .from('word_progress')
-      .upsert(payload, { onConflict: 'user_id,student_name,level' });
-
+      .upsert(payload, {
+        onConflict: 'user_id,student_name,level',
+        ignoreDuplicates: false,
+      })
+      .select();
     if (!error) {
-      console.log(`[cloud] ✅ 上传成功 student="${student}" level="${level}"`);
+      console.log(`[cloud] ✅ upsert 成功 status=${status}`, data);
       return true;
     }
-    console.error(`[cloud] ❌ upsert 失败 code=${error.code} msg="${error.message}"`);
-    // 42501 = RLS 策略拦截（最常见原因：Supabase 上旧 RLS 策略基于 auth.uid()，
-    //         本项目不用 Supabase Auth，需在控制台重建策略，详见文件末尾 SQL 注释）
+    // ── 错误详情日志 ─────────────────────────────────────────────
+    console.error('[cloud] ❌ upsert 失败', {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      status,
+      statusText,
+    });
+    // 42501：RLS 策略拦截
     if (error.code === '42501') {
-      console.error('[cloud] ⚠️ RLS 拦截！请在 Supabase SQL Editor 执行文件末尾的修复 SQL');
-    }
-    if (error.code === '42P10') return await _cloudDeleteInsert(payload, student, level);
-    enqueueOffline(student, level, safeMastered, safeWrong);
-    return false;
-  } catch(e) {
-    console.warn(`[cloud] 上传异常，加入离线队列:`, e.message);
-    enqueueOffline(student, level, safeMastered, safeWrong);
-    return false;
-  }
-}
-
-/** 降级策略：先删再插（绕过唯一约束冲突） */
-async function _cloudDeleteInsert(payload, student, level) {
-  try {
-    await _supabase.from('word_progress').delete()
-      .eq('user_id', payload.user_id).eq('student_name', student).eq('level', level);
-  } catch(e) { console.warn('[cloud] delete 步骤异常（忽略）:', e.message); }
-  try {
-    const { error } = await _supabase.from('word_progress').insert(payload);
-    if (!error) { console.log(`[cloud] ✅ delete+insert 成功`); return true; }
-    enqueueOffline(student, level, payload.mastered, payload.wrong);
-    return false;
-  } catch(e) {
-    enqueueOffline(student, level, payload.mastered, payload.wrong);
-    return false;
-  }
-}
-
-/**
- * 从云端拉取单条进度，以云端数据覆盖 localStorage。
- * 【Bug修复1】_clearLocalProgressCache 之后调用，确保云端为准。
- */
-async function cloudLoadProgress(student, level) {
-  if (!_supabase || !authUser) return false;
-  try {
-    const { data, error } = await _supabase
-      .from('word_progress')
-      .select('mastered, wrong')
-      .eq('user_id', authUser.id)
-      .eq('student_name', student)
-      .eq('level', level)
-      .maybeSingle();
-
-    if (error) {
-      console.error(`[cloud] ❌ loadProgress 失败 code=${error.code}:`, error.message);
-      if (error.code === '42501') console.error('[cloud] ⚠️ RLS 拦截读取！请检查 word_progress SELECT 策略');
+      console.error('[cloud] ⚠️ RLS 策略拦截！请在 Supabase SQL Editor 执行:\n' +
+        'DROP POLICY IF EXISTS "select own rows" ON word_progress;\n' +
+        'DROP POLICY IF EXISTS "insert own rows" ON word_progress;\n' +
+        'DROP POLICY IF EXISTS "update own rows" ON word_progress;\n' +
+        'DROP POLICY IF EXISTS "delete own rows" ON word_progress;\n' +
+        'CREATE POLICY "anon_all" ON word_progress FOR ALL TO anon USING (true) WITH CHECK (true);');
+      enqueueOffline(student, level, safeMastered, safeWrong);
       return false;
     }
-    if (!data)  { console.log(`[cloud] 云端暂无数据 student="${student}" level="${level}"`); return false; }
-
-    // 云端数据写入本地（以云端为准）
-    lsSet(SK.mastered(student, level), data.mastered || []);
-    lsSet(SK.wrong(student, level),    data.wrong    || []);
-    console.log(`[cloud] ✅ 拉取成功 level="${level}" mastered=${(data.mastered||[]).length} wrong=${(data.wrong||[]).length}`);
-    return true;
+    // 42P10：缺少唯一约束 → 降级为 delete + insert
+    if (error.code === '42P10') {
+      console.warn('[cloud] ⚠️ 唯一约束缺失，降级为 delete+insert');
+      return await _cloudDeleteInsert(payload, student, level);
+    }
+    // 其他错误统一降级
+    console.warn('[cloud] 未知错误，降级 delete+insert');
+    return await _cloudDeleteInsert(payload, student, level);
   } catch(e) {
-    console.error('[cloud] loadProgress 异常:', e);
+    console.error('[cloud] 上传请求异常:', e);
+    enqueueOffline(student, level, safeMastered, safeWrong);
     return false;
   }
 }
-
 /**
- * 拉取指定学生全部等级云端进度，覆盖本地 localStorage。
- * 登录成功 / 页面刷新恢复会话后调用，以云端为准。
+ * 降级策略：先删后插（无唯一约束时的兜底方案）
+ * 字段严格匹配：user_id, student_name, level, mastered, wrong
  */
-async function pullAllFromCloud(student) {
-  if (!_supabase || !authUser || !student) return;
-  console.log(`[cloud] 开始拉取 "${student}" 全部等级云端进度…`);
-  showToast('☁️ 正在同步云端进度…');
-  let pulled = 0;
-  for (const lvl of LEVELS) {
-    const ok = await cloudLoadProgress(student, lvl.id);
-    if (ok) pulled++;
-  }
-  if (pulled > 0) {
-    console.log(`[cloud] 拉取完毕，${pulled}/${LEVELS.length} 个等级已更新`);
-    showToast(`✅ 已加载云端进度（${pulled} 个等级）`);
-    if (currentLevel) { loadProgress(); updateHeader(); }
-  } else {
-    console.log('[cloud] 云端暂无进度，新账号从零开始');
-    showToast('☁️ 云端暂无进度，从零开始');
-  }
-}
-
-// 更新 Header 账号栏 UI
-// 已登录：显示用户名栏，隐藏登录按钮
-// 未登录：隐藏用户名栏，显示登录按钮
-function updateAuthUI() {
-  const loginBtn   = document.getElementById('authLoginBtn');
-  const userNameBar = document.getElementById('userNameBar');
-  const userNameEl  = document.getElementById('authUserName');
-  if (!loginBtn) return;
-  if (authUser) {
-    loginBtn.classList.add('hidden');
-    userNameBar.style.display = 'block';
-    if (userNameEl) userNameEl.textContent = authUser.username;
-  } else {
-    loginBtn.classList.remove('hidden');
-    userNameBar.style.display = 'none';
-  }
-}
-
-
-// ── 以下为原有业务代码，完全未修改 ─────────────────
-// ═══════════════════════════════════════════════════
-// LEVELS
-// ═══════════════════════════════════════════════════
-const LEVELS=[
-  {id:'cp_ce2',  label:'CP – CE2',  sub:'6-8 ans',   color:'#4D96FF'},
-  {id:'cm1_cm2', label:'CM1 – CM2', sub:'9-10 ans',  color:'#6BCB77'},
-  {id:'s6_s5',   label:'6e – 5e',   sub:'11-12 ans', color:'#a78bfa'},
-  {id:'s4_s3',   label:'4e – 3e',   sub:'13-14 ans', color:'#FF6B6B'},
-  {id:'lycee',   label:'Lycée',     sub:'15 ans +',  color:'#FFB347'},
-];
-
-
-// ═══════════════════════════════════════════════════
-// STORAGE
-// ═══════════════════════════════════════════════════
-const SK={
-  banks:()=>'mm_banks',
-  students:()=>'mm_students',
-  dailyCount:()=>'mm_dailyCount',
-  mastered:(s,l)=>`mm_${s}_${l}_mastered`,
-  wrong:(s,l)=>`mm_${s}_${l}_wrong`,
-};
-function lsGet(k,d=null){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
-function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
-
-// ═══════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════
-let currentStudent=null,currentLevel=null,dailyCount=30;
-let banks={};
-let mastered=new Set(),wrongSet=[],sessionQueue=[],sessionPos=0,sessionCorrect=0,phase='idle';
-let voices=[],synth=window.speechSynthesis,cdInterval=null,showTimer=null;
-let editorLevel=null,editorWords=[],editorPage=0;
-const PAGE_SIZE=50;
-
-// ═══════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════
-// Map level id → JSON filename
-// [FIX] 使用同级相对路径（不加 / 前缀），兼容 Vercel、GitHub Pages、本地 HTTP 服务器。
-// 注意：直接双击 file:// 打开时 fetch 会被 CORS 阻断，此时自动降级为内嵌词库。
-// GitHub Pages 子路径部署（如 /french-words-study/）时此相对路径同样生效。
-const LEVEL_FILES={
-  cp_ce2:  'cp-ce2.json',
-  cm1_cm2: 'cm1-cm2.json',
-  s6_s5:   '6e-5e.json',
-  s4_s3:   '4e-3e.json',
-  lycee:   'lycee.json',
-};
-
-// ── 内嵌默认词库 ─────────────────────────────────────
-// 直接内嵌，彻底解决 file:// CORS 问题，无需任何外部 JSON 文件。
-// 可在「📝 Lexique」编辑器中修改词汇，保存后优先使用本地版本。
-const DEFAULT_BANKS = {
-  cp_ce2: [
-    {fr:'bonjour',g:'interj.',zh:'你好',en:'hello',sfr:"Bonjour tout le monde !"},
-    {fr:'chat',g:'n.m.',zh:'猫',en:'cat',sfr:"Le chat dort sur le canapé."},
-    {fr:'chien',g:'n.m.',zh:'狗',en:'dog',sfr:"Mon chien aime jouer."},
-    {fr:'maison',g:'n.f.',zh:'房子',en:'house',sfr:"Ma maison est grande."},
-    {fr:'école',g:'n.f.',zh:'学校',en:'school',sfr:"Je vais à l'école chaque matin."},
-    {fr:'livre',g:'n.m.',zh:'书',en:'book',sfr:"J'aime lire des livres."},
-    {fr:'stylo',g:'n.m.',zh:'钢笔/圆珠笔',en:'pen',sfr:"J'écris avec mon stylo."},
-    {fr:'table',g:'n.f.',zh:'桌子',en:'table',sfr:"Le livre est sur la table."},
-    {fr:'chaise',g:'n.f.',zh:'椅子',en:'chair',sfr:"Assieds-toi sur la chaise."},
-    {fr:'ami',g:'n.m.',zh:'朋友',en:'friend',sfr:"C'est mon meilleur ami."},
-    {fr:'eau',g:'n.f.',zh:'水',en:'water',sfr:"Je bois de l'eau."},
-    {fr:'pomme',g:'n.f.',zh:'苹果',en:'apple',sfr:"Je mange une pomme."},
-    {fr:'pain',g:'n.m.',zh:'面包',en:'bread',sfr:"Le pain est chaud."},
-    {fr:'mère',g:'n.f.',zh:'妈妈',en:'mother',sfr:"Ma mère est gentille."},
-    {fr:'père',g:'n.m.',zh:'爸爸',en:'father',sfr:"Mon père travaille beaucoup."},
-    {fr:'rouge',g:'adj.',zh:'红色的',en:'red',sfr:"La pomme est rouge."},
-    {fr:'bleu',g:'adj.',zh:'蓝色的',en:'blue',sfr:"Le ciel est bleu."},
-    {fr:'grand',g:'adj.',zh:'大的',en:'big',sfr:"L'éléphant est très grand."},
-    {fr:'petit',g:'adj.',zh:'小的',en:'small',sfr:"Le chat est petit."},
-    {fr:'manger',g:'v.',zh:'吃',en:'to eat',sfr:"J'aime manger des fruits."},
-    {fr:'boire',g:'v.',zh:'喝',en:'to drink',sfr:"Je bois du jus d'orange."},
-    {fr:'courir',g:'v.',zh:'跑步',en:'to run',sfr:"J'aime courir dans le parc."},
-    {fr:'dormir',g:'v.',zh:'睡觉',en:'to sleep',sfr:"Je dors huit heures par nuit."},
-    {fr:'jouer',g:'v.',zh:'玩耍',en:'to play',sfr:"Les enfants jouent dans le jardin."},
-    {fr:'lire',g:'v.',zh:'阅读',en:'to read',sfr:"J'aime lire le soir."},
-    {fr:'écrire',g:'v.',zh:'写',en:'to write',sfr:"J'écris une lettre."},
-    {fr:'soleil',g:'n.m.',zh:'太阳',en:'sun',sfr:"Le soleil brille aujourd'hui."},
-    {fr:'lune',g:'n.f.',zh:'月亮',en:'moon',sfr:"La lune est belle ce soir."},
-    {fr:'fleur',g:'n.f.',zh:'花',en:'flower',sfr:"Cette fleur sent bon."},
-    {fr:'arbre',g:'n.m.',zh:'树',en:'tree',sfr:"L'arbre est très haut."},
-  ],
-  cm1_cm2: [
-    {fr:'bibliothèque',g:'n.f.',zh:'图书馆',en:'library',sfr:"Je vais à la bibliothèque après l'école."},
-    {fr:'professeur',g:'n.m.',zh:'老师',en:'teacher',sfr:"Notre professeur est très sympa."},
-    {fr:'cahier',g:'n.m.',zh:'练习本',en:'notebook',sfr:"J'écris mes devoirs dans mon cahier."},
-    {fr:'cartable',g:'n.m.',zh:'书包',en:'school bag',sfr:"Mon cartable est lourd."},
-    {fr:'récréation',g:'n.f.',zh:'课间休息',en:'break time',sfr:"On joue pendant la récréation."},
-    {fr:'mathématiques',g:'n.f.',zh:'数学',en:'mathematics',sfr:"J'aime les mathématiques."},
-    {fr:'histoire',g:'n.f.',zh:'历史/故事',en:'history/story',sfr:"On étudie l'histoire de France."},
-    {fr:'géographie',g:'n.f.',zh:'地理',en:'geography',sfr:"La géographie est intéressante."},
-    {fr:'sciences',g:'n.f.',zh:'科学',en:'science',sfr:"On fait des expériences en sciences."},
-    {fr:'musique',g:'n.f.',zh:'音乐',en:'music',sfr:"J'adore la musique classique."},
-    {fr:'dessin',g:'n.m.',zh:'绘画/图画',en:'drawing',sfr:"Je fais un dessin pour ma mère."},
-    {fr:'sport',g:'n.m.',zh:'体育/运动',en:'sport',sfr:"Le sport est bon pour la santé."},
-    {fr:'piscine',g:'n.f.',zh:'游泳池',en:'swimming pool',sfr:"On va à la piscine le mercredi."},
-    {fr:'vélo',g:'n.m.',zh:'自行车',en:'bicycle',sfr:"Je roule à vélo tous les jours."},
-    {fr:'vacances',g:'n.f.',zh:'假期',en:'holidays',sfr:"Les vacances d'été sont longues."},
-    {fr:'famille',g:'n.f.',zh:'家庭',en:'family',sfr:"J'aime passer du temps en famille."},
-    {fr:'frère',g:'n.m.',zh:'哥哥/弟弟',en:'brother',sfr:"Mon frère est plus grand que moi."},
-    {fr:'soeur',g:'n.f.',zh:'姐姐/妹妹',en:'sister',sfr:"Ma soeur joue du piano."},
-    {fr:'grand-père',g:'n.m.',zh:'祖父/外祖父',en:'grandfather',sfr:"Mon grand-père raconte des histoires."},
-    {fr:'grand-mère',g:'n.f.',zh:'祖母/外祖母',en:'grandmother',sfr:"Ma grand-mère fait de bons gâteaux."},
-    {fr:'appartement',g:'n.m.',zh:'公寓',en:'apartment',sfr:"Nous habitons dans un appartement."},
-    {fr:'cuisine',g:'n.f.',zh:'厨房',en:'kitchen',sfr:"Ma mère cuisine dans la cuisine."},
-    {fr:'chambre',g:'n.f.',zh:'卧室',en:'bedroom',sfr:"Ma chambre est bien rangée."},
-    {fr:'jardin',g:'n.m.',zh:'花园',en:'garden',sfr:"On joue dans le jardin."},
-    {fr:'marché',g:'n.m.',zh:'市场',en:'market',sfr:"On achète des légumes au marché."},
-    {fr:'boulangerie',g:'n.f.',zh:'面包店',en:'bakery',sfr:"Le pain vient de la boulangerie."},
-    {fr:'hôpital',g:'n.m.',zh:'医院',en:'hospital',sfr:"Le médecin travaille à l'hôpital."},
-    {fr:'facile',g:'adj.',zh:'容易的',en:'easy',sfr:"Cet exercice est facile."},
-    {fr:'difficile',g:'adj.',zh:'难的',en:'difficult',sfr:"Ce problème est difficile."},
-    {fr:'propre',g:'adj.',zh:'干净的/自己的',en:'clean/own',sfr:"La salle de classe est propre."},
-  ],
-  s6_s5: [
-    {fr:'environnement',g:'n.m.',zh:'环境',en:'environment',sfr:"Il faut protéger l'environnement."},
-    {fr:'développement',g:'n.m.',zh:'发展',en:'development',sfr:"Le développement durable est essentiel."},
-    {fr:'gouvernement',g:'n.m.',zh:'政府',en:'government',sfr:"Le gouvernement prend des décisions."},
-    {fr:'démocratie',g:'n.f.',zh:'民主',en:'democracy',sfr:"La France est une démocratie."},
-    {fr:'constitution',g:'n.f.',zh:'宪法',en:'constitution',sfr:"La constitution garantit nos libertés."},
-    {fr:'économie',g:'n.f.',zh:'经济',en:'economy',sfr:"L'économie mondiale est complexe."},
-    {fr:'technologie',g:'n.f.',zh:'技术',en:'technology',sfr:"La technologie évolue rapidement."},
-    {fr:'recherche',g:'n.f.',zh:'研究',en:'research',sfr:"La recherche scientifique est importante."},
-    {fr:'expérience',g:'n.f.',zh:'经验/实验',en:'experience',sfr:"Cette expérience m'a appris beaucoup."},
-    {fr:'observation',g:'n.f.',zh:'观察',en:'observation',sfr:"L'observation est la base des sciences."},
-    {fr:'hypothèse',g:'n.f.',zh:'假设',en:'hypothesis',sfr:"On formule une hypothèse avant l'expérience."},
-    {fr:'conclusion',g:'n.f.',zh:'结论',en:'conclusion',sfr:"La conclusion résume les résultats."},
-    {fr:'littérature',g:'n.f.',zh:'文学',en:'literature',sfr:"J'étudie la littérature française."},
-    {fr:'poème',g:'n.m.',zh:'诗歌',en:'poem',sfr:"Victor Hugo a écrit de beaux poèmes."},
-    {fr:'métaphore',g:'n.f.',zh:'比喻/隐喻',en:'metaphor',sfr:"Cette phrase contient une métaphore."},
-    {fr:'personnage',g:'n.m.',zh:'人物/角色',en:'character',sfr:"Le personnage principal est courageux."},
-    {fr:'intrigue',g:'n.f.',zh:'情节',en:'plot',sfr:"L'intrigue de ce roman est captivante."},
-    {fr:'chapitre',g:'n.m.',zh:'章节',en:'chapter',sfr:"J'ai lu le premier chapitre."},
-    {fr:'vocabulaire',g:'n.m.',zh:'词汇',en:'vocabulary',sfr:"Il faut enrichir son vocabulaire."},
-    {fr:'grammaire',g:'n.f.',zh:'语法',en:'grammar',sfr:"La grammaire française est complexe."},
-    {fr:'conjugaison',g:'n.f.',zh:'动词变位',en:'conjugation',sfr:"La conjugaison du subjonctif est difficile."},
-    {fr:'synonyme',g:'n.m.',zh:'同义词',en:'synonym',sfr:'Trouver un synonyme de "heureux".'},
-    {fr:'orthographe',g:'n.f.',zh:'拼写',en:'spelling',sfr:"Fais attention à l'orthographe."},
-    {fr:'prononciation',g:'n.f.',zh:'发音',en:'pronunciation',sfr:"La prononciation du français est difficile."},
-    {fr:'traduction',g:'n.f.',zh:'翻译',en:'translation',sfr:"La traduction de ce texte est précise."},
-    {fr:'compréhension',g:'n.f.',zh:'理解',en:'comprehension',sfr:"La compréhension orale s'améliore avec la pratique."},
-    {fr:'argumentation',g:'n.f.',zh:'论证',en:'argumentation',sfr:"L'argumentation doit être logique."},
-    {fr:'citoyenneté',g:'n.f.',zh:'公民身份',en:'citizenship',sfr:"La citoyenneté implique des droits et des devoirs."},
-    {fr:'solidarité',g:'n.f.',zh:'团结',en:'solidarity',sfr:"La solidarité entre les peuples est nécessaire."},
-    {fr:'responsabilité',g:'n.f.',zh:'责任',en:'responsibility',sfr:"Chacun a une responsabilité envers la société."},
-  ],
-  s4_s3: [
-    {fr:'mondialisation',g:'n.f.',zh:'全球化',en:'globalisation',sfr:"La mondialisation a des effets positifs et négatifs."},
-    {fr:'immigration',g:'n.f.',zh:'移民',en:'immigration',sfr:"L'immigration enrichit la culture."},
-    {fr:'discrimination',g:'n.f.',zh:'歧视',en:'discrimination',sfr:"La discrimination est interdite par la loi."},
-    {fr:'inégalité',g:'n.f.',zh:'不平等',en:'inequality',sfr:"Les inégalités sociales persistent."},
-    {fr:'engagement',g:'n.m.',zh:'承诺/参与',en:'commitment',sfr:"L'engagement citoyen est valorisé."},
-    {fr:'autonomie',g:'n.f.',zh:'自主',en:'autonomy',sfr:"L'autonomie est une valeur importante."},
-    {fr:'coopération',g:'n.f.',zh:'合作',en:'cooperation',sfr:"La coopération internationale est nécessaire."},
-    {fr:'négociation',g:'n.f.',zh:'谈判',en:'negotiation',sfr:"La négociation a permis un accord."},
-    {fr:'compromis',g:'n.m.',zh:'妥协/折中',en:'compromise',sfr:"Un compromis a été trouvé."},
-    {fr:'philosophie',g:'n.f.',zh:'哲学',en:'philosophy',sfr:"La philosophie pose des questions fondamentales."},
-    {fr:'conscience',g:'n.f.',zh:'意识/良知',en:'consciousness',sfr:"La conscience de soi est importante."},
-    {fr:'identité',g:'n.f.',zh:'身份/认同',en:'identity',sfr:"L'identité culturelle est précieuse."},
-    {fr:'contradiction',g:'n.f.',zh:'矛盾',en:'contradiction',sfr:"Il y a une contradiction dans ton raisonnement."},
-    {fr:'abstrait',g:'adj.',zh:'抽象的',en:'abstract',sfr:"Ce concept est très abstrait."},
-    {fr:'concret',g:'adj.',zh:'具体的',en:'concrete',sfr:"Donnez un exemple concret."},
-    {fr:'ambigu',g:'adj.',zh:'模糊的/歧义的',en:'ambiguous',sfr:"Cette phrase est ambiguë."},
-    {fr:'pertinent',g:'adj.',zh:'相关的/恰当的',en:'relevant',sfr:"Ta remarque est très pertinente."},
-    {fr:'cohérent',g:'adj.',zh:'连贯的',en:'coherent',sfr:"Ton discours doit être cohérent."},
-    {fr:'approfondi',g:'adj.',zh:'深入的',en:'in-depth',sfr:"Une étude approfondie est nécessaire."},
-    {fr:'nuancer',g:'v.',zh:'细化/区分',en:'to nuance',sfr:"Il faut nuancer cette affirmation."},
-    {fr:'analyser',g:'v.',zh:'分析',en:'to analyse',sfr:"Analysons les causes du problème."},
-    {fr:'synthétiser',g:'v.',zh:'综合',en:'to synthesise',sfr:"Sais-tu synthétiser ce texte ?"},
-    {fr:'interpréter',g:'v.',zh:'解释/诠释',en:'to interpret',sfr:"Comment interprètes-tu ce passage ?"},
-    {fr:'déduire',g:'v.',zh:'推断',en:'to deduce',sfr:"On peut en déduire que..."},
-    {fr:'démontrer',g:'v.',zh:'证明',en:'to demonstrate',sfr:"Il faut démontrer cette hypothèse."},
-    {fr:'contredire',g:'v.',zh:'反驳',en:'to contradict',sfr:"Tu te contredis toi-même."},
-    {fr:'problématiser',g:'v.',zh:'形成问题意识',en:'to problematise',sfr:"Il faut problématiser le sujet."},
-    {fr:'contextualiser',g:'v.',zh:'情境化',en:'to contextualise',sfr:"Contextualisons cette citation."},
-    {fr:'argumenter',g:'v.',zh:'论证',en:'to argue',sfr:"Il faut argumenter avec des exemples."},
-    {fr:'récapituler',g:'v.',zh:'概括总结',en:'to recap',sfr:"Récapitulons les points clés."},
-  ],
-  lycee: [
-    {fr:'épistémologie',g:'n.f.',zh:'认识论',en:'epistemology',sfr:"L'épistémologie étudie les fondements du savoir."},
-    {fr:'dialectique',g:'n.f.',zh:'辩证法',en:'dialectic',sfr:"La dialectique de Hegel est complexe."},
-    {fr:'métaphysique',g:'n.f.',zh:'形而上学',en:'metaphysics',sfr:"La métaphysique pose des questions sur l'être."},
-    {fr:'ontologie',g:'n.f.',zh:'本体论',en:'ontology',sfr:"L'ontologie est une branche de la philosophie."},
-    {fr:'pragmatisme',g:'n.m.',zh:'实用主义',en:'pragmatism',sfr:"Le pragmatisme valorise l'action pratique."},
-    {fr:'déterminisme',g:'n.m.',zh:'决定论',en:'determinism',sfr:"Le déterminisme nie le libre arbitre."},
-    {fr:'rationalisme',g:'n.m.',zh:'理性主义',en:'rationalism',sfr:"Descartes est un représentant du rationalisme."},
-    {fr:'empirisme',g:'n.m.',zh:'经验主义',en:'empiricism',sfr:"L'empirisme valorise l'expérience sensible."},
-    {fr:'subjectivité',g:'n.f.',zh:'主观性',en:'subjectivity',sfr:"La subjectivité influence notre perception."},
-    {fr:'objectivité',g:'n.f.',zh:'客观性',en:'objectivity',sfr:"La science vise l'objectivité."},
-    {fr:'transcendance',g:'n.f.',zh:'超越性',en:'transcendence',sfr:"La transcendance dépasse le monde sensible."},
-    {fr:'aliénation',g:'n.f.',zh:'异化',en:'alienation',sfr:"Marx analyse l'aliénation du travail."},
-    {fr:'émancipation',g:'n.f.',zh:'解放',en:'emancipation',sfr:"L'émancipation est un idéal des Lumières."},
-    {fr:'paradigme',g:'n.m.',zh:'范式',en:'paradigm',sfr:"Kuhn a introduit le concept de paradigme scientifique."},
-    {fr:'relativisme',g:'n.m.',zh:'相对主义',en:'relativism',sfr:"Le relativisme remet en question les vérités absolues."},
-    {fr:'herméneutique',g:'n.f.',zh:'诠释学',en:'hermeneutics',sfr:"L'herméneutique interprète les textes."},
-    {fr:'déconstruction',g:'n.f.',zh:'解构',en:'deconstruction',sfr:"Derrida propose une méthode de déconstruction."},
-    {fr:'phénoménologie',g:'n.f.',zh:'现象学',en:'phenomenology',sfr:"Husserl est le fondateur de la phénoménologie."},
-    {fr:'immanence',g:'n.f.',zh:'内在性',en:'immanence',sfr:"L'immanence désigne ce qui est contenu dans un être."},
-    {fr:'heuristique',g:'adj.',zh:'启发性的',en:'heuristic',sfr:"Cette approche est très heuristique."},
-    {fr:'axiomatique',g:'adj.',zh:'公理的',en:'axiomatic',sfr:"Un système axiomatique repose sur des axiomes."},
-    {fr:'tautologique',g:'adj.',zh:'同义反复的',en:'tautological',sfr:"Cet argument est tautologique."},
-    {fr:'polysémique',g:'adj.',zh:'多义的',en:'polysemic',sfr:"Ce terme est polysémique."},
-    {fr:'anachronique',g:'adj.',zh:'不合时宜的',en:'anachronistic',sfr:"Cette idée semble anachronique aujourd'hui."},
-    {fr:'paradigmatique',g:'adj.',zh:'典型的',en:'paradigmatic',sfr:"C'est un exemple paradigmatique."},
-    {fr:'appréhender',g:'v.',zh:'理解/把握',en:'to apprehend',sfr:"Il est difficile d'appréhender ce concept."},
-    {fr:'conceptualiser',g:'v.',zh:'概念化',en:'to conceptualise',sfr:"Peux-tu conceptualiser cette idée ?"},
-    {fr:'problématiser',g:'v.',zh:'形成问题意识',en:'to problematise',sfr:"Il faut problématiser le sujet."},
-    {fr:'contextualiser',g:'v.',zh:'情境化',en:'to contextualise',sfr:"Contextualisons cette citation."},
-    {fr:'opérationnaliser',g:'v.',zh:'操作化',en:'to operationalise',sfr:"Il faut opérationnaliser ces concepts."},
-  ],
-};
-
-async function init(){
-  loadVoices();
-  if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;
-  dailyCount=lsGet(SK.dailyCount(),30);
-  document.getElementById('dailyCountInput').value=dailyCount;
-  // mainArea 和 mainHeader 默认已显示（由 CSS 控制），无需 JS 设置
-
-  // [FIX] 词库加载优先级（外部 JSON 最优先）：
-  //   1. 外部 JSON 文件（同级相对路径，Vercel/GitHub Pages 静态文件）
-  //   2. localStorage 编辑器本地修改（仅当外部 JSON 加载失败时使用）
-  //   3. 内嵌 DEFAULT_BANKS（404 / 网络异常 / 解析失败时最终兜底）
-  // 控制台日志：每个等级都会打印请求路径和加载结果，F12 可直接排查。
-  const lsOverride=lsGet(SK.banks(),{});
-  banks={};
-
-  await Promise.all(LEVELS.map(async l=>{
-    const path = LEVEL_FILES[l.id];
-    console.log(`[词库] ${l.id} → 请求路径: "${path}"`);
-
-    // ── 优先级 1：fetch 外部 JSON 文件 ──
-    try{
-      const res = await fetch(path);
-      console.log(`[词库] ${l.id} → HTTP ${res.status} ${res.statusText}`);
-      if(res.ok){
-        let data;
-        try{
-          data = await res.json();
-        }catch(parseErr){
-          console.error(`[词库] ${l.id} → JSON 解析失败:`, parseErr);
-          data = null;
-        }
-        if(data){
-          const words = Array.isArray(data) ? data : (data.words || []);
-          if(words.length > 0){
-            banks[l.id] = words;
-            console.log(`[词库] ${l.id} → ✅ 外部 JSON 加载成功，共 ${words.length} 个词`);
-            return;
-          } else {
-            console.warn(`[词库] ${l.id} → ⚠️ 外部 JSON 为空数组，降级`);
-          }
-        }
-      } else if(res.status === 404){
-        console.warn(`[词库] ${l.id} → ⚠️ 404 文件不存在，降级`);
-      } else {
-        console.warn(`[词库] ${l.id} → ⚠️ 请求失败 HTTP ${res.status}，降级`);
-      }
-    }catch(e){
-      // file:// CORS、网络断开等
-      console.warn(`[词库] ${l.id} → ⚠️ fetch 异常（file://CORS 或网络错误）:`, e.message);
-    }
-
-    // ── 优先级 2：localStorage 编辑器本地修改 ──
-    if(lsOverride[l.id] && lsOverride[l.id].length > 0){
-      banks[l.id] = lsOverride[l.id];
-      console.log(`[词库] ${l.id} → 🗂 使用 localStorage 本地编辑词库，共 ${lsOverride[l.id].length} 个词`);
-      return;
-    }
-
-    // ── 优先级 3：内嵌 DEFAULT_BANKS 兜底 ──
-    banks[l.id] = (DEFAULT_BANKS[l.id]||[]).map(w=>({...w}));
-    console.log(`[词库] ${l.id} → 📦 使用内嵌默认词库（兜底），共 ${banks[l.id].length} 个词`);
-  }));
-
-  console.log('[词库] 全部等级加载完毕:', Object.fromEntries(LEVELS.map(l=>[l.id, banks[l.id]?.length??0])));
-
-  // 【改版】init 不再直接 showWelcome，而是由 initAuth 决定是否显示登录页
-  // initAuth 会检查本地登录态：有则恢复会话，无则弹出登录弹窗
-  initAuth();
-}
-
-function loadVoices(){
-  voices=synth.getVoices().filter(v=>v.lang.startsWith('fr'));
-  if(!voices.length)setTimeout(loadVoices,300);
-}
-
-// ═══════════════════════════════════════════════════
-// WELCOME
-// ═══════════════════════════════════════════════════
-// showWelcome：回退函数（正常流程由 initAuth 控制，此处兜底）
-function showWelcome(){
-  hideAllCards();
-  if (!authUser) {
-    openAuthModal('login');  // 未登录：弹出登录弹窗
-    return;
-  }
-  _enterAsStudent(authUser.username); // 已登录：直接以账号用户名进入等级选择
-}
-
-// renderStudentList：首页改版后不再使用，保留空函数避免报错
-function renderStudentList(){ /* 已弃用：账号即学生，无需选择学生 */ }
-
-// confirmName 已弃用（首页改版，姓名输入已删除）
-function confirmName(){ if(authUser)_enterAsStudent(authUser.username); }
-
-// selectStudent：设置当前学生，进入等级选择
-// 注意：登录流程中进度已由 _enterAsStudent 拉取，此处不重复请求
-function selectStudent(name){
-  currentStudent = name;
-  showLevelSelect();
-}
-
-function deleteStudent(name,e){
-  e.stopPropagation();
-  if(!confirm(`Supprimer toutes les données de "${name}" ?`))return;
-  const students=lsGet(SK.students(),[]).filter(s=>s!==name);
-  lsSet(SK.students(),students);
-  LEVELS.forEach(l=>{localStorage.removeItem(SK.mastered(name,l.id));localStorage.removeItem(SK.wrong(name,l.id));});
-  // 同步删除云端记录（已登录时）
-  if (authUser && _supabase) {
-    _supabase.from('word_progress')
+async function _cloudDeleteInsert(payload, student, level) {
+  console.log(`[cloud] 🔄 降级 delete+insert student="${student}" level="${level}"`);
+  try {
+    const { error: delErr } = await _supabase
+      .from('word_progress')
       .delete()
-      .eq('user_id', authUser.id)
-      .eq('student_name', name)
-      .then(({ error }) => {
-        if (error) console.warn('[cloud] 删除学生云端数据失败:', error.message);
-        else console.log(`[cloud] 已删除学生 "${name}" 的云端数据`);
+      .eq('user_id', payload.user_id)
+      .eq('student_name', student)
+      .eq('level', level);
+    if (delErr) console.warn('[cloud] delete 步骤失败（继续 insert）:', delErr.message);
+  } catch(e) {
+    console.warn('[cloud] delete 步骤异常（继续 insert）:', e.message);
+  }
+  try {
+    const { data, error: insErr, status } = await _supabase
+      .from('word_progress')
+      .insert(payload)
+      .select();
+    if (!insErr) {
+      console.log(`[cloud] ✅ insert 成功 status=${status}`, data);
+      return true;
+    }
+    console.error('[cloud] ❌ insert 也失败:', {
+      code: insErr.code, message: insErr.message, hint: insErr.hint
+    });
+    enqueueOffline(student, level, payload.mastered, payload.wrong);
+    return false;
+  } catch(e) {
+    console.error('[cloud] insert 异常:', e);
+    enqueueOffline(student, level, payload.mastered, payload.wrong);
+    return false;
+  }
+}
+/**
+ * 从云端拉取单条等级进度，覆盖本地 localStorage（以云端为准）
+ * 字段：user_id, student_name, level, mastered, wrong
+ */
+async function cloudLoadProgress(student, level) {
+  if (!authUser) {
+    console.warn('[cloud] ⛔ 未登录，跳过拉取');
+    return false;
+  }
+  if (!_supabase) return false;
+  try {
+    const { data, error, status } = await _supabase
+      .from('word_progress')
+      .select('mastered, wrong')
+      .eq('user_id', String(authUser.id))
+      .eq('student_name', String(student))
+      .eq('level', String(level))
+      .maybeSingle();
+    if (error) {
+      console.error(`[cloud] ❌ 拉取失败 level="${level}"`, {
+        code: error.code, message: error.message, hint: error.hint, status
       });
-  }
-  // renderStudentList 已简化，此处只提示
-  showToast(`Données de ${name} supprimées`);
-}
-
-// switchStudent：不再允许切换学生（账号即学生），此函数保留供设置页调用但行为改为刷新等级选择
-function switchStudent(){clearAll();currentLevel=null;if(currentStudent)showLevelSelect();else showWelcome();}
-
-// ═══════════════════════════════════════════════════
-// LEVEL SELECT
-// ═══════════════════════════════════════════════════
-// showLevelSelect：显示等级选择卡片，隐藏统计栏
-function showLevelSelect(){
-  hideAllCards();
-  document.getElementById('levelCard').classList.remove('hidden');
-  // 等级选择提示：显示欢迎+用户名
-  const hint = document.getElementById('levelStudentHint');
-  if(hint) hint.textContent = authUser ? `👤 ${authUser.username}，选择今天的学习等级` : '选择学习等级';
-
-  // 等级选择页：隐藏统计行和进度条（还未开始学习）
-  const statsRow     = document.getElementById('statsRow');
-  const modeTag      = document.getElementById('modeTag');
-  const progressWrap = document.getElementById('headerProgressWrap');
-  if(statsRow)     statsRow.style.display     = 'none';
-  if(modeTag)      modeTag.style.display      = 'none';
-  if(progressWrap) progressWrap.style.display = 'none';
-
-  renderLevelGrid();
-}
-
-function renderLevelGrid(){
-  const grid=document.getElementById('levelGrid');grid.innerHTML='';
-  LEVELS.forEach(lvl=>{
-    const bank=banks[lvl.id]||[];
-    const m=new Set(lsGet(SK.mastered(currentStudent,lvl.id),[]));
-    const w=lsGet(SK.wrong(currentStudent,lvl.id),[]);
-    const d=document.createElement('div');
-    d.className='level-card';
-    d.style.borderColor=currentLevel===lvl.id?lvl.color:'';
-    d.innerHTML=`<div class="lc-title" style="color:${lvl.color}">${lvl.label}</div>
-      <div class="lc-sub">${lvl.sub}</div>
-      <div class="lc-count">📚${bank.length} · ✅${m.size} · ❌${w.length}</div>`;
-    d.onclick=()=>startLevel(lvl.id);
-    grid.appendChild(d);
-  });
-}
-
-// startLevel：选择等级后进入学习
-// 已登录时先拉该等级云端最新进度（确保跨设备同步），再开始学习
-async function startLevel(levelId){
-  currentLevel = levelId;
-
-  if (authUser && _supabase) {
-    try {
-      const loaded = await cloudLoadProgress(currentStudent, levelId);
-      if (loaded) console.log(`[cloud] 等级 ${levelId} 进度已从云端更新`);
-    } catch(e) {
-      console.warn('[cloud] startLevel 拉取失败，使用本地数据:', e.message);
+      if (error.code === '42501') {
+        console.error('[cloud] ⚠️ RLS 拦截 SELECT！请检查 word_progress 的 SELECT 策略');
+      }
+      return false;
     }
-  }
-
-  // 加载本地进度（已被云端数据覆盖，或纯本地模式）
-  loadProgress();
-  buildSession();
-
-  if (!sessionQueue.length) { showDoneEmpty(); return; }
-
-  showWordCard();
-  updateHeader();
-  showWordDisplay(0);
-}
-
-function showDoneEmpty(){
-  hideAllCards();
-  document.getElementById('doneCard').classList.remove('hidden');
-  document.getElementById('doneSub').textContent='Niveau vide. Ajoutez des mots dans le lexique !';
-}
-
-// ═══════════════════════════════════════════════════
-// PROGRESS (memory system)
-// ═══════════════════════════════════════════════════
-function loadProgress(){
-  const rawMastered = lsGet(SK.mastered(currentStudent,currentLevel),[]);
-  const rawWrong    = lsGet(SK.wrong(currentStudent,currentLevel),[]);
-  // 防御旧版本可能存储的非数组格式
-  const safeMastered = Array.isArray(rawMastered) ? rawMastered.filter(i=>typeof i==='number') : [];
-  const safeWrong    = Array.isArray(rawWrong)    ? rawWrong.filter(i=>typeof i==='number')    : [];
-  mastered = new Set(safeMastered);
-  wrongSet = safeWrong;
-}
-function saveProgress(){
-  // 【规则2/3】进度存储策略：
-  //   - 已登录 + 联网：直接上传云端，同时写 localStorage 作为本地缓存备份
-  //   - 已登录 + 断网：写 localStorage，同时加入离线队列，联网后自动上传
-  //   - 未登录：仅写 localStorage（纯本地模式）
-  lsSet(SK.mastered(currentStudent,currentLevel),[...mastered]);
-  lsSet(SK.wrong(currentStudent,currentLevel),wrongSet);
-  if (authUser && _supabase) {
-    // 异步上传，不阻塞答题流程；断网时 cloudSaveProgress 内部自动加入离线队列
-    cloudSaveProgress(currentStudent, currentLevel, [...mastered], [...wrongSet]);
-  }
-}
-function markMastered(idx){mastered.add(idx);wrongSet=wrongSet.filter(i=>i!==idx);saveProgress();}
-function markWrong(idx){mastered.delete(idx);if(!wrongSet.includes(idx))wrongSet.push(idx);saveProgress();}
-
-// ═══════════════════════════════════════════════════
-// SESSION BUILDER
-// ═══════════════════════════════════════════════════
-function buildSession(){
-  const bank=banks[currentLevel]||[];
-  sessionQueue=[];sessionPos=0;sessionCorrect=0;
-  const wrongValid=wrongSet.filter(i=>i<bank.length);
-  wrongValid.forEach(i=>sessionQueue.push({idx:i,isReview:true}));
-  const wrongSet_=new Set(wrongValid);
-  const newPool=[];
-  for(let i=0;i<bank.length;i++){if(!mastered.has(i)&&!wrongSet_.has(i))newPool.push(i);}
-  shuffle(newPool);
-  const needed=Math.max(0,dailyCount-wrongValid.length);
-  newPool.slice(0,needed).forEach(i=>sessionQueue.push({idx:i,isReview:false}));
-  if(sessionQueue.length<dailyCount&&mastered.size>0){
-    const mArr=[...mastered];shuffle(mArr);
-    mArr.slice(0,dailyCount-sessionQueue.length).forEach(i=>sessionQueue.push({idx:i,isReview:false,isRepeat:true}));
-  }
-}
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
-
-// ═══════════════════════════════════════════════════
-// WORD PHASES
-// ═══════════════════════════════════════════════════
-function showWordCard(){hideAllCards();document.getElementById('wordCard').classList.remove('hidden');}
-
-function showWordDisplay(pos){
-  // Phase 1: Show word + meanings, wait for user to tap "Écouter"
-  if(pos>=sessionQueue.length){endSession();return;}
-  sessionPos=pos;
-  const {idx}=sessionQueue[pos];
-  const bank=banks[currentLevel]||[];
-  const word=bank[idx];
-  if(!word){sessionPos++;showWordDisplay(sessionPos);return;}
-  clearAll();phase='show';
-
-  const fw=document.getElementById('frenchWord');
-  fw.textContent=word.fr;fw.classList.remove('hidden');
-  document.getElementById('wordGender').textContent=word.g||'';
-  document.getElementById('chineseMeaning').textContent=word.zh||'';
-  document.getElementById('englishMeaning').textContent=word.en||'';
-  const sbox=document.getElementById('sentenceDisplay');
-  const sfr=document.getElementById('sentenceFr');
-  if(word.sfr){sfr.textContent=word.sfr;sbox.classList.remove('hidden');}
-  else{sbox.classList.add('hidden');}
-  document.getElementById('phaseIcon').textContent='📖';
-  document.getElementById('phaseArea').innerHTML=`
-    <div class="status-msg">Observe bien ce mot !</div>
-    <button class="speak-btn" onclick="startListening(${idx})">▶ Écouter</button>`;
-  updateHeader();
-}
-
-function startListening(idx){
-  // User tapped → begin full audio chain
-  phase='speak';
-  document.getElementById('phaseIcon').textContent='🔊';
-  document.getElementById('phaseArea').innerHTML=`<div class="status-msg">Lecture en cours...</div>`;
-  speakChain(idx);
-}
-
-function speakChain(idx){
-  const word=banks[currentLevel][idx];
-  const steps=[];
-
-  // 1. French word
-  steps.push(()=>{
-    document.getElementById('phaseIcon').textContent='🔊';
-    setStatus('🇫🇷 '+word.fr);
-    return makeSpeech(word.fr,'fr-FR',0.85,1.1,voices[0]||null);
-  });
-
-  // 2. Chinese
-  if(word.zh){
-    steps.push(()=>{
-      document.getElementById('phaseIcon').textContent='🇨🇳';
-      setStatus('🇨🇳 '+word.zh);
-      return makeSpeech(word.zh,'zh-CN',0.85,1.0,null);
-    });
-  }
-
-  // 3. English
-  if(word.en){
-    steps.push(()=>{
-      document.getElementById('phaseIcon').textContent='🇬🇧';
-      setStatus('🇬🇧 '+word.en);
-      return makeSpeech(word.en,'en-GB',0.85,1.0,null);
-    });
-  }
-
-  // 4. Sentence
-  if(word.sfr){
-    steps.push(()=>{
-      document.getElementById('phaseIcon').textContent='💬';
-      setStatus('Exemple...');
-      document.getElementById('sentenceDisplay').classList.remove('hidden');
-      return makeSpeech(word.sfr,'fr-FR',0.78,1.0,voices[0]||null);
-    });
-  }
-
-  runSteps(steps,0,()=>startRepeat(idx),600);
-}
-
-function makeSpeech(text,lang,rate,pitch,voice){
-  return new Promise(resolve=>{
-    const u=new SpeechSynthesisUtterance(text);
-    u.lang=lang;u.rate=rate;u.pitch=pitch;
-    if(voice)u.voice=voice;
-    u.onend=resolve;u.onerror=resolve;
-    synth.speak(u);
-  });
-}
-
-function runSteps(steps,i,done,gap){
-  if(i>=steps.length){done();return;}
-  const p=steps[i]();
-  p.then(()=>setTimeout(()=>runSteps(steps,i+1,done,gap),gap));
-}
-
-function setStatus(msg){
-  const el=document.getElementById('phaseArea');
-  if(el)el.innerHTML=`<div class="status-msg" style="font-size:16px;">${escH(msg)}</div>`;
-}
-
-function startRepeat(idx){
-  phase='repeat';
-  document.getElementById('phaseIcon').textContent='🎤';
-  let secs=5;const circ=188.5;
-  document.getElementById('phaseArea').innerHTML=`
-    <div class="countdown-wrap">
-      <div class="countdown-label">Répétez à voix haute !</div>
-      <div class="countdown-ring">
-        <svg width="66" height="66" viewBox="0 0 66 66">
-          <circle class="bg-circle" cx="33" cy="33" r="30"/>
-          <circle class="prog-circle" id="progC" cx="33" cy="33" r="30"
-            style="stroke-dasharray:${circ};stroke-dashoffset:0"/>
-        </svg>
-        <div class="countdown-num" id="cdNum">${secs}</div>
-      </div>
-    </div>`;
-  cdInterval=setInterval(()=>{
-    secs--;
-    const el=document.getElementById('cdNum');
-    const pg=document.getElementById('progC');
-    if(el)el.textContent=secs;
-    if(pg)pg.style.strokeDashoffset=circ*(1-secs/5);
-    if(secs<=0){clearInterval(cdInterval);startSpell(idx);}
-  },1000);
-}
-
-function startSpell(idx){
-  phase='spell';
-  document.getElementById('frenchWord').classList.add('hidden');
-  document.getElementById('sentenceDisplay').classList.add('hidden');
-  document.getElementById('phaseIcon').textContent='✏️';
-  document.getElementById('phaseArea').innerHTML=`
-    <div class="status-msg">Écrivez ce mot de mémoire !</div>
-    <div class="input-area">
-      <input class="spell-input" id="spellInput" type="text"
-        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-        placeholder="Tapez le mot français..."
-        onkeydown="if(event.key==='Enter')checkSpell(${idx})"/>
-      <button class="submit-btn" onclick="checkSpell(${idx})">✅ Valider</button>
-    </div>`;
-  setTimeout(()=>{const el=document.getElementById('spellInput');if(el)el.focus();},100);
-}
-
-function checkSpell(idx){
-  const word=banks[currentLevel][idx];
-  const inp=document.getElementById('spellInput');
-  if(!inp)return;
-  const ans=inp.value.trim().toLowerCase();
-  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const ok=ans===word.fr.toLowerCase()||norm(ans)===norm(word.fr);
-  clearInterval(cdInterval);phase='feedback';
-  document.getElementById('frenchWord').classList.remove('hidden');
-  if(ok){
-    markMastered(idx);sessionCorrect++;
-    document.getElementById('phaseIcon').textContent='🌟';
-    document.getElementById('phaseArea').innerHTML=`
-      <div class="feedback correct">
-        <div class="stars-display">⭐⭐⭐</div>
-        <div style="margin-top:5px;">Parfait ! Bonne orthographe !</div>
-      </div>`;
-    const u=new SpeechSynthesisUtterance(word.fr);
-    u.lang='fr-FR';u.rate=0.9;if(voices.length)u.voice=voices[0];synth.speak(u);
-  } else {
-    markWrong(idx);
-    document.getElementById('phaseIcon').textContent='💪';
-    document.getElementById('phaseArea').innerHTML=`
-      <div class="feedback wrong">
-        <div>❌ La bonne réponse :</div>
-        <div style="margin-top:5px;font-size:22px;color:#e74c3c;font-family:'Baloo 2',cursive;letter-spacing:2px;">${escH(word.fr)}</div>
-        <div style="margin-top:3px;font-size:12px;color:#c0392b;">Ajouté aux erreurs — priorité demain !</div>
-      </div>`;
-  }
-  updateHeader();
-  setTimeout(()=>{sessionPos++;showWordDisplay(sessionPos);},2200);
-}
-
-// ═══════════════════════════════════════════════════
-// END SESSION
-// ═══════════════════════════════════════════════════
-function endSession(){
-  clearAll();hideAllCards();
-  document.getElementById('doneCard').classList.remove('hidden');
-  const bank=banks[currentLevel]||[];
-  const lvl=LEVELS.find(l=>l.id===currentLevel);
-  const allDone=mastered.size>=bank.length;
-  let msg=`Niveau : ${lvl?lvl.label:''}\n`;
-  msg+=`Bonne réponse : ${sessionCorrect}\n`;
-  msg+=`Maîtrisés : ${mastered.size} / ${bank.length}\n`;
-  msg+=`Erreurs : ${wrongSet.length}\n`;
-  if(allDone){
-    msg+=`\n🎊 Tout le niveau est maîtrisé !\nProgression remise à zéro pour recommencer.`;
-    mastered.clear();wrongSet=[];saveProgress();
-  } else {
-    msg+=`\nRestants : ${bank.length-mastered.size}`;
-    if(wrongSet.length)msg+=`\n❌ Les erreurs apparaîtront en premier demain.`;
-  }
-  document.getElementById('doneSub').textContent=msg;
-  updateHeader();
-}
-
-// 返回等级选择：隐藏学习统计栏，回到等级列表
-function goToLevelSelect(){
-  clearAll();
-  currentLevel = null;
-  showLevelSelect();
-}
-
-// ═══════════════════════════════════════════════════
-// UI HELPERS
-// ═══════════════════════════════════════════════════
-function hideAllCards(){
-  ['welcomeCard','levelCard','wordCard','doneCard'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) { el.classList.add('hidden'); el.style.display=''; }
-  });
-}
-
-// updateHeader：更新顶部统计数据
-// 今日待背 = sessionQueue.length（本轮总数）
-// 答对     = sessionCorrect（本轮答对计数）
-// 答错     = wrongSet.length（当前错词数）
-// 剩余     = sessionQueue.length - sessionPos（未完成数）
-function updateHeader(){
-  if(!currentLevel) return;
-  const lvl = LEVELS.find(l=>l.id===currentLevel);
-
-  // 更新统计数据
-  const total   = sessionQueue.length;           // 今日待背总数
-  const correct = sessionCorrect;                // 本轮答对数
-  const wrong   = wrongSet.length;              // 错词数
-  const remain  = Math.max(0, total - sessionPos); // 剩余数
-
-  const el = (id) => document.getElementById(id);
-  if(el('statTotal2'))   el('statTotal2').textContent  = total;
-  if(el('statCorrect'))  el('statCorrect').textContent  = correct;
-  if(el('statWrong'))    el('statWrong').textContent    = wrong;
-  if(el('statRemain'))   el('statRemain').textContent   = remain;
-
-  // 显示统计栏和等级标签
-  const statsRow = el('statsRow');
-  const modeTag  = el('modeTag');
-  const progressWrap = el('headerProgressWrap');
-  if(statsRow)   { statsRow.style.display = 'flex'; }
-  if(modeTag)    { modeTag.style.display = 'block'; modeTag.textContent = lvl ? `📚 ${lvl.label}` : ''; }
-
-  // 更新顶部进度条
-  const pct = total > 0 ? (sessionPos / total) * 100 : 0;
-  if(el('headerProgressFill')) el('headerProgressFill').style.width = pct + '%';
-  if(progressWrap) progressWrap.style.display = 'block';
-
-  // 兼容：保持旧的进度条不报错
-  const oldFill = el('progressFill');
-  if(oldFill) oldFill.style.width = pct + '%';
-
-  // 兼容旧引用
-  if(el('studentTag')) el('studentTag').textContent = currentStudent ? `👤 ${currentStudent}` : '';
-  if(el('statProgress')) el('statProgress').textContent = `${sessionPos}/${total}`;
-  if(el('statMastered')) el('statMastered').textContent = mastered.size;
-  if(el('statTotal'))    el('statTotal').textContent    = (banks[currentLevel]||[]).length;
-}
-
-function clearAll(){clearTimeout(showTimer);clearInterval(cdInterval);synth.cancel();}
-function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-
-// ═══════════════════════════════════════════════════
-// SETTINGS
-// ═══════════════════════════════════════════════════
-function openSettings(){
-  document.getElementById('dailyCountInput').value=dailyCount;
-  document.getElementById('settingStudentName').textContent=currentStudent||'—';
-  document.getElementById('settingsOverlay').classList.remove('hidden');
-}
-function closeSettings(){document.getElementById('settingsOverlay').classList.add('hidden');}
-function saveSettings(){
-  const v=parseInt(document.getElementById('dailyCountInput').value)||30;
-  dailyCount=Math.max(5,Math.min(200,v));
-  lsSet(SK.dailyCount(),dailyCount);
-  closeSettings();showToast(`✅ ${dailyCount} mots par session`);
-}
-function resetProgress(){
-  if(!currentStudent||!currentLevel){showToast('Choisissez d\'abord un élève et un niveau');return;}
-  if(!confirm('Réinitialiser la progression de ce niveau ?'))return;
-  mastered.clear();wrongSet=[];saveProgress();
-  closeSettings();showToast('✅ Progression réinitialisée');
-}
-
-// ═══════════════════════════════════════════════════
-// EDITOR
-// ═══════════════════════════════════════════════════
-function openEditor(){
-  clearAll();
-  editorLevel=currentLevel||LEVELS[0].id;
-  editorWords=(banks[editorLevel]||[]).map(w=>({...w}));
-  editorPage=0;
-  renderEditorTabs();renderEditorList();
-  document.getElementById('editorOverlay').classList.remove('hidden');
-}
-function closeEditor(){document.getElementById('editorOverlay').classList.add('hidden');}
-
-function renderEditorTabs(){
-  const tabs=document.getElementById('editorTabs');tabs.innerHTML='';
-  LEVELS.forEach(lvl=>{
-    const btn=document.createElement('button');
-    btn.className='tab'+(editorLevel===lvl.id?' active':'');
-    btn.textContent=lvl.label;
-    btn.onclick=()=>{
-      saveEditorWords();
-      editorLevel=lvl.id;
-      editorWords=(banks[lvl.id]||[]).map(w=>({...w}));
-      editorPage=0;renderEditorTabs();renderEditorList();
-    };
-    tabs.appendChild(btn);
-  });
-}
-
-function renderEditorList(){
-  const lvl=LEVELS.find(l=>l.id===editorLevel);
-  document.getElementById('editorLevelLabel').textContent=`${lvl?lvl.label:''} — Liste`;
-  document.getElementById('editorCountBadge').textContent=`${editorWords.length} mots`;
-  const totalPages=Math.max(1,Math.ceil(editorWords.length/PAGE_SIZE));
-  if(editorPage>=totalPages)editorPage=totalPages-1;
-  const start=editorPage*PAGE_SIZE;
-  const pageWords=editorWords.slice(start,start+PAGE_SIZE);
-  const cont=document.getElementById('wordListContainer');cont.innerHTML='';
-  pageWords.forEach((w,pi)=>{
-    const gi=start+pi;
-    const item=document.createElement('div');
-    item.className='word-item';item.id=`wi_${gi}`;
-    item.innerHTML=`
-      <div class="word-item-info">
-        <div class="word-item-fr">${escH(w.fr)}<span class="word-item-gender">${escH(w.g||'')}</span></div>
-        <div class="word-item-meta">${escH(w.zh||'')}${w.en?' · <i>'+escH(w.en)+'</i>':''}</div>
-        ${w.sfr?`<div class="word-item-sent">💬 ${escH(w.sfr)}</div>`:''}
-      </div>
-      <div class="word-item-actions">
-        <button class="icon-btn" onclick="startInlineEdit(${gi})">✏️</button>
-        <button class="icon-btn del" onclick="deleteWord(${gi})">🗑</button>
-      </div>`;
-    cont.appendChild(item);
-  });
-  // Pagination
-  const pg=document.getElementById('editorPagination');pg.innerHTML='';
-  if(totalPages>1){
-    const prev=document.createElement('button');prev.className='page-btn';prev.textContent='◀';
-    prev.disabled=editorPage===0;prev.onclick=()=>{editorPage--;renderEditorList();};pg.appendChild(prev);
-    const info=document.createElement('span');info.className='page-info';
-    info.textContent=`${editorPage+1} / ${totalPages}`;pg.appendChild(info);
-    const next=document.createElement('button');next.className='page-btn';next.textContent='▶';
-    next.disabled=editorPage>=totalPages-1;next.onclick=()=>{editorPage++;renderEditorList();};pg.appendChild(next);
-  }
-}
-
-function startInlineEdit(gi){
-  const w=editorWords[gi];
-  const item=document.getElementById(`wi_${gi}`);
-  if(!item)return;
-  item.classList.add('editing');
-  const genderOptions=['','n.m.','n.f.','v.','adj.','adv.','prép.','conj.','pron.','art.m.','art.f.']
-    .map(o=>`<option value="${o}"${w.g===o?' selected':''}>${o||'—'}</option>`).join('');
-  item.innerHTML=`<div class="inline-edit">
-    <div style="display:flex;gap:5px;">
-      <input class="inline-input" id="ie_fr_${gi}" value="${escH(w.fr)}" placeholder="Mot" autocorrect="off" autocapitalize="off" spellcheck="false" style="flex:2"/>
-      <select class="gender-select" id="ie_g_${gi}" style="flex:1">${genderOptions}</select>
-    </div>
-    <div style="display:flex;gap:5px;">
-      <input class="inline-input" id="ie_zh_${gi}" value="${escH(w.zh||'')}" placeholder="中文" style="flex:1"/>
-      <input class="inline-input" id="ie_en_${gi}" value="${escH(w.en||'')}" placeholder="English" spellcheck="false" style="flex:1"/>
-    </div>
-    <input class="inline-input" id="ie_sfr_${gi}" value="${escH(w.sfr||'')}" placeholder="Exemple (optionnel)" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-    <div class="inline-actions">
-      <button class="btn btn-green btn-sm" onclick="saveInlineEdit(${gi})">✅ OK</button>
-      <button class="btn btn-gray btn-sm" onclick="renderEditorList()">Annuler</button>
-    </div>
-  </div>`;
-}
-
-function saveInlineEdit(gi){
-  const fr=document.getElementById(`ie_fr_${gi}`)?.value.trim();
-  const g=document.getElementById(`ie_g_${gi}`)?.value||'';
-  const zh=document.getElementById(`ie_zh_${gi}`)?.value.trim();
-  const en=document.getElementById(`ie_en_${gi}`)?.value.trim();
-  const sfr=document.getElementById(`ie_sfr_${gi}`)?.value.trim();
-  if(!fr||!zh){showToast('Le mot français et le chinois sont requis');return;}
-  editorWords[gi]={fr,g:g||'',zh,en:en||'',sfr:sfr||''};
-  renderEditorList();showToast('✅ Enregistré');
-}
-
-function addWord(){
-  const fr=document.getElementById('newFr').value.trim();
-  const g=document.getElementById('newGender').value||'';
-  const zh=document.getElementById('newZh').value.trim();
-  const en=document.getElementById('newEn').value.trim();
-  const sfr=document.getElementById('newSfr').value.trim();
-  if(!fr||!zh){showToast('Mot français et chinois requis');return;}
-  if(editorWords.some(w=>w.fr.toLowerCase()===fr.toLowerCase())){showToast('Ce mot existe déjà !');return;}
-  editorWords.push({fr,g:g||'',zh,en:en||'',sfr:sfr||''});
-  ['newFr','newZh','newEn','newSfr'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('newGender').value='';
-  document.getElementById('newFr').focus();
-  editorPage=Math.max(0,Math.ceil(editorWords.length/PAGE_SIZE)-1);
-  renderEditorList();showToast(`✅ Ajouté : ${fr}`);
-}
-
-function deleteWord(gi){
-  const w=editorWords[gi];editorWords.splice(gi,1);renderEditorList();showToast(`🗑 Supprimé : ${w.fr}`);
-}
-
-function saveEditorWords(){banks[editorLevel]=editorWords.map(w=>({...w}));}
-
-function saveEditor(){
-  saveEditorWords();
-  // Persist only the levels that have been locally modified (JSON files are the canonical source)
-  const lsOverride=lsGet(SK.banks(),{});
-  lsOverride[editorLevel]=banks[editorLevel];
-  lsSet(SK.banks(),lsOverride);
-  // Clean stale indices for all students
-  const students=lsGet(SK.students(),[]);
-  LEVELS.forEach(lvl=>{
-    const maxIdx=(banks[lvl.id]||[]).length;
-    students.forEach(s=>{
-      lsSet(SK.mastered(s,lvl.id),lsGet(SK.mastered(s,lvl.id),[]).filter(i=>i<maxIdx));
-      lsSet(SK.wrong(s,lvl.id),lsGet(SK.wrong(s,lvl.id),[]).filter(i=>i<maxIdx));
-    });
-  });
-  closeEditor();showToast('✅ Lexique enregistré !');
-}
-
-// ═══════════════════════════════════════════════════
-// IMPORT / EXPORT
-// ═══════════════════════════════════════════════════
-function importWords(replace){
-  const raw=document.getElementById('importText').value.trim();
-  if(!raw){showToast('Collez le contenu du lexique');return;}
-  const lines=raw.split(/\r?\n/).map(l=>l.trim()).filter(l=>l&&!l.startsWith('#'));
-  const parsed=[];const errors=[];
-  lines.forEach((line,i)=>{
-    const sep=line.includes('\t')?'\t':',';
-    const parts=line.split(sep);
-    if(parts.length<2){errors.push(i+1);return;}
-    const fr=parts[0].trim();
-    // Support both 4-col (old) and 5-col (new with gender)
-    let g='',zh='',en='',sfr='';
-    if(parts.length>=5){
-      g=parts[1].trim();zh=parts[2].trim();en=parts[3].trim();sfr=parts[4].trim();
-    } else {
-      zh=parts[1].trim();en=parts[2]?.trim()||'';sfr=parts[3]?.trim()||'';
-    }
-    if(!fr||!zh){errors.push(i+1);return;}
-    parsed.push({fr,g:g||'',zh,en:en||'',sfr:sfr||''});
-  });
-  if(!parsed.length){showToast('Aucun mot valide trouvé');return;}
-  if(replace){
-    editorWords=parsed;
-    showToast(`✅ ${parsed.length} mots importés${errors.length?' ('+errors.length+' erreurs)':''}`);
-  } else {
-    const ex=new Set(editorWords.map(w=>w.fr.toLowerCase()));
-    let added=0;
-    parsed.forEach(w=>{if(!ex.has(w.fr.toLowerCase())){editorWords.push(w);ex.add(w.fr.toLowerCase());added++;}});
-    showToast(`✅ ${added} ajoutés${parsed.length-added?' ('+( parsed.length-added)+' doublons)':''}${errors.length?' '+errors.length+' erreurs':''}`);
-  }
-  editorPage=0;renderEditorList();document.getElementById('importText').value='';
-}
-
-function exportWords(){
-  const words=editorWords;
-  if(!words.length){showToast('Aucun mot à exporter');return;}
-  const lvl=LEVELS.find(l=>l.id===editorLevel);
-  // [FIX] 导出文件名直接用 LEVEL_FILES 相对路径（已无前导 /）
-  const filename=LEVEL_FILES[editorLevel]||`${editorLevel}.json`;
-  const payload=JSON.stringify(words,null,2);
-  const blob=new Blob([payload],{type:'application/json;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;
-  a.download=filename;
-  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
-  showToast(`📤 ${words.length} mots → ${filename}`);
-}
-
-function downloadTemplate(){
-  const lines=[
-    '# Mots Magiques — Modèle de lexique',
-    '# Format : français,genre,中文,English,exemple_français',
-    '# Genre : n.m. / n.f. / v. / adj. / adv. / prép. / conj. / pron.',
-    '# Les colonnes 2 à 5 sont optionnelles',
-    '#',
-    '# français,genre,中文,English,exemple',
-    'bonjour,interj.,你好,hello,Bonjour tout le monde !',
-    'chat,n.m.,猫,cat,Le chat dort sur le canapé.',
-    'courir,v.,跑步,to run,J\'aime courir dans le parc.',
-    'école,n.f.,学校,school,Je vais à l\'école chaque matin.',
-    'grand,adj.,大的,big,L\'éléphant est très grand.',
-    'ami,n.m.,朋友,friend,',
-    'eau,n.f.,水,water,',
-    '#',
-    '# Ajoutez vos mots ici :',
-  ];
-  const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;a.download='mots_magiques_modele.csv';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
-  showToast('📥 Modèle téléchargé');
-}
-
-// ═══════════════════════════════════════════════════
-// TOAST
-// ═══════════════════════════════════════════════════
-let toastTimer=null;
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
-}
-
-// ═══════════════════════════════════════════════════
-// SUPABASE 建表 SQL（在 Supabase SQL Editor 中执行一次）
-// ═══════════════════════════════════════════════════
-/*
--- 0. 用户表（用户名+密码哈希，替代 Supabase Auth）
--- 注意：此处使用 anon key + RLS 策略控制权限，需在 Supabase SQL Editor 执行
-CREATE TABLE IF NOT EXISTS app_users (
-  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  username   TEXT NOT NULL UNIQUE,
-  pw_hash    TEXT NOT NULL,           -- SHA-256(password + username) 前端哈希
-  created_at TIMESTAMPTZ DEFAULT now()
-);
--- RLS：允许 anon 角色 insert（注册）和 select（登录验证）
-ALTER TABLE app_users ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "anon can register" ON app_users FOR INSERT WITH CHECK (true);
-CREATE POLICY "anon can login"    ON app_users FOR SELECT USING (true);
-
--- 1. 建表
-CREATE TABLE IF NOT EXISTS word_progress (
-  id         BIGSERIAL PRIMARY KEY,
-  user_id    TEXT NOT NULL,            -- 对应 app_users.id（UUID 字符串）
-  student_name TEXT NOT NULL,
-  level      TEXT NOT NULL,
-  mastered   JSONB NOT NULL DEFAULT '[]',
-  wrong      JSONB NOT NULL DEFAULT '[]',
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  CONSTRAINT word_progress_user_student_level_key UNIQUE (user_id, student_name, level)
-);
-
--- 2. 开启 RLS
-ALTER TABLE word_progress ENABLE ROW LEVEL SECURITY;
-
--- 3. RLS 策略（跨设备同步修复关键步骤）
--- 本项目使用自定义 app_users 表认证，不走 Supabase Auth，
--- auth.uid() 永远为 null，旧策略 USING(auth.uid()=user_id) 会导致 42501 拒绝所有读写。
--- 必须先删除旧策略，再建基于 anon 角色的新策略：
---
--- 第一步：删旧策略（在 Supabase SQL Editor 执行）
-DROP POLICY IF EXISTS "allow all on word_progress" ON word_progress;
-DROP POLICY IF EXISTS "select own rows"            ON word_progress;
-DROP POLICY IF EXISTS "insert own rows"            ON word_progress;
-DROP POLICY IF EXISTS "update own rows"            ON word_progress;
-DROP POLICY IF EXISTS "delete own rows"            ON word_progress;
---
--- 第二步：建新策略（anon 角色全放行，数据隔离由应用层 user_id 过滤保证）
-CREATE POLICY "anon_select" ON word_progress FOR SELECT TO anon USING (true);
-CREATE POLICY "anon_insert" ON word_progress FOR INSERT TO anon WITH CHECK (true);
-CREATE POLICY "anon_update" ON word_progress FOR UPDATE TO anon USING (true) WITH CHECK (true);
-CREATE POLICY "anon_delete" ON word_progress FOR DELETE TO anon USING (true);
---
--- 验证（应看到4条新策略）：
--- SELECT policyname, cmd, roles FROM pg_policies WHERE tablename = 'word_progress';
-*/
-
-// ═══════════════════════════════════════════════════
-// START
-// ═══════════════════════════════════════════════════
-init();
-</script>
-</body>
-</html>
+    if (!data
