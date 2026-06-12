@@ -1760,7 +1760,8 @@ function updateHeader(){
   const lvl   = LEVELS.find(l=>l.id===currentLevel);
   const bank  = banks[currentLevel] || [];
 
-  const total   = sessionQueue.length;      // 今日待背总数
+  //const total   = sessionQueue.length;      // 今日待背总数
+  const total = Math.max(0, dailyCount - sessionCorrect);
   const correct = sessionCorrect;           // 本轮答对数
   const wrong   = wrongSet.length;          // 错词数
 
