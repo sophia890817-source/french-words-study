@@ -1459,7 +1459,8 @@ async function startLevel(levelId){
   if (authUser && _supabase) {
     try {
       const loaded = await cloudLoadProgress(currentStudent, levelId);
-      if (loaded) console.log(`[cloud] 等级 ${levelId} 进度已从云端更新`);
+      if (loaded) { console.log(`[cloud] 等级 ${levelId} 进度已从云端更新`);
+			updateHeader();  }
     } catch(e) {
       console.warn('[cloud] startLevel 拉取失败，使用本地数据:', e.message);
     }
