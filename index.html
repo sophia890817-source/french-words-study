@@ -142,11 +142,11 @@ body::before{content:'';position:fixed;inset:0;
 /* ── MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(40,30,80,0.52);z-index:100;
   display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);animation:fadeIn 0.2s;}
-/* 【首页改版】登录注册弹窗居中显示，不贴底部 */
+/* [redesign] Fenêtre de connexion centrée */
 #authOverlay{align-items:center;padding:20px;}
 #authOverlay .modal{border-radius:24px;max-height:90vh;}
 .modal-overlay.hidden{display:none!important;}
-/* 【首页改版】登录/注册弹窗居中展示，不贴底部 */
+/* [redesign] Fenêtre connexion/inscription centrée */
 #authOverlay{align-items:center;padding:16px;}
 #authOverlay .modal{border-radius:24px;max-height:92vh;}
 .modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:500px;
@@ -333,9 +333,9 @@ body::before{content:'';position:fixed;inset:0;
 <div class="header" id="mainHeader">
   <!-- 第一行：功能按钮 + 标题 -->
   <div class="header-top">
-    <button class="hbtn" onclick="openSettings()">⚙️</button>
+    <button class="hbtn" onclick="openSettings()">⚙️ Paramètres</button>
     <div class="header-title">🌟 Mots Magiques</div>
-    <button class="hbtn" onclick="openMedals()">🏅 勋章</button>
+    <button class="hbtn" onclick="openMedals()">🏅 Médailles</button>
     <!-- [권한] admin만 표시. updateAuthUI()가 display 제어 -->
     <button id="lexiqueBtn" class="hbtn" style="display:none;" onclick="openEditor()">📝 Lexique</button>
   </div>
@@ -353,12 +353,12 @@ body::before{content:'';position:fixed;inset:0;
   <!-- 第三行：学习数据统计（仅学习中显示） -->
   <!-- 今日待背 / 答对 / 答错 / 剩余 / 积分 / 连击 -->
   <div class="stats-row" id="statsRow" style="display:none;">
-    <div class="stat-badge" title="今日待背单词总数">📚 <span id="statTotal2">0</span> 待背</div>
-    <div class="stat-badge" title="本轮答对数">✅ <span id="statCorrect">0</span> 答对</div>
-    <div class="stat-badge" title="当前错误单词数">❌ <span id="statWrong">0</span> 答错</div>
-    <div class="stat-badge" title="剩余未完成单词数">⏳ <span id="statRemain">0</span> 本级剩余</div>
-    <div class="stat-badge" title="当前等级累计积分" id="scoreBadge">🏆 <span id="statScore">0</span> 分</div>
-    <div class="stat-badge" title="当前连续答对次数" id="comboBadge" style="display:none;">🔥 <span id="statCombo">0</span> 连击</div>
+    <div class="stat-badge" title="Mots à apprendre aujourd'hui">📚 <span id="statTotal2">0</span> à voir</div>
+    <div class="stat-badge" title="Bonnes réponses">✅ <span id="statCorrect">0</span> correct</div>
+    <div class="stat-badge" title="Mots incorrects">❌ <span id="statWrong">0</span> erreur</div>
+    <div class="stat-badge" title="Mots restants dans ce niveau">⏳ <span id="statRemain">0</span> restants</div>
+    <div class="stat-badge" title="Points accumulés dans ce niveau" id="scoreBadge">🏆 <span id="statScore">0</span> pts</div>
+    <div class="stat-badge" title="Réponses consécutives correctes" id="comboBadge" style="display:none;">🔥 <span id="statCombo">0</span> Combo</div>
   </div>
 
   <!-- 第四行：当前等级标签 -->
@@ -374,7 +374,7 @@ body::before{content:'';position:fixed;inset:0;
   <!-- 未登录时显示的登录按钮（隐藏状态，通过 updateAuthUI 控制） -->
   <button id="authLoginBtn" class="hbtn hidden"
     style="font-size:11px;padding:4px 11px;min-height:28px;margin-top:6px;"
-    onclick="openAuthModal('login')">🔑 登录 / 注册</button>
+    onclick="openAuthModal('login')">🔑 Connexion / Inscription</button>
 
   <!-- 兼容旧代码引用（隐藏元素，不显示） -->
   <span id="studentTag" style="display:none;"></span>
@@ -435,14 +435,14 @@ body::before{content:'';position:fixed;inset:0;
 <div class="modal-overlay hidden" id="medalOverlay" onclick="if(event.target===this)closeMedals()">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">🏅 我的勋章</div>
+      <div class="modal-title">🏅 Mes Médailles</div>
       <button class="modal-close" onclick="closeMedals()">✕</button>
     </div>
     <div class="modal-body" id="medalBody">
       <!-- 由 renderMedalModal() 动态填充 -->
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary btn-full" onclick="closeMedals()">关闭</button>
+      <button class="btn btn-primary btn-full" onclick="closeMedals()">Fermer</button>
     </div>
   </div>
 </div>
@@ -464,18 +464,18 @@ body::before{content:'';position:fixed;inset:0;
       <!-- 换人：退出当前账号，清空本地缓存，跳转登录注册界面 -->
       <div class="setting-row">
         <div>
-          <div class="setting-label">🔄 切换账号</div>
-          <div class="setting-sub" id="settingStudentName">退出后可登录其他账号</div>
+          <div class="setting-label">🔄 Changer de compte</div>
+          <div class="setting-sub" id="settingStudentName">Déconnexion pour changer de compte</div>
         </div>
-        <button class="btn btn-gray btn-sm" onclick="switchAccount()">换人</button>
+        <button class="btn btn-gray btn-sm" onclick="switchAccount()">Changer</button>
       </div>
       <!-- 重置级别：直接跳转到等级选择界面 -->
       <div class="setting-row">
         <div>
-          <div class="setting-label">🎯 重置学习级别</div>
-          <div class="setting-sub">返回等级选择页，切换学习等级</div>
+          <div class="setting-label">🎯 Réinitialiser le niveau</div>
+          <div class="setting-sub">Retourner à la sélection de niveau</div>
         </div>
-        <button class="btn btn-red btn-sm" onclick="resetLevel()">重置</button>
+        <button class="btn btn-red btn-sm" onclick="resetLevel()">Réinitialiser</button>
       </div>
     </div>
     <div class="modal-footer">
@@ -517,7 +517,7 @@ body::before{content:'';position:fixed;inset:0;
           </select>
         </div>
         <div class="field-row">
-          <input class="field-input" id="newZh" placeholder="中文" autocomplete="off" style="flex:1"/>
+          <input class="field-input" id="newZh" placeholder="Chinois" autocomplete="off" style="flex:1"/>
           <input class="field-input" id="newEn" placeholder="English" autocomplete="off" spellcheck="false" style="flex:1"/>
         </div>
         <div class="field-row">
@@ -562,31 +562,31 @@ body::before{content:'';position:fixed;inset:0;
   <!-- 注意：此弹窗在未登录时禁止点击背景关闭，已登录后才可关闭 -->
   <div class="modal" style="max-height:520px;border-radius:24px;margin:auto;">
     <div class="modal-header">
-      <div class="modal-title">🌟 Mots Magiques — 账号</div>
+      <div class="modal-title">🌟 Mots Magiques — Compte</div>
       <!-- 关闭按钮仅登录后显示 -->
       <button class="modal-close hidden" id="authCloseBtn" onclick="closeAuthModal()">✕</button>
     </div>
     <div class="modal-body" style="gap:16px;padding:20px 18px;">
       <!-- Tab 切换：登录 / 注册 -->
       <div class="tabs" style="margin-bottom:4px;">
-        <button class="tab active" id="authTabLogin"    onclick="switchAuthTab('login')">登录</button>
-        <button class="tab"        id="authTabRegister" onclick="switchAuthTab('register')">注册</button>
+        <button class="tab active" id="authTabLogin"    onclick="switchAuthTab('login')">Connexion</button>
+        <button class="tab"        id="authTabRegister" onclick="switchAuthTab('register')">Inscription</button>
       </div>
 
       <!-- 用户名输入框 -->
       <div class="field-group">
-        <div class="field-label">用户名</div>
+        <div class="field-label">Nom d'utilisateur</div>
         <input class="field-input" id="authUsername" type="text"
-          placeholder="输入用户名" autocomplete="username"
+          placeholder="Entrez votre nom" autocomplete="username"
           autocorrect="off" autocapitalize="off" spellcheck="false"
           onkeydown="if(event.key==='Enter')document.getElementById('authPassword').focus()"/>
       </div>
 
       <!-- 密码输入框 -->
       <div class="field-group">
-        <div class="field-label">密码</div>
+        <div class="field-label">Mot de passe</div>
         <input class="field-input" id="authPassword" type="password"
-          placeholder="输入密码" autocomplete="current-password"
+          placeholder="Entrez votre mot de passe" autocomplete="current-password"
           onkeydown="if(event.key==='Enter')handleAuthSubmit()"/>
       </div>
 
@@ -595,7 +595,7 @@ body::before{content:'';position:fixed;inset:0;
     </div>
     <div class="modal-footer" style="padding:14px 18px;">
       <button class="btn btn-primary btn-full" id="authSubmitBtn" data-tab="login"
-        style="font-size:16px;padding:14px;" onclick="handleAuthSubmit()">登录</button>
+        style="font-size:16px;padding:14px;" onclick="handleAuthSubmit()">Se connecter</button>
     </div>
   </div>
 </div>
@@ -666,7 +666,7 @@ async function flushOfflineQueue() {
   setOfflineQueue(failed);
   if (!failed.length) {
     console.log('[offline] ✅ 离线数据全部上传完毕，队列已清空');
-    showToast('✅ 离线期间的学习记录已同步到云端');
+    showToast('✅ Données hors-ligne synchronisées avec le cloud');
   } else {
     console.warn(`[offline] ⚠️ ${failed.length} 条上传失败，将在下次联网后重试`);
   }
@@ -679,7 +679,7 @@ window.addEventListener('online', () => {
 });
 window.addEventListener('offline', () => {
   console.log('[net] 网络已断开，学习记录将暂存本地');
-  showToast('📴 已离线，学习记录暂存本地，联网后自动同步');
+  showToast('📴 Hors ligne — progression sauvegardée localement');
 });
 
 // ── 账号 UI helpers ──────────────────────────────
@@ -713,26 +713,26 @@ function closeAuthModal() {
 function switchAuthTab(tab) {
   document.getElementById('authTabLogin').classList.toggle('active', tab === 'login');
   document.getElementById('authTabRegister').classList.toggle('active', tab === 'register');
-  document.getElementById('authSubmitBtn').textContent = tab === 'login' ? '登录' : '注册账号';
+  document.getElementById('authSubmitBtn').textContent = tab === 'login' ? 'Se connecter' : 'S\'inscrire';
   document.getElementById('authSubmitBtn').dataset.tab = tab;
   document.getElementById('authMsg').textContent = '';
 }
 
 // ── 核心：处理登录 / 注册提交 ─────────────────────────────
 async function handleAuthSubmit() {
-  if (!_supabase) { showToast('网络连接失败，请检查网络后重试'); return; }
+  if (!_supabase) { showToast('Connexion réseau échouée, vérifiez votre réseau'); return; }
   const tab      = document.getElementById('authSubmitBtn').dataset.tab;
   const username = document.getElementById('authUsername').value.trim();
   const pw       = document.getElementById('authPassword').value;
   const msg      = document.getElementById('authMsg');
 
   // 输入校验
-  if (!username) { msg.textContent = '请输入用户名'; msg.style.color = '#c0392b'; return; }
-  if (!pw)       { msg.textContent = '请输入密码';   msg.style.color = '#c0392b'; return; }
-  if (username.length < 2) { msg.textContent = '用户名至少2个字符'; msg.style.color = '#c0392b'; return; }
-  if (pw.length < 4)       { msg.textContent = '密码至少4位';       msg.style.color = '#c0392b'; return; }
+  if (!username) { msg.textContent = 'Veuillez entrer un nom d\'utilisateur'; msg.style.color = '#c0392b'; return; }
+  if (!pw)       { msg.textContent = 'Veuillez entrer un mot de passe';   msg.style.color = '#c0392b'; return; }
+  if (username.length < 2) { msg.textContent = 'Le nom doit comporter au moins 2 caractères'; msg.style.color = '#c0392b'; return; }
+  if (pw.length < 4)       { msg.textContent = 'Le mot de passe doit comporter au moins 4 caractères';       msg.style.color = '#c0392b'; return; }
 
-  msg.textContent = tab === 'login' ? '登录中…' : '注册中…';
+  msg.textContent = tab === 'login' ? 'Connexion…' : 'Inscription…';
   msg.style.color = '#5a5a8a';
 
   try {
@@ -748,7 +748,7 @@ async function handleAuthSubmit() {
         .maybeSingle();
 
       if (existing) {
-        msg.textContent = '用户名已被注册，请换一个或直接登录';
+        msg.textContent = 'Ce nom est déjà pris, essayez-en un autre ou connectez-vous';
         msg.style.color = '#c0392b';
         return;
       }
@@ -776,12 +776,12 @@ async function handleAuthSubmit() {
 
       if (selErr) throw selErr;
       if (!user) {
-        msg.textContent = '用户名不存在，请先注册';
+        msg.textContent = 'Nom d\'utilisateur introuvable, veuillez vous inscrire';
         msg.style.color = '#c0392b';
         return;
       }
       if (user.pw_hash !== pwHash) {
-        msg.textContent = '密码错误，请重试';
+        msg.textContent = 'Mot de passe incorrect, réessayez';
         msg.style.color = '#c0392b';
         return;
       }
@@ -792,7 +792,7 @@ async function handleAuthSubmit() {
 
   } catch(e) {
     console.error('[auth] handleAuthSubmit error:', e);
-    msg.textContent = (e.message || '操作失败，请检查网络后重试');
+    msg.textContent = (e.message || 'Échec de l\'opération, vérifiez votre réseau');
     msg.style.color = '#c0392b';
   }
 }
@@ -813,7 +813,7 @@ async function _onLoginSuccess(action) {
   // 防止旧设备本地进度覆盖云端最新数据
   _clearLocalProgressCache();
 
-  showToast(`✅ ${action === 'login' ? '欢迎回来' : '注册成功'}，${authUser.username}！正在加载云端进度…`);
+  showToast(`✅ ${action === 'login' ? 'Bienvenue' : 'Inscription réussie'}, ${authUser.username} ! Chargement…`);
 
   // 互斥登录：广播新登录事件，踢出其他设备
   _registerDeviceSession(authUser.id);
@@ -911,7 +911,7 @@ function _registerDeviceSession(uid) {
 
 // 【异地登录下线】被踢出时：清空全部本地用户数据，跳转登录页
 async function _forceLogout() {
-  showToast('⚠️ 账号已在其他设备登录，本设备已自动退出');
+  showToast('⚠️ Compte connecté sur un autre appareil, déconnexion automatique');
 
   // 1. 清除所有学生所有等级本地进度
   const students = lsGet(SK.students(), []);
@@ -1039,7 +1039,7 @@ async function cloudSaveProgress(student, level, masteredArr, wrongArr) {
   }
 }
 
-/** 降级策略：先删再插（绕过唯一约束冲突） */
+/** Stratégie de repli : supprimer puis insérer (contourne les conflits d'unicité) */
 async function _cloudDeleteInsert(payload, student, level) {
   try {
     await _supabase.from('word_progress').delete()
@@ -1096,7 +1096,7 @@ async function cloudLoadProgress(student, level) {
 async function pullAllFromCloud(student) {
   if (!_supabase || !authUser || !student) return;
   console.log(`[cloud] 开始拉取 "${student}" 全部等级云端进度…`);
-  showToast('☁️ 正在同步云端进度…');
+  showToast('☁️ Synchronisation en cours…');
   let pulled = 0;
   for (const lvl of LEVELS) {
     const ok = await cloudLoadProgress(student, lvl.id);
@@ -1104,11 +1104,11 @@ async function pullAllFromCloud(student) {
   }
   if (pulled > 0) {
     console.log(`[cloud] 拉取完毕，${pulled}/${LEVELS.length} 个等级已更新`);
-    showToast(`✅ 已加载云端进度（${pulled} 个等级）`);
+    showToast(`✅ Progression chargée (${pulled} niveau(x))`);
     if (currentLevel) { loadProgress(); updateHeader(); }
   } else {
     console.log('[cloud] 云端暂无进度，新账号从零开始');
-    showToast('☁️ 云端暂无进度，从零开始');
+    showToast('☁️ Aucune progression en ligne, nouveau départ');
   }
 }
 
@@ -1192,15 +1192,15 @@ let userMedals = [];
 
 // 勋章总配置表（全局只读，不随账号/等级变化）
 const MEDAL_LIST = [
-  { id:'first_word', icon:'🌱', name:'入门小萌新',  desc:'勇敢迈出学习第一步！',        type:'instant' },
-  { id:'combo_5',    icon:'🔥', name:'连击达人',    desc:'专注力满满，连续答对！',        type:'instant' },
-  { id:'combo_10',   icon:'💥', name:'超级学霸',    desc:'超强连击，表现超棒！',          type:'instant' },
-  { id:'no_wrong',   icon:'✨', name:'零失误大师',  desc:'认真仔细，一题没错！',          type:'instant' },
-  { id:'score_100',  icon:'⭐', name:'学习新人',    desc:'点滴积累，初见成果！',          type:'score', threshold:100  },
-  { id:'score_250',  icon:'🎯', name:'坚持之星',    desc:'坚持学习，值得点赞！',          type:'score', threshold:250  },
-  { id:'score_500',  icon:'🏅', name:'词汇学徒',    desc:'稳步前进，收获满满！',          type:'score', threshold:500  },
-  { id:'score_900',  icon:'🏆', name:'法语能手',    desc:'攻克大部分词汇，实力不凡！',    type:'score', threshold:900  },
-  { id:'score_1800', icon:'👑', name:'词汇大师',    desc:'深耕词汇，荣获最高荣誉！',      type:'score', threshold:1800 },
+  { id:'first_word', icon:'🌱', name:'Nouvel Apprenti', desc:'Tu as fait ton premier pas d\'apprentissage !', type:'instant' },
+  { id:'combo_5',    icon:'🔥', name:'Concentré',       desc:'Très concentré, cinq réponses correctes consécutives !', type:'instant' },
+  { id:'combo_10',   icon:'💥', name:'Super Étudiant',  desc:'Incroyable série de dix bonnes réponses !', type:'instant' },
+  { id:'no_wrong',   icon:'✨', name:'Maître sans erreur', desc:'Tu as terminé cette session sans aucune faute !', type:'instant' },
+  { id:'score_100',  icon:'⭐', name:'Débutant confirmé', desc:'Tes premiers 100 points, belle progression !', type:'score', threshold:100  },
+  { id:'score_250',  icon:'🎯', name:'Persévérant',      desc:'Tu restes régulier dans ton apprentissage !', type:'score', threshold:250  },
+  { id:'score_500',  icon:'🏅', name:'Apprenti Vocabulaire', desc:'Tu accumules progressivement beaucoup de vocabulaire !', type:'score', threshold:500  },
+  { id:'score_900',  icon:'🏆', name:'Spécialiste Français', desc:'Tu maîtrises la majeure partie des mots du niveau !', type:'score', threshold:900  },
+  { id:'score_1800', icon:'👑', name:'Maître du Vocabulaire', desc:'Maîtrise approfondie, tu atteins le sommet du niveau !', type:'score', threshold:1800 },
 ];
 
 // ═══════════════════════════════════════════════════
@@ -1473,7 +1473,7 @@ function showWelcome(){
 }
 
 // renderStudentList：首页改版后不再使用，保留空函数避免报错
-function renderStudentList(){ /* 已弃用：账号即学生，无需选择学生 */ }
+function renderStudentList(){ /* obsolète : le compte est l'élève */ }
 
 // confirmName 已弃用（首页改版，姓名输入已删除）
 function confirmName(){ if(authUser)_enterAsStudent(authUser.username); }
@@ -1518,7 +1518,7 @@ function showLevelSelect(){
   document.getElementById('levelCard').classList.remove('hidden');
   // 等级选择提示：显示欢迎+用户名
   const hint = document.getElementById('levelStudentHint');
-  if(hint) hint.textContent = authUser ? `👤 ${authUser.username}，选择今天的学习等级` : '选择学习等级';
+  if(hint) hint.textContent = authUser ? `👤 ${authUser.username}, choisis ton niveau` : 'Choisis ton niveau';
 
   // 等级选择页：隐藏统计行和进度条（还未开始学习）
   const statsRow     = document.getElementById('statsRow');
@@ -1763,7 +1763,7 @@ function unlockMedal(medalId) {
   saveMedals();
 
   // Toast 提示（使用项目自带 showToast，童趣文案）
-  showToast(`${medal.icon} 勋章解锁！「${medal.name}」— ${medal.desc}`);
+  showToast(`${medal.icon} Médaille débloquée ! « ${medal.name} » — ${medal.desc}`);
   console.log(`[medals] 🎉 解锁勋章: ${medal.id} (${medal.name})`);
 }
 
@@ -1802,13 +1802,13 @@ function checkMedalNoWrong() {
 
 // ── 勋章弹窗 UI ─────────────────────────────────────────────────
 
-/** openMedals()：渲染并打开勋章弹窗 */
+/** openMedals() : afficher la fenêtre des médailles */
 function openMedals() {
   renderMedalModal();
   document.getElementById('medalOverlay').classList.remove('hidden');
 }
 
-/** closeMedals()：关闭勋章弹窗 */
+/** closeMedals() : fermer la fenêtre des médailles */
 function closeMedals() {
   document.getElementById('medalOverlay').classList.add('hidden');
 }
@@ -1828,9 +1828,9 @@ function renderMedalModal() {
   body.innerHTML = `
     <div style="text-align:center;margin-bottom:12px;">
       <span style="font-size:13px;font-weight:700;color:var(--text-mid);">
-        已解锁 <span style="color:var(--ocean);font-size:16px;">${unlockedCount}</span> / ${total} 枚勋章
+        Débloquées : <span style="color:var(--ocean);font-size:16px;">${unlockedCount}</span> / ${total} médailles
       </span>
-      ${currentLevel ? `<div style="font-size:11px;color:#aaa;margin-top:2px;">等级：${LEVELS.find(l=>l.id===currentLevel)?.label||currentLevel}</div>` : ''}
+      ${currentLevel ? `<div style="font-size:11px;color:#aaa;margin-top:2px;">Niveau : ${LEVELS.find(l=>l.id===currentLevel)?.label||currentLevel}</div>` : ''}
     </div>
     <div class="medal-list">
       ${MEDAL_LIST.map(m => {
@@ -1841,7 +1841,7 @@ function renderMedalModal() {
           <div class="medal-info">
             <div class="medal-name">${m.name}</div>
             <div class="medal-desc">${m.desc}</div>
-            <div class="medal-status">${unlocked ? '✅ 已解锁' : '🔒 未解锁'}</div>
+            <div class="medal-status">${unlocked ? '✅ Débloquée' : '🔒 Verrouillée'}</div>
           </div>
         </div>`;
       }).join('')}
@@ -2043,9 +2043,9 @@ function checkSpell(idx){
 
     // ── 答对反馈：显示连击提示文案 ────────────────────────────
     let bonusHint = '';
-    if (comboCount >= 10)      bonusHint = `<div style="margin-top:4px;font-size:12px;color:#e67e22;font-weight:700;">🔥 超级连击 ×${comboCount}！单题 +3 分</div>`;
-    else if (comboCount >= 3)  bonusHint = `<div style="margin-top:4px;font-size:12px;color:#27ae60;font-weight:700;">🔥 连击 ×${comboCount}！单题 +2 分</div>`;
-    else                       bonusHint = `<div style="margin-top:4px;font-size:12px;color:#2980b9;font-weight:600;">+1 分 🌟</div>`;
+    if (comboCount >= 10)      bonusHint = `<div style="margin-top:4px;font-size:12px;color:#e67e22;font-weight:700;">🔥 Super Combo ×${comboCount} ! +3 pts</div>`;
+    else if (comboCount >= 3)  bonusHint = `<div style="margin-top:4px;font-size:12px;color:#27ae60;font-weight:700;">🔥 Combo ×${comboCount} ! +2 pts</div>`;
+    else                       bonusHint = `<div style="margin-top:4px;font-size:12px;color:#2980b9;font-weight:600;">+1 pt 🌟</div>`;
 
     document.getElementById('phaseIcon').textContent='🌟';
     document.getElementById('phaseArea').innerHTML=`
@@ -2068,7 +2068,7 @@ function checkSpell(idx){
         <div>❌ La bonne réponse :</div>
         <div style="margin-top:5px;font-size:22px;color:#e74c3c;font-family:'Baloo 2',cursive;letter-spacing:2px;">${escH(word.fr)}</div>
         <div style="margin-top:3px;font-size:12px;color:#c0392b;">Ajouté aux erreurs — priorité demain !</div>
-        <div style="margin-top:4px;font-size:11px;color:#888;">继续加油，积分保留不扣分 💪</div>
+        <div style="margin-top:4px;font-size:11px;color:#888;">Continuez, vos points sont conservés 💪</div>
       </div>`;
   }
   updateHeader();
@@ -2094,7 +2094,7 @@ function endSession(){
   msg+=`Maîtrisés : ${mastered.size} / ${bank.length}\n`;
   msg+=`Erreurs : ${wrongSet.length}\n`;
   // 积分汇报：显示本级累计积分
-  msg+=`🏆 积分 : ${userScore} 分\n`;
+  msg+=`🏆 Points : ${userScore}\n`;
   if(allDone){
     msg+=`\n🎊 Tout le niveau est maîtrisé !\nProgression remise à zéro pour recommencer.`;
     // 注意：全部掌握时只重置单词进度，积分保留
@@ -2195,7 +2195,7 @@ function openSettings(){
   document.getElementById('dailyCountInput').value=dailyCount;
   // 显示当前登录账号名
   const el=document.getElementById('settingStudentName');
-  if(el) el.textContent=authUser?`当前账号：${authUser.username}`:'未登录';
+  if(el) el.textContent=authUser?`Compte actuel : ${authUser.username}`:'Non connecté';
   document.getElementById('settingsOverlay').classList.remove('hidden');
 }
 function closeSettings(){document.getElementById('settingsOverlay').classList.add('hidden');}
@@ -2345,7 +2345,7 @@ function startInlineEdit(gi){
       <select class="gender-select" id="ie_g_${gi}" style="flex:1">${genderOptions}</select>
     </div>
     <div style="display:flex;gap:5px;">
-      <input class="inline-input" id="ie_zh_${gi}" value="${escH(w.zh||'')}" placeholder="中文" style="flex:1"/>
+      <input class="inline-input" id="ie_zh_${gi}" value="${escH(w.zh||'')}" placeholder="Chinois" style="flex:1"/>
       <input class="inline-input" id="ie_en_${gi}" value="${escH(w.en||'')}" placeholder="English" spellcheck="false" style="flex:1"/>
     </div>
     <input class="inline-input" id="ie_sfr_${gi}" value="${escH(w.sfr||'')}" placeholder="Exemple (optionnel)" autocorrect="off" autocapitalize="off" spellcheck="false"/>
