@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<title>🔀 Conjugaison — Mots Magiques</title>
+<title>🔀 Conjugaison</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
 :root{
   --coral:#FF6B6B;--mint:#6BCB77;--lavender:#a78bfa;--ocean:#4D96FF;
-  --sun:#FFD93D;--sky:#e8f4fd;--shadow:rgba(0,0,0,0.10);
+  --sun:#FFD93D;--sky:#e8f4fd;--shadow:rgba(0,0,0.10);
   --text-dark:#2d2d5e;--text-mid:#5a5a8a;
   --orange:#e67e22;--orange-lt:#fff8f0;--orange-bd:#ffd0a0;
 }
@@ -20,8 +20,8 @@ body{font-family:'Nunito',sans-serif;
   min-height:100vh;display:flex;flex-direction:column;align-items:center;
   padding:0 0 40px;color:var(--text-dark);overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;
-  background-image:radial-gradient(2px 2px at 10% 15%,rgba(255,255,255,0.7) 0%,transparent 100%),
-  radial-gradient(2px 2px at 65% 18%,rgba(255,255,255,0.6) 0%,transparent 100%),
+  background-image:radial-gradient(2px 2px at 10% 15%,rgba(255,255,0.7) 0%,transparent 100%),
+  radial-gradient(2px 2px at 65% 18%,rgba(255,255,0.6) 0%,transparent 100%),
   radial-gradient(3px 3px at 42% 10%,rgba(255,220,100,0.6) 0%,transparent 100%);
   pointer-events:none;z-index:0;}
 .deco{position:fixed;font-size:30px;opacity:0.12;pointer-events:none;z-index:1;animation:float 6s ease-in-out infinite;}
@@ -32,27 +32,23 @@ body::before{content:'';position:fixed;inset:0;
 @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-12px) rotate(7deg);}}
 @keyframes popIn{from{opacity:0;transform:scale(0.82);}to{opacity:1;transform:scale(1);}}
 @keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-
 .header{width:100%;background:linear-gradient(135deg,#e67e22 0%,#d35400 100%);
   padding:12px 14px 14px;position:relative;z-index:10;
   box-shadow:0 4px 20px rgba(230,126,34,0.38);}
 .header-top{display:flex;align-items:center;justify-content:space-between;gap:6px;}
 .header-title{font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:#fff;
   flex:1;text-align:center;letter-spacing:1px;text-shadow:0 2px 6px rgba(0,0,0,0.2);}
-.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,255,0.42);
+.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,0.42);
   border-radius:12px;color:#fff;font-size:12px;font-weight:700;padding:6px 11px;
   cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;min-height:36px;}
 .hbtn:active{background:rgba(255,255,255,0.38);}
-
 .main{position:relative;z-index:5;width:100%;max-width:440px;
   padding:14px 13px 0;display:flex;flex-direction:column;align-items:center;gap:12px;}
-
 .card{background:#fff;border-radius:24px;padding:18px 16px;width:100%;
   box-shadow:0 8px 30px var(--shadow);position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;
   background:linear-gradient(90deg,var(--orange),var(--sun),var(--coral),var(--lavender));
   border-radius:24px 24px 0 0;}
-
 /* 控制面板 */
 .control-panel{width:100%;display:flex;flex-direction:column;gap:8px;}
 .temps-bar{display:flex;gap:5px;overflow-x:auto;-webkit-overflow-scrolling:touch;
@@ -70,19 +66,17 @@ body::before{content:'';position:fixed;inset:0;
   cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;gap:4px;}
 .fn-btn:active{background:#ebebff;}
 .fn-btn.active-fn{background:var(--ocean);border-color:var(--ocean);color:#fff;}
-
 /* 答题区 */
 .verb-display{text-align:center;padding:14px 12px 10px;}
 .verb-infinitif{font-family:'Baloo 2',cursive;font-size:46px;font-weight:800;
   color:var(--orange);line-height:1.05;}
-.verb-zh{font-size:17px;font-weight:700;color:var(--text-mid);margin-top:4px;}
+.verb-zh{display:none;}
 .verb-groupe{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;
   color:var(--orange);background:var(--orange-lt);border:1.5px solid var(--orange-bd);
   border-radius:20px;padding:2px 10px;}
 .verb-temps-label{font-size:12px;font-weight:700;color:var(--lavender);margin-top:6px;}
 .pronoun-label{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;
   color:var(--lavender);text-align:center;margin:4px 0 8px;}
-
 .conj-input{width:100%;font-family:'Baloo 2',cursive;font-size:26px;font-weight:700;
   text-align:center;padding:13px;border:3px solid #e0e4f0;border-radius:15px;
   outline:none;color:var(--text-dark);background:var(--sky);
@@ -90,32 +84,27 @@ body::before{content:'';position:fixed;inset:0;
 .conj-input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(230,126,34,0.12);background:#fff;}
 .conj-input.correct{border-color:var(--mint);background:#f0fff4;}
 .conj-input.wrong-ans{border-color:var(--coral);background:#fff5f5;}
-
 .submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--mint),#38b249);
   color:#fff;font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;border:none;
   border-radius:15px;cursor:pointer;box-shadow:0 4px 13px rgba(107,203,119,0.4);
   transition:transform 0.15s;-webkit-appearance:none;min-height:54px;}
 .submit-btn:active{transform:scale(0.96);}
 .submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
-
 .feedback{text-align:center;padding:13px 16px;border-radius:16px;font-size:15px;font-weight:700;
   width:100%;animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
 .feedback.correct{background:linear-gradient(135deg,#d4f5dc,#b8f0c5);color:#1a7a2e;border:2px solid var(--mint);}
 .feedback.wrong{background:linear-gradient(135deg,#fde8e8,#ffd0d0);color:#c0392b;border:2px solid var(--coral);}
 .correct-ans-big{margin-top:7px;font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:#c0392b;}
-
 .next-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--ocean),#6d6aea);
   color:#fff;font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;
   border:none;border-radius:15px;cursor:pointer;
   box-shadow:0 4px 13px rgba(77,150,255,0.38);
   transition:transform 0.15s;-webkit-appearance:none;min-height:52px;}
 .next-btn:active{transform:scale(0.96);}
-
 .progress-bar-wrap{width:100%;background:rgba(255,255,255,0.48);border-radius:20px;height:8px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--ocean));
   border-radius:20px;transition:width 0.5s cubic-bezier(0.34,1.56,0.64,1);min-width:5px;}
 .prog-text{font-size:12px;font-weight:700;color:var(--text-mid);text-align:center;}
-
 /* 错题 */
 .wrong-item{background:#fff;border-radius:14px;padding:13px 14px;margin-bottom:8px;
   box-shadow:0 3px 12px var(--shadow);border-left:4px solid var(--coral);}
@@ -127,23 +116,20 @@ body::before{content:'';position:fixed;inset:0;
 .clear-btn{padding:9px 16px;font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;
   border:2px solid var(--coral);border-radius:12px;color:var(--coral);background:#fff;cursor:pointer;}
 .clear-btn:active{background:#fde8e8;}
-
 /* 统计 */
 .stat-row{display:flex;align-items:center;justify-content:space-between;
   padding:9px 0;border-bottom:1px solid #f5f5fa;}
 .stat-row:last-child{border-bottom:none;}
 .sr-label{font-size:13px;font-weight:700;color:var(--text-dark);}
 .sr-val{font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;color:var(--ocean);}
-.rate-bar-bg{width:100%;background:#f0f0f8;border-radius:20px;height:7px;overflow:hidden;margin-top:3px;}
+.rate-bar-bg{width:100%;background:#f0f0f8;border-radius:20px;height:7px;overflow:hidden;}
 .rate-bar-fill{height:100%;border-radius:20px;
   background:linear-gradient(90deg,var(--orange),var(--sun));transition:width 0.7s ease;}
-
 .toast{position:fixed;bottom:64px;left:50%;transform:translateX(-50%) translateY(12px);
   background:var(--text-dark);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;
   font-weight:700;padding:8px 18px;border-radius:16px;z-index:200;opacity:0;
   transition:opacity 0.3s,transform 0.3s;pointer-events:none;max-width:90vw;text-align:center;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
 .load-msg{text-align:center;padding:30px;font-size:14px;font-weight:700;color:var(--text-mid);}
 .empty-state{text-align:center;padding:36px 20px;color:#bbb;font-size:14px;font-weight:700;}
 .hidden{display:none!important;}
@@ -152,7 +138,6 @@ body::before{content:'';position:fixed;inset:0;
 <body>
 <div class="deco">🔀</div><div class="deco">⭐</div>
 <div class="deco">📝</div><div class="deco">🎓</div>
-
 <div class="header">
   <div class="header-top">
     <button class="hbtn" onclick="goBack()">← Retour</button>
@@ -161,111 +146,93 @@ body::before{content:'';position:fixed;inset:0;
       background:rgba(255,255,255,0.2);color:#fff;white-space:nowrap;">⏳</div>
   </div>
 </div>
-
 <div class="main" id="mainWrap">
-
-  <!-- 控制面板：时态 + 功能按钮 -->
+  <!-- 控制面板 -->
   <div class="card control-panel">
     <div class="temps-bar" id="tempsBar">
-      <button class="temps-chip active" data-t="present"       onclick="selectTemps('present')">直陈式现在时</button>
-      <button class="temps-chip"        data-t="imparfait"     onclick="selectTemps('imparfait')">未完成过去时</button>
-      <button class="temps-chip"        data-t="futur"         onclick="selectTemps('futur')">简单将来时</button>
-      <button class="temps-chip"        data-t="passe_compose" onclick="selectTemps('passe_compose')">复合过去时</button>
+      <button class="temps-chip active" data-t="present" onclick="selectTemps('present')">présent</button>
+      <button class="temps-chip" data-t="imparfait" onclick="selectTemps('imparfait')">imparfait</button>
+      <button class="temps-chip" data-t="futur" onclick="selectTemps('futur')">futur simple</button>
+      <button class="temps-chip" data-t="passe_compose" onclick="selectTemps('passe_compose')">passé composé</button>
     </div>
     <div class="fn-bar">
-      <button class="fn-btn active-fn" id="fnQuiz"  onclick="switchView('quiz')">✏️ 刷题</button>
-      <button class="fn-btn"           id="fnWrong" onclick="switchView('wrong')">❌ 错题</button>
-      <button class="fn-btn"           id="fnStats" onclick="switchView('stats')">📊 统计</button>
+      <button class="fn-btn active-fn" id="fnQuiz" onclick="switchView('quiz')">✏️ Exercice</button>
+      <button class="fn-btn" id="fnWrong" onclick="switchView('wrong')">❌ Erreurs</button>
+      <button class="fn-btn" id="fnStats" onclick="switchView('stats')">📊 Statistiques</button>
     </div>
   </div>
-
   <!-- 刷题视图 -->
   <div id="viewQuiz" style="width:100%;display:flex;flex-direction:column;gap:12px;">
-
     <div id="progressArea" class="hidden" style="width:100%;display:flex;flex-direction:column;gap:4px;">
       <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progFill" style="width:0%"></div></div>
       <div class="prog-text" id="progText">0 / 0</div>
     </div>
-
     <div class="card" id="quizCard">
-      <div class="load-msg" id="loadMsg">⏳ 正在加载题库…</div>
-
-      <!-- 动词展示（直接展示，无弹窗）-->
+      <div class="load-msg" id="loadMsg">Chargement du vocabulaire…</div>
       <div class="verb-display hidden" id="verbDisplay">
-        <div class="verb-infinitif"    id="vInfinitif">—</div>
-        <div class="verb-zh"           id="vZh"></div>
-        <div class="verb-groupe"       id="vGroupe"></div>
-        <div class="verb-temps-label"  id="vTempsLabel"></div>
+        <div class="verb-infinitif" id="vInfinitif">—</div>
+        <div class="verb-zh" id="vZh"></div>
+        <div class="verb-groupe" id="vGroupe"></div>
+        <div class="verb-temps-label" id="vTempsLabel"></div>
       </div>
-
-      <!-- 人称 + 输入框 + 提交 -->
       <div class="hidden" id="inputArea" style="display:flex;flex-direction:column;gap:10px;">
         <div class="pronoun-label" id="pronounLabel"></div>
         <input class="conj-input" id="conjInput" type="text"
           autocorrect="off" autocapitalize="off" spellcheck="false"
-          placeholder="变位形式…"
+          placeholder="Forme conjuguée…"
           onkeydown="if(event.key==='Enter')doSubmit()"/>
-        <button class="submit-btn" id="submitBtn" onclick="doSubmit()">✅ 提交答案</button>
+        <button class="submit-btn" id="submitBtn" onclick="doSubmit()">✅ Valider</button>
       </div>
-
-      <!-- 反馈 -->
       <div class="hidden" id="feedbackArea" style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
         <div class="feedback" id="feedbackMsg"></div>
-        <button class="next-btn" onclick="nextQuestion()">下一题 →</button>
+        <button class="next-btn" onclick="nextQuestion()">Question suivante →</button>
       </div>
     </div>
-
     <div class="card hidden" id="endCard" style="text-align:center;">
       <div style="font-size:48px;margin-bottom:8px;">🎉</div>
-      <div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--text-dark);">本局完成！</div>
+      <div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--text-dark)">Fin de la série !</div>
       <div id="endStats" style="margin-top:10px;font-size:14px;font-weight:700;color:var(--text-mid);line-height:1.9;"></div>
-      <button class="submit-btn" style="margin-top:14px;" onclick="startNewRound()">再来一局 🔄</button>
+      <button class="submit-btn" style="margin-top:14px;" onclick="startNewRound()">Nouvelle série 🔄</button>
     </div>
   </div>
-
   <!-- 错题视图 -->
   <div id="viewWrong" class="hidden" style="width:100%;display:flex;flex-direction:column;gap:10px;">
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <div style="font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;color:var(--text-dark);">
-        ❌ 变位错题本 <span id="wrongCountLabel" style="font-size:12px;color:var(--text-mid);"></span>
+        ❌ Carnet d'erreurs <span id="wrongCountLabel" style="font-size:12px;color:var(--text-mid);"></span>
       </div>
-      <button class="clear-btn" onclick="clearWrong()">🗑 清空</button>
+      <button class="clear-btn" onclick="clearWrong()">🗑 Vider</button>
     </div>
     <div id="wrongList"></div>
-    <div id="wrongEmpty" class="empty-state hidden">🎉 暂无错题，继续加油！</div>
+    <div id="wrongEmpty" class="empty-state">Pas d'erreurs, continuez !</div>
   </div>
-
   <!-- 统计视图 -->
   <div id="viewStats" class="hidden" style="width:100%;display:flex;flex-direction:column;gap:12px;">
     <div class="card">
-      <div style="font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;color:var(--text-dark);margin-bottom:10px;">📊 刷题统计</div>
-      <div class="stat-row"><div class="sr-label">总题数</div><div class="sr-val" id="stTotal">—</div></div>
-      <div class="stat-row"><div class="sr-label">答对</div><div class="sr-val" id="stCorrect">—</div></div>
-      <div class="stat-row"><div class="sr-label">答错</div><div class="sr-val" id="stWrong">—</div></div>
-      <div class="stat-row"><div class="sr-label">综合正确率</div><div class="sr-val" id="stRate">—</div></div>
+      <div style="font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;color:var(--text-dark);margin-bottom:10px;">📊 Statistiques générales</div>
+      <div class="stat-row"><div class="sr-label">Total questions</div><div class="sr-val" id="stTotal">—</div></div>
+      <div class="stat-row"><div class="sr-label">Réponses justes</div><div class="sr-val" id="stCorrect">—</div></div>
+      <div class="stat-row"><div class="sr-label">Réponses fausses</div><div class="sr-val" id="stWrong">—</div></div>
+      <div class="stat-row"><div class="sr-label">Taux de réussite</div><div class="sr-val" id="stRate">—</div></div>
     </div>
     <div class="card">
-      <div style="font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;color:var(--text-dark);margin-bottom:8px;">📈 各时态正确率</div>
+      <div style="font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;color:var(--text-dark);margin-bottom:8px;">📈 Taux par temps</div>
       <div id="rateRows"></div>
     </div>
   </div>
-
 </div>
 <div class="toast" id="toast"></div>
-
 <script>
 'use strict';
-
 /* ══ 工具函数 ══ */
 const lsGet=(k,d=null)=>{try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
 const VK={stats:()=>'vc_stats_v1',wrong:()=>'vc_wrong_v1'};
-
 const TEMPS_LIST=[
-  {id:'present',label:'直陈式现在时'},
-  {id:'imparfait',label:'未完成过去时'},
-  {id:'futur',label:'简单将来时'},
-  {id:'passe_compose',label:'复合过去时'},
+  {id:'present',label:'présent'},
+  {id:'imparfait',label:'imparfait'},
+  {id:'futur',label:'futur simple'},
+  {id:'passe_compose',label:'passé composé'},
 ];
 const PRONOUNS=[
   {key:'je',label:"je / j'"},
@@ -275,17 +242,13 @@ const PRONOUNS=[
   {key:'vous',label:'vous'},
   {key:'ils_elles',label:'ils / elles'},
 ];
-
 /* ══ 全局状态 ══ */
 let verbsData=[], currentTemps='present', currentView='quiz';
 let qQueue=[], qPos=0, qCorrect=0, qAnswered=false;
 let vcStats=lsGet(VK.stats(),{total:0,correct:0,byTemps:{}});
 let vcWrong=lsGet(VK.wrong(),[]);
 let toastTimer=null;
-
 /* ══ 核心工具：读取JSON / 抽题 / 校验 ══ */
-
-// 读取本地 JSON，失败仅 console 报错
 async function loadVerbJSON(){
   try{
     const res=await fetch('verbs-temps.json');
@@ -300,8 +263,6 @@ async function loadVerbJSON(){
     return false;
   }
 }
-
-// 取时态变位数据（兼容嵌套/扁平两种JSON结构）
 function getTempsData(verb,tempsId){
   if(verb.temps&&verb.temps[tempsId]) return verb.temps[tempsId];
   const prefix=tempsId+'_';
@@ -311,15 +272,12 @@ function getTempsData(verb,tempsId){
   keys.forEach(k=>{obj[k.slice(prefix.length)]=verb[k];});
   return obj;
 }
-
-// 随机抽一道题
 function pickRandom(pool,temps){
   if(!pool||!pool.length) return null;
   const available=pool.filter(v=>{
   const td=getTempsData(v,temps);
-  // 仅判断时态结构存在，正常出题
   return td;
-});
+  });
   if(!available.length) return null;
   const verb=available[Math.floor(Math.random()*available.length)];
   const td=getTempsData(verb,temps);
@@ -327,8 +285,6 @@ function pickRandom(pool,temps){
   const pronoun=filled[Math.floor(Math.random()*filled.length)];
   return {verb,temps,pronoun};
 }
-
-// 生成本局题目队列（10题）
 function buildQueue(count=10){
   const queue=[];
   let tries=0;
@@ -339,13 +295,10 @@ function buildQueue(count=10){
   }
   return queue;
 }
-
-// 答案校验（忽略大小写和变音符）
 function checkAnswer(user,correct){
   const norm=s=>s.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   return norm(user)===norm(correct);
 }
-
 /* ══ 视图切换 ══ */
 function switchView(view){
   currentView=view;
@@ -356,43 +309,34 @@ function switchView(view){
   if(view==='wrong') renderWrongList();
   if(view==='stats') renderStats();
 }
-
 /* ══ 时态切换 ══ */
 function selectTemps(t){
   currentTemps=t;
   document.querySelectorAll('.temps-chip').forEach(c=>c.classList.toggle('active',c.dataset.t===t));
   if(currentView==='quiz'&&verbsData.length>0) startNewRound();
 }
-
 /* ══ 刷题主流程 ══ */
 function startNewRound(){
   qQueue=buildQueue(10);qPos=0;qCorrect=0;
   document.getElementById('endCard').classList.add('hidden');
   document.getElementById('quizCard').classList.remove('hidden');
   document.getElementById('progressArea').classList.remove('hidden');
-  if(!qQueue.length){showMsg('⚠️ 当前时态暂无题目，请检查 verbs-temps.json 数据');return;}
+  if(!qQueue.length){showMsg('Aucune question pour ce temps, vérifiez le fichier JSON');return;}
   renderQuestion();
 }
-
 function renderQuestion(){
   if(qPos>=qQueue.length){showEndCard();return;}
   const q=qQueue[qPos];
   qAnswered=false;
-
-  // 进度
   const pct=(qPos/qQueue.length*100).toFixed(0);
   document.getElementById('progFill').style.width=pct+'%';
   document.getElementById('progText').textContent=(qPos+1)+' / '+qQueue.length;
-
-  // 展示动词（直接展示，无弹窗）
   const tempsLabel=TEMPS_LIST.find(t=>t.id===q.temps)?.label||q.temps;
   document.getElementById('vInfinitif').textContent=q.verb.infinitif||q.verb.fr||'—';
   document.getElementById('vZh').textContent=q.verb.zh||'';
   document.getElementById('vGroupe').textContent=q.verb.groupe||'';
   document.getElementById('vTempsLabel').textContent=tempsLabel;
   document.getElementById('verbDisplay').classList.remove('hidden');
-
-  // 人称 + 输入框
   document.getElementById('pronounLabel').textContent=q.pronoun.label;
   const inp=document.getElementById('conjInput');
   inp.value='';inp.className='conj-input';inp.disabled=false;
@@ -401,27 +345,21 @@ function renderQuestion(){
   document.getElementById('feedbackArea').classList.add('hidden');
   setTimeout(()=>inp.focus(),100);
 }
-
 function doSubmit(){
   if(qAnswered||qPos>=qQueue.length) return;
   const q=qQueue[qPos];
-  const td=getTempsData(q.verb,q.temps);
+  const td=getTempsData(q.temps);
   const correct=td?(td[q.pronoun.key]||''):'';
   const userAns=document.getElementById('conjInput').value;
-  if(!userAns.trim()){showToast('请输入变位形式');return;}
-
+  if(!userAns.trim()){showToast('Veuillez saisir une forme conjuguée');return;}
   qAnswered=true;
   const isOk=checkAnswer(userAns,correct);
-
-  // 更新统计
   vcStats.total=(vcStats.total||0)+1;
   if(isOk){vcStats.correct=(vcStats.correct||0)+1;qCorrect++;}
   const bt=vcStats.byTemps[q.temps]||{answered:0,correct:0};
   bt.answered++;if(isOk)bt.correct++;
   vcStats.byTemps[q.temps]=bt;
   lsSet(VK.stats(),vcStats);
-
-  // 存错题
   if(!isOk&&correct){
     vcWrong.unshift({
       infinitif:q.verb.infinitif||q.verb.fr||'—',
@@ -435,44 +373,37 @@ function doSubmit(){
     vcWrong=vcWrong.slice(0,200);
     lsSet(VK.wrong(),vcWrong);
   }
-
-  // 输入框样式
   const inp=document.getElementById('conjInput');
   inp.className='conj-input '+(isOk?'correct':'wrong-ans');
   inp.disabled=true;
   document.getElementById('submitBtn').disabled=true;
-
-  // 反馈
   const fb=document.getElementById('feedbackMsg');
   fb.className='feedback '+(isOk?'correct':'wrong');
   if(isOk){
-    fb.innerHTML='<div>🌟 正确！Parfait !</div>';
+    fb.innerHTML='<div>🌟 Parfait !</div>';
   }else{
-   // fb.innerHTML='<div>❌ 答错了，正确答案：</div><div class="correct-ans-big">'+(correct||'（暂无数据）')+'</div>';
-	if(correct.trim() === ""){
-  fb.innerHTML='<div>📝 作答完成</div><div style="font-size:14px;color:#666;">该动词标准答案暂未录入，请自行核对变位</div>';
-}else{
-  fb.innerHTML='<div>❌ 答错了，正确答案：</div><div class="correct-ans-big">'+correct+'</div>';
-}
+    if(correct.trim() === ""){
+      fb.innerHTML='<div>📝 Réponse enregistrée</div><div style="font-size:14px;color:#666;">Référence non renseignée</div>';
+    }else{
+      fb.innerHTML='<div>❌ Faux. Bonne réponse :</div><div class="correct-ans-big">'+correct+'</div>';
+    }
   }
   document.getElementById('feedbackArea').classList.remove('hidden');
 }
-
 function nextQuestion(){qPos++;renderQuestion();}
-
 function showEndCard(){
   document.getElementById('quizCard').classList.add('hidden');
   document.getElementById('progressArea').classList.add('hidden');
   const total=qQueue.length;
   const pct=total>0?Math.round(qCorrect/total*100):0;
   document.getElementById('endStats').innerHTML=
-    '共 '+total+' 题 &nbsp;·&nbsp; 答对 <strong style="color:#1a7a2e">'+qCorrect+'</strong> 题<br>'+
-    '正确率 <strong style="color:var(--orange)">'+pct+'%</strong>';
-  document.getElementById('endCard').classList.remove('hidden');
+    'Total : '+total+' questions<br>'+
+    'Justes : <strong style="color:#1a7a2e">'+qCorrect+'</strong><br>'+
+    'Taux de réussite : <strong style="color:var(--orange)">'+pct+'%</strong>';
   document.getElementById('progFill').style.width='100%';
   document.getElementById('progText').textContent=total+' / '+total;
+  document.getElementById('endCard').classList.remove('hidden');
 }
-
 function showMsg(txt){
   document.getElementById('loadMsg').textContent=txt;
   document.getElementById('loadMsg').classList.remove('hidden');
@@ -480,14 +411,13 @@ function showMsg(txt){
   document.getElementById('inputArea').classList.add('hidden');
   document.getElementById('feedbackArea').classList.add('hidden');
 }
-
 /* ══ 错题本 ══ */
 function renderWrongList(){
   const list=document.getElementById('wrongList');
   const empty=document.getElementById('wrongEmpty');
   const label=document.getElementById('wrongCountLabel');
   vcWrong=lsGet(VK.wrong(),[]);
-  label.textContent=vcWrong.length?'（'+vcWrong.length+' 条）':'';
+  label.textContent=vcWrong.length?'('+vcWrong+')':'';
   if(!vcWrong.length){list.innerHTML='';empty.classList.remove('hidden');return;}
   empty.classList.add('hidden');
   const tmap={};TEMPS_LIST.forEach(t=>{tmap[t.id]=t.label;});
@@ -497,8 +427,8 @@ function renderWrongList(){
         <div>
           <div class="wi-verb">${w.infinitif}</div>
           <div class="wi-meta">${tmap[w.temps]||w.temps} · ${w.pronoun}</div>
-          ${w.wrongAns?'<div class="wi-wrong">✗ 你的答案：'+w.wrongAns+'</div>':''}
-          <div class="wi-correct">✓ 正确：${w.correctAns}</div>
+          ${w.wrongAns?'<div class="wi-wrong">Votre réponse : ${w.wrongAns}</div>':''}
+          <div class="wi-correct">Bonne réponse : ${w.correctAns}</div>
           <div class="wi-date">📅 ${w.date}</div>
         </div>
         <button onclick="deleteWrong(${i})" style="background:none;border:none;
@@ -506,13 +436,11 @@ function renderWrongList(){
       </div>
     </div>`).join('');
 }
-
 function deleteWrong(i){vcWrong.splice(i,1);lsSet(VK.wrong(),vcWrong);renderWrongList();}
 function clearWrong(){
-  if(!confirm('确认清空全部变位错题？')) return;
-  vcWrong=[];lsSet(VK.wrong(),vcWrong);renderWrongList();showToast('✅ 错题本已清空');
+  if(!confirm('Voulez-vous vider tout le carnet d\'erreurs ?')) return;
+  vcWrong=[];lsSet(VK.wrong(),vcWrong);renderWrongList();showToast('Carnet vidé');
 }
-
 /* ══ 统计 ══ */
 function renderStats(){
   vcStats=lsGet(VK.stats(),{total:0,correct:0,byTemps:{}});
@@ -523,17 +451,16 @@ function renderStats(){
   document.getElementById('stWrong').textContent=t-c;
   document.getElementById('stRate').textContent=pct+'%';
   document.getElementById('rateRows').innerHTML=TEMPS_LIST.map(temps=>{
-    const bt=vcStats.byTemps?.[temps.id]||{answered:0,correct:0};
+    const bt=vcStats.byTemps[temps.id]||{answered:0,correct:0};
     const p=bt.answered>0?Math.round(bt.correct/bt.answered*100):0;
     return '<div style="padding:7px 0;border-bottom:1px solid #f5f5fa;">'+
       '<div style="display:flex;justify-content:space-between;">'+
       '<span style="font-size:12px;font-weight:700;color:var(--text-dark);">'+temps.label+'</span>'+
       '<span style="font-family:\'Baloo 2\',cursive;font-size:14px;font-weight:800;color:var(--orange);">'+p+'%</span></div>'+
       '<div class="rate-bar-bg"><div class="rate-bar-fill" style="width:'+p+'%"></div></div>'+
-      '<div style="font-size:10px;color:#bbb;margin-top:2px;">'+bt.correct+'/'+bt.answered+' 题</div></div>';
+      '<div style="font-size:10px;color:#bbb;margin-top:2px;">'+bt.correct+'/'+bt.answered+'</div></div>';
   }).join('');
 }
-
 /* ══ Toast ══ */
 function showToast(msg){
   const t=document.getElementById('toast');
@@ -541,25 +468,22 @@ function showToast(msg){
   clearTimeout(toastTimer);
   toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
 }
-
 function goBack(){window.location.href='index.html';}
-
 /* ══ 初始化 ══ */
 async function init(){
   const badge=document.getElementById('loadBadge');
-  badge.textContent='⏳ 加载中…';
+  badge.textContent='Chargement…';
   const ok=await loadVerbJSON();
   if(ok){
-    badge.textContent='✅ '+verbsData.length+' verbes';
+    badge.textContent=verbs.length+' verbes';
     document.getElementById('loadMsg').classList.add('hidden');
     document.getElementById('progressArea').classList.remove('hidden');
     startNewRound();
   }else{
-    badge.textContent='⚠️ 加载失败';
-    showMsg('⚠️ verbs-temps.json 加载失败\n请将该文件与 verbs.html 放在同一目录下');
+    badge.textContent='Échec chargement';
+    showMsg('Échec du chargement du fichier verbs-temps.json');
   }
 }
-
 document.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
