@@ -316,9 +316,10 @@ function getTempsData(verb,tempsId){
 function pickRandom(pool,temps){
   if(!pool||!pool.length) return null;
   const available=pool.filter(v=>{
-    const td=getTempsData(v,temps);
-    return td&&PRONOUNS.some(p=>td[p.key]);
-  });
+  const td=getTempsData(v,temps);
+  // 仅判断时态结构存在，正常出题
+  return td;
+});
   if(!available.length) return null;
   const verb=available[Math.floor(Math.random()*available.length)];
   const td=getTempsData(verb,temps);
@@ -447,7 +448,12 @@ function doSubmit(){
   if(isOk){
     fb.innerHTML='<div>🌟 正确！Parfait !</div>';
   }else{
-    fb.innerHTML='<div>❌ 答错了，正确答案：</div><div class="correct-ans-big">'+(correct||'（暂无数据）')+'</div>';
+   // fb.innerHTML='<div>❌ 答错了，正确答案：</div><div class="correct-ans-big">'+(correct||'（暂无数据）')+'</div>';
+	if(correct.trim() === ""){
+  fb.innerHTML='<div>📝 作答完成</div><div style="font-size:14px;color:#666;">该动词标准答案暂未录入，请自行核对变位</div>';
+}else{
+  fb.innerHTML='<div>❌ 答错了，正确答案：</div><div class="correct-ans-big">'+correct+'</div>';
+}
   }
   document.getElementById('feedbackArea').classList.remove('hidden');
 }

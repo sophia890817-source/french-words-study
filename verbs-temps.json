@@ -6,19 +6,39 @@
     "temps": {
       "present": {
         "label": "直陈式现在时",
-        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+        "je": "parle",
+        "tu": "parles",
+        "il_elle": "parle",
+        "nous": "parlons",
+        "vous": "parlez",
+        "ils_elles": "parlent"
       },
       "imparfait": {
         "label": "未完成过去时",
-        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+        "je": "parlais",
+        "tu": "parlais",
+        "il_elle": "parlait",
+        "nous": "parlions",
+        "vous": "parliez",
+        "ils_elles": "parlaient"
       },
       "futur": {
         "label": "简单将来时",
-        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+        "je": "parlerai",
+        "tu": "parleras",
+        "il_elle": "parlera",
+        "nous": "parlerons",
+        "vous": "parlerez",
+        "ils_elles": "parleront"
       },
       "passe_compose": {
         "label": "复合过去时",
-        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+        "je": "ai parlé",
+        "tu": "as parlé",
+        "il_elle": "a parlé",
+        "nous": "avons parlé",
+        "vous": "avez parlé",
+        "ils_elles": "ont parlé"
       }
     }
   },
@@ -27,10 +47,42 @@
     "zh": "爱；喜欢",
     "groupe": "1er groupe (-er)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "aime",
+        "tu": "aimes",
+        "il_elle": "aime",
+        "nous": "aimons",
+        "vous": "aimez",
+        "ils_elles": "aiment"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "aimais",
+        "tu": "aimais",
+        "il_elle": "aimait",
+        "nous": "aimions",
+        "vous": "aimiez",
+        "ils_elles": "aimaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "aimerai",
+        "tu": "aimeras",
+        "il_elle": "aimera",
+        "nous": "aimerons",
+        "vous": "aimerez",
+        "ils_elles": "aimeront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai aimé",
+        "tu": "as aimé",
+        "il_elle": "a aimé",
+        "nous": "avons aimé",
+        "vous": "avez aimé",
+        "ils_elles": "ont aimé"
+      }
     }
   },
   {
@@ -38,10 +90,42 @@
     "zh": "走路；运作",
     "groupe": "1er groupe (-er)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "marche",
+        "tu": "marches",
+        "il_elle": "marche",
+        "nous": "marchons",
+        "vous": "marchez",
+        "ils_elles": "marchent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "marchais",
+        "tu": "marchais",
+        "il_elle": "marchait",
+        "nous": "marchions",
+        "vous": "marchiez",
+        "ils_elles": "marchaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "marcherai",
+        "tu": "marcheras",
+        "il_elle": "marchera",
+        "nous": "marcherons",
+        "vous": "marcherez",
+        "ils_elles": "marcheront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai marché",
+        "tu": "as marché",
+        "il_elle": "a marché",
+        "nous": "avons marché",
+        "vous": "avez marché",
+        "ils_elles": "ont marché"
+      }
     }
   },
   {
@@ -49,10 +133,42 @@
     "zh": "工作",
     "groupe": "1er groupe (-er)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "travaille",
+        "tu": "travailles",
+        "il_elle": "travaille",
+        "nous": "travaillons",
+        "vous": "travaillez",
+        "ils_elles": "travaillent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "travaillais",
+        "tu": "travaillais",
+        "il_elle": "travaillait",
+        "nous": "travaillions",
+        "vous": "travailliez",
+        "ils_elles": "travaillaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "travaillerai",
+        "tu": "travailleras",
+        "il_elle": "travaillera",
+        "nous": "travaillerons",
+        "vous": "travaillerez",
+        "ils_elles": "travailleront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai travaillé",
+        "tu": "as travaillé",
+        "il_elle": "a travaillé",
+        "nous": "avons travaillé",
+        "vous": "avez travaillé",
+        "ils_elles": "ont travaillé"
+      }
     }
   },
   {
@@ -60,10 +176,42 @@
     "zh": "听；聆听",
     "groupe": "1er groupe (-er)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "écoute",
+        "tu": "écoutes",
+        "il_elle": "écoute",
+        "nous": "écoutons",
+        "vous": "écoutez",
+        "ils_elles": "écoutent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "écoutais",
+        "tu": "écoutais",
+        "il_elle": "écoutait",
+        "nous": "écoutions",
+        "vous": "écoutiez",
+        "ils_elles": "écoutaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "écouterai",
+        "tu": "écouteras",
+        "il_elle": "écoutera",
+        "nous": "écouterons",
+        "vous": "écouterez",
+        "ils_elles": "écouteront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai écouté",
+        "tu": "as écouté",
+        "il_elle": "a écouté",
+        "nous": "avons écouté",
+        "vous": "avez écouté",
+        "ils_elles": "ont écouté"
+      }
     }
   },
   {
@@ -71,10 +219,42 @@
     "zh": "完成；结束",
     "groupe": "2e groupe (-ir)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "finis",
+        "tu": "finis",
+        "il_elle": "finit",
+        "nous": "finissons",
+        "vous": "finissez",
+        "ils_elles": "finissent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "finissais",
+        "tu": "finissais",
+        "il_elle": "finissait",
+        "nous": "finissions",
+        "vous": "finissiez",
+        "ils_elles": "finissaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "finirai",
+        "tu": "finiras",
+        "il_elle": "finira",
+        "nous": "finirons",
+        "vous": "finirez",
+        "ils_elles": "finiront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai fini",
+        "tu": "as fini",
+        "il_elle": "a fini",
+        "nous": "avons fini",
+        "vous": "avez fini",
+        "ils_elles": "ont fini"
+      }
     }
   },
   {
@@ -82,10 +262,42 @@
     "zh": "选择",
     "groupe": "2e groupe (-ir)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "choisis",
+        "tu": "choisis",
+        "il_elle": "choisit",
+        "nous": "choisissons",
+        "vous": "choisissez",
+        "ils_elles": "choisissent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "choisissais",
+        "tu": "choisissais",
+        "il_elle": "choisissait",
+        "nous": "choisissions",
+        "vous": "choisissiez",
+        "ils_elles": "choisissaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "choisirai",
+        "tu": "choisiras",
+        "il_elle": "choisira",
+        "nous": "choisirons",
+        "vous": "choisirez",
+        "ils_elles": "choisiront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai choisi",
+        "tu": "as choisi",
+        "il_elle": "a choisi",
+        "nous": "avons choisi",
+        "vous": "avez choisi",
+        "ils_elles": "ont choisi"
+      }
     }
   },
   {
@@ -93,10 +305,42 @@
     "zh": "长大；成长",
     "groupe": "2e groupe (-ir)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "grandis",
+        "tu": "grandis",
+        "il_elle": "grandit",
+        "nous": "grandissons",
+        "vous": "grandissez",
+        "ils_elles": "grandissent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "grandissais",
+        "tu": "grandissais",
+        "il_elle": "grandissait",
+        "nous": "grandissions",
+        "vous": "grandissiez",
+        "ils_elles": "grandissaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "grandirai",
+        "tu": "grandiras",
+        "il_elle": "grandira",
+        "nous": "grandirons",
+        "vous": "grandirez",
+        "ils_elles": "grandiront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai grandi",
+        "tu": "as grandi",
+        "il_elle": "a grandi",
+        "nous": "avons grandi",
+        "vous": "avez grandi",
+        "ils_elles": "ont grandi"
+      }
     }
   },
   {
@@ -104,10 +348,42 @@
     "zh": "成功；通过",
     "groupe": "2e groupe (-ir)",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "réussis",
+        "tu": "réussis",
+        "il_elle": "réussit",
+        "nous": "réussissons",
+        "vous": "réussissez",
+        "ils_elles": "réussissent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "réussissais",
+        "tu": "réussissais",
+        "il_elle": "réussissait",
+        "nous": "réussissions",
+        "vous": "réussissiez",
+        "ils_elles": "réussissaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "réussirai",
+        "tu": "réussiras",
+        "il_elle": "réussira",
+        "nous": "réussirons",
+        "vous": "réussirez",
+        "ils_elles": "réussiront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai réussi",
+        "tu": "as réussi",
+        "il_elle": "a réussi",
+        "nous": "avons réussi",
+        "vous": "avez réussi",
+        "ils_elles": "ont réussi"
+      }
     }
   },
   {
@@ -115,10 +391,42 @@
     "zh": "拿；乘坐；取",
     "groupe": "Verbe en -re",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "prends",
+        "tu": "prends",
+        "il_elle": "prend",
+        "nous": "prenons",
+        "vous": "prenez",
+        "ils_elles": "prennent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "prenais",
+        "tu": "prenais",
+        "il_elle": "prenait",
+        "nous": "prenions",
+        "vous": "preniez",
+        "ils_elles": "prenaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "prendrai",
+        "tu": "prendras",
+        "il_elle": "prendra",
+        "nous": "prendrons",
+        "vous": "prendrez",
+        "ils_elles": "prendront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai pris",
+        "tu": "as pris",
+        "il_elle": "a pris",
+        "nous": "avons pris",
+        "vous": "avez pris",
+        "ils_elles": "ont pris"
+      }
     }
   },
   {
@@ -126,10 +434,42 @@
     "zh": "理解；包含",
     "groupe": "Verbe en -re",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "comprends",
+        "tu": "comprends",
+        "il_elle": "comprend",
+        "nous": "comprenons",
+        "vous": "comprenez",
+        "ils_elles": "comprennent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "comprenais",
+        "tu": "comprenais",
+        "il_elle": "comprenait",
+        "nous": "comprenions",
+        "vous": "compreniez",
+        "ils_elles": "comprenaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "comprendrai",
+        "tu": "comprendras",
+        "il_elle": "comprendra",
+        "nous": "comprendrons",
+        "vous": "comprendrez",
+        "ils_elles": "comprendront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai compris",
+        "tu": "as compris",
+        "il_elle": "a compris",
+        "nous": "avons compris",
+        "vous": "avez compris",
+        "ils_elles": "ont compris"
+      }
     }
   },
   {
@@ -137,10 +477,42 @@
     "zh": "等待",
     "groupe": "Verbe en -re",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "attends",
+        "tu": "attends",
+        "il_elle": "attend",
+        "nous": "attendons",
+        "vous": "attendez",
+        "ils_elles": "attendent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "attendais",
+        "tu": "attendais",
+        "il_elle": "attendait",
+        "nous": "attendions",
+        "vous": "attendiez",
+        "ils_elles": "attendaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "attendrai",
+        "tu": "attendras",
+        "il_elle": "attendra",
+        "nous": "attendrons",
+        "vous": "attendrez",
+        "ils_elles": "attendront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai attendu",
+        "tu": "as attendu",
+        "il_elle": "a attendu",
+        "nous": "avons attendu",
+        "vous": "avez attendu",
+        "ils_elles": "ont attendu"
+      }
     }
   },
   {
@@ -148,10 +520,42 @@
     "zh": "回答；回应",
     "groupe": "Verbe en -re",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "réponds",
+        "tu": "réponds",
+        "il_elle": "répond",
+        "nous": "répondons",
+        "vous": "répondez",
+        "ils_elles": "répondent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "répondais",
+        "tu": "répondais",
+        "il_elle": "répondait",
+        "nous": "répondions",
+        "vous": "répondiez",
+        "ils_elles": "répondaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "répondrai",
+        "tu": "répondras",
+        "il_elle": "répondra",
+        "nous": "répondrons",
+        "vous": "répondrez",
+        "ils_elles": "répondront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai répondu",
+        "tu": "as répondu",
+        "il_elle": "a répondu",
+        "nous": "avons répondu",
+        "vous": "avez répondu",
+        "ils_elles": "ont répondu"
+      }
     }
   },
   {
@@ -159,10 +563,42 @@
     "zh": "做；制作",
     "groupe": "Verbe irrégulier",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "fais",
+        "tu": "fais",
+        "il_elle": "fait",
+        "nous": "faisons",
+        "vous": "faites",
+        "ils_elles": "font"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "faisais",
+        "tu": "faisais",
+        "il_elle": "faisait",
+        "nous": "faisions",
+        "vous": "faisiez",
+        "ils_elles": "faisaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "ferai",
+        "tu": "feras",
+        "il_elle": "fera",
+        "nous": "ferons",
+        "vous": "ferez",
+        "ils_elles": "feront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai fait",
+        "tu": "as fait",
+        "il_elle": "a fait",
+        "nous": "avons fait",
+        "vous": "avez fait",
+        "ils_elles": "ont fait"
+      }
     }
   },
   {
@@ -170,10 +606,42 @@
     "zh": "读；阅读",
     "groupe": "Verbe irrégulier",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "lis",
+        "tu": "lis",
+        "il_elle": "lit",
+        "nous": "lisons",
+        "vous": "lisez",
+        "ils_elles": "lisent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "lisais",
+        "tu": "lisais",
+        "il_elle": "lisait",
+        "nous": "lisions",
+        "vous": "lisiez",
+        "ils_elles": "lisaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "lirai",
+        "tu": "liras",
+        "il_elle": "lira",
+        "nous": "lirons",
+        "vous": "lirez",
+        "ils_elles": "liront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai lu",
+        "tu": "as lu",
+        "il_elle": "a lu",
+        "nous": "avons lu",
+        "vous": "avez lu",
+        "ils_elles": "ont lu"
+      }
     }
   },
   {
@@ -181,10 +649,42 @@
     "zh": "喝；饮",
     "groupe": "Verbe irrégulier",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "bois",
+        "tu": "bois",
+        "il_elle": "boit",
+        "nous": "buvons",
+        "vous": "buvez",
+        "ils_elles": "boivent"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "buvais",
+        "tu": "buvais",
+        "il_elle": "buvait",
+        "nous": "buvions",
+        "vous": "buviez",
+        "ils_elles": "buvaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "boirai",
+        "tu": "boiras",
+        "il_elle": "boira",
+        "nous": "boirons",
+        "vous": "boirez",
+        "ils_elles": "boiront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai bu",
+        "tu": "as bu",
+        "il_elle": "a bu",
+        "nous": "avons bu",
+        "vous": "avez bu",
+        "ils_elles": "ont bu"
+      }
     }
   },
   {
@@ -192,10 +692,42 @@
     "zh": "有；拥有",
     "groupe": "Verbe irrégulier",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "ai",
+        "tu": "as",
+        "il_elle": "a",
+        "nous": "avons",
+        "vous": "avez",
+        "ils_elles": "ont"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "avais",
+        "tu": "avais",
+        "il_elle": "avait",
+        "nous": "avions",
+        "vous": "aviez",
+        "ils_elles": "avaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "aurai",
+        "tu": "auras",
+        "il_elle": "aura",
+        "nous": "aurons",
+        "vous": "aurez",
+        "ils_elles": "auront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai eu",
+        "tu": "as eu",
+        "il_elle": "a eu",
+        "nous": "avons eu",
+        "vous": "avez eu",
+        "ils_elles": "ont eu"
+      }
     }
   },
   {
@@ -203,10 +735,42 @@
     "zh": "是；存在",
     "groupe": "Verbe irrégulier",
     "temps": {
-      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
-      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+      "present": {
+        "label": "直陈式现在时",
+        "je": "suis",
+        "tu": "es",
+        "il_elle": "est",
+        "nous": "sommes",
+        "vous": "êtes",
+        "ils_elles": "sont"
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "étais",
+        "tu": "étais",
+        "il_elle": "était",
+        "nous": "étions",
+        "vous": "étiez",
+        "ils_elles": "étaient"
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "serai",
+        "tu": "seras",
+        "il_elle": "sera",
+        "nous": "serons",
+        "vous": "serez",
+        "ils_elles": "seront"
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "ai été",
+        "tu": "as été",
+        "il_elle": "a été",
+        "nous": "avons été",
+        "vous": "avez été",
+        "ils_elles": "ont été"
+      }
     }
   }
 ]
