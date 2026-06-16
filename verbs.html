@@ -420,7 +420,8 @@ function renderWrongList(){
   const empty=document.getElementById('wrongEmpty');
   const label=document.getElementById('wrongCountLabel');
   vcWrong=lsGet(VK.wrong(),[]);
-  label.textContent=vcWrong.length?'('+vcWrong+')':'';
+  label.textContent=vcWrong.length ? `(${vcWrong.length})` : '';
+//label.textContent=vcWrong.length?'('+vcWrong+')':'';
   if(!vcWrong.length){list.innerHTML='';empty.classList.remove('hidden');return;}
   empty.classList.add('hidden');
   const tmap={};TEMPS_LIST.forEach(t=>{tmap[t.id]=t.label;});
@@ -430,7 +431,8 @@ function renderWrongList(){
         <div>
           <div class="wi-verb">${w.infinitif}</div>
           <div class="wi-meta">${tmap[w.temps]||w.temps} · ${w.pronoun}</div>
-          ${w.wrongAns?'<div class="wi-wrong">Votre réponse : ${w.wrongAns}</div>':''}
+          //${w.wrongAns?'<div class="wi-wrong">Votre réponse : ${w.wrongAns}</div>':''}
+	   ${w.wrongAns ? `<div class="wi-wrong">Votre réponse : ${w.wrongAns}</div>` : ''}
           <div class="wi-correct">Bonne réponse : ${w.correctAns}</div>
           <div class="wi-date">📅 ${w.date}</div>
         </div>
