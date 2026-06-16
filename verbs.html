@@ -295,10 +295,13 @@ function buildQueue(count=10){
   }
   return queue;
 }
-function checkAnswer(user,correct){
-  const norm=s=>s.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  return norm(user)===norm(correct);
+
+
+function checkAnswer(user, correct) {
+  const clean = str => str.trim().toLowerCase();
+  return clean(user) === clean(correct);
 }
+
 /* ══ 视图切换 ══ */
 function switchView(view){
   currentView=view;
@@ -348,7 +351,7 @@ function renderQuestion(){
 function doSubmit(){
   if(qAnswered||qPos>=qQueue.length) return;
   const q=qQueue[qPos];
-  const td=getTempsData(q.temps);
+  const td = getTempsData(q.verb, q.temps);
   const correct=td?(td[q.pronoun.key]||''):'';
   const userAns=document.getElementById('conjInput').value;
   if(!userAns.trim()){showToast('Veuillez saisir une forme conjuguée');return;}
