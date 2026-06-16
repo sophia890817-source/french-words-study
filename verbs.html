@@ -155,11 +155,6 @@ body::before{content:'';position:fixed;inset:0;
       <button class="temps-chip" data-t="futur" onclick="selectTemps('futur')">futur simple</button>
       <button class="temps-chip" data-t="passe_compose" onclick="selectTemps('passe_compose')">passé composé</button>
     </div>
-    <div class="fn-bar">
-      <button class="fn-btn active-fn" id="fnQuiz" onclick="switchView('quiz')">✏️ Exercice</button>
-      <button class="fn-btn" id="fnWrong" onclick="switchView('wrong')">❌ Erreurs</button>
-      <button class="fn-btn" id="fnStats" onclick="switchView('stats')">📊 Statistiques</button>
-    </div>
   </div>
   <!-- 刷题视图 -->
   <div id="viewQuiz" style="width:100%;display:flex;flex-direction:column;gap:12px;">
@@ -304,13 +299,9 @@ function checkAnswer(user, correct) {
 
 /* ══ 视图切换 ══ */
 function switchView(view){
-  currentView=view;
-  ['Quiz','Wrong','Stats'].forEach(v=>{
-    document.getElementById('view'+v).classList.toggle('hidden',v.toLowerCase()!==view);
-    document.getElementById('fn'+v).classList.toggle('active-fn',v.toLowerCase()===view);
-  });
-  if(view==='wrong') renderWrongList();
-  if(view==='stats') renderStats();
+  currentView = 'quiz';
+  // 只保留刷题页面，错题、统计视图已全部删除
+  document.getElementById('viewQuiz').classList.remove('hidden');
 }
 /* ══ 时态切换 ══ */
 function selectTemps(t){
@@ -413,57 +404,6 @@ function showMsg(txt){
   document.getElementById('verbDisplay').classList.add('hidden');
   document.getElementById('inputArea').classList.add('hidden');
   document.getElementById('feedbackArea').classList.add('hidden');
-}
-/* ══ 错题本 ══ */
-function renderWrongList(){
-  const list=document.getElementById('wrongList');
-  const empty=document.getElementById('wrongEmpty');
-  const label=document.getElementById('wrongCountLabel');
-  vcWrong=lsGet(VK.wrong(),[]);
-  label.textContent=vcWrong.length ? `(${vcWrong.length})` : '';
-//label.textContent=vcWrong.length?'('+vcWrong+')':'';
-  if(!vcWrong.length){list.innerHTML='';empty.classList.remove('hidden');return;}
-  empty.classList.add('hidden');
-  const tmap={};TEMPS_LIST.forEach(t=>{tmap[t.id]=t.label;});
-  list.innerHTML=vcWrong.map((w,i)=>`
-    <div class="wrong-item">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-        <div>
-          <div class="wi-verb">${w.infinitif}</div>
-          <div class="wi-meta">${tmap[w.temps]||w.temps} · ${w.pronoun}</div>
-	   ${w.wrongAns ? `<div class="wi-wrong">Votre réponse : ${w.wrongAns}</div>` : ''}
-          <div class="wi-correct">Bonne réponse : ${w.correctAns}</div>
-          <div class="wi-date">📅 ${w.date}</div>
-        </div>
-        <button onclick="deleteWrong(${i})" style="background:none;border:none;
-          font-size:18px;color:#ccc;cursor:pointer;padding:4px 6px;">✕</button>
-      </div>
-    </div>`).join('');
-}
-function deleteWrong(i){vcWrong.splice(i,1);lsSet(VK.wrong(),vcWrong);renderWrongList();}
-function clearWrong(){
-  if(!confirm('Voulez-vous vider tout le carnet d\'erreurs ?')) return;
-  vcWrong=[];lsSet(VK.wrong(),vcWrong);renderWrongList();showToast('Carnet vidé');
-}
-/* ══ 统计 ══ */
-function renderStats(){
-  vcStats=lsGet(VK.stats(),{total:0,correct:0,byTemps:{}});
-  const t=vcStats.total||0,c=vcStats.correct||0;
-  const pct=t>0?Math.round(c/t*100):0;
-  document.getElementById('stTotal').textContent=t;
-  document.getElementById('stCorrect').textContent=c;
-  document.getElementById('stWrong').textContent=t-c;
-  document.getElementById('stRate').textContent=pct+'%';
-  document.getElementById('rateRows').innerHTML=TEMPS_LIST.map(temps=>{
-    const bt=vcStats.byTemps[temps.id]||{answered:0,correct:0};
-    const p=bt.answered>0?Math.round(bt.correct/bt.answered*100):0;
-    return '<div style="padding:7px 0;border-bottom:1px solid #f5f5fa;">'+
-      '<div style="display:flex;justify-content:space-between;">'+
-      '<span style="font-size:12px;font-weight:700;color:var(--text-dark);">'+temps.label+'</span>'+
-      '<span style="font-family:\'Baloo 2\',cursive;font-size:14px;font-weight:800;color:var(--orange);">'+p+'%</span></div>'+
-      '<div class="rate-bar-bg"><div class="rate-bar-fill" style="width:'+p+'%"></div></div>'+
-      '<div style="font-size:10px;color:#bbb;margin-top:2px;">'+bt.correct+'/'+bt.answered+'</div></div>';
-  }).join('');
 }
 /* ══ Toast ══ */
 function showToast(msg){
