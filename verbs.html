@@ -142,8 +142,6 @@ body::before{content:'';position:fixed;inset:0;
   <div class="header-top">
     <button class="hbtn" onclick="goBack()">← Retour</button>
     <div class="header-title">🔀 Conjugaison</div>
-    <div id="loadBadge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:10px;
-      background:rgba(255,255,255,0.2);color:#fff;white-space:nowrap;">⏳</div>
   </div>
 </div>
 <div class="main" id="mainWrap">
@@ -415,16 +413,12 @@ function showToast(msg){
 function goBack(){window.location.href='index.html';}
 /* ══ 初始化 ══ */
 async function init(){
-  const badge=document.getElementById('loadBadge');
-  badge.textContent='Chargement…';
-  const ok=await loadVerbJSON();
+ const ok = await loadVerbJSON();
   if(ok){
-    badge.textContent=verbsData.length+' verbes';
     document.getElementById('loadMsg').classList.add('hidden');
     document.getElementById('progressArea').classList.remove('hidden');
     startNewRound();
   }else{
-    badge.textContent='Échec chargement';
     showMsg('Échec du chargement du fichier verbs-temps.json');
   }
 }
