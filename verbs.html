@@ -475,7 +475,7 @@ async function init(){
   badge.textContent='Chargement…';
   const ok=await loadVerbJSON();
   if(ok){
-    badge.textContent=verbs.length+' verbes';
+    badge.textContent=verbsData.length+' verbes';
     document.getElementById('loadMsg').classList.add('hidden');
     document.getElementById('progressArea').classList.remove('hidden');
     startNewRound();
