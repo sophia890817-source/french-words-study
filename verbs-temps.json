@@ -1,0 +1,212 @@
+[
+  {
+    "infinitif": "parler",
+    "zh": "说话",
+    "groupe": "1er groupe (-er)",
+    "temps": {
+      "present": {
+        "label": "直陈式现在时",
+        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+      },
+      "imparfait": {
+        "label": "未完成过去时",
+        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+      },
+      "futur": {
+        "label": "简单将来时",
+        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+      },
+      "passe_compose": {
+        "label": "复合过去时",
+        "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": ""
+      }
+    }
+  },
+  {
+    "infinitif": "aimer",
+    "zh": "爱；喜欢",
+    "groupe": "1er groupe (-er)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "marcher",
+    "zh": "走路；运作",
+    "groupe": "1er groupe (-er)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "travailler",
+    "zh": "工作",
+    "groupe": "1er groupe (-er)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "écouter",
+    "zh": "听；聆听",
+    "groupe": "1er groupe (-er)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "finir",
+    "zh": "完成；结束",
+    "groupe": "2e groupe (-ir)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "choisir",
+    "zh": "选择",
+    "groupe": "2e groupe (-ir)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "grandir",
+    "zh": "长大；成长",
+    "groupe": "2e groupe (-ir)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "réussir",
+    "zh": "成功；通过",
+    "groupe": "2e groupe (-ir)",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "prendre",
+    "zh": "拿；乘坐；取",
+    "groupe": "Verbe en -re",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "comprendre",
+    "zh": "理解；包含",
+    "groupe": "Verbe en -re",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "attendre",
+    "zh": "等待",
+    "groupe": "Verbe en -re",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "répondre",
+    "zh": "回答；回应",
+    "groupe": "Verbe en -re",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "faire",
+    "zh": "做；制作",
+    "groupe": "Verbe irrégulier",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "lire",
+    "zh": "读；阅读",
+    "groupe": "Verbe irrégulier",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "boire",
+    "zh": "喝；饮",
+    "groupe": "Verbe irrégulier",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "avoir",
+    "zh": "有；拥有",
+    "groupe": "Verbe irrégulier",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  },
+  {
+    "infinitif": "être",
+    "zh": "是；存在",
+    "groupe": "Verbe irrégulier",
+    "temps": {
+      "present":       { "label": "直陈式现在时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "imparfait":     { "label": "未完成过去时", "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "futur":         { "label": "简单将来时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" },
+      "passe_compose": { "label": "复合过去时",   "je": "", "tu": "", "il_elle": "", "nous": "", "vous": "", "ils_elles": "" }
+    }
+  }
+]
