@@ -445,6 +445,11 @@ async function apiFetchUserScore(uid) {
  * 接口②：根据用户ID更新积分和勋章
  * @param {object} payload - { totalScore, dailyScore, daily_date, unlockedMedals }
  * 对应数据库操作：UPDATE app_users SET ... WHERE id = uid
+ * 【已废弃，保留仅作兼容】原直接 update 写法存在并发覆盖风险：
+ * 多次快速答题时，多个异步请求可能乱序到达数据库，导致后到达的
+ * "旧快照"覆盖掉先到达的"新快照"，造成已解锁勋章在 unlockedMedals
+ * 字段里丢失（表现为页面刷新后勋章又变灰）。
+ * 已改用下方 apiAddScoreAndMedals（RPC 原子操作）替代，不应再调用本函数写入。
  */
 async function apiUpdateUserScore(uid, payload) {
   if (!_sb || !uid) return false;
@@ -456,6 +461,35 @@ async function apiUpdateUserScore(uid, payload) {
     if (error) { console.warn('[score] update error:', error.message); return false; }
     return true;
   } catch(e) { console.warn('[score] update exception:', e); return false; }
+}
+
+/**
+ * ★ 新增（修复并发问题）：原子性地"累加积分 + 合并解锁勋章"
+ * 通过 Supabase RPC 调用数据库函数 add_score_and_medals，
+ * 该函数内部对该用户行加 FOR UPDATE 锁，确保同一账号的并发请求
+ * 严格串行执行；勋章合并采用"已存在则保留、不存在则追加"，
+ * 因此已解锁的勋章绝不会被后续请求覆盖移除。
+ *
+ * @param {string} uid          - 用户 id
+ * @param {number} gain         - 本次想加的分（calcScore 算出的原始值，未做每日上限截断）
+ * @param {string} today        - 今天日期 'YYYY-MM-DD'
+ * @param {string[]} newMedalIds- 本次（按加分前 totalScore 推算）新解锁的勋章 id 数组，没有则传 []
+ * @returns {object|null}       - 数据库返回的最新权威状态 { totalScore, dailyScore, daily_date, unlockedMedals, actual_gain }
+ */
+async function apiAddScoreAndMedals(uid, gain, today, newMedalIds) {
+  if (!_sb || !uid) return null;
+  try {
+    const { data, error } = await _sb.rpc('add_score_and_medals', {
+      p_uid: uid,
+      p_gain: gain,
+      p_today: today,
+      p_new_medal_ids: newMedalIds || [],
+      p_daily_limit: DAILY_LIMIT,
+    });
+    if (error) { console.warn('[score] rpc error:', error.message); return null; }
+    // Supabase RPC 返回数组（TABLE 类型函数），取第一行
+    return Array.isArray(data) ? data[0] : data;
+  } catch(e) { console.warn('[score] rpc exception:', e); return null; }
 }
 
 /* ══════════════════════════════════════════════════
@@ -488,97 +522,96 @@ function calcScore(tempsId, combo) {
 }
 
 /**
+ * ★ 重写（修复并发覆盖问题）：计算本次新解锁的勋章
+ * 不直接修改 _unlockedMedals，只是"预测"在 totalScore 达到 newTotal 后
+ * 哪些勋章会解锁，返回这些 id，交给 RPC 原子合并进数据库
+ */
+function _predictNewMedals(newTotal) {
+  return MEDALS.filter(m => !_unlockedMedals.includes(m.id) && newTotal >= m.threshold)
+               .map(m => m.id);
+}
+
+/**
  * addScore：答对后调用，更新积分状态并同步数据库
+ * 【已修复并发问题】改为单次 RPC 原子调用：
+ *   - 不再在前端先 update 积分、再 update 勋章（两次写入 = 两次竞态窗口）
+ *   - 不再用前端内存里的 _unlockedMedals 整体覆盖数据库
+ *   - 数据库返回的才是权威最新值，前端直接采用，不自行二次推算覆盖
  * @param {string} tempsId - 当前时态
  */
 async function addScore(tempsId) {
   if (!_loggedIn) return; // 未登录静默跳过
 
-  // 检查每日积分是否已达上限（300分）
   const today = new Date().toISOString().slice(0, 10);
-  // 如果日期切换，重置当日积分
-  if (_dailyDate !== today) { _dailyScore = 0; _dailyDate = today; }
-  if (_dailyScore >= DAILY_LIMIT) return; // 已达上限，不再加分
 
   // 连击递增（先+1再计算，此时 _currentCombo 是含本题的连击数）
   _currentCombo++;
   const gain = calcScore(tempsId, _currentCombo);
 
-  // 不超过当日剩余上限
-  const remaining = DAILY_LIMIT - _dailyScore;
-  const actual    = Math.min(gain, remaining);
+  // 预测本次加分后会解锁哪些新勋章（基于"假设本次 gain 全部生效"估算，
+  // 真正是否真的生效以及精确加多少分由数据库端的每日上限逻辑判定）
+  const predictedNewMedals = _predictNewMedals(_totalScore + gain);
 
-  _totalScore += actual;
-  _dailyScore += actual;
+  // 单次原子调用：数据库内部完成"加锁→读最新值→算每日上限→累加→合并勋章→写回"全过程
+  const result = await apiAddScoreAndMedals(_authUid, gain, today, predictedNewMedals);
+  if (!result) return; // 网络失败：静默跳过，本地连击计数已生效，下次答对再尝试同步
 
-  // 更新 header 展示
+  // 用数据库返回的权威值刷新本地状态（绝不会被旧快照覆盖）
+  const prevMedals = _unlockedMedals;
+  _totalScore     = result.totalScore;
+  _dailyScore     = result.dailyScore;
+  _dailyDate      = result.daily_date;
+  _unlockedMedals = result.unlockedMedals || [];
+
   renderScoreBar();
 
-  // 同步数据库（异步，不阻塞答题流程）
-  await apiUpdateUserScore(_authUid, {
-    totalScore    : _totalScore,
-    dailyScore    : _dailyScore,
-    daily_date    : today,
-    unlockedMedals: _unlockedMedals,
+  // 对比新旧勋章数组，找出真正新增的，逐个弹窗提示（法语文案）
+  const trulyNew = _unlockedMedals.filter(id => !prevMedals.includes(id));
+  trulyNew.forEach((id, idx) => {
+    const m = MEDALS.find(x => x.id === id);
+    if (m) setTimeout(() => {
+      showToast('Félicitations ! Vous avez débloqué la médaille : ' + m.name);
+    }, 300 + idx * 1200);
   });
-
-  // 积分同步后校验勋章
-  await checkMedalUnlock();
 }
 
 /**
  * addBonusScore：轮次满分奖励（20题全对 +10分）
  * 在 showEndCard 中检测后调用
+ * 【已修复并发问题】同样改为单次 RPC 原子调用
  */
 async function addBonusScore() {
   if (!_loggedIn) return;
-  const today = new Date().toISOString().slice(0, 10);
-  if (_dailyDate !== today) { _dailyScore = 0; _dailyDate = today; }
-  if (_dailyScore >= DAILY_LIMIT) return;
 
+  const today  = new Date().toISOString().slice(0, 10);
   const bonus  = 10;
-  const actual = Math.min(bonus, DAILY_LIMIT - _dailyScore);
-  _totalScore += actual;
-  _dailyScore += actual;
+  const predictedNewMedals = _predictNewMedals(_totalScore + bonus);
+
+  const result = await apiAddScoreAndMedals(_authUid, bonus, today, predictedNewMedals);
+  if (!result) return;
+
+  const prevMedals = _unlockedMedals;
+  _totalScore     = result.totalScore;
+  _dailyScore     = result.dailyScore;
+  _dailyDate      = result.daily_date;
+  _unlockedMedals = result.unlockedMedals || [];
 
   renderScoreBar();
-  showToast('🎯 Série parfaite ! +' + actual + ' pts bonus !');
+  showToast('🎯 Série parfaite ! +' + result.actual_gain + ' pts bonus !');
 
-  await apiUpdateUserScore(_authUid, {
-    totalScore    : _totalScore,
-    dailyScore    : _dailyScore,
-    daily_date    : today,
-    unlockedMedals: _unlockedMedals,
+  const trulyNew = _unlockedMedals.filter(id => !prevMedals.includes(id));
+  trulyNew.forEach((id, idx) => {
+    const m = MEDALS.find(x => x.id === id);
+    if (m) setTimeout(() => {
+      showToast('Félicitations ! Vous avez débloqué la médaille : ' + m.name);
+    }, 300 + idx * 1200);
   });
-  await checkMedalUnlock();
 }
 
-/* ══════════════════════════════════════════════════
-   ★ 新增：勋章校验函数
-   ══════════════════════════════════════════════════ */
-async function checkMedalUnlock() {
-  if (!_loggedIn) return;
-  let newUnlock = false;
-  for (const m of MEDALS) {
-    if (!_unlockedMedals.includes(m.id) && _totalScore >= m.threshold) {
-      _unlockedMedals.push(m.id);
-      newUnlock = true;
-      // 弹窗提示（法语文案）
-      setTimeout(() => {
-        showToast('Félicitations ! Vous avez débloqué la médaille : ' + m.name);
-      }, 300);
-    }
-  }
-  if (newUnlock) {
-    renderScoreBar();
-    await apiUpdateUserScore(_authUid, {
-      totalScore    : _totalScore,
-      dailyScore    : _dailyScore,
-      daily_date    : _dailyDate,
-      unlockedMedals: _unlockedMedals,
-    });
-  }
-}
+/* checkMedalUnlock 已废弃：勋章校验与解锁现在完全在 addScore / addBonusScore
+   内通过 RPC 原子完成，不再需要单独的二次校验+二次写入（那正是产生并发
+   覆盖窗口的原因之一）。保留空函数仅防止外部残留调用报错。 */
+async function checkMedalUnlock() { /* no-op，逻辑已合并进 addScore/addBonusScore 的 RPC 调用 */ }
 
 /* ══════════════════════════════════════════════════
    ★ 新增：渲染 header 积分/勋章展示条
