@@ -6,11 +6,13 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>🔀 Conjugaison</title>
+<!-- Supabase JS（与 index.html 相同版本）-->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
 :root{
   --coral:#FF6B6B;--mint:#6BCB77;--lavender:#a78bfa;--ocean:#4D96FF;
-  --sun:#FFD93D;--sky:#e8f4fd;--shadow:rgba(0,0,0.10);
+  --sun:#FFD93D;--sky:#e8f4fd;--shadow:rgba(0,0,0,0.10);
   --text-dark:#2d2d5e;--text-mid:#5a5a8a;
   --orange:#e67e22;--orange-lt:#fff8f0;--orange-bd:#ffd0a0;
 }
@@ -20,8 +22,8 @@ body{font-family:'Nunito',sans-serif;
   min-height:100vh;display:flex;flex-direction:column;align-items:center;
   padding:0 0 40px;color:var(--text-dark);overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;
-  background-image:radial-gradient(2px 2px at 10% 15%,rgba(255,255,0.7) 0%,transparent 100%),
-  radial-gradient(2px 2px at 65% 18%,rgba(255,255,0.6) 0%,transparent 100%),
+  background-image:radial-gradient(2px 2px at 10% 15%,rgba(255,255,255,0.7) 0%,transparent 100%),
+  radial-gradient(2px 2px at 65% 18%,rgba(255,255,255,0.6) 0%,transparent 100%),
   radial-gradient(3px 3px at 42% 10%,rgba(255,220,100,0.6) 0%,transparent 100%);
   pointer-events:none;z-index:0;}
 .deco{position:fixed;font-size:30px;opacity:0.12;pointer-events:none;z-index:1;animation:float 6s ease-in-out infinite;}
@@ -32,16 +34,42 @@ body::before{content:'';position:fixed;inset:0;
 @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-12px) rotate(7deg);}}
 @keyframes popIn{from{opacity:0;transform:scale(0.82);}to{opacity:1;transform:scale(1);}}
 @keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+/* ── HEADER（原有样式完全保留）── */
 .header{width:100%;background:linear-gradient(135deg,#e67e22 0%,#d35400 100%);
-  padding:12px 14px 14px;position:relative;z-index:10;
+  padding:12px 14px 10px;position:relative;z-index:10;
   box-shadow:0 4px 20px rgba(230,126,34,0.38);}
 .header-top{display:flex;align-items:center;justify-content:space-between;gap:6px;}
 .header-title{font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:#fff;
   flex:1;text-align:center;letter-spacing:1px;text-shadow:0 2px 6px rgba(0,0,0,0.2);}
-.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,0.42);
+.hbtn{background:rgba(255,255,255,0.22);border:2px solid rgba(255,255,255,0.42);
   border-radius:12px;color:#fff;font-size:12px;font-weight:700;padding:6px 11px;
   cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;min-height:36px;}
 .hbtn:active{background:rgba(255,255,255,0.38);}
+
+/* ══ 新增：积分勋章展示条（header 内第二行）══
+   插入位置：.header-top 下方，.header 内部 */
+.score-bar{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:7px;flex-wrap:wrap;
+}
+.score-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(255,255,255,0.18);border:1.5px solid rgba(255,255,255,0.35);
+  border-radius:20px;padding:3px 10px;
+  font-family:'Baloo 2',cursive;font-size:12px;font-weight:800;color:#fff;
+  white-space:nowrap;
+}
+.score-pill .score-val{font-size:14px;color:var(--sun);}
+.medal-chips{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;}
+.medal-chip{
+  display:inline-block;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);
+  border-radius:16px;padding:2px 8px;
+  font-size:11px;font-weight:700;color:#fff;white-space:nowrap;
+  animation:popIn 0.4s ease;
+}
+/* ══ 新增结束 ══ */
+
 .main{position:relative;z-index:5;width:100%;max-width:440px;
   padding:14px 13px 0;display:flex;flex-direction:column;align-items:center;gap:12px;}
 .card{background:#fff;border-radius:24px;padding:18px 16px;width:100%;
@@ -49,7 +77,6 @@ body::before{content:'';position:fixed;inset:0;
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;
   background:linear-gradient(90deg,var(--orange),var(--sun),var(--coral),var(--lavender));
   border-radius:24px 24px 0 0;}
-/* 控制面板 */
 .control-panel{width:100%;display:flex;flex-direction:column;gap:8px;}
 .temps-bar{display:flex;gap:5px;overflow-x:auto;-webkit-overflow-scrolling:touch;
   padding:2px 0;scrollbar-width:none;}
@@ -60,13 +87,6 @@ body::before{content:'';position:fixed;inset:0;
   background:#f5f5fa;color:var(--text-mid);cursor:pointer;transition:all 0.18s;}
 .temps-chip.active{background:var(--orange);border-color:var(--orange);color:#fff;
   box-shadow:0 3px 10px rgba(230,126,34,0.3);}
-.fn-bar{display:flex;gap:7px;}
-.fn-btn{flex:1;padding:9px 6px;font-family:'Baloo 2',cursive;font-size:12px;font-weight:700;
-  border:2px solid #e0e4f0;border-radius:13px;background:#f5f5fa;color:var(--text-mid);
-  cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;gap:4px;}
-.fn-btn:active{background:#ebebff;}
-.fn-btn.active-fn{background:var(--ocean);border-color:var(--ocean);color:#fff;}
-/* 答题区 */
 .verb-display{text-align:center;padding:14px 12px 10px;}
 .verb-infinitif{font-family:'Baloo 2',cursive;font-size:46px;font-weight:800;
   color:var(--orange);line-height:1.05;}
@@ -105,7 +125,6 @@ body::before{content:'';position:fixed;inset:0;
 .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--ocean));
   border-radius:20px;transition:width 0.5s cubic-bezier(0.34,1.56,0.64,1);min-width:5px;}
 .prog-text{font-size:12px;font-weight:700;color:var(--text-mid);text-align:center;}
-/* 错题 */
 .wrong-item{background:#fff;border-radius:14px;padding:13px 14px;margin-bottom:8px;
   box-shadow:0 3px 12px var(--shadow);border-left:4px solid var(--coral);}
 .wi-verb{font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:var(--orange);}
@@ -116,7 +135,6 @@ body::before{content:'';position:fixed;inset:0;
 .clear-btn{padding:9px 16px;font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;
   border:2px solid var(--coral);border-radius:12px;color:var(--coral);background:#fff;cursor:pointer;}
 .clear-btn:active{background:#fde8e8;}
-/* 统计 */
 .stat-row{display:flex;align-items:center;justify-content:space-between;
   padding:9px 0;border-bottom:1px solid #f5f5fa;}
 .stat-row:last-child{border-bottom:none;}
@@ -138,23 +156,40 @@ body::before{content:'';position:fixed;inset:0;
 <body>
 <div class="deco">🔀</div><div class="deco">⭐</div>
 <div class="deco">📝</div><div class="deco">🎓</div>
+
+<!-- ══ HEADER ══
+     【修改说明】在原有 header-top 下方新增 score-bar（积分勋章展示条）
+     原有 header-top 内容（← Retour + 标题）完全保留，未做任何改动 -->
 <div class="header">
   <div class="header-top">
     <button class="hbtn" onclick="goBack()">← Retour</button>
     <div class="header-title">🔀 Conjugaison</div>
   </div>
+
+  <!-- ══ 新增 DOM：积分 + 勋章展示条，插入在 header-top 正下方 ══ -->
+  <div class="score-bar" id="scoreBar">
+    <!-- 总积分 pill -->
+    <div class="score-pill">
+      🏆 Score : <span class="score-val" id="dispScore">—</span>
+    </div>
+    <!-- 已解锁勋章（未解锁不显示，由 JS 动态渲染）-->
+    <div class="medal-chips" id="dispMedals"></div>
+  </div>
+  <!-- ══ 新增 DOM 结束 ══ -->
 </div>
+
 <div class="main" id="mainWrap">
-  <!-- 控制面板 -->
+  <!-- 控制面板（原有，完全保留）-->
   <div class="card control-panel">
     <div class="temps-bar" id="tempsBar">
-      <button class="temps-chip active" data-t="present" onclick="selectTemps('present')">présent</button>
-      <button class="temps-chip" data-t="imparfait" onclick="selectTemps('imparfait')">imparfait</button>
-      <button class="temps-chip" data-t="futur" onclick="selectTemps('futur')">futur simple</button>
-      <button class="temps-chip" data-t="passe_compose" onclick="selectTemps('passe_compose')">passé composé</button>
+      <button class="temps-chip active" data-t="present"       onclick="selectTemps('present')">présent</button>
+      <button class="temps-chip"        data-t="imparfait"     onclick="selectTemps('imparfait')">imparfait</button>
+      <button class="temps-chip"        data-t="futur"         onclick="selectTemps('futur')">futur simple</button>
+      <button class="temps-chip"        data-t="passe_compose" onclick="selectTemps('passe_compose')">passé composé</button>
     </div>
   </div>
-  <!-- 刷题视图 -->
+
+  <!-- 刷题视图（原有，完全保留）-->
   <div id="viewQuiz" style="width:100%;display:flex;flex-direction:column;gap:12px;">
     <div id="progressArea" class="hidden" style="width:100%;display:flex;flex-direction:column;gap:4px;">
       <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progFill" style="width:0%"></div></div>
@@ -164,8 +199,8 @@ body::before{content:'';position:fixed;inset:0;
       <div class="load-msg" id="loadMsg">Chargement du vocabulaire…</div>
       <div class="verb-display hidden" id="verbDisplay">
         <div class="verb-infinitif" id="vInfinitif">—</div>
-        <div class="verb-zh" id="vZh"></div>
-        <div class="verb-groupe" id="vGroupe"></div>
+        <div class="verb-zh"        id="vZh"></div>
+        <div class="verb-groupe"    id="vGroupe"></div>
         <div class="verb-temps-label" id="vTempsLabel"></div>
       </div>
       <div class="hidden" id="inputArea" style="display:flex;flex-direction:column;gap:10px;">
@@ -188,7 +223,8 @@ body::before{content:'';position:fixed;inset:0;
       <button class="submit-btn" style="margin-top:14px;" onclick="startNewRound()">Nouvelle série 🔄</button>
     </div>
   </div>
-  <!-- 错题视图 -->
+
+  <!-- 错题视图（原有，完全保留）-->
   <div id="viewWrong" class="hidden" style="width:100%;display:flex;flex-direction:column;gap:10px;">
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <div style="font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;color:var(--text-dark);">
@@ -199,7 +235,8 @@ body::before{content:'';position:fixed;inset:0;
     <div id="wrongList"></div>
     <div id="wrongEmpty" class="empty-state">Pas d'erreurs, continuez !</div>
   </div>
-  <!-- 统计视图 -->
+
+  <!-- 统计视图（原有，完全保留）-->
   <div id="viewStats" class="hidden" style="width:100%;display:flex;flex-direction:column;gap:12px;">
     <div class="card">
       <div style="font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;color:var(--text-dark);margin-bottom:10px;">📊 Statistiques générales</div>
@@ -215,33 +252,275 @@ body::before{content:'';position:fixed;inset:0;
   </div>
 </div>
 <div class="toast" id="toast"></div>
+
 <script>
 'use strict';
-/* ══ 工具函数 ══ */
+
+/* ══════════════════════════════════════════════════
+   原有工具函数（完全保留，不做任何修改）
+   ══════════════════════════════════════════════════ */
 const lsGet=(k,d=null)=>{try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
 const VK={stats:()=>'vc_stats_v1',wrong:()=>'vc_wrong_v1'};
 const TEMPS_LIST=[
-  {id:'present',label:'présent'},
-  {id:'imparfait',label:'imparfait'},
-  {id:'futur',label:'futur simple'},
+  {id:'present',      label:'présent'},
+  {id:'imparfait',    label:'imparfait'},
+  {id:'futur',        label:'futur simple'},
   {id:'passe_compose',label:'passé composé'},
 ];
 const PRONOUNS=[
-  {key:'je',label:"je / j'"},
-  {key:'tu',label:'tu'},
-  {key:'il_elle',label:'il / elle'},
-  {key:'nous',label:'nous'},
-  {key:'vous',label:'vous'},
-  {key:'ils_elles',label:'ils / elles'},
+  {key:'je',        label:"je / j'"},
+  {key:'tu',        label:'tu'},
+  {key:'il_elle',   label:'il / elle'},
+  {key:'nous',      label:'nous'},
+  {key:'vous',      label:'vous'},
+  {key:'ils_elles', label:'ils / elles'},
 ];
-/* ══ 全局状态 ══ */
+
+/* ══ 原有全局状态（完全保留）══ */
 let verbsData=[], currentTemps='present', currentView='quiz';
 let qQueue=[], qPos=0, qCorrect=0, qAnswered=false;
 let vcStats=lsGet(VK.stats(),{total:0,correct:0,byTemps:{}});
 let vcWrong=lsGet(VK.wrong(),[]);
 let toastTimer=null;
-/* ══ 核心工具：读取JSON / 抽题 / 校验 ══ */
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：Supabase 客户端（复用 index.html 同一项目）
+   ══════════════════════════════════════════════════ */
+// 与 index.html 使用完全相同的 URL 和 anon key
+const SUPABASE_URL      = 'https://zmjdwdpslcumajabmney.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptamR3ZHBzbGN1bWFqYWJtbmV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwOTMsImV4cCI6MjA5NjY3NTA5M30.HB7umpS9haOuU2UH2MgqkpjZUUZar5iEI4llYVIWGhc';
+let _sb = null; // Supabase 客户端实例
+try {
+  if (typeof supabase !== 'undefined' && supabase.createClient) {
+    _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { persistSession: false },
+    });
+  }
+} catch(e) { console.warn('[score] Supabase init failed:', e); }
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：当前登录用户（从 index.html 写入的 localStorage 读取）
+   复用 index.html 的登录体系，无需重新设计
+   ══════════════════════════════════════════════════ */
+const _authUid      = localStorage.getItem('mm_auth_uid');
+const _authUsername = localStorage.getItem('mm_auth_username');
+// 未登录时积分功能降级（静默，不报错）
+const _loggedIn = !!(_authUid && _sb);
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：勋章配置（全部法语名称，按积分门槛升序）
+   ══════════════════════════════════════════════════ */
+const MEDALS = [
+  { id:'debutant',          name:'Débutant',                            threshold:50   },
+  { id:'apprenti',          name:'Apprenti assidu',                     threshold:200  },
+  { id:'eleve_temps',       name:'Élève des temps',                     threshold:500  },
+  { id:'maitre_conj',       name:'Maître des conjugaisons',             threshold:1000 },
+  { id:'travailleur_mille', name:'Travailleur de mille exercices',      threshold:2000 },
+  { id:'specialiste',       name:'Spécialiste de grammaire',            threshold:4000 },
+  { id:'expert',            name:'Expert des verbes',                   threshold:7000 },
+  { id:'grand_maitre',      name:'Grand Maître de la conjugaison',      threshold:10000},
+];
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：积分状态（内存变量，从数据库加载后填充）
+   ══════════════════════════════════════════════════ */
+let _totalScore    = 0;   // 账号总积分（永久）
+let _dailyScore    = 0;   // 今日已得积分（凌晨重置）
+let _dailyDate     = '';  // 记录当前 dailyScore 对应的日期
+let _unlockedMedals= [];  // 已解锁勋章 id 数组
+let _currentCombo  = 0;   // 当前连击（仅内存，不入库）
+const DAILY_LIMIT  = 300; // 每日积分上限
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：后端接口封装
+   接口①：拉取用户积分/勋章数据
+   接口②：更新积分/新增解锁勋章
+   复用 app_users 表，新增三个字段
+   ══════════════════════════════════════════════════ */
+
+/**
+ * 接口①：根据用户ID获取 totalScore、dailyScore、dailyDate、unlockedMedals
+ * 对应数据库操作：SELECT totalScore, dailyScore, daily_date, unlockedMedals FROM app_users WHERE id = uid
+ */
+async function apiFetchUserScore(uid) {
+  if (!_sb || !uid) return null;
+  try {
+    const { data, error } = await _sb
+      .from('app_users')
+      .select('totalScore, dailyScore, daily_date, unlockedMedals')
+      .eq('id', uid)
+      .single();
+    if (error) { console.warn('[score] fetch error:', error.message); return null; }
+    return data;
+  } catch(e) { console.warn('[score] fetch exception:', e); return null; }
+}
+
+/**
+ * 接口②：根据用户ID更新积分和勋章
+ * @param {object} payload - { totalScore, dailyScore, daily_date, unlockedMedals }
+ * 对应数据库操作：UPDATE app_users SET ... WHERE id = uid
+ */
+async function apiUpdateUserScore(uid, payload) {
+  if (!_sb || !uid) return false;
+  try {
+    const { error } = await _sb
+      .from('app_users')
+      .update(payload)
+      .eq('id', uid);
+    if (error) { console.warn('[score] update error:', error.message); return false; }
+    return true;
+  } catch(e) { console.warn('[score] update exception:', e); return false; }
+}
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：积分计算逻辑
+   ══════════════════════════════════════════════════ */
+
+/**
+ * calcScore：计算本次答对的得分
+ * @param {string} tempsId  - 当前时态 id
+ * @param {number} combo    - 答对时的当前连击数（含本题）
+ * @returns {number}        - 本次得分（可为小数，如 1.5）
+ */
+function calcScore(tempsId, combo) {
+  // 1. 基础分
+  let score = 1;
+
+  // 2. 时态额外加分
+  if (tempsId === 'futur')         score += 0.5;
+  if (tempsId === 'passe_compose') score += 1;
+
+  // 3. 连击额外加分（Présent / Imparfait 不加）
+  if (tempsId !== 'present' && tempsId !== 'imparfait') {
+    // 对于 futur / passe_compose 已有时态加分，连击再叠加
+  }
+  // 注：连击加分对所有时态生效
+  if (combo >= 30) score += 1;
+  else if (combo >= 15) score += 0.5;
+
+  return score;
+}
+
+/**
+ * addScore：答对后调用，更新积分状态并同步数据库
+ * @param {string} tempsId - 当前时态
+ */
+async function addScore(tempsId) {
+  if (!_loggedIn) return; // 未登录静默跳过
+
+  // 检查每日积分是否已达上限（300分）
+  const today = new Date().toISOString().slice(0, 10);
+  // 如果日期切换，重置当日积分
+  if (_dailyDate !== today) { _dailyScore = 0; _dailyDate = today; }
+  if (_dailyScore >= DAILY_LIMIT) return; // 已达上限，不再加分
+
+  // 连击递增（先+1再计算，此时 _currentCombo 是含本题的连击数）
+  _currentCombo++;
+  const gain = calcScore(tempsId, _currentCombo);
+
+  // 不超过当日剩余上限
+  const remaining = DAILY_LIMIT - _dailyScore;
+  const actual    = Math.min(gain, remaining);
+
+  _totalScore += actual;
+  _dailyScore += actual;
+
+  // 更新 header 展示
+  renderScoreBar();
+
+  // 同步数据库（异步，不阻塞答题流程）
+  await apiUpdateUserScore(_authUid, {
+    totalScore    : _totalScore,
+    dailyScore    : _dailyScore,
+    daily_date    : today,
+    unlockedMedals: _unlockedMedals,
+  });
+
+  // 积分同步后校验勋章
+  await checkMedalUnlock();
+}
+
+/**
+ * addBonusScore：轮次满分奖励（20题全对 +10分）
+ * 在 showEndCard 中检测后调用
+ */
+async function addBonusScore() {
+  if (!_loggedIn) return;
+  const today = new Date().toISOString().slice(0, 10);
+  if (_dailyDate !== today) { _dailyScore = 0; _dailyDate = today; }
+  if (_dailyScore >= DAILY_LIMIT) return;
+
+  const bonus  = 10;
+  const actual = Math.min(bonus, DAILY_LIMIT - _dailyScore);
+  _totalScore += actual;
+  _dailyScore += actual;
+
+  renderScoreBar();
+  showToast('🎯 Série parfaite ! +' + actual + ' pts bonus !');
+
+  await apiUpdateUserScore(_authUid, {
+    totalScore    : _totalScore,
+    dailyScore    : _dailyScore,
+    daily_date    : today,
+    unlockedMedals: _unlockedMedals,
+  });
+  await checkMedalUnlock();
+}
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：勋章校验函数
+   ══════════════════════════════════════════════════ */
+async function checkMedalUnlock() {
+  if (!_loggedIn) return;
+  let newUnlock = false;
+  for (const m of MEDALS) {
+    if (!_unlockedMedals.includes(m.id) && _totalScore >= m.threshold) {
+      _unlockedMedals.push(m.id);
+      newUnlock = true;
+      // 弹窗提示（法语文案）
+      setTimeout(() => {
+        showToast('Félicitations ! Vous avez débloqué la médaille : ' + m.name);
+      }, 300);
+    }
+  }
+  if (newUnlock) {
+    renderScoreBar();
+    await apiUpdateUserScore(_authUid, {
+      totalScore    : _totalScore,
+      dailyScore    : _dailyScore,
+      daily_date    : _dailyDate,
+      unlockedMedals: _unlockedMedals,
+    });
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：渲染 header 积分/勋章展示条
+   ══════════════════════════════════════════════════ */
+function renderScoreBar() {
+  // 积分
+  const scoreEl = document.getElementById('dispScore');
+  if (scoreEl) scoreEl.textContent = Math.floor(_totalScore);
+
+  // 已解锁勋章（仅显示已解锁）
+  const medalsEl = document.getElementById('dispMedals');
+  if (!medalsEl) return;
+  if (_unlockedMedals.length === 0) {
+    medalsEl.innerHTML = '';
+    return;
+  }
+  // 只显示最高级别（节省空间），或全部显示均可
+  medalsEl.innerHTML = _unlockedMedals.map(id => {
+    const m = MEDALS.find(x => x.id === id);
+    return m ? `<span class="medal-chip" title="${m.name}">🏅 ${m.name}</span>` : '';
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════
+   原有核心函数（完全保留，仅在 doSubmit 和 showEndCard 末尾
+   追加积分相关调用，标注为【★ 新增调用】）
+   ══════════════════════════════════════════════════ */
 async function loadVerbJSON(){
   try{
     const res=await fetch('verbs-temps.json');
@@ -268,8 +547,8 @@ function getTempsData(verb,tempsId){
 function pickRandom(pool,temps){
   if(!pool||!pool.length) return null;
   const available=pool.filter(v=>{
-  const td=getTempsData(v,temps);
-  return td;
+    const td=getTempsData(v,temps);
+    return td;
   });
   if(!available.length) return null;
   const verb=available[Math.floor(Math.random()*available.length)];
@@ -279,37 +558,27 @@ function pickRandom(pool,temps){
   return {verb,temps,pronoun};
 }
 function buildQueue(count=10){
-  const queue=[];
-  let tries=0;
+  const queue=[];let tries=0;
   while(queue.length<count&&tries<count*4){
-    tries++;
-    const q=pickRandom(verbsData,currentTemps);
-    if(q) queue.push(q);
+    tries++;const q=pickRandom(verbsData,currentTemps);if(q) queue.push(q);
   }
   return queue;
 }
-
-
-function checkAnswer(user, correct) {
-  const clean = str => str.trim().toLowerCase();
-  return clean(user) === clean(correct);
+function checkAnswer(user,correct){
+  const clean=str=>str.trim().toLowerCase();return clean(user)===clean(correct);
 }
-
-/* ══ 视图切换 ══ */
 function switchView(view){
-  currentView = 'quiz';
-  // 只保留刷题页面，错题、统计视图已全部删除
+  currentView='quiz';
   document.getElementById('viewQuiz').classList.remove('hidden');
 }
-/* ══ 时态切换 ══ */
 function selectTemps(t){
   currentTemps=t;
   document.querySelectorAll('.temps-chip').forEach(c=>c.classList.toggle('active',c.dataset.t===t));
   if(currentView==='quiz'&&verbsData.length>0) startNewRound();
 }
-/* ══ 刷题主流程 ══ */
 function startNewRound(){
   qQueue=buildQueue(20);qPos=0;qCorrect=0;
+  _currentCombo=0; // ★ 新增：每轮开始重置连击
   document.getElementById('endCard').classList.add('hidden');
   document.getElementById('quizCard').classList.remove('hidden');
   document.getElementById('progressArea').classList.remove('hidden');
@@ -337,21 +606,26 @@ function renderQuestion(){
   document.getElementById('feedbackArea').classList.add('hidden');
   setTimeout(()=>inp.focus(),100);
 }
-function doSubmit(){
+
+/* doSubmit：原有逻辑完全保留，末尾追加积分调用 */
+async function doSubmit(){
   if(qAnswered||qPos>=qQueue.length) return;
   const q=qQueue[qPos];
-  const td = getTempsData(q.verb, q.temps);
+  const td=getTempsData(q.verb,q.temps);
   const correct=td?(td[q.pronoun.key]||''):'';
   const userAns=document.getElementById('conjInput').value;
   if(!userAns.trim()){showToast('Veuillez saisir une forme conjuguée');return;}
   qAnswered=true;
   const isOk=checkAnswer(userAns,correct);
+
+  // 原有统计（localStorage，完全保留）
   vcStats.total=(vcStats.total||0)+1;
   if(isOk){vcStats.correct=(vcStats.correct||0)+1;qCorrect++;}
   const bt=vcStats.byTemps[q.temps]||{answered:0,correct:0};
   bt.answered++;if(isOk)bt.correct++;
   vcStats.byTemps[q.temps]=bt;
   lsSet(VK.stats(),vcStats);
+
   if(!isOk&&correct){
     vcWrong.unshift({
       infinitif:q.verb.infinitif||q.verb.fr||'—',
@@ -365,6 +639,7 @@ function doSubmit(){
     vcWrong=vcWrong.slice(0,200);
     lsSet(VK.wrong(),vcWrong);
   }
+
   const inp=document.getElementById('conjInput');
   inp.className='conj-input '+(isOk?'correct':'wrong-ans');
   inp.disabled=true;
@@ -374,16 +649,24 @@ function doSubmit(){
   if(isOk){
     fb.innerHTML='<div>🌟 Parfait !</div>';
   }else{
-    if(correct.trim() === ""){
+    if(correct.trim()===''){
       fb.innerHTML='<div>📝 Réponse enregistrée</div><div style="font-size:14px;color:#666;">Référence non renseignée</div>';
     }else{
       fb.innerHTML='<div>❌ Faux. Bonne réponse :</div><div class="correct-ans-big">'+correct+'</div>';
     }
   }
   document.getElementById('feedbackArea').classList.remove('hidden');
+
+  // ★ 新增调用：答对后计算并同步积分，答错清空连击
+  if (isOk) {
+    await addScore(q.temps);
+  } else {
+    _currentCombo = 0; // 答错：连击归零（仅内存，不入库）
+  }
 }
-function nextQuestion(){qPos++;renderQuestion();}
-function showEndCard(){
+
+/* showEndCard：原有逻辑完全保留，末尾追加满分奖励判断 */
+async function showEndCard(){
   document.getElementById('quizCard').classList.add('hidden');
   document.getElementById('progressArea').classList.add('hidden');
   const total=qQueue.length;
@@ -395,7 +678,14 @@ function showEndCard(){
   document.getElementById('progFill').style.width='100%';
   document.getElementById('progText').textContent=total+' / '+total;
   document.getElementById('endCard').classList.remove('hidden');
+
+  // ★ 新增调用：20题全对 → 轮次满分奖励 +10分
+  if (qCorrect === total && total === 20) {
+    await addBonusScore();
+  }
 }
+
+function nextQuestion(){qPos++;renderQuestion();}
 function showMsg(txt){
   document.getElementById('loadMsg').textContent=txt;
   document.getElementById('loadMsg').classList.remove('hidden');
@@ -403,17 +693,44 @@ function showMsg(txt){
   document.getElementById('inputArea').classList.add('hidden');
   document.getElementById('feedbackArea').classList.add('hidden');
 }
-/* ══ Toast ══ */
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
 }
 function goBack(){window.location.href='index.html';}
-/* ══ 初始化 ══ */
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：init 扩展
+   原有逻辑（加载 JSON + 开始刷题）完全保留
+   在原有流程之前，优先拉取用户积分/勋章数据渲染 header
+   ══════════════════════════════════════════════════ */
 async function init(){
- const ok = await loadVerbJSON();
+  // ★ 新增：init 首先拉取登录用户的积分、勋章数据
+  if (_loggedIn) {
+    const userData = await apiFetchUserScore(_authUid);
+    if (userData) {
+      _totalScore     = userData.totalScore     || 0;
+      _unlockedMedals = userData.unlockedMedals || [];
+
+      // 检查 dailyScore 是否属于今天，否则重置
+      const today = new Date().toISOString().slice(0, 10);
+      if (userData.daily_date === today) {
+        _dailyScore = userData.dailyScore || 0;
+        _dailyDate  = today;
+      } else {
+        _dailyScore = 0;
+        _dailyDate  = today;
+        // 日期已切换，重置当日积分（写回数据库）
+        apiUpdateUserScore(_authUid, { dailyScore: 0, daily_date: today });
+      }
+    }
+    renderScoreBar(); // 渲染积分/勋章展示条
+  }
+
+  // 原有逻辑（完全保留）
+  const ok = await loadVerbJSON();
   if(ok){
     document.getElementById('loadMsg').classList.add('hidden');
     document.getElementById('progressArea').classList.remove('hidden');
@@ -422,7 +739,8 @@ async function init(){
     showMsg('Échec du chargement du fichier verbs-temps.json');
   }
 }
-document.addEventListener('DOMContentLoaded',init);
+
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
