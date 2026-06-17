@@ -163,6 +163,12 @@ body::before{content:'';position:fixed;inset:0;
   font-weight:700;padding:8px 18px;border-radius:16px;z-index:200;opacity:0;
   transition:opacity 0.3s,transform 0.3s;pointer-events:none;max-width:90vw;text-align:center;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* 互斥登录强制下线：更醒目的红色警示样式，居中显示在屏幕上方 */
+.toast.danger{
+  background:linear-gradient(135deg,var(--coral),#e53935);
+  top:18px;bottom:auto;left:50%;font-size:14px;padding:11px 22px;
+  box-shadow:0 6px 20px rgba(255,107,107,0.5);
+}
 .load-msg{text-align:center;padding:30px;font-size:14px;font-weight:700;color:var(--text-mid);}
 .empty-state{text-align:center;padding:36px 20px;color:#bbb;font-size:14px;font-weight:700;}
 .hidden{display:none!important;}
@@ -322,6 +328,70 @@ const _authUid      = localStorage.getItem('mm_auth_uid');
 const _authUsername = localStorage.getItem('mm_auth_username');
 // 未登录时积分功能降级（静默，不报错）
 const _loggedIn = !!(_authUid && _sb);
+
+/* ══════════════════════════════════════════════════
+   ★ 新增：互斥登录监听（复用 index.html 同一协议）
+   原理：index.html 登录/刷新时会向 Realtime Channel "auth:{uid}"
+   广播新 session token。本页面订阅同一频道，token 不一致
+   即视为账号已在别处登录，立即弹窗提示并强制退出本设备。
+   注意：本页面不负责"广播"（广播只在 index.html 登录时发生），
+   仅负责"监听"，避免和 index.html 互相重复广播造成误踢。
+   ══════════════════════════════════════════════════ */
+let _vcKickChannel = null;
+
+function _vcSessionTokenKey(uid) {
+  return `mm_session_token:${uid}`; // 与 index.html 完全一致的 key 格式
+}
+
+function _vcWatchMutexLogin() {
+  if (!_sb || !_authUid) return;
+
+  // 本设备当前持有的 session token（index.html 登录/刷新时写入）
+  const myToken = localStorage.getItem(_vcSessionTokenKey(_authUid));
+  if (!myToken) return; // 没有 token 说明登录态本身有问题，交给 index.html 处理
+
+  if (_vcKickChannel) { try { _sb.removeChannel(_vcKickChannel); } catch(e){} }
+
+  _vcKickChannel = _sb.channel(`auth:${_authUid}`, {
+    config: { broadcast: { self: false } }
+  });
+  _vcKickChannel
+    .on('broadcast', { event: 'new_login' }, ({ payload }) => {
+      // 收到其他设备的登录广播，且 token 与本设备不一致 → 立即强制下线
+      if (payload.token && payload.token !== myToken) {
+        console.warn('[mutex] verbs.html 检测到账号在其他设备登录，强制退出');
+        _vcForceLogout();
+      }
+    })
+    .subscribe();
+}
+
+/**
+ * _vcForceLogout：verbs.html 页面被互斥登录踢下线
+ * 立即弹出提示，清空本地登录态相关数据，跳转回 index.html 登录页
+ */
+function _vcForceLogout() {
+  // 立即弹出醒目提示（红色警示样式，停留更久，避免用户错过）
+  showToast('⚠️ Compte connecté sur un autre appareil, déconnexion…', true);
+
+  // 清除本页面的 Realtime 订阅
+  if (_vcKickChannel) { try { _sb.removeChannel(_vcKickChannel); } catch(e){} _vcKickChannel = null; }
+
+  // 清除互斥登录 token（与 index.html _forceLogout 保持一致）
+  localStorage.removeItem(_vcSessionTokenKey(_authUid));
+
+  // 清除登录持久化信息，确保跳转回 index.html 后不会误判为已登录
+  localStorage.removeItem('mm_auth_uid');
+  localStorage.removeItem('mm_auth_username');
+  localStorage.removeItem('mm_auth_role');
+
+  // 禁用当前页面所有交互，防止用户在跳转前继续答题
+  document.getElementById('mainWrap').style.pointerEvents = 'none';
+  document.getElementById('mainWrap').style.opacity = '0.4';
+
+  // 1.5s 后跳转回 index.html，统一由 index.html 的 initAuth 处理未登录态
+  setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+}
 
 /* ══════════════════════════════════════════════════
    ★ 新增：勋章配置（全部法语名称，按积分门槛升序）
@@ -707,11 +777,13 @@ function showMsg(txt){
   document.getElementById('inputArea').classList.add('hidden');
   document.getElementById('feedbackArea').classList.add('hidden');
 }
-function showToast(msg){
+function showToast(msg, danger){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
+  t.textContent=msg;
+  t.classList.toggle('danger', !!danger);
+  t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),danger?4500:3200);
 }
 function goBack(){window.location.href='index.html';}
 
@@ -741,6 +813,9 @@ async function init(){
       }
     }
     renderScoreBar(); // 渲染积分/勋章展示条
+
+    // ★ 新增：启动互斥登录监听（被其他设备登录时立即弹窗并退出）
+    _vcWatchMutexLogin();
   }
 
   // 原有逻辑（完全保留）
