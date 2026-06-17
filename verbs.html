@@ -61,13 +61,28 @@ body::before{content:'';position:fixed;inset:0;
   white-space:nowrap;
 }
 .score-pill .score-val{font-size:14px;color:var(--sun);}
-.medal-chips{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;}
-.medal-chip{
-  display:inline-block;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);
-  border-radius:16px;padding:2px 8px;
-  font-size:11px;font-weight:700;color:#fff;white-space:nowrap;
+
+/* 勋章图标条：全部8枚常驻显示，未达标灰色，已达标高亮 */
+.medal-chips{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;align-items:center;}
+.medal-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;border-radius:50%;
+  font-size:14px;cursor:default;position:relative;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+/* 未解锁：灰色置灰 */
+.medal-icon.locked{
+  background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.22);
+  filter:grayscale(1);opacity:0.45;
+}
+/* 已解锁：高亮彩色 + 金色描边 */
+.medal-icon.unlocked{
+  background:radial-gradient(circle at 35% 30%,#fff6d0,var(--sun) 70%);
+  border:1.5px solid #fff3b0;
+  box-shadow:0 0 8px rgba(255,217,61,0.65),0 2px 4px rgba(0,0,0,0.15);
   animation:popIn 0.4s ease;
 }
+.medal-icon.unlocked:active{transform:scale(1.15);}
 /* ══ 新增结束 ══ */
 
 .main{position:relative;z-index:5;width:100%;max-width:440px;
@@ -312,14 +327,14 @@ const _loggedIn = !!(_authUid && _sb);
    ★ 新增：勋章配置（全部法语名称，按积分门槛升序）
    ══════════════════════════════════════════════════ */
 const MEDALS = [
-  { id:'debutant',          name:'Débutant',                            threshold:50   },
-  { id:'apprenti',          name:'Apprenti assidu',                     threshold:200  },
-  { id:'eleve_temps',       name:'Élève des temps',                     threshold:500  },
-  { id:'maitre_conj',       name:'Maître des conjugaisons',             threshold:1000 },
-  { id:'travailleur_mille', name:'Travailleur de mille exercices',      threshold:2000 },
-  { id:'specialiste',       name:'Spécialiste de grammaire',            threshold:4000 },
-  { id:'expert',            name:'Expert des verbes',                   threshold:7000 },
-  { id:'grand_maitre',      name:'Grand Maître de la conjugaison',      threshold:10000},
+  { id:'debutant',          name:'Débutant',                       icon:'🌱', threshold:50   },
+  { id:'apprenti',          name:'Apprenti assidu',                icon:'📘', threshold:200  },
+  { id:'eleve_temps',       name:'Élève des temps',                icon:'⏳', threshold:500  },
+  { id:'maitre_conj',       name:'Maître des conjugaisons',        icon:'🎓', threshold:1000 },
+  { id:'travailleur_mille', name:'Travailleur de mille exercices', icon:'💪', threshold:2000 },
+  { id:'specialiste',       name:'Spécialiste de grammaire',       icon:'📚', threshold:4000 },
+  { id:'expert',            name:'Expert des verbes',              icon:'⭐', threshold:7000 },
+  { id:'grand_maitre',      name:'Grand Maître de la conjugaison', icon:'👑', threshold:10000},
 ];
 
 /* ══════════════════════════════════════════════════
@@ -497,23 +512,22 @@ async function checkMedalUnlock() {
 
 /* ══════════════════════════════════════════════════
    ★ 新增：渲染 header 积分/勋章展示条
+   勋章常驻全部展示（8枚），未达标灰色置灰，达标后高亮彩色
    ══════════════════════════════════════════════════ */
 function renderScoreBar() {
   // 积分
   const scoreEl = document.getElementById('dispScore');
   if (scoreEl) scoreEl.textContent = Math.floor(_totalScore);
 
-  // 已解锁勋章（仅显示已解锁）
+  // 全部8枚勋章常驻展示，按解锁状态切换 locked/unlocked 样式
   const medalsEl = document.getElementById('dispMedals');
   if (!medalsEl) return;
-  if (_unlockedMedals.length === 0) {
-    medalsEl.innerHTML = '';
-    return;
-  }
-  // 只显示最高级别（节省空间），或全部显示均可
-  medalsEl.innerHTML = _unlockedMedals.map(id => {
-    const m = MEDALS.find(x => x.id === id);
-    return m ? `<span class="medal-chip" title="${m.name}">🏅 ${m.name}</span>` : '';
+  medalsEl.innerHTML = MEDALS.map(m => {
+    const unlocked = _unlockedMedals.includes(m.id);
+    const title = unlocked
+      ? `${m.name}（已解锁）`
+      : `${m.name}（需 ${m.threshold} 积分，当前 ${Math.floor(_totalScore)}）`;
+    return `<span class="medal-icon ${unlocked ? 'unlocked' : 'locked'}" title="${title}">${m.icon}</span>`;
   }).join('');
 }
 
