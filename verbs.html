@@ -476,6 +476,7 @@ async function apiUpdateUserScore(uid, payload) {
  * @param {string[]} newMedalIds- 本次（按加分前 totalScore 推算）新解锁的勋章 id 数组，没有则传 []
  * @returns {object|null}       - 数据库返回的最新权威状态 { totalScore, dailyScore, daily_date, unlockedMedals, actual_gain }
  */
+
 async function apiAddScoreAndMedals(uid, gain, today, newMedalIds) {
   if (!_sb || !uid) return null;
   try {
