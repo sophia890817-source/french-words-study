@@ -477,20 +477,72 @@ async function apiUpdateUserScore(uid, payload) {
  * @returns {object|null}       - 数据库返回的最新权威状态 { totalScore, dailyScore, daily_date, unlockedMedals, actual_gain }
  */
 
-async function apiAddScoreAndMedals(uid, gain, today, newMedalIds) {
+/**
+ * 移除RPC，改用先SELECT再UPDATE，和index.html逻辑统一
+ */
+async function apiAddScoreAndMedals(uid, gain, today) {
   if (!_sb || !uid) return null;
   try {
-    const { data, error } = await _sb.rpc('add_score_and_medals', {
-      p_uid: uid,
-      p_gain: gain,
-      p_today: today,
-      p_new_medal_ids: newMedalIds || [],
-      p_daily_limit: DAILY_LIMIT,
-    });
-    if (error) { console.warn('[score] rpc error:', error.message); return null; }
-    // Supabase RPC 返回数组（TABLE 类型函数），取第一行
-    return Array.isArray(data) ? data[0] : data;
-  } catch(e) { console.warn('[score] rpc exception:', e); return null; }
+    // 数据库字段全部小写匹配
+    const { data, selErr } = await _sb
+      .from('app_users')
+      .select('totalscore, dailyscore, daily_date, unlockedmedals')
+      .eq('id', uid)
+      .single();
+    if (selErr) throw selErr;
+
+    // 兜底默认值
+    const baseTotal = Number(data?.totalscore || 0);
+    const baseDaily = Number(data?.dailyscore || 0);
+    const baseMedals = Array.isArray(data?.unlockedmedals) ? data.unlockedmedals : [];
+
+    // 计算当日积分上限
+    let newDaily = baseDaily;
+    let realGain = gain;
+    if (data.daily_date !== today) {
+      newDaily = gain;
+    } else {
+      newDaily = baseDaily + gain;
+      if (newDaily > DAILY_LIMIT) {
+        realGain = DAILY_LIMIT - baseDaily;
+        newDaily = DAILY_LIMIT;
+      }
+    }
+
+    // 预测新解锁勋章
+    const predictedNewMedals = MEDALS.filter(m => !baseMedals.includes(m.id) && (baseTotal + realGain) >= m.threshold).map(m => m.id);
+    const finalMedals = [...new Set([...baseMedals, ...predictedNewMedals])];
+
+    // 更新 payload 全部小写字段
+    const updatePayload = {
+      totalscore: baseTotal + realGain,
+      dailyscore: newDaily,
+      daily_date: today,
+      unlockedmedals: finalMedals
+    };
+    const { data: updated, upsErr } = await _sb
+      .from('app_users')
+      .update(updatePayload)
+      .eq('id', uid)
+      .select('totalscore, dailyscore, daily_date, unlockedmedals')
+      .single();
+    if (upsErr) throw upsErr;
+
+    // 兼容上层读取驼峰变量
+    return {
+      totalscore: updated.totalscore,
+      dailyscore: updated.dailyscore,
+      daily_date: updated.daily_date,
+      unlockedmedals: updated.unlockedmedals,
+      totalScore: updated.totalscore,
+      dailyScore: updated.dailyscore,
+      unlockedMedals: updated.unlockedmedals,
+      actual_gain: realGain
+    };
+  } catch (e) {
+    console.warn('[score update error]', e);
+    return null;
+  }
 }
 
 /* ══════════════════════════════════════════════════
@@ -554,7 +606,7 @@ async function addScore(tempsId) {
   const predictedNewMedals = _predictNewMedals(_totalScore + gain);
 
   // 单次原子调用：数据库内部完成"加锁→读最新值→算每日上限→累加→合并勋章→写回"全过程
-  const result = await apiAddScoreAndMedals(_authUid, gain, today, predictedNewMedals);
+  const result = await apiAddScoreAndMedals(_authUid, gain, today);
   if (!result) return; // 网络失败：静默跳过，本地连击计数已生效，下次答对再尝试同步
 
   // 用数据库返回的权威值刷新本地状态（绝不会被旧快照覆盖）
@@ -588,7 +640,7 @@ async function addBonusScore() {
   const bonus  = 10;
   const predictedNewMedals = _predictNewMedals(_totalScore + bonus);
 
-  const result = await apiAddScoreAndMedals(_authUid, bonus, today, predictedNewMedals);
+  const result = await apiAddScoreAndMedals(_authUid, bonus, today);
   if (!result) return;
 
   const prevMedals = _unlockedMedals;
