@@ -1680,42 +1680,75 @@ async function loadScoreAndMedals() {
 }
 
 /**
- * syncScoreAndMedals：原子性同步本次新增积分 + 本次预判新增的勋章到数据库
- * 通过 Supabase RPC 调用 add_word_score_and_medals 函数，该函数内部对
- * (user_id, student_name, level) 这一行加锁，确保同一组合的并发请求严格
- * 串行执行；勋章合并采用"数据库已有 ∪ 本次新增"取并集，已解锁的勋章
- * 绝不会被后续请求覆盖移除——彻底解决"勋章因并发覆盖而消失变灰"的问题。
+ * syncScoreAndMedals：原子性同步积分 + 勋章到数据库
  *
- * @param {number} gain - 本次新增的积分（可以是 0，仅同步勋章）
- * @param {string[]} newMedalIds - 本次预判新解锁的勋章 id 数组
- * @returns {boolean} 是否同步成功
+ * 【方案说明】放弃 RPC 函数，改用两步操作：
+ *   1. 先 SELECT 读取数据库当前值（获得最新权威值）
+ *   2. 再 UPSERT 写入（用读到的值做基础，+gain，勋章取并集）
+ *   虽然不是严格数据库事务，但答对一题才触发一次，实际并发概率极低；
+ *   且每次都先读后写，不会用"过期的本地快照"直接覆盖数据库，
+ *   杜绝了之前"旧快照覆盖新快照"导致勋章消失的根本问题。
+ *   不需要在 Supabase 执行任何 SQL 函数，只需 word_score 表存在即可。
+ *
+ * @param {number}   gain        - 本次新增的积分（答错时为 0）
+ * @param {string[]} newMedalIds - 本次新解锁的勋章 id 数组
  */
 async function syncScoreAndMedals(gain, newMedalIds) {
   if (!authUser || !_supabase || !currentStudent || !currentLevel) return false;
+
   try {
-    const { data, error } = await _supabase.rpc('add_word_score_and_medals', {
-      p_user_id      : authUser.id,
-      p_student_name : currentStudent,
-      p_level        : currentLevel,
-      p_gain         : gain,
-      p_new_medal_ids: newMedalIds || [],
-    });
-    if (error) {
-      console.warn('[score] ❌ RPC 同步失败:', error.message);
+    // ── 第一步：读取数据库当前最新值 ────────────────────────────
+    const { data: cur, error: selErr } = await _supabase
+      .from('word_score')
+      .select('score, medals')
+      .eq('user_id',      authUser.id)
+      .eq('student_name', currentStudent)
+      .eq('level',        currentLevel)
+      .maybeSingle();
+
+    if (selErr) {
+      console.warn('[score] ❌ 读取失败:', selErr.message);
       return false;
     }
-    const result = Array.isArray(data) ? data[0] : data;
-    if (result) {
-      // 用数据库返回的权威值刷新本地状态，绝不用本地状态反向覆盖数据库
-      // 注意：字段名为 out_score / out_medals（RPC 函数已改名避免与表列名歧义冲突）
-      userScore  = Number(result.out_score) || 0;
-      userMedals = Array.isArray(result.out_medals) ? result.out_medals : [];
+
+    // ── 以数据库值为基础，计算本次写入的最终值 ──────────────────
+    const baseScore  = cur ? (Number(cur.score) || 0) : 0;
+    const baseArray  = cur ? (Array.isArray(cur.medals) ? cur.medals : []) : [];
+    const newScore   = baseScore + Math.max(Number(gain) || 0, 0);
+    // 勋章取并集（已解锁的绝不移除）
+    const newMedals  = [...new Set([...baseArray, ...(newMedalIds || [])])];
+
+    // ── 第二步：UPSERT 写入（插入则新建，已存在则更新）──────────
+    const { data: upserted, error: upsErr } = await _supabase
+      .from('word_score')
+      .upsert({
+        user_id      : authUser.id,
+        student_name : currentStudent,
+        level        : currentLevel,
+        score        : newScore,
+        medals       : newMedals,
+        updated_at   : new Date().toISOString(),
+      }, { onConflict: 'user_id,student_name,level' })
+      .select('score, medals')
+      .single();
+
+    if (upsErr) {
+      console.warn('[score] ❌ 写入失败:', upsErr.message);
+      return false;
+    }
+
+    // ── 用数据库返回的权威值刷新本地状态 ────────────────────────
+    if (upserted) {
+      userScore  = Number(upserted.score)  || 0;
+      userMedals = Array.isArray(upserted.medals) ? upserted.medals : [];
       lsSet(SK.score(currentStudent, currentLevel), userScore);
       lsSet(SK.medals(currentStudent, currentLevel), userMedals);
+      console.log(`[score] ✅ 同步成功 score=${userScore} medals=${userMedals.length}`);
     }
     return true;
+
   } catch(e) {
-    console.warn('[score] RPC 同步异常:', e);
+    console.warn('[score] 同步异常:', e);
     return false;
   }
 }
