@@ -1576,8 +1576,7 @@ async function startLevel(levelId){
   // loadProgress 从 localStorage 读取最新数据到内存 mastered Set 和 wrongSet
   // 此时 mastered.size 即为已掌握词数，用于 updateHeader 计算本级剩余
   loadProgress();
-  loadScore();   // 加载该账号+等级的历史积分（切换等级时自动隔离）
-  loadMedals();  // 加载该账号+等级的历史勋章（切换等级/账号后自动隔离）
+  await loadScoreAndMedals();  // 从数据库拉取该账号+等级的最新积分与勋章（跨设备同步）
   updateHeader();  
   buildSession();
 
@@ -1620,32 +1619,104 @@ function saveProgress(){
 }
 
 // ═══════════════════════════════════════════════════
-// SCORE SYSTEM（积分系统）
+// SCORE SYSTEM（积分系统）— 数据库持久化版本
 // ═══════════════════════════════════════════════════
+// 【架构说明】积分与勋章现在统一存入 Supabase word_score 表，
+// 按 (user_id, student_name, level) 三元组维度持久化，与 word_progress 完全同维度。
+// 每次答对题目，只触发【一次】RPC 原子调用（add_word_score_and_medals），
+// 在数据库端完成"累加积分 + 合并勋章"，彻底消除前端多次并发写入互相覆盖的问题。
+// loadScore/loadMedals 已合并为 loadScoreAndMedals，一次性从数据库拉取，
+// 跨设备登录同一账号、同一等级时，能直接获得对方设备产生的最新数据。
 
 /**
- * loadScore：进入等级时读取该账号+等级的历史积分
- * 键格式：mm_{student}_{level}_score，与单词进度键平级
+ * loadScoreAndMedals：进入等级时从数据库拉取该账号+等级的积分与勋章
+ * 取代原来分离的 loadScore() / loadMedals()，避免两次请求的时序问题
+ * 未登录或无网络时，自动降级为本地 localStorage 缓存（不影响离线使用）
  */
-function loadScore() {
+async function loadScoreAndMedals() {
   if (!currentStudent || !currentLevel) return;
-  userScore  = lsGet(SK.score(currentStudent, currentLevel), 0);
-  comboCount = 0; // 每次进入新等级连击从0开始
+  comboCount = 0; // 每次进入新等级连击从0开始（仅内存，不持久化）
+
+  // 离线/未登录兜底：先用本地缓存垫一下，避免界面闪烁成 0
+  userScore   = lsGet(SK.score(currentStudent, currentLevel), 0);
+  userMedals  = lsGet(SK.medals(currentStudent, currentLevel), []);
+  updateScoreUI();
+
+  if (!authUser || !_supabase) {
+    console.log('[score] 未登录或无数据库连接，使用本地缓存');
+    return;
+  }
+
+  try {
+    const { data, error } = await _supabase
+      .from('word_score')
+      .select('score, medals')
+      .eq('user_id', authUser.id)
+      .eq('student_name', currentStudent)
+      .eq('level', currentLevel)
+      .maybeSingle();
+
+    if (error) {
+      console.warn('[score] ❌ 数据库拉取失败，沿用本地缓存:', error.message);
+      return;
+    }
+
+    if (data) {
+      // 数据库有记录：以数据库为权威值覆盖本地缓存（跨设备同步的核心）
+      userScore  = Number(data.score) || 0;
+      userMedals = Array.isArray(data.medals) ? data.medals : [];
+      // 同步写回本地缓存，保证下次离线时也有最新值
+      lsSet(SK.score(currentStudent, currentLevel), userScore);
+      lsSet(SK.medals(currentStudent, currentLevel), userMedals);
+      console.log(`[score] ✅ 数据库拉取成功 student="${currentStudent}" level="${currentLevel}" score=${userScore} medals=${userMedals.length}`);
+    } else {
+      console.log('[score] 数据库暂无记录（新账号/新等级），积分勋章从零开始');
+    }
+  } catch(e) {
+    console.warn('[score] 拉取异常，沿用本地缓存:', e);
+  }
+
   updateScoreUI();
 }
 
 /**
- * saveScore：积分持久化（本地 + 云端同步）
- * 仅保存积分字段，不影响单词进度数据
- * 云端：复用 cloudSaveProgress，将 score 附加在 progress 数据中
- * 注意：切换等级/账号时会 loadScore() 重新加载，保证数据隔离
+ * syncScoreAndMedals：原子性同步本次新增积分 + 本次预判新增的勋章到数据库
+ * 通过 Supabase RPC 调用 add_word_score_and_medals 函数，该函数内部对
+ * (user_id, student_name, level) 这一行加锁，确保同一组合的并发请求严格
+ * 串行执行；勋章合并采用"数据库已有 ∪ 本次新增"取并集，已解锁的勋章
+ * 绝不会被后续请求覆盖移除——彻底解决"勋章因并发覆盖而消失变灰"的问题。
+ *
+ * @param {number} gain - 本次新增的积分（可以是 0，仅同步勋章）
+ * @param {string[]} newMedalIds - 本次预判新解锁的勋章 id 数组
+ * @returns {boolean} 是否同步成功
  */
-function saveScore() {
-  if (!currentStudent || !currentLevel) return;
-  lsSet(SK.score(currentStudent, currentLevel), userScore);
-  // 云端同步：将积分附带在进度上传中（复用现有 cloudSaveProgress 管道）
-  // 此处仅本地持久化；云端同步在 saveProgress 里触发，不额外增加请求
-  // 如需独立云端积分字段，可扩展 word_progress 表添加 score 列
+async function syncScoreAndMedals(gain, newMedalIds) {
+  if (!authUser || !_supabase || !currentStudent || !currentLevel) return false;
+  try {
+    const { data, error } = await _supabase.rpc('add_word_score_and_medals', {
+      p_user_id      : authUser.id,
+      p_student_name : currentStudent,
+      p_level        : currentLevel,
+      p_gain         : gain,
+      p_new_medal_ids: newMedalIds || [],
+    });
+    if (error) {
+      console.warn('[score] ❌ RPC 同步失败:', error.message);
+      return false;
+    }
+    const result = Array.isArray(data) ? data[0] : data;
+    if (result) {
+      // 用数据库返回的权威值刷新本地状态，绝不用本地状态反向覆盖数据库
+      userScore  = Number(result.score) || 0;
+      userMedals = Array.isArray(result.medals) ? result.medals : [];
+      lsSet(SK.score(currentStudent, currentLevel), userScore);
+      lsSet(SK.medals(currentStudent, currentLevel), userMedals);
+    }
+    return true;
+  } catch(e) {
+    console.warn('[score] RPC 同步异常:', e);
+    return false;
+  }
 }
 
 /**
@@ -1653,20 +1724,24 @@ function saveScore() {
  * 规则：
  *   基础 +1；连击≥3 单题+2；连击≥10 单题+3
  *   答错：comboCount 归零，不扣分
+ * 【已改造】不再自己单独调用一次数据库写入；本次加分会和
+ * checkMedalsOnCorrect() 预判出的新勋章合并成【一次】RPC 调用，
+ * 由 checkSpell 在两者都计算完毕后统一触发 syncScoreAndMedals()。
  * @param {boolean} correct - true=答对，false=答错
  * @param {DOMRect} [anchorRect] - 触发元素位置，用于悬浮加分文字定位
+ * @returns {number} 本次实际加分（答错为0），供调用方合并同步使用
  */
 function addScore(correct, anchorRect) {
+  let gain = 0;
   if (correct) {
     // ── 答对：先增连击，再计分 ───────────────────────────────
     comboCount++;
 
-    let gain = 1;                          // 基础分
+    gain = 1;                              // 基础分
     if (comboCount >= 10) gain = 3;        // 超级连击 ≥10
     else if (comboCount >= 3)  gain = 2;   // 连击加成 ≥3
 
-    userScore += gain;
-    saveScore();
+    userScore += gain; // 先更新内存值用于即时界面展示，真正持久化交给统一同步
 
     // 悬浮加分文字（从按钮位置飞出）
     _showScoreFloat(`+${gain}${comboCount >= 3 ? ' 🔥' : ''}`, anchorRect);
@@ -1676,6 +1751,7 @@ function addScore(correct, anchorRect) {
     comboCount = 0;
   }
   updateScoreUI();
+  return gain;
 }
 
 /**
@@ -1732,34 +1808,33 @@ function _showScoreFloat(text, rect) {
 // MEDAL SYSTEM（勋章系统）
 // ═══════════════════════════════════════════════════
 
-/**
- * loadMedals()：进入等级时读取该账号+等级的已解锁勋章数组
- * 切换账号/等级后自动隔离，刷新页面后数据保留
- */
-function loadMedals() {
-  if (!currentStudent || !currentLevel) return;
-  userMedals = lsGet(SK.medals(currentStudent, currentLevel), []);
-  console.log(`[medals] 加载勋章 student="${currentStudent}" level="${currentLevel}"`, userMedals);
-}
+// ═══════════════════════════════════════════════════
+// MEDAL SYSTEM（勋章系统）— 数据库持久化版本
+// ═══════════════════════════════════════════════════
+// 【架构说明】不再有独立的 saveMedals() 写入；勋章解锁现在采用"预判收集"模式：
+// unlockMedal() 只更新内存里的 userMedals 数组 + 弹 toast 提示，
+// 真正的数据库持久化统一交给 checkSpell 末尾的【一次】syncScoreAndMedals() 调用，
+// 与本题的加分合并成单次 RPC 写入，避免"积分一次写入、勋章再一次写入"产生的
+// 双重并发窗口。
 
 /**
- * saveMedals()：持久化勋章数据到 localStorage；
- * 登录状态下同步到 Supabase（复用 cloudSaveProgress 管道，附带在进度数据中）。
- * 注意：目前 word_progress 表暂无 medals 列，勋章仅本地持久化。
- * 如需云端存储，可在 word_progress 表添加 medals JSONB 列后扩展此函数。
+ * loadMedals 已废弃，请使用 loadScoreAndMedals()（合并了积分与勋章的拉取）
+ * 保留空函数仅防止外部残留调用报错
  */
-function saveMedals() {
-  if (!currentStudent || !currentLevel) return;
-  lsSet(SK.medals(currentStudent, currentLevel), userMedals);
-  // 云端同步预留：如 word_progress 含 medals 列，在此上传
-  console.log(`[medals] 保存勋章 student="${currentStudent}" level="${currentLevel}"`, userMedals);
-}
+function loadMedals() { /* no-op，已合并进 loadScoreAndMedals() */ }
 
 /**
- * unlockMedal(medalId)：解锁指定勋章
- * - 先校验是否已解锁（去重，不重复弹窗/存储）
- * - 更新 userMedals 数组，调用 saveMedals() 持久化
- * - 用 showToast 弹出童趣提示，1.5s 后再次弹窗不冲突
+ * saveMedals 已废弃，请勿单独调用
+ * 勋章持久化已合并进 syncScoreAndMedals() 的单次 RPC 原子写入
+ * 保留空函数仅防止外部残留调用报错
+ */
+function saveMedals() { /* no-op，持久化已合并进 syncScoreAndMedals() */ }
+
+/**
+ * unlockMedal(medalId)：解锁指定勋章（仅更新内存 + 弹提示）
+ * - 先校验是否已解锁（去重，不重复弹窗）
+ * - 更新内存 userMedals 数组，供本次答题结束后统一同步进数据库
+ * - 用 showToast 弹出童趣提示
  * @param {string} medalId - MEDAL_LIST 中的 id 字段
  */
 function unlockMedal(medalId) {
@@ -1770,7 +1845,8 @@ function unlockMedal(medalId) {
   if (!medal) return;
 
   userMedals.push(medalId);
-  saveMedals();
+  // 注意：此处不再调用 saveMedals()，持久化由调用方统一触发的
+  // syncScoreAndMedals() 完成（与本次积分合并为一次数据库写入）
 
   // Toast 提示（使用项目自带 showToast，童趣文案）
   showToast(`${medal.icon} Médaille débloquée ! « ${medal.name} » — ${medal.desc}`);
@@ -1780,8 +1856,12 @@ function unlockMedal(medalId) {
 /**
  * checkMedalsOnCorrect()：答对时检查所有即时勋章和积分勋章
  * 在 checkSpell 答对分支末尾调用（addScore 之后，此时 comboCount/userScore 已更新）
+ * 【已改造】返回本次新解锁的勋章 id 数组，供调用方合并进统一的数据库同步
+ * @returns {string[]} 本次新解锁的勋章 id 数组
  */
 function checkMedalsOnCorrect() {
+  const before = [...userMedals];
+
   // ① 首个答对单词 → first_word
   if (sessionCorrect === 1) {
     unlockMedal('first_word');
@@ -1797,17 +1877,24 @@ function checkMedalsOnCorrect() {
       if (userScore >= m.threshold) unlockMedal(m.id);
     }
   }
+
+  // 返回本次新增的勋章 id（before 之外新出现的）
+  return userMedals.filter(id => !before.includes(id));
 }
 
 /**
  * checkMedalNoWrong()：本轮结束时检查零失误勋章
  * 在 endSession 中调用（此时 wrongSet 数量可作为本轮错题依据）
  * 判断依据：sessionCorrect > 0（本轮确实有答题）且 wrongSet.length === 0
+ * 【已改造】返回本次新解锁的勋章 id 数组（通常 0 或 1 个）
+ * @returns {string[]} 本次新解锁的勋章 id 数组
  */
 function checkMedalNoWrong() {
+  const before = [...userMedals];
   if (sessionCorrect > 0 && wrongSet.length === 0) {
     unlockMedal('no_wrong');
   }
+  return userMedals.filter(id => !before.includes(id));
 }
 
 // ── 勋章弹窗 UI ─────────────────────────────────────────────────
@@ -1825,7 +1912,7 @@ function closeMedals() {
 
 /**
  * renderMedalModal()：根据 userMedals 渲染全部9枚勋章条目
- * 已解锁：彩色显示，右侧显示 ✅ 已解锁
+ * 已解锁：彩色显示，右侧显示 ✅ 已解锁（一旦写入 userMedals 永不再置灰）
  * 未解锁：整体置灰，右侧显示 🔒 未解锁
  */
 function renderMedalModal() {
@@ -2027,7 +2114,7 @@ function startSpell(idx){
   setTimeout(()=>{const el=document.getElementById('spellInput');if(el)el.focus();},100);
 }
 
-function checkSpell(idx){
+async function checkSpell(idx){
   const word=banks[currentLevel][idx];
   const inp=document.getElementById('spellInput');
   if(!inp)return;
@@ -2044,12 +2131,17 @@ function checkSpell(idx){
   if(ok){
     markMastered(idx);sessionCorrect++;
 
-    // ── 积分：答对，计算连击加分 ─────────────────────────────
-    addScore(true, anchorRect);
+    // ── 积分：答对，计算连击加分（仅更新内存，返回本次加分值）────
+    const gain = addScore(true, anchorRect);
 
     // ── 勋章：答对后检查所有即时勋章和积分勋章 ───────────────
     // 注意：必须在 addScore 之后调用，此时 comboCount/userScore 已更新
-    checkMedalsOnCorrect();
+    // 返回本次新解锁的勋章 id 数组（仅更新内存，尚未写数据库）
+    const newMedals = checkMedalsOnCorrect();
+
+    // ── 数据库同步：本题加分 + 本题新勋章合并为【一次】原子写入 ──
+    // 避免"积分一次请求、勋章再一次请求"产生两个并发覆盖窗口
+    syncScoreAndMedals(gain, newMedals);
 
     // ── 答对反馈：显示连击提示文案 ────────────────────────────
     let bonusHint = '';
@@ -2069,7 +2161,7 @@ function checkSpell(idx){
   } else {
     markWrong(idx);
 
-    // ── 积分：答错，连击归零，不扣分 ────────────────────────
+    // ── 积分：答错，连击归零，不扣分（gain 必为0，不触发数据库写入）──
     addScore(false, null);
 
     document.getElementById('phaseIcon').textContent='💪';
@@ -2117,7 +2209,9 @@ function endSession(){
   comboCount = 0; // 本轮结束，连击归零
   updateScoreUI();
   // 勋章：本轮结束时检查零失误勋章（wrongSet 为本轮累计错题）
-  checkMedalNoWrong();
+  // 返回本次新解锁的勋章 id，若有则单独同步进数据库（gain=0，仅同步勋章）
+  const newMedals = checkMedalNoWrong();
+  if (newMedals.length > 0) syncScoreAndMedals(0, newMedals);
   document.getElementById('doneSub').textContent=msg;
   updateHeader();
 }
