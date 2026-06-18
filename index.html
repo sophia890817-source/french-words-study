@@ -1707,8 +1707,9 @@ async function syncScoreAndMedals(gain, newMedalIds) {
     const result = Array.isArray(data) ? data[0] : data;
     if (result) {
       // 用数据库返回的权威值刷新本地状态，绝不用本地状态反向覆盖数据库
-      userScore  = Number(result.score) || 0;
-      userMedals = Array.isArray(result.medals) ? result.medals : [];
+      // 注意：字段名为 out_score / out_medals（RPC 函数已改名避免与表列名歧义冲突）
+      userScore  = Number(result.out_score) || 0;
+      userMedals = Array.isArray(result.out_medals) ? result.out_medals : [];
       lsSet(SK.score(currentStudent, currentLevel), userScore);
       lsSet(SK.medals(currentStudent, currentLevel), userMedals);
     }
